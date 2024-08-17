@@ -1,0 +1,34 @@
+Sprite Font Builder
+© 2016 Vortex Game Studios LTDA ME
+-------------------------------------------------------------------------------------
+  Twitter: @vortexstudios			Facebook: http://www.facebook.com/vortexstudios
+-------------------------------------------------------------------------------------
+  With this plugin you can create your very own custom front using any sprite,
+  making your game much more polished and attractive!
+
+  To use this plugin is very simple, open the Sprite Font Builder window from
+  [Window->Vortex Game Studios->SpriteFontBuilder] and click on "Add New Sprite Font".
+  A new font component will be created, first, give a name for your font, second
+  drag-and-drop your font sprite, you will need to cut the spritesheet first, you
+  will use the standard Sprite Editor from Unity and give the characters and the
+  character orders from your sprite, it's very important, we use tge "Character
+  Font Order" to link each character to the right sprite!
+
+  When you done that just click the big green button, the "Build the Sprite Font",
+  it will create the font and the font material, now everythins is done! Just use
+  as any other font on your UI Text component :)
+
+  You can use the ShoeBox (http://renderhjs.net/shoebox/) to create the font and
+  the sprite cut automatically.
+
+  Now you can use the Littera (http://kvazars.com/littera/) to create your font
+  online.
+
+  Check the Sprite Font Builder page on Unity Asset Store to watch the video 
+  tutorials to create font with or without the ShoeBox.
+
+Fonts used on the samples:
+SPACE LANDER - Vortex Game Studios (www.spacelander.com.br) 
+COUTURE - http://openfontlibrary.org/en/font/couture (MIT (X11) License)
+TOWER_PRINT - http://openfontlibrary.org/en/font/tower-print (MIT (X11) License)
+SOFIA - http://openfontlibrary.org/en/font/sofia (MIT (X11) License)

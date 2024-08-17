@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 9ef3066e263c57f42b1dfb821fb7db4a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - colliderJSON: {fileID: 4900000, guid: 8512d9341afc60048ad573c5000ab97b, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

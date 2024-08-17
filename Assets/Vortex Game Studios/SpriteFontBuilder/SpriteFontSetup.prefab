@@ -1,0 +1,157 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &131436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 496840}
+  - component: {fileID: 11481824}
+  - component: {fileID: 11476782}
+  - component: {fileID: 11420700}
+  - component: {fileID: 11448330}
+  - component: {fileID: 11405648}
+  - component: {fileID: -1132713364122141065}
+  m_Layer: 0
+  m_Name: SpriteFontSetup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &496840
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131436}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &11481824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131436}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999c7c28e874e894e9d411172e573e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Space Lander
+  sprite: {fileID: 2800000, guid: aed2fdeb089ac674e80f4facb29e3499, type: 3}
+  fontBase: 0
+  fontSize: 1
+  lineSpacing: 1
+  font: {fileID: 12800000, guid: 516591c03237665488e3585827ac495e, type: 2}
+  characters: '!"#%''()*+,-./0123456789:;<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ '
+--- !u!114 &11476782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131436}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999c7c28e874e894e9d411172e573e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Couture
+  sprite: {fileID: 2800000, guid: 68fdafb0a9424ba488eb8752ff3fe2c6, type: 3}
+  fontBase: 26
+  fontSize: 32
+  lineSpacing: 80
+  font: {fileID: 12800000, guid: 2126b0e8c41ce3743b3645b276c6281d, type: 2}
+  characters: "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+    \t"
+--- !u!114 &11420700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131436}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999c7c28e874e894e9d411172e573e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Sofia
+  sprite: {fileID: 2800000, guid: 403db179d3ded5f44b86b5c447248438, type: 3}
+  fontBase: 26
+  fontSize: 32
+  lineSpacing: 80
+  font: {fileID: 12800000, guid: 2a104523bf0cd29469298aa6bd38a35c, type: 2}
+  characters: "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+    \t"
+--- !u!114 &11448330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131436}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999c7c28e874e894e9d411172e573e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Tower Print
+  sprite: {fileID: 2800000, guid: b48f5fd8781c3e3458bdbd8715ee9d63, type: 3}
+  fontBase: 26
+  fontSize: 32
+  lineSpacing: 80
+  font: {fileID: 12800000, guid: 80af84931ff326d4a9253475e004ddc8, type: 2}
+  characters: "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+    \t"
+--- !u!114 &11405648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131436}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999c7c28e874e894e9d411172e573e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Littera Font
+  sprite: {fileID: 2800000, guid: b4a43a63801ac2b439647bc46da2d429, type: 3}
+  fontBase: 65
+  fontSize: 60
+  lineSpacing: 80
+  font: {fileID: 12800000, guid: 5b2cb8bddc9bfb6428f385be052304e4, type: 2}
+  characters: "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~\x7F\u20AC\u201A\u0192\u201E\u2026\u2020\u2021\u02C6\u2030\u0160\u2039\u0152\u017D\u2018\u2019\u201C\u201D\u2022\u2013\u2014\u02DC\u2122\u0161\u203A\u0153\u017E\u0178
+    \xA1\xA2\xA3\xA4\xA5\xA6\xA7\xA8\xA9\xAA\xAB\xAC\xAD\xAE\xAF\xB0\xB1\xB2\xB3\xB4\xB5\xB6\xB7\xB8\xB9\xBA\xBB\xBC\xBD\xBE\xBF\xC0\xC1\xC2\xC3\xC4\xC5\xC6\xC7\xC8\xC9\xCA\xCB\xCC\xCD\xCE\xCF\xD0\xD1\xD2\xD3\xD4\xD5\xD6\xD7\xD8\xD9\xDA\xDB\xDC\xDD\xDE\xDF\xE0\xE1\xE2\xE3\xE4\xE5\xE6\xE7\xE8\xE9\xEA\xEB\xEC\xED\xEE\xEF\xF0\xF1\xF2\xF3\xF4\xF5\xF6\xF7\xF8\xF9\xFA\xFB\xFC\xFD\xFE\xFF"
+--- !u!114 &-1132713364122141065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999c7c28e874e894e9d411172e573e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: jpb font 4
+  sprite: {fileID: 2800000, guid: bc4a2124cab45844283a3f2de7d90db9, type: 3}
+  fontBase: 0
+  fontSize: 1
+  lineSpacing: 1
+  font: {fileID: 12800000, guid: 5e1c0409bccdf2e40b2a7d122c1381ee, type: 2}
+  characters: yCj{})] ([OU\Qaoueic@g&,OGSqp%?dbnfJ!WMYAVIXZHTDRNKk86PB5903FEhLt4721s#mwvxnzr<>+231=".-

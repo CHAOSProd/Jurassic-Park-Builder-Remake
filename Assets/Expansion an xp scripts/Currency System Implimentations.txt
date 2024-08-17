@@ -1,0 +1,19 @@
+COPY PASTE THE CODE BELOW TO YOUR CURRENCY SYSTEM
+
+public static bool HasEnoughCurrency(CurrencyType currencyType, int amount) {
+        return _currencyAmounts.ContainsKey(currencyType) && _currencyAmounts[currencyType] >= amount;
+    }
+
+    public static void AddCurrency(CurrencyType currencyType, int amount) {
+        if (HasEnoughCurrency(currencyType, 0)) {
+            _currencyAmounts[currencyType] += amount;
+            Debug.Log($"Money: {_currencyAmounts[currencyType]}");
+        }
+    }
+
+    public static void DeductCurrency(CurrencyType currencyType, int amount) {
+        if (HasEnoughCurrency(currencyType, 0)) {
+            _currencyAmounts[currencyType] -= amount;
+            Debug.Log($"Money: {_currencyAmounts[currencyType]}");
+        }
+    }
