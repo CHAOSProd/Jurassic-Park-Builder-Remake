@@ -16,7 +16,7 @@ public class CameraObjectFollowing : MonoBehaviour
     private float _objectWidth;
     private float _objectHeight;
 
-    private void Awake() => _camera = FindObjectOfType<Camera>();
+    private void Awake() => _camera = Camera.main;
 
     private void Start()
     {

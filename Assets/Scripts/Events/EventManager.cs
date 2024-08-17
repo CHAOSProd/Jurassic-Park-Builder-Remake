@@ -44,7 +44,7 @@ public class EventManager : MonoBehaviour
         {
             if (s_Instance == null)
             {
-                s_Instance = GameObject.FindObjectOfType(typeof(EventManager)) as EventManager;
+                s_Instance = FindFirstObjectByType(typeof(EventManager)) as EventManager;
             }
             return s_Instance;
         }

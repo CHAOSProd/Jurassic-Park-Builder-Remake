@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class CameraWorldBounds : MonoBehaviour
 {
+    //Singleton for Access from other scripts and prevent search functions
+    public static CameraWorldBounds Instance { get;private set; }
+
     private Camera _camera;
     private Bounds _cameraBounds;
 
@@ -18,7 +21,9 @@ public class CameraWorldBounds : MonoBehaviour
         var bounds = GetComponent<SpriteRenderer>().bounds;
         Globals.WorldBounds = bounds;
 
-        _camera = FindObjectOfType<Camera>();
+        _camera = Camera.main;
+
+        if(Instance == null) Instance= this;
     }
 
     private void Start()
