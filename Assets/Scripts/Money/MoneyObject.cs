@@ -30,9 +30,9 @@ public class MoneyObject : MonoBehaviour
 
     private void Awake() //Havik changed from start to awake to not miss any references
     {
-        _moneyManager = FindObjectOfType<MoneyManager>();
-        _collectMoneyDisplay = FindObjectOfType<CollectMoneyDisplay>(true);
-        _collectMoneyButton = FindObjectOfType<CollectMoneyButton>(true).GetComponent<Button>();
+        _moneyManager = MoneyManager.Instance;
+        _collectMoneyDisplay = CollectMoneyDisplay.Instance;
+        _collectMoneyButton = CollectMoneyButton.Instance.GetComponent<Button>();
 
         _maximumSeconds = MaximumMinutes * 60;
         _selectable = GetComponentInParent<Selectable>();

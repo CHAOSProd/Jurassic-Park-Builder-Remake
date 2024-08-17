@@ -16,7 +16,7 @@ public class PaddockInfo : MonoBehaviour
 
     private void Start()
     {
-        _display = FindObjectOfType<PaddockInfoDisplay>(true);
+        _display = PaddockInfoDisplay.Instance;
         _dinosaurLevelManager = GetComponent<DinosaurLevelManager>();
         _moneyObject = GetComponent<MoneyObject>();
         _paddock = GetComponent<Paddock>();

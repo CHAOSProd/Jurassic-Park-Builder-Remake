@@ -16,8 +16,8 @@ public class PanZoomMobile : MonoBehaviour
     private void Awake()
     {
         _camera = GetComponent<Camera>();
-        _cameraWorldBounds = FindObjectOfType<CameraWorldBounds>();
-        _cameraObjectFollowing = FindObjectOfType<CameraObjectFollowing>();
+        _cameraWorldBounds = CameraWorldBounds.Instance;
+        _cameraObjectFollowing = GetComponent<CameraObjectFollowing>();
     }
 
     private void Update()

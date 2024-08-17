@@ -17,7 +17,7 @@ public class GridBuildingSystem : MonoBehaviour
     public Tilemap MainTilemap;
     public Tilemap TempTilemap;
 
-    private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
+    private static readonly Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
 
     [HideInInspector] public PlaceableObject TempPlaceableObject;
 

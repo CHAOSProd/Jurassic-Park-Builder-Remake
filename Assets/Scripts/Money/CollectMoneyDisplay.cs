@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class CollectMoneyDisplay : MonoBehaviour
 {
+    public static CollectMoneyDisplay Instance { get; private set; }
+
     private TextMeshProUGUI _text;
 
+    private void Awake()
+    {
+        if(Instance == null) Instance = this;
+    }
     private void Start()
     {
         _text = GetComponent<TextMeshProUGUI>();

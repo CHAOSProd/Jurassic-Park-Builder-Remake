@@ -17,7 +17,7 @@ public class PurchasableItem : MonoBehaviour
 
     private void Start()
     {
-        moneyManager = FindObjectOfType<MoneyManager>();
+        moneyManager = MoneyManager.Instance;
         if (moneyManager == null)
         {
             Debug.LogError("MoneyManager script not found in the scene.");

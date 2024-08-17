@@ -12,7 +12,7 @@ public class BuildingInfo : MonoBehaviour
 
     private void Start()
     {
-        _display = FindObjectOfType<BuildingInfoDisplay>(true);
+        _display = BuildingInfoDisplay.Instance;
         _moneyObject = GetComponent<MoneyObject>();
         _building = GetComponentInParent<Building>();
     }

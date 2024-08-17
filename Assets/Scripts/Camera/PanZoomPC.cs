@@ -19,7 +19,7 @@ public class PanZoomPC : MonoBehaviour
     private Vector2 _startPoint;
     private Vector2 _startCameraPosition;
     private float _zoomDelta;
-    private bool _isCanZoomed = true;
+    private bool _canZoom = true;
 
     private void Awake()
     {
@@ -27,23 +27,22 @@ public class PanZoomPC : MonoBehaviour
 
         _camera = Camera.main;
 
-        _cameraWorldBounds = FindObjectOfType<CameraWorldBounds>();
+        _cameraWorldBounds = CameraWorldBounds.Instance;
     }
 
     private void Start()
     {
         _zoomDelta = (_maxZoom - _minZoom) / 2f;
-        _cameraObjectFollowing = FindObjectOfType<CameraObjectFollowing>();
+        _cameraObjectFollowing = GetComponent<CameraObjectFollowing>();
     }
 
     private void OnZoom(InputAction.CallbackContext context)
     {
         if (_startPoint == Vector2.zero)
         {
-            if (_isCanZoomed)
+            if (_canZoom)
             {
                 float scrollDelta = context.ReadValue<float>();
-
                 StartCoroutine(Zoom(_timeToZoom, scrollDelta));
             }
         }
@@ -82,15 +81,17 @@ public class PanZoomPC : MonoBehaviour
 
     private IEnumerator Zoom(float time, float scrollDelta)
     {
-        _isCanZoomed = false;
+        _canZoom = false;
 
         float elapsedTime = 0f;
         float startZoom = _camera.orthographicSize;
         float endZoom;
 
+
         if (scrollDelta > 0)
         {
             endZoom = _camera.orthographicSize - _zoomDelta;
+            
         }
         else if (scrollDelta < 0)
         {
@@ -98,7 +99,8 @@ public class PanZoomPC : MonoBehaviour
         }
         else
         {
-            endZoom = startZoom;
+            //Jump out of Coroutine when zoom is the same
+            yield break;
         }
 
         endZoom = Mathf.Clamp(endZoom, _minZoom, _maxZoom);
@@ -109,13 +111,14 @@ public class PanZoomPC : MonoBehaviour
             _camera.orthographicSize = Mathf.Lerp(startZoom, endZoom, elapsedTime / time);
 
             _cameraWorldBounds.RecalculateBounds();
+            
 
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
 
         _camera.orthographicSize = endZoom;
 
-        _isCanZoomed = true;
+        _canZoom = true;
     }
 
     private void OnEnable()
