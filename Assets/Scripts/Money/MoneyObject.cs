@@ -107,7 +107,7 @@ public class MoneyObject : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (!PointerOverUIChecker.Current.IsPointerOverUIObject() && !_isPointerMoving && !GridBuildingSystem.Current.TempPlaceableObject)
+        if (!PointerOverUIChecker.Instance.IsPointerOverUIObject() && !_isPointerMoving && !GridBuildingSystem.Instance.TempPlaceableObject)
         {
             GetMoneyIfAvaliable();
         }
@@ -134,7 +134,7 @@ public class MoneyObject : MonoBehaviour
 
     public void GetMoneyIfAvaliable()
     {
-        if (CurrentMoneyInteger != 0 && !_moneyCounter.activeInHierarchy && !GridBuildingSystem.Current.TempPlaceableObject)
+        if (CurrentMoneyInteger != 0 && !_moneyCounter.activeInHierarchy && !GridBuildingSystem.Instance.TempPlaceableObject)
         {
             if (_selectable)
             {
@@ -154,7 +154,7 @@ public class MoneyObject : MonoBehaviour
 
     private void GetMoneyIfAvaliableByButton()
     {
-        if (CurrentMoneyInteger != 0 && _selectable.IsSelected && !GridBuildingSystem.Current.TempPlaceableObject)
+        if (CurrentMoneyInteger != 0 && _selectable.IsSelected && !GridBuildingSystem.Instance.TempPlaceableObject)
         {
             if (_selectable)
             {

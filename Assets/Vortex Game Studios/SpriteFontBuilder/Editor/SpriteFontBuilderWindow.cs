@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using UnityEditor;
-using System.Collections;
-using System.Reflection;
 using System.Text.RegularExpressions;
 
 [System.Serializable]
@@ -152,7 +150,7 @@ public class SpriteFontBuilderWindow : EditorWindow {
 
 			if ( _setup == null ) {
 				_setup = new GameObject( "SpriteFontSetup" );
-				PrefabUtility.CreatePrefab( _path + "SpriteFontSetup.prefab", _setup );
+				PrefabUtility.SaveAsPrefabAsset(_setup, _path + "SpriteFontSetup.prefab");
 				GameObject.DestroyImmediate( _setup );
 				GetPrefab();
 			}

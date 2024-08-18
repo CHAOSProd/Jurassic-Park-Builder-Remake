@@ -20,11 +20,11 @@ public class IsometricSceneSorter : EditorWindow
         this.titleContent.text = "Isometric Sort";
         this.minSize = new Vector2(100, 60);
         this.maxSize = new Vector2(4000,60);
-        EditorApplication.playmodeStateChanged += OnPlayModeChanged;
+        EditorApplication.playModeStateChanged += OnPlayModeChanged;
     }
 
     //This callback is to sort them when the Play button is pressed in the editor (If enabled by the user)
-    private void OnPlayModeChanged()
+    private void OnPlayModeChanged(PlayModeStateChange p)
     {
         if (sortOnPlay)
         {
@@ -71,7 +71,7 @@ public class IsometricSceneSorter : EditorWindow
         }
         else
         { 
-            SpriteRenderer[] spriteRenderers= GameObject.FindObjectsOfType(typeof(SpriteRenderer)) as SpriteRenderer[]; //Look for all the SpriteRenderers in the scene
+            SpriteRenderer[] spriteRenderers= FindObjectsByType(typeof(SpriteRenderer), FindObjectsInactive.Include, FindObjectsSortMode.None) as SpriteRenderer[]; //Look for all the SpriteRenderers in the scene
             SortingLayer selectedLayer = SortingLayer.layers[layerIndex]; //Assigned the selected sprite layer
             int sortedSpritesCount = 0; 
             for (int i = 0; i < spriteRenderers.Length; i++)

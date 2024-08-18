@@ -24,7 +24,7 @@ public class DebugBuildingButton : MonoBehaviour
     void Update()
     {
         // Adjust the interactability based on your conditions
-        _button.interactable = !GridBuildingSystem.Current.TempPlaceableObject;
+        _button.interactable = !GridBuildingSystem.Instance.TempPlaceableObject;
     }
 
     private void TryPurchaseOrCreateObject()
@@ -57,7 +57,7 @@ public class DebugBuildingButton : MonoBehaviour
     private void CreateObject()
     {
         // Your existing code to create an object
-        var obj = GridBuildingSystem.Current.InitializeWithBuilding(PlaceableObjectItem.Prefab);
+        var obj = GridBuildingSystem.Instance.InitializeWithBuilding(PlaceableObjectItem.Prefab);
         obj.GetComponent<PlaceableObject>().Initialize(PlaceableObjectItem);
     }
 

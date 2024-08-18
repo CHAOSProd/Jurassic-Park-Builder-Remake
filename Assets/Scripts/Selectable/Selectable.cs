@@ -8,13 +8,13 @@ public class Selectable : SoundObject
 
     public virtual void Select()
     {
-        SelectablesManager.Current.UnselectAll();
+        SelectablesManager.Instance.UnselectAll();
 
         IsSelected = true;
 
         _objectsFadeInOut.SetFade(IsSelected);
 
-        SelectablesManager.Current.SetIsSomethingSelected(IsSelected);
+        SelectablesManager.Instance.SetIsSomethingSelected(IsSelected);
     }
 
     public virtual void Unselect()
@@ -23,7 +23,7 @@ public class Selectable : SoundObject
 
         _objectsFadeInOut.SetFade(IsSelected);
 
-        SelectablesManager.Current.SetIsSomethingSelected(IsSelected);
+        SelectablesManager.Instance.SetIsSomethingSelected(IsSelected);
     }
 
     public void PlayPlacementSound()

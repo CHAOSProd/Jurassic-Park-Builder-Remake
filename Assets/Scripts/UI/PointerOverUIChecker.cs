@@ -3,14 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PointerOverUIChecker : MonoBehaviour
+public class PointerOverUIChecker : Singleton<PointerOverUIChecker>
 {
-    public static PointerOverUIChecker Current;
-
-    private void Start()
-    {
-        Current = this;
-    }
 
     public bool IsPointerOverUIObject()
     {

@@ -2,16 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager current;
 
     public GameObject canvas;
-
-    private void Awake()
-    {
-        current = this;
-    }
 
     public void GetXP(int amount)
     {

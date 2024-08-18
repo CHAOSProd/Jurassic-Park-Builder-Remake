@@ -1,19 +1,14 @@
 using UnityEngine;
 using TMPro;
 
-public class MoneyManager : MonoBehaviour
+public class MoneyManager : Singleton<MoneyManager>
 {
-    public static MoneyManager Instance { get; private set; }
 
     [SerializeField] private int defaultMoneyAmount = 1000;
     public TextMeshProUGUI coinsText; // Reference to the TextMeshProUGUI displaying player coins
 
     private int playerCoins;
 
-    private void Awake()
-    {
-        if(Instance == null) Instance = this;
-    }
     private void Start()
     {
         LoadPlayerCoins();

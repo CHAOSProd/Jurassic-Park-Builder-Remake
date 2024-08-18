@@ -35,7 +35,7 @@ public class DinosaurLevelManager : MonoBehaviour
 
     public void Initialize()
     {
-        _currentMaximumMoneyForTime = _dinosaurLevelResourcesManager.GetMaximumMoneyByLevel(CurrentLevel - 1);
+        _currentMaximumMoneyForTime = _dinosaurLevelResourcesManager.GetMaximumMoneyByLevel(CurrentLevel);
 
         _moneyObject.MaximumMoney = _currentMaximumMoneyForTime;
 

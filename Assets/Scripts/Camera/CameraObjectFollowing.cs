@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class CameraObjectFollowing : MonoBehaviour
+public class CameraObjectFollowing : Singleton<CameraObjectFollowing>
 {
-    public static CameraObjectFollowing Current;
 
     [SerializeField] private float _smoothDamp;
 
@@ -12,18 +11,7 @@ public class CameraObjectFollowing : MonoBehaviour
     private Vector3 _velocity = Vector3.zero;
     private PlaceableObjectMovementListener _placeableObjectMovementListener;
 
-    private Bounds _mapBounds;
-    private float _objectWidth;
-    private float _objectHeight;
-
     private void Awake() => _camera = Camera.main;
-
-    private void Start()
-    {
-        Current = this;
-
-        _mapBounds = Globals.WorldBounds;
-    }
 
     private void Update()
     {

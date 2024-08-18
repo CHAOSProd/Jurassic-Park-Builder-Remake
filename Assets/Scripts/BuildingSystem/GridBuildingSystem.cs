@@ -2,9 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class GridBuildingSystem : MonoBehaviour
+public class GridBuildingSystem : Singleton<GridBuildingSystem>
 {
-    public static GridBuildingSystem Current;
 
     public GridLayout GridLayout;
 
@@ -28,12 +27,6 @@ public class GridBuildingSystem : MonoBehaviour
     private BoundsInt _prevArea;
 
     #region Unity Methods
-
-    private void Awake()
-    {
-        Current = this;
-    }
-
     private void Start()
     {
         string tilePath = @"Tiles\";
@@ -111,7 +104,7 @@ public class GridBuildingSystem : MonoBehaviour
         _prevPosition = cellPosition;
         FollowBuilding();
 
-        CameraObjectFollowing.Current.SetTarget(TempPlaceableObject.transform);
+        CameraObjectFollowing.Instance.SetTarget(TempPlaceableObject.transform);
         TempTilemap.gameObject.SetActive(true);
 
         return TempPlaceableObject.gameObject;
@@ -226,7 +219,7 @@ public class GridBuildingSystem : MonoBehaviour
                 _buildingUI[i].SetActive(true);
             }
 
-            SelectablesManager.Current.UnselectAll();
+            SelectablesManager.Instance.UnselectAll();
         }
         else
         {
