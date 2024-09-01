@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
 
-public class SaveManager : MonoBehaviour
+public class SaveManager : Singleton<SaveManager>
 {
-    public static SaveManager Current;
 
     public SaveData SaveData;
     [SerializeField] private string placeablesPath = "Placeables";
@@ -11,8 +10,6 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
-        Current = this;
-
         SaveSystem.Initialize();
     }
 

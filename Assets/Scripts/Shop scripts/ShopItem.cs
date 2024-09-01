@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "GameObjects/Shop Item", order = 0)]
-public class ShopItem : MonoBehaviour
+public class ShopItem : ScriptableObject
 {
     public string Name = "Default";
     public string Description = "Description";

@@ -14,7 +14,7 @@ public class TreeChopper : MonoBehaviour {
     private void Awake() {
         // Get references to the child components for visual indicators and debris
         selectedVisual = GetComponentInChildren<SelectedTreeVisual>();
-        treeDebris = GetComponentInChildren<TreeDebris>();
+        treeDebris = GetComponentInChildren<TreeDebris>(true);
         treeVisual = GetComponentInChildren<TreeVisual>();
     }
 

@@ -523,7 +523,7 @@ namespace DentedPixel.LTExamples
             Time.timeScale = 1f;
 
             int ltCount = 0;
-            GameObject[] allGos = FindObjectsOfType(typeof(GameObject)) as GameObject[];
+            GameObject[] allGos = FindObjectsByType(typeof(GameObject), FindObjectsInactive.Include, FindObjectsSortMode.None) as GameObject[];
             foreach (GameObject go in allGos)
             {
                 if (go.name == "~LeanTween")

@@ -25,7 +25,6 @@ public class Paddock : Selectable
     public override void Select()
     {
         base.Select();
-
         _evolutionsChanger.SetActive(IsSelected);
 
         if (_dinosaurAnimationEventsListener.IsAnimationEnded && _moneyObject.CurrentMoneyInteger != 0)

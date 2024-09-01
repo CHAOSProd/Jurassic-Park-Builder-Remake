@@ -177,8 +177,8 @@ public class ISRTSCamera2DEditor : Editor {
 			mCam.touchControl = EditorGUILayout.Toggle("  Enabled",mCam.touchControl);
 			if(mCam.touchControl){
 				
-				ISTouchControlHandler[] handler = GameObject.FindObjectsOfType<ISTouchControlHandler>();
-				if (PrefabUtility.GetPrefabType(mCam.gameObject) != PrefabType.Prefab && handler.Length <= 0){
+				ISTouchControlHandler[] handler = FindObjectsByType<ISTouchControlHandler>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+				if (PrefabUtility.GetPrefabAssetType(mCam.gameObject) != PrefabAssetType.Regular && handler.Length <= 0){
 					EditorGUILayout.HelpBox ("Touch input requires at less one ISTouchControlHandler to work. Please use Add Component to add one to any GameObject to continue. Or you can :", MessageType.Error);
 					if (GUILayout.Button ("Add to this GameObject")) {
 						mCam.gameObject.AddComponent<ISTouchControlHandler> ();
@@ -203,7 +203,7 @@ public class ISRTSCamera2DEditor : Editor {
 		if (GUILayout.Button ("Replace Preset with Current Settings") 
 		&& EditorUtility.DisplayDialog("Replacing Preset","You are about to replace existing preset with your current setting, this cannot be undo.","Comfirm","Cancel")) {
 
-			PrefabUtility.CreatePrefab ("Assets/ISRTSCamera/Editor/Presets/ISRTSCamera2D.prefab", mCam.gameObject);
+			PrefabUtility.SaveAsPrefabAsset(mCam.gameObject, "Assets/ISRTSCamera/Editor/Presets/ISRTSCamera2D.prefab");
 		}
 
 		if (GUI.changed) {

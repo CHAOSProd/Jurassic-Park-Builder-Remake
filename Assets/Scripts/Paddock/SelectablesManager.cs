@@ -1,9 +1,8 @@
 using System.Linq;
 using UnityEngine;
 
-public class SelectablesManager : MonoBehaviour
+public class SelectablesManager : Singleton<SelectablesManager>
 {
-    public static SelectablesManager Current;
 
     [SerializeField] private bool _isSomethingSelected;
     [SerializeField] private GameObject[] _paddockSelectedUI;
@@ -15,7 +14,6 @@ public class SelectablesManager : MonoBehaviour
 
     private void Start()
     {
-        Current = this;
 
         CheckForSelectables();
 
@@ -27,7 +25,7 @@ public class SelectablesManager : MonoBehaviour
 
     public void CheckForSelectables()
     {
-        _selectables = FindObjectsOfType<Selectable>();
+        _selectables = FindObjectsByType<Selectable>(FindObjectsSortMode.None);
     }
 
     public void SetIsSomethingSelected(bool isSomethingSelected)
@@ -58,7 +56,7 @@ public class SelectablesManager : MonoBehaviour
 
     public void InitializeUI()
     {
-        if (GridBuildingSystem.Current.TempPlaceableObject || !_currentSelectable)
+        if (GridBuildingSystem.Instance.TempPlaceableObject || !_currentSelectable)
             return;
 
         if (_isSomethingSelected)

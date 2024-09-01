@@ -153,7 +153,7 @@ public class LevelSystem : MonoBehaviour
         lvlText.text = (info.newLvl + 1).ToString();
         UpdateUI();
 
-        GameObject window = Instantiate(lvlWindowPrefab, GameManager.current.canvas.transform);
+        GameObject window = Instantiate(lvlWindowPrefab, GameManager.Instance.canvas.transform);
 
         window.transform.GetChild(0).GetComponent<Button>().onClick.AddListener(delegate
         {

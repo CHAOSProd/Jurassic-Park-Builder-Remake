@@ -56,7 +56,7 @@ public class PlaceableObject : MonoBehaviour
     private void Awake()
     {
         DisplayFadeInOut = _construction.GetComponent<FadeInOut>();
-        gameManager = GameObject.FindObjectOfType<GameManager>();
+        gameManager = GameManager.Instance;
 
     }
 
@@ -84,7 +84,7 @@ public class PlaceableObject : MonoBehaviour
             PlayerPrefs.SetInt("IsDefaultObjectInitialized", 1);
         }
 
-        _editButton = FindObjectOfType<EditButton>(true).GetComponent<Button>();
+        _editButton = EditButton.Instance.GetComponent<Button>();
         _editButton.onClick.AddListener(StartEditing);
 
         _selectable = GetComponent<Selectable>();
@@ -103,11 +103,11 @@ public class PlaceableObject : MonoBehaviour
 
     public bool CanBePlaced()
     {
-        Vector3Int positionInt = GridBuildingSystem.Current.GridLayout.LocalToCell(transform.position);
+        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = Area;
         areaTemp.position = positionInt;
 
-        if (GridBuildingSystem.Current.CanTakeArea(areaTemp))
+        if (GridBuildingSystem.Instance.CanTakeArea(areaTemp))
         {
             return true;
         }
@@ -122,42 +122,42 @@ public class PlaceableObject : MonoBehaviour
         if (!Placed)
         GetComponent<Selectable>().PlayPlacementSound();
 
-        Vector3Int positionInt = GridBuildingSystem.Current.GridLayout.LocalToCell(transform.position);
+        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = Area;
         areaTemp.position = positionInt;
         Placed = true;
 
-        transform.position = GridBuildingSystem.Current.GridLayout.CellToLocalInterpolated(positionInt);
+        transform.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
 
-        GridBuildingSystem.Current.TakeArea(areaTemp);
-        SelectablesManager.Current.CheckForSelectables();
+        GridBuildingSystem.Instance.TakeArea(areaTemp);
+        SelectablesManager.Instance.CheckForSelectables();
 
         _origin = transform.position;
 
         data.Position = transform.position;
-        SaveManager.Current.SaveData.AddData(data);
-        SaveManager.Current.SaveGame();
+        SaveManager.Instance.SaveData.AddData(data);
+        SaveManager.Instance.SaveGame();
 
-        CameraObjectFollowing.Current.SetTarget(null);
+        CameraObjectFollowing.Instance.SetTarget(null);
     }
 
     public void PlaceWithoutSave()
     {
         InitializeDisplayObjects(false);
 
-        Vector3Int positionInt = GridBuildingSystem.Current.GridLayout.LocalToCell(transform.position);
+        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = Area;
         areaTemp.position = positionInt;
         Placed = true;
 
-        transform.position = GridBuildingSystem.Current.GridLayout.CellToLocalInterpolated(positionInt);
+        transform.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
 
-        GridBuildingSystem.Current.TakeArea(areaTemp);
-        SelectablesManager.Current.CheckForSelectables();
+        GridBuildingSystem.Instance.TakeArea(areaTemp);
+        SelectablesManager.Instance.CheckForSelectables();
 
         _origin = transform.position;
 
-        CameraObjectFollowing.Current.SetTarget(null);
+        CameraObjectFollowing.Instance.SetTarget(null);
     }
 
     #endregion
@@ -230,19 +230,19 @@ public class PlaceableObject : MonoBehaviour
         Debug.Log("started editing!");
         if (_selectable.IsSelected)
         {
-            GridBuildingSystem.Current.TempPlaceableObject = this;
+            GridBuildingSystem.Instance.TempPlaceableObject = this;
             InitializeDisplayObjects(true);
-            CameraObjectFollowing.Current.SetTarget(transform);
-            GridBuildingSystem.Current.TempTilemap.gameObject.SetActive(true);
+            CameraObjectFollowing.Instance.SetTarget(transform);
+            GridBuildingSystem.Instance.TempTilemap.gameObject.SetActive(true);
 
-            Vector3Int positionInt = GridBuildingSystem.Current.GridLayout.WorldToCell(transform.position);
+            Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.WorldToCell(transform.position);
             BoundsInt areaTemp = Area;
             areaTemp.position = positionInt;
 
-            GridBuildingSystem.Current.SetAreaWhite(areaTemp, GridBuildingSystem.Current.MainTilemap);
+            GridBuildingSystem.Instance.SetAreaWhite(areaTemp, GridBuildingSystem.Instance.MainTilemap);
 
-            GridBuildingSystem.Current.FollowBuilding();
-            GridBuildingSystem.Current.ReloadUI();
+            GridBuildingSystem.Instance.FollowBuilding();
+            GridBuildingSystem.Instance.ReloadUI();
 
             _isEditing = true;
         }
@@ -267,7 +267,7 @@ public class PlaceableObject : MonoBehaviour
     private void OnMouseUp()
     {
         Debug.Log("mouseup");
-        if (!PointerOverUIChecker.Current.IsPointerOverUIObject() && !_isPointerMoving && !GridBuildingSystem.Current.TempPlaceableObject)
+        if (!PointerOverUIChecker.Instance.IsPointerOverUIObject() && !_isPointerMoving && !GridBuildingSystem.Instance.TempPlaceableObject)
         {
 
             if (ConstructionFinished == false)

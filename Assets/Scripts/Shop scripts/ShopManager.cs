@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ShopManager : MonoBehaviour
+public class ShopManager : Singleton<ShopManager>
 {
-    public static ShopManager current;
     public static Dictionary<CurrencyType, Sprite> currencySprites = new Dictionary<CurrencyType, Sprite>();
 
     [SerializeField] private List<Sprite> sprites;
@@ -22,7 +21,6 @@ public class ShopManager : MonoBehaviour
 
     private void Awake()
     {
-        current = this;
 
         rt = GetComponent<RectTransform>();
         prt = transform.parent.GetComponent<RectTransform>();
