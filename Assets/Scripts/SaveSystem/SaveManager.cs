@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveManager : Singleton<SaveManager>
@@ -6,7 +7,7 @@ public class SaveManager : Singleton<SaveManager>
 
     public SaveData SaveData;
     [SerializeField] private string placeablesPath = "Placeables";
-    [SerializeField] private PlaceableObject _defaulPlaceableObject;
+    [SerializeField] private GameObject treesObject;
 
     private void Awake()
     {
@@ -23,28 +24,16 @@ public class SaveManager : Singleton<SaveManager>
     private void LoadGame()
     {
         LoadPlaceableObjects();
+        LoadChoppedTrees();
+        CurrencySystem.Instance.Load();
+        TreeChopManager.Instance.Load();
     }
 
     private void LoadPlaceableObjects()
     {
-        int maxId = 0;
-
-        foreach (var placeableObjectData in SaveData.PlaceableObjectDatas.Values)
+        foreach (PlaceableObjectData placeableObjectData in SaveData.PlaceableObjects) 
         {
-            if (placeableObjectData.ID == "1")
-            {
-                PlaceableObjectItem defaultPlaceableObjectItem = Resources.Load<PlaceableObjectItem>(placeablesPath + "/TriceratopsItem");
-
-                _defaulPlaceableObject.Initialize(defaultPlaceableObjectItem, placeableObjectData);
-                _defaulPlaceableObject.PlaceWithoutSave();
-
-                maxId = 1;
-
-                continue;
-            }
-
             PlaceableObjectItem placeableObjectItem = Resources.Load<PlaceableObjectItem>(placeablesPath + "/" + placeableObjectData.ItemName);
-
             GameObject obj = Instantiate(placeableObjectItem.Prefab, Vector3.zero, Quaternion.identity);
 
             PlaceableObject placeableObject = obj.GetComponent<PlaceableObject>();
@@ -52,18 +41,27 @@ public class SaveManager : Singleton<SaveManager>
             placeableObject.Initialize(placeableObjectItem, placeableObjectData);
 
             placeableObject.PlaceWithoutSave();
-
-            if (Int32.Parse(placeableObjectData.ID) > maxId)
+        }
+    }
+    private void LoadChoppedTrees()
+    {
+        for(int i = 0;i < treesObject.transform.childCount; i++)
+        {
+            GameObject trees = treesObject.transform.GetChild(i).gameObject;
+            foreach (ChoppedTreeData ctd in SaveData.ChoppedTrees)
             {
-                maxId = Int32.Parse(placeableObjectData.ID);
+                if (trees.name == ctd.TreeObjectName)
+                {
+                    Destroy(trees);
+                    break;
+                }
             }
         }
-
-        SaveData.IdCount = maxId;
     }
-
-    public void SaveGame()
+    private void OnApplicationQuit()
     {
         SaveSystem.Save(SaveData);
+        Utils.SetDateTime("LastSaveTime", DateTime.UtcNow);
+        PlayerPrefs.Save();
     }
 }

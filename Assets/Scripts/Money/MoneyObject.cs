@@ -8,7 +8,6 @@ public class MoneyObject : MonoBehaviour
     [SerializeField] private GameObject _tapVFX;
     [SerializeField] private GameObject _moneyCounter;
     [SerializeField] private MoneyCountDisplayer _moneyCountDisplayer;
-    [SerializeField] private MoneyManager _moneyManager;
     [SerializeField] private float _moneyPerSecond = 0.33f;
     [SerializeField] private CollectMoneyDisplay _collectMoneyDisplay;
     [SerializeField] private Button _collectMoneyButton;
@@ -30,12 +29,12 @@ public class MoneyObject : MonoBehaviour
 
     private void Awake() //Havik changed from start to awake to not miss any references
     {
-        _moneyManager = MoneyManager.Instance;
         _collectMoneyDisplay = CollectMoneyDisplay.Instance;
         _collectMoneyButton = CollectMoneyButton.Instance.GetComponent<Button>();
 
         _maximumSeconds = MaximumMinutes * 60;
         _selectable = GetComponentInParent<Selectable>();
+        _animator = GetComponent<Animator>();
         if (GetComponent<Paddock>())
             _paddock = GetComponent<Paddock>();
 
@@ -54,9 +53,14 @@ public class MoneyObject : MonoBehaviour
         TimeSpan timePassed = DateTime.UtcNow - lastSaveTime;
         int secondsPassed = (int)timePassed.TotalSeconds;
 
+        Debug.Log(lastSaveTime);
+        Debug.Log(timePassed);
+
         CurrentMoneyInteger += Mathf.FloorToInt(_moneyPerSecond * secondsPassed);
 
+
         _currentMoneyFloated = CurrentMoneyInteger;
+
 
         _collectMoneyButton.onClick.AddListener(GetMoneyIfAvaliableByButton);
 
@@ -67,12 +71,6 @@ public class MoneyObject : MonoBehaviour
     {
         if (CurrentMoneyInteger >= MaximumMoney)
         {
-            if (!_maxMoneyReachedPreviously)
-            {
-                Debug.Log("Triggering Max Money Animation");
-                _animator.SetTrigger("MaxMoneyReached");
-                _maxMoneyReachedPreviously = true;
-            }
             _currentMoneyFloated = MaximumMoney;
             CurrentMoneyInteger = Mathf.FloorToInt(_currentMoneyFloated);
             _notification.SetActive(true);
@@ -173,12 +171,8 @@ public class MoneyObject : MonoBehaviour
         _moneyCounter.SetActive(true);
         _moneyCountDisplayer.DisplayCount(CurrentMoneyInteger);
 
-        // Log the current player coins before and after adding
-        Debug.Log("Player Coins before adding: " + _moneyManager.GetPlayerCoins());
-
-        _moneyManager.AddCoins(CurrentMoneyInteger);
-
-        Debug.Log("Player Coins after adding: " + _moneyManager.GetPlayerCoins());
+        // Add coins
+        EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(CurrentMoneyInteger, CurrencyType.Coins));
 
         _currentMoneyFloated = 0;
         CurrentMoneyInteger = 0;

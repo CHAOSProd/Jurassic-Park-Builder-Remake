@@ -6,10 +6,6 @@ using UnityEngine.UI;
 // Manages player levels and experience points (XP)
 public class LevelManager : MonoBehaviour
 {
-
-    public event EventHandler OnLevelUp; // Event triggered when leveling up
-    public event EventHandler<float> OnXPChanged; // Event triggered when XP changes
-
     public static LevelManager Instance; // Singleton instance
 
     [SerializeField] private TMP_Text levelText; // UI element displaying the current level
@@ -26,6 +22,10 @@ public class LevelManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            EventManager.Instance.AddListener<XPAddedGameEvent>(GiveXP);
+            XP = PlayerPrefs.GetFloat("xp", 0);
+            level = PlayerPrefs.GetInt("level", 1);
+            UpdateUI();
         }
         else
         {
@@ -50,14 +50,11 @@ public class LevelManager : MonoBehaviour
             return;
         }
 
-        level = 1; // Start at level 1
-        OnXPChanged += LevelManager_OnXPChanged; // Subscribe to XP changed event
-        OnLevelUp += LevelManager_OnLevelUp; // Subscribe to level up event
         UpdateUI(); // Update the UI to reflect initial values
     }
 
     // Handles logic for leveling up
-    private void LevelManager_OnLevelUp(object sender, EventArgs e)
+    private void OnLevelUp()
     {
         Debug.Log($"TreeChopManager.Instance is {(TreeChopManager.Instance == null ? "null" : "not null")}");
 
@@ -88,34 +85,25 @@ public class LevelManager : MonoBehaviour
     }
 
     // Updates the level and UI when XP changes
-    private void LevelManager_OnXPChanged(object sender, float amount)
+    private void UpdateXP()
     {
         Debug.Log($"XP: {XP}"); // Log the current XP
         CalculateLevel(); // Check if the player should level up
         UpdateUI(); // Update the UI to reflect new XP
         Save(); // Save progress
     }
-
     // Adds XP and triggers the XP changed event
-    public void GiveXP(float amount)
+    public void GiveXP(XPAddedGameEvent xpEvent)
     {
-        XP = Mathf.Max(0f, XP + amount); // Ensure XP doesn't go below zero
-        OnXPChanged?.Invoke(this, XP); // Trigger XP changed event
+        XP = Mathf.Max(0f, XP + xpEvent.Amount); // Ensure XP doesn't go below zero
+        UpdateXP();
     }
-
-    // Removes XP and triggers the XP changed event
-    public void RemoveXP(float amount)
-    {
-        XP = Mathf.Max(0f, XP - amount); // Ensure XP doesn't go below zero
-        OnXPChanged?.Invoke(this, XP); // Trigger XP changed event
-    }
-
     // Calculates if the player should level up based on current XP
     private void CalculateLevel()
     {
         if (level < xpPerLevel.Length && XP >= xpPerLevel[(int)level - 1])
         {
-            OnLevelUp?.Invoke(this, EventArgs.Empty); // Trigger level up event
+            OnLevelUp();
         }
     }
 
@@ -145,8 +133,6 @@ public class LevelManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("xp", XP);
         PlayerPrefs.SetInt("level", (int)level);
-        // Un-comment the line below to save the player pref after modification. (You won't need the bottom line if you have a general saving script)
-        // PlayerPrefs.Save();
     }
 }
 

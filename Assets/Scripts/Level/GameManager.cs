@@ -7,10 +7,9 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject canvas;
 
-    public void GetXP(int amount)
+    public void GetXP(float amount)
     {
-        XPAddedGameEvent info = new XPAddedGameEvent(amount);
-        EventManager.Instance.QueueEvent(info);
+        EventManager.Instance.TriggerEvent(new XPAddedGameEvent(amount));
     }
 
     public void AddXPTest()

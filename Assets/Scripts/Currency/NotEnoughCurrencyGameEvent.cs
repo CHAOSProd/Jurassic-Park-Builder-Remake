@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NotEnoughCurrencyGameEvent : GameEvent
+public struct NotEnoughCurrencyGameEvent
 {
-    public int Amount;
-    public CurrencyType CurrencyType;
+    public int Amount { get; set; }
+    public CurrencyType CurrencyType { get; set; }
 
     public NotEnoughCurrencyGameEvent(int amount, CurrencyType currencyType)
     {

@@ -7,23 +7,22 @@ public abstract class GameEvent
 
 }
 
-public class XPAddedGameEvent : GameEvent
+public struct XPAddedGameEvent
 {
-    public int amount;
+    public float Amount { get; set; }
 
-    public XPAddedGameEvent(int amount)
+    public XPAddedGameEvent(float amount)
     {
-        this.amount = amount;
+        this.Amount = amount;
     }
 }
 
-public class LevelChangedGameEvent : GameEvent
+public struct LevelChangedGameEvent
 {
-    public int newLvl;
+    public int NewLVL { get; set; }
 
     public LevelChangedGameEvent(int currLvl)
     {
-        newLvl = currLvl;
+        NewLVL = currLvl;
     }
-
 }
