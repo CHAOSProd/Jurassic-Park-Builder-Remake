@@ -1,6 +1,8 @@
 using Newtonsoft.Json;
+using NUnit.Framework;
 using System.IO;
 using UnityEngine;
+using System.Collections.Generic;
 
 public static class SaveSystem
 {
@@ -22,12 +24,12 @@ public static class SaveSystem
         FilePath = SAVE_FOLDER + FILE_NAME + SAVE_EXTENTION;
     }
 
-    public static void Save(SaveData saveObject)
+    public static void Save(SaveData saveData)
     {
         var settings = new JsonSerializerSettings();
         settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 
-        string saveString = JsonConvert.SerializeObject(saveObject, settings);
+        string saveString = JsonConvert.SerializeObject(saveData, settings);
         Debug.Log("Saved string to " + FilePath);
         File.WriteAllText(FilePath, saveString);
     }
@@ -37,7 +39,6 @@ public static class SaveSystem
         if (File.Exists(FilePath))
         {
             string saveString = File.ReadAllText(FilePath);
-            Debug.Log("Loaded string from " + FilePath);
             SaveData loaded = JsonConvert.DeserializeObject<SaveData>(saveString);
             if (loaded == null)
             {

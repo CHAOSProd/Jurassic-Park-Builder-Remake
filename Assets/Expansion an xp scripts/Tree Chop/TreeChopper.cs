@@ -7,7 +7,12 @@ public class TreeChopper : MonoBehaviour {
     private TreeDebris treeDebris; // Debris object for the tree
     private TreeVisual treeVisual; // Main tree visual object
 
-    private bool hasTreeDebris; // Tracks if tree has debris after being chopped
+    [SerializeField] private GameObject _xpNotification;
+    [SerializeField] private GameObject _tapVFX;
+    [SerializeField] private GameObject _xpCounter;
+    [SerializeField] private MoneyCountDisplayer _xpCountDisplayer;
+
+    private bool hasTreeDebris = false; // Tracks if tree has debris after being chopped
     private bool allowSelection = true; // Determines if tree can be selected
 
     // Initializes references to visual components
@@ -28,21 +33,31 @@ public class TreeChopper : MonoBehaviour {
 
     // Handles tree chopping and debris collection logic on mouse click
     private void OnMouseDown() {
-        int chopCost = 50;
 
+        // ARBITARY VALUES -- figure out how it correlates with level --
+        int chopCost = 50;
+        int chopCoinCost = 200;
+        // -------------------------------------------------------------
+
+        Debug.Log("Chopping... " + CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Coins, 200));
         // If the tree already has debris, collect it
         if (hasTreeDebris) {
             CollectDebris();
-        } else if (TreeChopManager.Instance.HasTreeChops()) { // Otherwise, if tree chops are available, chop the tree
+        } 
+        else if (TreeChopManager.Instance.HasTreeChops() && CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Coins, chopCoinCost))
+        {
             PerformChopAction();
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-chopCoinCost, CurrencyType.Coins));
             // Reduce the player's available tree chops
             TreeChopManager.Instance.ChopTree();
-        } else if (CurrencySystem.HasEnoughCurrency(CurrencyType.Bucks, chopCost)) {
+        } 
+        else if (CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Bucks, chopCost)) 
+        {
             // Perform chopping action
             PerformChopAction();
 
             // Deduct currency for chopping
-            CurrencySystem.DeductCurrency(CurrencyType.Bucks, chopCost);
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-chopCost, CurrencyType.Bucks));
         }
     }
 
@@ -55,6 +70,7 @@ public class TreeChopper : MonoBehaviour {
         treeVisual.DisableVisual(); // Hide tree visuals
         treeDebris.EnableDebris(); // Show debris visuals
 
+        _xpNotification.SetActive(true);
         // Mark that the tree now has debris
         hasTreeDebris = true;
     }
@@ -76,11 +92,16 @@ public class TreeChopper : MonoBehaviour {
     // Collects tree debris and awards XP to the player
     private void CollectDebris() {
         hasTreeDebris = false; // Mark that the tree no longer has debris
-        Destroy(gameObject); // Destroy the tree object
-        float randomXP = Mathf.Ceil(Random.Range(10f, 20f)); // Generate random XP amount and round it to the top integer
-        LevelManager.Instance.GiveXP(randomXP); // Award XP to the player
+        _xpNotification.SetActive(false);
+        _tapVFX.SetActive(true);
+        _xpCounter.SetActive(true);
+        _xpCountDisplayer.DisplayCount(TreeChopManager.Instance.CurrentXP);
+        EventManager.Instance.TriggerEvent(new XPAddedGameEvent(TreeChopManager.Instance.CurrentXP)); // Award XP to the player
+        TreeChopManager.Instance.UpdateXP();
 
-        Debug.Log($"Got {randomXP} from chopping trees!");
+        treeDebris.DisableDebris(); // Show debris visuals
+        SaveManager.Instance.SaveData.ChoppedTrees.Add(new ChoppedTreeData(gameObject.name));
+        Destroy(gameObject, .5f); // Destroy the tree object after some time, to ensure the xp effect still plays
     }
 
 }

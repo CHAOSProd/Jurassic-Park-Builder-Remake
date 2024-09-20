@@ -1,20 +1,15 @@
 using UnityEngine;
 
 // Manages the available tree chops and their state
-public class TreeChopManager : MonoBehaviour {
+public class TreeChopManager : Singleton<TreeChopManager>
+{
 
-    public static TreeChopManager Instance; // Singleton instance
+    private int availableTreeChops = 10; // Number of available tree chops
 
-    private int availableTreeChops; // Number of available tree chops
-
-    // Ensures only one instance of TreeChopManager exists
-    private void Awake() {
-        if (Instance == null) {
-            Instance = this;
-        } else {
-            Destroy(gameObject);
-        }
-    }
+    private readonly int[] _cycles = new int[] { 8, 6, 12, 6, 8 };
+    private int _currentCycle = 0;
+    private int _currentAdder = 20;
+    public int CurrentXP { get; private set; } = 16;
 
     // Increases the number of available tree chops
     public void IncreaseTreeChops() {
@@ -22,7 +17,23 @@ public class TreeChopManager : MonoBehaviour {
         Debug.Log($"Tree chops: {availableTreeChops}");
         Save();
     }
+    public void Load()
+    {
+        CurrentXP = PlayerPrefs.GetInt("TreeExpansionXP", 16);
+        _currentAdder = PlayerPrefs.GetInt("TreeExpansionAdder", 20);
+        _currentCycle = PlayerPrefs.GetInt("TreeExpansionCycle", 0);
+    }
+    public void UpdateXP()
+    {
+        CurrentXP += _currentAdder;
+        _currentAdder += _cycles[_currentCycle];
+        _currentCycle += 1;
+        if (_currentCycle == _cycles.Length) _currentCycle = 0;
 
+        PlayerPrefs.SetInt("TreeExpansionXP", CurrentXP);
+        PlayerPrefs.SetInt("TreeExpansionAdder", _currentAdder);
+        PlayerPrefs.SetInt("TreeExpansionCycle", _currentCycle);
+    }
     // Decreases the number of available tree chops
     public void ChopTree() {
         availableTreeChops = Mathf.Max(0, availableTreeChops - 1); // Ensure chops don't go below zero
@@ -36,10 +47,8 @@ public class TreeChopManager : MonoBehaviour {
     }
 
     // Handle saving
-    private void Save() {
-        PlayerPrefs.SetInt("tree chops", availableTreeChops);
-        // Un-comment the line below to save the player pref after modification. (You won't need the bottom line if you have a general saving script)
-        // PlayerPrefs.Save();
-    }
+    private void Save() 
+    {
 
+    }
 }

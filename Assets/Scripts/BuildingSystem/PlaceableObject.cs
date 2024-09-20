@@ -10,9 +10,8 @@ public class PlaceableObject : MonoBehaviour
     public BoundsInt Area;
     public int GridBuildingID;
     public bool PlacedFromBeginning = false;
-    public bool isConstructed = false;
     public bool ConstructionFinished = false;
-    public int BuildTime; //time to build in minutes(?)
+    public int BuildTime; //time to build in SECONDS
     public int BuildXp;
 
     [SerializeField] private GameObject _xpNotification;
@@ -30,7 +29,7 @@ public class PlaceableObject : MonoBehaviour
     [SerializeField] private GameObject _construction;
     [SerializeField] private GameObject _main;
 
-
+    private bool _isEditing = false;
 
     public GameObject Display
     {
@@ -45,19 +44,15 @@ public class PlaceableObject : MonoBehaviour
     }
 
     private PlaceableObjectItem _placeableObjectItem;
-    private Selectable _selectable;
+    [SerializeField] private Selectable _selectable;
     public Button _editButton;
     private Vector3 _origin;
-    private bool _isEditing = false;
-    private GameManager gameManager;
     
     #region Unity Methods
 
     private void Awake()
     {
         DisplayFadeInOut = _construction.GetComponent<FadeInOut>();
-        gameManager = GameManager.Instance;
-
     }
 
     private void Start()
@@ -86,17 +81,7 @@ public class PlaceableObject : MonoBehaviour
 
         _editButton = EditButton.Instance.GetComponent<Button>();
         _editButton.onClick.AddListener(StartEditing);
-
-        _selectable = GetComponent<Selectable>();
     }
-    private void Update()
-    {
-        if (isConstructed)
-        {
-            _xpNotification.SetActive(!ConstructionFinished);
-        }
-    }
-
     #endregion
 
     #region Build Methods
@@ -120,7 +105,7 @@ public class PlaceableObject : MonoBehaviour
         InitializeDisplayObjects(false);
 
         if (!Placed)
-        GetComponent<Selectable>().PlayPlacementSound();
+        _selectable.PlayPlacementSound();
 
         Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = Area;
@@ -135,10 +120,16 @@ public class PlaceableObject : MonoBehaviour
         _origin = transform.position;
 
         data.Position = transform.position;
-        SaveManager.Instance.SaveData.AddData(data);
-        SaveManager.Instance.SaveGame();
+        
+
+        SaveManager.Instance.SaveData.PlaceableObjects.Add(data);
 
         CameraObjectFollowing.Instance.SetTarget(null);
+
+        Debug.Log("Started Construction");
+        data.Progress = new PlaceableObjectData.ProgressData(BuildTime, 0, DateTime.Now, BuildXp);
+        //Update Progress every second and display xp icon when construction is finished
+        UnityTimer.Instance.Tick(BuildTime, 1, UpdateProgress, OnConstructionFinished);
     }
 
     public void PlaceWithoutSave()
@@ -159,6 +150,15 @@ public class PlaceableObject : MonoBehaviour
 
         CameraObjectFollowing.Instance.SetTarget(null);
     }
+    private void OnConstructionFinished()
+    {
+        _xpNotification.SetActive(true);
+    }
+    private void UpdateProgress()
+    {
+        this.data.Progress.ElapsedTime += 1;
+        this.data.Progress.LastTick = DateTime.Now;
+    }
 
     #endregion
 
@@ -166,9 +166,7 @@ public class PlaceableObject : MonoBehaviour
 
     public void InitializeDisplayObjects(bool isBuildingEnabled)
     {
-       
-        
-        if (!isConstructed)
+        if (!ConstructionFinished)
         {
             _construction.SetActive(true);
             if (!isBuildingEnabled)
@@ -177,13 +175,12 @@ public class PlaceableObject : MonoBehaviour
             }
             
         }
-        
-        if (isConstructed)
+        else
         {
             _main.SetActive(!isBuildingEnabled);
             _display.SetActive(isBuildingEnabled);
             _construction.SetActive(false);
-            if (TryGetComponent<Collider2D>(out Collider2D collider))
+            if (TryGetComponent(out Collider2D collider))
             {
                 Destroy(collider);
             }
@@ -194,31 +191,59 @@ public class PlaceableObject : MonoBehaviour
     public void InitializeConstructedBuilding()
     {
         Debug.Log("Constructed the building!");
-        if (isConstructed && !ConstructionFinished)
-        {
-            GetXP(BuildXp);
-            //play animations of xp and play sound effect
-            gameManager.GetXP(BuildXp);
-            ConstructionFinished = true;
-        }
-        _construction.SetActive(!isConstructed);
-        _main.SetActive(isConstructed);
+        _xpNotification.SetActive(false);
+        _tapVFX.SetActive(true);
+        _xpCounter.SetActive(true);
+        _xpCountDisplayer.DisplayCount(BuildXp);
+        EventManager.Instance.TriggerEvent(new XPAddedGameEvent(BuildXp));
+        _construction.SetActive(false);
+        _main.SetActive(true);
     }
 
     public void Initialize(PlaceableObjectItem placeableObjectItem)
     {
         _placeableObjectItem = placeableObjectItem;
         data.ItemName = placeableObjectItem.name;
-        data.ID = SaveData.GenerateId();
-        _main.name = _main.name + data.ID;
     }
 
     public void Initialize(PlaceableObjectItem placeableObjectItem, PlaceableObjectData placeableObjectData)
     {
         _placeableObjectItem = placeableObjectItem;
         data = placeableObjectData;
-        _main.name = _main.name + data.ID;
         transform.position = data.Position;
+        this.ConstructionFinished = placeableObjectData.ConstructionFinished;
+
+        if(ConstructionFinished)
+        {
+            // Make sure building is displayed
+            _xpNotification.SetActive(false);
+            _tapVFX.SetActive(false);
+            _xpCounter.SetActive(false);
+            _construction.SetActive(false);
+            _main.SetActive(true);
+        }
+        else if(data.Progress != null)
+        {
+            this.BuildTime = placeableObjectData.Progress.BuildTime;
+            this.BuildXp = placeableObjectData.Progress.XP;
+
+            int newTime = (int)Math.Floor((DateTime.Now - placeableObjectData.Progress.LastTick).TotalSeconds) + placeableObjectData.Progress.ElapsedTime;
+
+            Debug.LogWarning(newTime);
+
+            if(newTime >= BuildTime)
+            {
+                OnConstructionFinished();
+            }
+            else
+            {
+                data.Progress.ElapsedTime = newTime;
+                data.Progress.LastTick = DateTime.Now;
+                data.Progress = new PlaceableObjectData.ProgressData(BuildTime, BuildTime - newTime, DateTime.Now, BuildXp);
+                //Update Progress every second and display xp icon when construction is finished
+                UnityTimer.Instance.Tick(BuildTime - newTime, 1, UpdateProgress, OnConstructionFinished);
+            }
+        }
     }
 
     #endregion
@@ -269,37 +294,27 @@ public class PlaceableObject : MonoBehaviour
         Debug.Log("mouseup");
         if (!PointerOverUIChecker.Instance.IsPointerOverUIObject() && !_isPointerMoving && !GridBuildingSystem.Instance.TempPlaceableObject)
         {
-
-            if (ConstructionFinished == false)
-            {
-                if (isConstructed)
-                {
-                    Debug.Log("I want to initialize constructed building!");
-                    InitializeConstructedBuilding();
-                }
-                else
-                {
-                    //select the construction site and show how much time is left/ bucks needed for speed up
-                }
-            }
-            else
+            if (ConstructionFinished)
             {
                 GetComponentInChildren<MoneyObject>().GetMoneyIfAvaliable();
                 GetComponent<Selectable>().Select();
+                
             }
-            
-
-            
+            else
+            {
+                if (!_xpNotification.activeSelf)
+                {
+                    //TODO: Select the construction site and show how much time is left/bucks needed for speed up
+                }
+                else
+                {
+                    InitializeConstructedBuilding();
+                    ConstructionFinished = true;
+                    data.ConstructionFinished = true;
+                    data.Progress = null;
+                }
+            }
         }
     }
-    public void GetXP(int xp)
-    {
-        _xpNotification.SetActive(false);
-        _tapVFX.SetActive(true);
-        _xpCounter.SetActive(true);
-        _xpCountDisplayer.DisplayCount(xp);
-        Debug.Log("Xp added successfully");
-    }
-
     #endregion
 }

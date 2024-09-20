@@ -6,7 +6,6 @@ public class PurchasableItem : MonoBehaviour
 {
     public int itemPrice = 10;
     public TextMeshProUGUI coinsText;
-    public MoneyManager moneyManager;
     public Button buyButton;
     public PurchasePanel notEnoughCoinsPanel;
     public DebugBuildingButton debugBuildingButton;
@@ -17,12 +16,6 @@ public class PurchasableItem : MonoBehaviour
 
     private void Start()
     {
-        moneyManager = MoneyManager.Instance;
-        if (moneyManager == null)
-        {
-            Debug.LogError("MoneyManager script not found in the scene.");
-        }
-
         if (buyButton != null)
         {
             buyButton.onClick.AddListener(TryPurchase);
@@ -42,31 +35,23 @@ public class PurchasableItem : MonoBehaviour
     {
         if (buyButton != null)
         {
-            buyButton.interactable = moneyManager.GetPlayerCoins() >= itemPrice && !isProcessingPurchase;
+            buyButton.interactable = CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Coins, itemPrice) && !isProcessingPurchase;
         }
     }
 
     public void TryPurchase()
     {
-        if (moneyManager != null && !isProcessingPurchase)
+        if (!isProcessingPurchase)
         {
-            int playerCoinsBeforePurchase = moneyManager.GetPlayerCoins();
-
-            if (playerCoinsBeforePurchase >= itemPrice)
+            if (CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Coins, itemPrice))
             {
                 isProcessingPurchase = true;
 
-                if (moneyManager.RemoveCoins(itemPrice))
-                {
-                    Debug.Log(gameObject.name + " purchased!");
-                    purchased = true;
-                    EnableBuildingSystem();
-                    shopPanel.SetActive(false); // Close the shop panel after a successful purchase
-                }
-                else
-                {
-                    Debug.LogError("Unexpected failure during coin deduction.");
-                }
+                Debug.Log(gameObject.name + " purchased!");
+                purchased = true;
+                EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-itemPrice, CurrencyType.Coins));
+                EnableBuildingSystem();
+                shopPanel.SetActive(false); // Close the shop panel after a successful purchase
             }
             else
             {
@@ -76,10 +61,6 @@ public class PurchasableItem : MonoBehaviour
             }
 
             isProcessingPurchase = false;
-        }
-        else
-        {
-            Debug.LogError("MoneyManager reference not found.");
         }
     }
 
