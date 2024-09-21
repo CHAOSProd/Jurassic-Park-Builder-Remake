@@ -6,8 +6,6 @@ public class TreeChopManager : Singleton<TreeChopManager>
 
     private int availableTreeChops = 10; // Number of available tree chops
 
-    private readonly int[] _cycles = new int[] { 8, 6, 12, 6, 8 };
-    private int _currentCycle = 0;
     private int _currentAdder = 20;
     public int CurrentXP { get; private set; } = 16;
 
@@ -21,18 +19,14 @@ public class TreeChopManager : Singleton<TreeChopManager>
     {
         CurrentXP = PlayerPrefs.GetInt("TreeExpansionXP", 16);
         _currentAdder = PlayerPrefs.GetInt("TreeExpansionAdder", 20);
-        _currentCycle = PlayerPrefs.GetInt("TreeExpansionCycle", 0);
     }
     public void UpdateXP()
     {
         CurrentXP += _currentAdder;
-        _currentAdder += _cycles[_currentCycle];
-        _currentCycle += 1;
-        if (_currentCycle == _cycles.Length) _currentCycle = 0;
+        _currentAdder += 8;
 
         PlayerPrefs.SetInt("TreeExpansionXP", CurrentXP);
         PlayerPrefs.SetInt("TreeExpansionAdder", _currentAdder);
-        PlayerPrefs.SetInt("TreeExpansionCycle", _currentCycle);
     }
     // Decreases the number of available tree chops
     public void ChopTree() {
