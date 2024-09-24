@@ -1169,7 +1169,6 @@ MonoBehaviour:
   _tapVFX: {fileID: 5720542536271374080}
   _moneyCounter: {fileID: 5790834875254267532}
   _moneyCountDisplayer: {fileID: 75804952028434380}
-  _moneyManager: {fileID: 0}
   _moneyPerSecond: 0.11
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
@@ -2605,14 +2604,11 @@ MonoBehaviour:
   _tapVFX: {fileID: 140494741167843085}
   _xpCounter: {fileID: 2543664875161977675}
   _xpCountDisplayer: {fileID: 2418071989380391854}
-  data:
-    ID: 
-    ItemName: 
-    Position: {x: 0, y: 0, z: 0}
   DisplayFadeInOut: {fileID: 0}
   _display: {fileID: 8430871430473986068}
   _construction: {fileID: 1826582840593954870}
   _main: {fileID: 2450471118451114090}
+  _selectable: {fileID: 7608855621484917840}
   _editButton: {fileID: 0}
 --- !u!60 &5405705909088910238
 PolygonCollider2D:

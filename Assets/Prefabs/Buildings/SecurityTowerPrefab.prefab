@@ -290,7 +290,6 @@ MonoBehaviour:
   _tapVFX: {fileID: 6413502638416436667}
   _moneyCounter: {fileID: 2511511749238511829}
   _moneyCountDisplayer: {fileID: 2742201927157729256}
-  _moneyManager: {fileID: 0}
   _moneyPerSecond: 0.33
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
@@ -1445,14 +1444,11 @@ MonoBehaviour:
   _tapVFX: {fileID: 1038022921513953296}
   _xpCounter: {fileID: 1149240662755325642}
   _xpCountDisplayer: {fileID: 1515345326032937540}
-  data:
-    ID: 
-    ItemName: 
-    Position: {x: 0, y: 0, z: 0}
   DisplayFadeInOut: {fileID: 0}
   _display: {fileID: 7992180451880170234}
   _construction: {fileID: 8570107411819359317}
   _main: {fileID: 738122557006344997}
+  _selectable: {fileID: 8366415940449587912}
   _editButton: {fileID: 0}
 --- !u!114 &8366415940449587912
 MonoBehaviour:
