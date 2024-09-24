@@ -1,65 +1,41 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class SelectablesManager : Singleton<SelectablesManager>
 {
-
-    [SerializeField] private bool _isSomethingSelected;
     [SerializeField] private GameObject[] _paddockSelectedUI;
     [SerializeField] private GameObject[] _buildingSelectedUI;
     [SerializeField] private GameObject[] _nothingIsSelected;
-    [SerializeField] private Selectable[] _selectables;
 
     private Selectable _currentSelectable;
 
     private void Start()
     {
-
-        CheckForSelectables();
-
-        UnselectAll();
-
         InitializeUI();
     }
 
-
-    public void CheckForSelectables()
+    public void SetSelected(Selectable selectable)
     {
-        _selectables = FindObjectsByType<Selectable>(FindObjectsSortMode.None);
-    }
-
-    public void SetIsSomethingSelected(bool isSomethingSelected)
-    {
-        _isSomethingSelected = isSomethingSelected;
-
-        FindCurrentSelectable();
-
+        _currentSelectable = selectable;
         InitializeUI();
-    }
-
-    private void FindCurrentSelectable()
-    {
-        for (int i = 0; i < _selectables.Length; i++)
-        {
-            if (_selectables[i].IsSelected)
-                _currentSelectable = _selectables[i];
-        }
     }
 
     public void UnselectAll()
     {
-        for (int i = 0; i < _selectables.Length; i++)
-        {
-            _selectables[i].Unselect();
-        }
+        if (_currentSelectable == null) return;
+
+        _currentSelectable.Unselect();
+        _currentSelectable = null;
+        InitializeUI();
     }
 
     public void InitializeUI()
     {
-        if (GridBuildingSystem.Instance.TempPlaceableObject || !_currentSelectable)
+        if (GridBuildingSystem.Instance.TempPlaceableObject)
             return;
 
-        if (_isSomethingSelected)
+        if (_currentSelectable != null)
         {
             if (_currentSelectable.GetComponent<Paddock>())
             {

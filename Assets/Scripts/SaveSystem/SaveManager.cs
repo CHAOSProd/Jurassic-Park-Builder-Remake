@@ -34,6 +34,7 @@ public class SaveManager : Singleton<SaveManager>
         foreach (PlaceableObjectData placeableObjectData in SaveData.PlaceableObjects) 
         {
             PlaceableObjectItem placeableObjectItem = Resources.Load<PlaceableObjectItem>(placeablesPath + "/" + placeableObjectData.ItemName);
+            Debug.Log(placeablesPath + "/" + placeableObjectData.ItemName);
             GameObject obj = Instantiate(placeableObjectItem.Prefab, Vector3.zero, Quaternion.identity);
 
             PlaceableObject placeableObject = obj.GetComponent<PlaceableObject>();

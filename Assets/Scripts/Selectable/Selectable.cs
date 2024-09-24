@@ -5,7 +5,10 @@ public class Selectable : SoundObject
     public bool IsSelected;
 
     [SerializeField] private FadeInOut _objectsFadeInOut;
-
+    private void Start()
+    {
+        Unselect();
+    }
     public virtual void Select()
     {
         SelectablesManager.Instance.UnselectAll();
@@ -14,7 +17,7 @@ public class Selectable : SoundObject
 
         _objectsFadeInOut.SetFade(IsSelected);
 
-        SelectablesManager.Instance.SetIsSomethingSelected(IsSelected);
+        SelectablesManager.Instance.SetSelected(this);
     }
 
     public virtual void Unselect()
@@ -23,7 +26,7 @@ public class Selectable : SoundObject
 
         _objectsFadeInOut.SetFade(IsSelected);
 
-        SelectablesManager.Instance.SetIsSomethingSelected(IsSelected);
+        SelectablesManager.Instance.SetSelected(this);
     }
 
     public void PlayPlacementSound()

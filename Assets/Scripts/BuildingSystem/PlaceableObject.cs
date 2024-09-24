@@ -115,7 +115,6 @@ public class PlaceableObject : MonoBehaviour
         transform.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
 
         GridBuildingSystem.Instance.TakeArea(areaTemp);
-        SelectablesManager.Instance.CheckForSelectables();
 
         _origin = transform.position;
 
@@ -144,7 +143,6 @@ public class PlaceableObject : MonoBehaviour
         transform.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
 
         GridBuildingSystem.Instance.TakeArea(areaTemp);
-        SelectablesManager.Instance.CheckForSelectables();
 
         _origin = transform.position;
 

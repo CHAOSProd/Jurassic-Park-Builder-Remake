@@ -32,24 +32,25 @@ public class TreeChopper : MonoBehaviour {
     }
 
     // Handles tree chopping and debris collection logic on mouse click
-    private void OnMouseDown() {
-
-        // ARBITARY VALUES -- figure out how it correlates with level --
+    private void OnMouseDown() 
+    {
+        if (PointerOverUIChecker.Instance.IsPointerOverUIObject()) return;
+        // ARBITARY VALUES -- figure out how much bucks coins are equivalent to --
         int chopCost = 50;
-        int chopCoinCost = 200;
-        // -------------------------------------------------------------
+        // -----------------------------------------------------------------------
 
         Debug.Log("Chopping... " + CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Coins, 200));
         // If the tree already has debris, collect it
         if (hasTreeDebris) {
             CollectDebris();
         } 
-        else if (TreeChopManager.Instance.HasTreeChops() && CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Coins, chopCoinCost))
+        else if (TreeChopManager.Instance.HasTreeChops() && CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Coins, TreeChopManager.Instance.CurrentCost))
         {
             PerformChopAction();
-            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-chopCoinCost, CurrencyType.Coins));
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-TreeChopManager.Instance.CurrentCost, CurrencyType.Coins));
             // Reduce the player's available tree chops
             TreeChopManager.Instance.ChopTree();
+            TreeChopManager.Instance.UpdadeCost();
         } 
         else if (CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Bucks, chopCost)) 
         {
@@ -77,6 +78,8 @@ public class TreeChopper : MonoBehaviour {
 
     // Highlights the tree when mouse is over it
     private void OnMouseEnter() {
+        if (PointerOverUIChecker.Instance.IsPointerOverUIObject()) return;
+
         if (allowSelection) {
             selectedVisual.SelectVisual();
         }
