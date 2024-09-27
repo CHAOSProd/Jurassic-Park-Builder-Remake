@@ -34,7 +34,7 @@ public class TreeChopper : MonoBehaviour {
     // Handles tree chopping and debris collection logic on mouse click
     private void OnMouseDown() 
     {
-        if (PointerOverUIChecker.Instance.IsPointerOverUIObject()) return;
+        if (PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) return;
         // ARBITARY VALUES -- figure out how much bucks coins are equivalent to --
         int chopCost = 50;
         // -----------------------------------------------------------------------
@@ -78,7 +78,7 @@ public class TreeChopper : MonoBehaviour {
 
     // Highlights the tree when mouse is over it
     private void OnMouseEnter() {
-        if (PointerOverUIChecker.Instance.IsPointerOverUIObject()) return;
+        if (PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) return;
 
         if (allowSelection) {
             selectedVisual.SelectVisual();

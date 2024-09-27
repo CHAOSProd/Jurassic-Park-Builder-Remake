@@ -58,7 +58,10 @@ public class DebugBuildingButton : MonoBehaviour
     {
         // Your existing code to create an object
         var obj = GridBuildingSystem.Instance.InitializeWithBuilding(PlaceableObjectItem.Prefab);
-        obj.GetComponent<PlaceableObject>().Initialize(PlaceableObjectItem);
+        PlaceableObject placeableObj = obj.GetComponent<PlaceableObject>();
+
+        placeableObj.Initialize(PlaceableObjectItem);
+        placeableObj.data.SellRefund = (int)Mathf.Round(myPurchasableItem.itemPrice * .5f);
     }
 
     // Additional method to show a panel

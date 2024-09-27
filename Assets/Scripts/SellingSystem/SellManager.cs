@@ -1,0 +1,77 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class SellManager : Singleton<SellManager>
+{
+    [Header("Sell Panel Components")]
+    [SerializeField] private GameObject sellPanel;
+    [SerializeField] private TextMeshProUGUI sellSubtitle;
+    [SerializeField] private Button exitButton;
+    [SerializeField] private Button panelSellButton;
+
+    [Header("VFX Objects")]
+    [SerializeField] private GameObject _tapVFX;
+    [SerializeField] private GameObject _moneyCounter;
+    [SerializeField] private TextMeshProUGUI _moneyCountText;
+    [SerializeField] private AudioSource _sellSoundPlayer;
+
+    [Header("Sell Button Component")]
+    [SerializeField] private Button sellButton;
+
+    private PlaceableObject _objectToSell;
+    private void Start()
+    {
+        PlayerPrefs.DeleteAll();
+        sellPanel.SetActive(false);
+
+        exitButton.onClick.AddListener(OnClose);
+        panelSellButton.onClick.AddListener(OnSell);
+        sellButton.onClick.AddListener(OnUIOpen);
+    }
+
+    public void OnUIOpen()
+    {
+        _objectToSell = SelectablesManager.Instance.CurrentSelectable.GetComponent<PlaceableObject>();
+        if(_objectToSell == null) _objectToSell = SelectablesManager.Instance.CurrentSelectable.transform.parent.GetComponent<PlaceableObject>();
+        string name = _objectToSell.data.ItemName;
+        int sellRefund = _objectToSell.data.SellRefund;
+
+        sellPanel.SetActive(true);
+        sellSubtitle.text = $"Are you sure that you want to sell {name} for <sprite sprite=\"HUD/HUD2\" name=\"MoneySprite\"> {sellRefund}?";
+    }
+
+    public void OnClose()
+    {
+        _objectToSell = null;
+        sellPanel.SetActive(false);
+    }
+
+    public void OnSell()
+    {
+        EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(_objectToSell.data.SellRefund, CurrencyType.Coins));
+        SaveManager.Instance.SaveData.PlaceableObjects.Remove(_objectToSell.data);
+
+        _moneyCountText.text = _objectToSell.data.SellRefund.ToString();
+        _moneyCounter.transform.position = _objectToSell.transform.position + new Vector3(0, .108f);
+        _moneyCounter.SetActive(true);
+
+        _tapVFX.transform.position = _objectToSell.transform.position + new Vector3(-.003f, -.04f);
+        _tapVFX.SetActive(true);
+
+        _sellSoundPlayer.Play();
+
+        Destroy(_objectToSell.gameObject);
+        _objectToSell = null;
+        sellPanel.SetActive(false);
+
+        UnityTimer.Instance.Wait(.5f, () =>
+        {
+            _moneyCounter.SetActive(false);
+            _tapVFX.SetActive(false);
+            _sellSoundPlayer.Stop();
+        });
+    }
+}

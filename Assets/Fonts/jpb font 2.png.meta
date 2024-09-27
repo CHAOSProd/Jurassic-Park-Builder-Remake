@@ -3,7 +3,7 @@ guid: 0b09a58e0caba1b4b98c20fa405907b2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -21,7 +21,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -139,10 +139,10 @@ TextureImporter:
       name: jpb font 2_0
       rect:
         serializedVersion: 2
-        x: 101
-        y: 123
-        width: 74
-        height: 76
+        x: 200
+        y: 201
+        width: 53
+        height: 75
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,7 +150,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81ec9af672c970747ba2d51cf0f4086f
+      spriteID: e44c0b050bf3930429c6df56aff564b9
       internalID: 1749509211
       vertices: []
       indices: 
@@ -160,10 +160,10 @@ TextureImporter:
       name: jpb font 2_1
       rect:
         serializedVersion: 2
-        x: 306
-        y: 207
-        width: 54
-        height: 81
+        x: 103
+        y: 124
+        width: 72
+        height: 75
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,7 +171,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c10fda69d2f0774580a66b14853db6a
+      spriteID: bb151be1ffb69ac4b862a986be31bf6e
       internalID: 512969181
       vertices: []
       indices: 
@@ -181,10 +181,10 @@ TextureImporter:
       name: jpb font 2_2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 122
-        width: 48
-        height: 76
+        x: 307
+        y: 208
+        width: 52
+        height: 75
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,7 +192,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d7636301a1698a44bae26a5b3de78f6
+      spriteID: 9984c6dfea618bf45a84edd33cbf0b67
       internalID: 1867354656
       vertices: []
       indices: 
@@ -202,10 +202,10 @@ TextureImporter:
       name: jpb font 2_3
       rect:
         serializedVersion: 2
-        x: 413
-        y: 219
+        x: 0
+        y: 120
         width: 48
-        height: 75
+        height: 76
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,7 +213,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b623e53462af9d54f98a047a32280d76
+      spriteID: 15215fa6a9d139a4583dc76f17fbdf31
       internalID: -674929919
       vertices: []
       indices: 
@@ -223,10 +223,10 @@ TextureImporter:
       name: jpb font 2_4
       rect:
         serializedVersion: 2
-        x: 375
-        y: 141
-        width: 46
-        height: 76
+        x: 412
+        y: 218
+        width: 50
+        height: 75
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,7 +234,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e30b20c0fc7fd34794b5f9601710309
+      spriteID: 529e1ea59a64dda4c878a6b553575cc4
       internalID: -1054141811
       vertices: []
       indices: 
@@ -244,10 +244,10 @@ TextureImporter:
       name: jpb font 2_5
       rect:
         serializedVersion: 2
-        x: 227
-        y: 125
-        width: 51
-        height: 78
+        x: 376
+        y: 142
+        width: 44
+        height: 73
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,8 +255,155 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2a830ce46226824c94cfce49132d7d0
+      spriteID: f4310c1c42e04a04081e2ace3c0021f9
       internalID: -714720184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jpb font 2_6
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 127
+        width: 49
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90a5b97f4a2a09f488d32987f315edde
+      internalID: -1911352626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jpb font 2_7
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 293
+        width: 41
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aabeb660f18323041ac60b1e8d5825f4
+      internalID: -83210029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jpb font 2_8
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 293
+        width: 41
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e998a01289c08e44fb3cf5e3dfbe3da9
+      internalID: -2043736633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jpb font 2_9
+      rect:
+        serializedVersion: 2
+        x: 359
+        y: 216
+        width: 53
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3d8078d0b6dabe41acd497022b0d086
+      internalID: -72166440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jpb font 2_10
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 393
+        width: 39
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f19f25a3b7ace1f4a90c811cb753f20d
+      internalID: -1939171517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jpb font 2_11
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 50
+        width: 42
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39402c3aab9eeea4ebf77f7d0bdf6ebc
+      internalID: -1004342784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jpb font 2_12
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 143
+        width: 28
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4abc7d478c77bc44e894111cb66a57a3
+      internalID: 1932397013
       vertices: []
       indices: 
       edges: []
@@ -274,10 +421,38 @@ TextureImporter:
     nameFileIdTable:
       jpb font 2_0: 1749509211
       jpb font 2_1: 512969181
+      jpb font 2_10: -1939171517
+      jpb font 2_11: -1004342784
+      jpb font 2_12: 1932397013
+      jpb font 2_13: -1543238230
+      jpb font 2_14: -1700154902
+      jpb font 2_15: -829112355
+      jpb font 2_16: -390466325
+      jpb font 2_17: -1390381280
+      jpb font 2_18: 1326807459
+      jpb font 2_19: 728283919
       jpb font 2_2: 1867354656
+      jpb font 2_20: -867363882
+      jpb font 2_21: -326621670
+      jpb font 2_22: 2068083388
+      jpb font 2_23: 141882575
+      jpb font 2_24: -797018850
+      jpb font 2_25: 1509570080
+      jpb font 2_26: 1459455855
+      jpb font 2_27: -474944398
+      jpb font 2_28: 966847469
+      jpb font 2_29: 1681807350
       jpb font 2_3: -674929919
+      jpb font 2_30: 367125654
+      jpb font 2_31: 128669102
+      jpb font 2_32: 1267383336
+      jpb font 2_33: -760356954
       jpb font 2_4: -1054141811
       jpb font 2_5: -714720184
+      jpb font 2_6: -1911352626
+      jpb font 2_7: -83210029
+      jpb font 2_8: -2043736633
+      jpb font 2_9: -72166440
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

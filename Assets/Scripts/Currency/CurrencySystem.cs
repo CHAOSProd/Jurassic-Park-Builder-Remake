@@ -13,10 +13,11 @@ public class CurrencySystem : Singleton<CurrencySystem>
     private static Dictionary<CurrencyType, TextMeshProUGUI> _currencyTexts = new Dictionary<CurrencyType, TextMeshProUGUI>();
 
     // Define default values in code, if we want to, we can make a serialized dictionary (would require new classes)
-    private static readonly Dictionary<CurrencyType, int> _defaultValues = new() { 
+    private static readonly Dictionary<CurrencyType, int> _defaultValues = new() 
+    {
+        { CurrencyType.Coins, 100},
         { CurrencyType.Bucks, 5}, 
-        { CurrencyType.Crystals, 0}, 
-        { CurrencyType.Coins, 100} 
+        { CurrencyType.Crystals, 0}
     };
 
 
@@ -26,11 +27,6 @@ public class CurrencySystem : Singleton<CurrencySystem>
         {
             _currencyAmounts.Add((CurrencyType)i, 0);
             _currencyTexts.Add((CurrencyType)i, _texts[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>());
-
-            if(!_defaultValues.ContainsKey((CurrencyType)i))
-            {
-                _defaultValues.Add((CurrencyType)i, 0);
-            }
         }
     }
 

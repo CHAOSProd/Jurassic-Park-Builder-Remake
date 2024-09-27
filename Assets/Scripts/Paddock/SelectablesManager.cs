@@ -8,7 +8,7 @@ public class SelectablesManager : Singleton<SelectablesManager>
     [SerializeField] private GameObject[] _buildingSelectedUI;
     [SerializeField] private GameObject[] _nothingIsSelected;
 
-    private Selectable _currentSelectable;
+    public Selectable CurrentSelectable { get; private set; } = null;
 
     private void Start()
     {
@@ -17,16 +17,16 @@ public class SelectablesManager : Singleton<SelectablesManager>
 
     public void SetSelected(Selectable selectable)
     {
-        _currentSelectable = selectable;
+        CurrentSelectable = selectable;
         InitializeUI();
     }
 
     public void UnselectAll()
     {
-        if (_currentSelectable == null) return;
+        if (CurrentSelectable == null) return;
 
-        _currentSelectable.Unselect();
-        _currentSelectable = null;
+        CurrentSelectable.Unselect();
+        CurrentSelectable = null;
         InitializeUI();
     }
 
@@ -35,9 +35,9 @@ public class SelectablesManager : Singleton<SelectablesManager>
         if (GridBuildingSystem.Instance.TempPlaceableObject)
             return;
 
-        if (_currentSelectable != null)
+        if (CurrentSelectable != null)
         {
-            if (_currentSelectable.GetComponent<Paddock>())
+            if (CurrentSelectable.GetComponent<Paddock>())
             {
                 for (int i = 0; i < _buildingSelectedUI.Length; i++)
                 {
@@ -54,7 +54,7 @@ public class SelectablesManager : Singleton<SelectablesManager>
                     _paddockSelectedUI[i].SetActive(true);
                 }
             }
-            else if (_currentSelectable.GetComponent<Building>())
+            else if (CurrentSelectable.GetComponent<Building>())
             {
                 for (int i = 0; i < _paddockSelectedUI.Length; i++)
                 {

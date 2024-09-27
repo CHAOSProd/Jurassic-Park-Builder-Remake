@@ -27,6 +27,7 @@ public class SaveManager : Singleton<SaveManager>
         LoadChoppedTrees();
         CurrencySystem.Instance.Load();
         TreeChopManager.Instance.Load();
+        SelectablesManager.Instance.InitializeUI();
     }
 
     private void LoadPlaceableObjects()

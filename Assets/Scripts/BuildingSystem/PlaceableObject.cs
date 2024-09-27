@@ -68,13 +68,19 @@ public class PlaceableObject : MonoBehaviour
         if (PlacedFromBeginning && !PlayerPrefs.HasKey("IsDefaultObjectInitialized"))
         {
             PlaceableObjectItem defaultPlaceableObjectItem = Resources.Load<PlaceableObjectItem>("Placeables/TriceratopsItem");
-
             Initialize(defaultPlaceableObjectItem);
+            data.SellRefund = 0;
+            data.ItemName = "Triceratops";
+            
 
             if (CanBePlaced())
             {
                 Place();
             }
+
+            ConstructionFinished = true;
+            data.Progress = null;
+            _construction.SetActive(false);
 
             PlayerPrefs.SetInt("IsDefaultObjectInitialized", 1);
         }
@@ -125,7 +131,8 @@ public class PlaceableObject : MonoBehaviour
 
         CameraObjectFollowing.Instance.SetTarget(null);
 
-        Debug.Log("Started Construction");
+        if (PlacedFromBeginning) return;
+
         data.Progress = new PlaceableObjectData.ProgressData(BuildTime, 0, DateTime.Now, BuildXp);
         //Update Progress every second and display xp icon when construction is finished
         UnityTimer.Instance.Tick(BuildTime, 1, UpdateProgress, OnConstructionFinished);

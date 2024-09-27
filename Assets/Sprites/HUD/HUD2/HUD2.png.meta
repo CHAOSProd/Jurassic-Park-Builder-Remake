@@ -36,7 +36,7 @@ TextureImporter:
       213: 2455312644278180568
     second: MoneySprite
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -421,6 +421,27 @@ TextureImporter:
       bones: []
       spriteID: 8dad9b657d5031220800000000000000
       internalID: 2455312644278180568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD2_0
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 624
+        width: 162
+        height: 192
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a996e87cd40a14f418fc514353d95475
+      internalID: 1371207631
       vertices: []
       indices: 
       edges: []

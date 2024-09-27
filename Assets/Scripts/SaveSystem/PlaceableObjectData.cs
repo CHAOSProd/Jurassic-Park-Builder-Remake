@@ -27,4 +27,5 @@ public class PlaceableObjectData : Data
     public Vector3 Position { get; set; }
     public ProgressData Progress { get; set; }
     public bool ConstructionFinished { get; set; }
+    public int SellRefund { get; set; }
 }
