@@ -302,7 +302,7 @@ public class PlaceableObject : MonoBehaviour
             if (ConstructionFinished)
             {
                 GetComponentInChildren<MoneyObject>().GetMoneyIfAvaliable();
-                GetComponent<Selectable>().Select();
+                _selectable.Select();
                 
             }
             else

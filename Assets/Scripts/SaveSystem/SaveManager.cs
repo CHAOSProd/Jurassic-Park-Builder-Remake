@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class SaveManager : Singleton<SaveManager>
@@ -47,17 +48,23 @@ public class SaveManager : Singleton<SaveManager>
     }
     private void LoadChoppedTrees()
     {
-        for(int i = 0;i < treesObject.transform.childCount; i++)
+        foreach (ChoppedTreeData ctd in SaveData.ChoppedTrees)
         {
-            GameObject trees = treesObject.transform.GetChild(i).gameObject;
-            foreach (ChoppedTreeData ctd in SaveData.ChoppedTrees)
-            {
-                if (trees.name == ctd.TreeObjectName)
-                {
-                    Destroy(trees);
-                    break;
-                }
-            }
+            // Immediately destroys the tree game object, so we can use treesObject.transform.childCount correctly
+            DestroyImmediate(Resources.InstanceIDToObject(ctd.TreeInstanceID) as GameObject);
+        }
+        for (int i = 0; i < treesObject.transform.childCount; i++)
+        {
+            Transform tree = treesObject.transform.GetChild(i);
+
+            Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(tree.position);
+            positionInt -= new Vector3Int((int)tree.lossyScale.x / 2, (int)tree.lossyScale.y / 2);
+
+            BoundsInt areaTemp = new BoundsInt(Vector3Int.zero, Vector3Int.one * (int)tree.lossyScale.x);
+            areaTemp.position = positionInt;
+            tree.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
+
+            GridBuildingSystem.Instance.TakeArea(areaTemp);
         }
     }
     private void OnApplicationQuit()

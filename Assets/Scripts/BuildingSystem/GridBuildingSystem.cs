@@ -86,7 +86,6 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
     {
         SetTilesBlock(area, TileType.White, tilemap);
     }
-
     #endregion
 
     #region Building Placement
@@ -153,7 +152,6 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
         {
             if (tileBase != tileBases[TileType.White])
             {
-                Debug.Log("Cannot place here");
                 return false;
             }
         }

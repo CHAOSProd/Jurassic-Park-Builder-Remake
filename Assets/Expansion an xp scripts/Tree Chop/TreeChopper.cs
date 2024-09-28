@@ -14,6 +14,7 @@ public class TreeChopper : MonoBehaviour {
 
     private bool hasTreeDebris = false; // Tracks if tree has debris after being chopped
     private bool allowSelection = true; // Determines if tree can be selected
+    private bool chopped = false;
 
     // Initializes references to visual components
     private void Awake() {
@@ -34,12 +35,11 @@ public class TreeChopper : MonoBehaviour {
     // Handles tree chopping and debris collection logic on mouse click
     private void OnMouseDown() 
     {
-        if (PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) return;
+        if (PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject || chopped) return;
         // ARBITARY VALUES -- figure out how much bucks coins are equivalent to --
         int chopCost = 50;
         // -----------------------------------------------------------------------
 
-        Debug.Log("Chopping... " + CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Coins, 200));
         // If the tree already has debris, collect it
         if (hasTreeDebris) {
             CollectDebris();
@@ -103,7 +103,9 @@ public class TreeChopper : MonoBehaviour {
         TreeChopManager.Instance.UpdateXP();
 
         treeDebris.DisableDebris(); // Show debris visuals
-        SaveManager.Instance.SaveData.ChoppedTrees.Add(new ChoppedTreeData(gameObject.name));
+        SaveManager.Instance.SaveData.ChoppedTrees.Add(new ChoppedTreeData(gameObject.GetInstanceID()));
+
+        chopped = true;
         Destroy(gameObject, .5f); // Destroy the tree object after some time, to ensure the xp effect still plays
     }
 

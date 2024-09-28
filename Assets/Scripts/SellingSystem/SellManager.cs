@@ -13,7 +13,6 @@ public class SellManager : Singleton<SellManager>
     [SerializeField] private Button panelSellButton;
 
     [Header("VFX Objects")]
-    [SerializeField] private GameObject _tapVFX;
     [SerializeField] private GameObject _moneyCounter;
     [SerializeField] private TextMeshProUGUI _moneyCountText;
     [SerializeField] private AudioSource _sellSoundPlayer;
@@ -58,10 +57,14 @@ public class SellManager : Singleton<SellManager>
         _moneyCounter.transform.position = _objectToSell.transform.position + new Vector3(0, .108f);
         _moneyCounter.SetActive(true);
 
-        _tapVFX.transform.position = _objectToSell.transform.position + new Vector3(-.003f, -.04f);
-        _tapVFX.SetActive(true);
-
+        _sellSoundPlayer.gameObject.SetActive(true);
         _sellSoundPlayer.Play();
+
+        // Clear occupied tiles from Placed Object
+        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.WorldToCell(_objectToSell.transform.position);
+        BoundsInt areaTemp = _objectToSell.Area;
+        areaTemp.position = positionInt;
+        GridBuildingSystem.Instance.SetAreaWhite(areaTemp, GridBuildingSystem.Instance.MainTilemap);
 
         Destroy(_objectToSell.gameObject);
         _objectToSell = null;
@@ -70,7 +73,7 @@ public class SellManager : Singleton<SellManager>
         UnityTimer.Instance.Wait(.5f, () =>
         {
             _moneyCounter.SetActive(false);
-            _tapVFX.SetActive(false);
+            _sellSoundPlayer.gameObject.SetActive(false);
             _sellSoundPlayer.Stop();
         });
     }

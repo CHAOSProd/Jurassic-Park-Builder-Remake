@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ChoppedTreeData : Data
 {
-    public string TreeObjectName { get; set; }
+    public int TreeInstanceID { get; set; }
 
-    public ChoppedTreeData(string treeObjectName)
+    public ChoppedTreeData(int treeObjectName)
     {
-        this.TreeObjectName = treeObjectName;
+        this.TreeInstanceID = treeObjectName;
     }
 }
