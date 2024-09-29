@@ -68,7 +68,8 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
 
     private static void SetTilesBlock(BoundsInt area, TileType type, Tilemap tilemap)
     {
-        int size = area.size.x * area.size.y * area.size.z;
+        area.size = new Vector3Int(area.size.x, area.size.y, 1);
+        int size = area.size.x * area.size.y;
         TileBase[] tileArray = new TileBase[size];
         FillTiles(tileArray, type);
         tilemap.SetTilesBlock(area, tileArray);

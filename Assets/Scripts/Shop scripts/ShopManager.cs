@@ -88,24 +88,4 @@ public class ShopManager : Singleton<ShopManager>
             opened = false;
         }
     }
-
-    private bool dragging;
-
-    public void OnBeginDrag()
-    {
-        dragging = true;
-    }
-
-    public void OnEndDrag()
-    {
-        dragging = false;
-    }
-
-    public void OnPointerClick()
-    {
-        if (!dragging)
-        {
-            ShopButton_Click();
-        }
-    }
 }

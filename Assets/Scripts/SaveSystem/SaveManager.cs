@@ -28,7 +28,6 @@ public class SaveManager : Singleton<SaveManager>
         LoadChoppedTrees();
         CurrencySystem.Instance.Load();
         TreeChopManager.Instance.Load();
-        SelectablesManager.Instance.InitializeUI();
     }
 
     private void LoadPlaceableObjects()
@@ -57,14 +56,12 @@ public class SaveManager : Singleton<SaveManager>
         {
             Transform tree = treesObject.transform.GetChild(i);
 
+            BoundsInt treeArea = tree.GetComponent<TreeChopper>().Area;
             Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(tree.position);
-            positionInt -= new Vector3Int((int)tree.lossyScale.x / 2, (int)tree.lossyScale.y / 2);
-
-            BoundsInt areaTemp = new BoundsInt(Vector3Int.zero, Vector3Int.one * (int)tree.lossyScale.x);
-            areaTemp.position = positionInt;
+            treeArea.position = new Vector3Int(treeArea.position.x + positionInt.x, treeArea.position.y + positionInt.y, 0);
             tree.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
 
-            GridBuildingSystem.Instance.TakeArea(areaTemp);
+            GridBuildingSystem.Instance.TakeArea(treeArea);
         }
     }
     private void OnApplicationQuit()

@@ -51,6 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef3066e263c57f42b1dfb821fb7db4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Area:
+    m_Position: {x: -8, y: -8, z: 0}
+    m_Size: {x: 16, y: 16, z: 1}
   _xpNotification: {fileID: 7523314670755779805}
   _tapVFX: {fileID: 5685590419129225593}
   _xpCounter: {fileID: 1271760099580944600}
@@ -222,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6308226490251088922
 Transform:
   m_ObjectHideFlags: 0

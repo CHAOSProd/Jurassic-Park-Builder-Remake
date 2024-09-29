@@ -5,20 +5,19 @@ using UnityEngine.Events;
 
 public class AnimationEventsListener : MonoBehaviour
 {
-    private bool _isAnimationEnded = true;
     [SerializeField] private UnityEvent _eventOnAnimationEnded;
 
-    public bool IsAnimationEnded => _isAnimationEnded;
+    public bool IsAnimationEnded { get; set; } = true;
 
     public void OnAnimationEnded()
     {
-        _isAnimationEnded = true;
+        IsAnimationEnded = true;
         _eventOnAnimationEnded?.Invoke();
     }
 
     public void OnAnimationStarted()
     {
-        _isAnimationEnded = false;
+        IsAnimationEnded = false;
     }
 
     private void OnDisable()

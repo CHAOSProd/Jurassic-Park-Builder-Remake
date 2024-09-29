@@ -2993,7 +2993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8d154379dc7a7499b100e9bbc42395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Placed: 1
+  Placed: 0
   Area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 7, y: 7, z: 1}
@@ -5794,6 +5794,7 @@ MonoBehaviour:
   IsSelected: 0
   _objectsFadeInOut: {fileID: 3411297017016814323}
   _evolutionsChanger: {fileID: 3566031748829286184}
+  _dinosaurAnimationEventsListener: {fileID: 1331852711686860529}
 --- !u!114 &7111821246533221281
 MonoBehaviour:
   m_ObjectHideFlags: 0

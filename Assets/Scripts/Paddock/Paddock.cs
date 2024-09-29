@@ -4,7 +4,7 @@ public class Paddock : Selectable
 {
     [SerializeField] private GameObject _evolutionsChanger;
 
-    private AnimationEventsListener _dinosaurAnimationEventsListener;
+    [SerializeField] private AnimationEventsListener _dinosaurAnimationEventsListener;
     private MoneyObject _moneyObject;
     private Animator _dinosaurAnimator;
 
@@ -17,8 +17,6 @@ public class Paddock : Selectable
     {
         _evolutionsChanger.SetActive(IsSelected);
 
-        _dinosaurAnimationEventsListener = GetComponentInChildren<AnimationEventsListener>();
-
         _dinosaurAnimator = _dinosaurAnimationEventsListener.GetComponent<Animator>();
     }
 
@@ -30,8 +28,8 @@ public class Paddock : Selectable
         if (_dinosaurAnimationEventsListener.IsAnimationEnded && _moneyObject.CurrentMoneyInteger != 0)
         {
             _dinosaurAnimator.SetTrigger("Fun");
-
-            PlaySound(Sounds[2], 0.5f);
+            _dinosaurAnimationEventsListener.OnAnimationStarted();
+            PlaySound(Sounds[2], 0.5f); 
         }
     }
 

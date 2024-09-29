@@ -1,7 +1,9 @@
 using UnityEngine;
 
 // Handles tree chopping mechanics and visual changes
-public class TreeChopper : MonoBehaviour {
+public class TreeChopper : MonoBehaviour
+{
+    public BoundsInt Area;
 
     private SelectedTreeVisual selectedVisual; // Visual indicator for selected tree
     private TreeDebris treeDebris; // Debris object for the tree
@@ -35,7 +37,7 @@ public class TreeChopper : MonoBehaviour {
     // Handles tree chopping and debris collection logic on mouse click
     private void OnMouseDown() 
     {
-        if (PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject || chopped) return;
+        if (PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject != null || chopped) return;
         // ARBITARY VALUES -- figure out how much bucks coins are equivalent to --
         int chopCost = 50;
         // -----------------------------------------------------------------------
@@ -102,8 +104,14 @@ public class TreeChopper : MonoBehaviour {
         EventManager.Instance.TriggerEvent(new XPAddedGameEvent(TreeChopManager.Instance.CurrentXP)); // Award XP to the player
         TreeChopManager.Instance.UpdateXP();
 
-        treeDebris.DisableDebris(); // Show debris visuals
+        treeDebris.DisableDebris();
         SaveManager.Instance.SaveData.ChoppedTrees.Add(new ChoppedTreeData(gameObject.GetInstanceID()));
+
+        // Give back area that Trees took up
+        BoundsInt tempArea = Area;
+        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
+        tempArea.position = new Vector3Int(tempArea.position.x + positionInt.x, tempArea.position.y + positionInt.y, 0);
+        GridBuildingSystem.Instance.SetAreaWhite(tempArea, GridBuildingSystem.Instance.MainTilemap);
 
         chopped = true;
         Destroy(gameObject, .5f); // Destroy the tree object after some time, to ensure the xp effect still plays

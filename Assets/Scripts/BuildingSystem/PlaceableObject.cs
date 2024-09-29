@@ -110,26 +110,23 @@ public class PlaceableObject : MonoBehaviour
     {
         InitializeDisplayObjects(false);
 
-        if (!Placed)
-        _selectable.PlayPlacementSound();
-
         Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = Area;
         areaTemp.position = positionInt;
-        Placed = true;
-
         transform.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
-
         GridBuildingSystem.Instance.TakeArea(areaTemp);
-
         _origin = transform.position;
-
         data.Position = transform.position;
-        
+        CameraObjectFollowing.Instance.SetTarget(null); 
 
+        if (Placed) return;
+
+        _selectable.PlayPlacementSound();
+        Placed = true;
+        
         SaveManager.Instance.SaveData.PlaceableObjects.Add(data);
 
-        CameraObjectFollowing.Instance.SetTarget(null);
+        
 
         if (PlacedFromBeginning) return;
 

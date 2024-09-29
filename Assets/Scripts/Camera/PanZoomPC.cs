@@ -34,6 +34,12 @@ public class PanZoomPC : MonoBehaviour
     {
         _zoomDelta = (_maxZoom - _minZoom) / 2f;
         _cameraObjectFollowing = GetComponent<CameraObjectFollowing>();
+
+        _controls.Enable();
+
+        _controls.Main.MouseScroll.performed += OnZoom;
+        _controls.Main.MouseScrollButon.started += OnScrollButtonClick;
+        _controls.Main.MouseScrollButon.performed += OnScrollButtonClick;
     }
 
     private void OnZoom(InputAction.CallbackContext context)
@@ -119,23 +125,5 @@ public class PanZoomPC : MonoBehaviour
         _camera.orthographicSize = endZoom;
 
         _canZoom = true;
-    }
-
-    private void OnEnable()
-    {
-        _controls.Enable();
-
-        _controls.Main.MouseScroll.performed += OnZoom;
-        _controls.Main.MouseScrollButon.started += OnScrollButtonClick;
-        _controls.Main.MouseScrollButon.performed += OnScrollButtonClick;
-    }
-
-    private void OnDisable()
-    {
-        _controls.Disable();
-
-        _controls.Main.MouseScroll.performed -= OnZoom;
-        _controls.Main.MouseScrollButon.started += OnScrollButtonClick;
-        _controls.Main.MouseScrollButon.performed += OnScrollButtonClick;
     }
 }
