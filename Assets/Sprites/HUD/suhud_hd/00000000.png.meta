@@ -3,7 +3,7 @@ guid: 31986d15f6856924e91724b3b4af3dcb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -265,10 +265,10 @@ TextureImporter:
       name: XpBigIcon
       rect:
         serializedVersion: 2
-        x: 1619
+        x: 1623
         y: 133
-        width: 92
-        height: 63
+        width: 87
+        height: 61
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -291,7 +291,7 @@ TextureImporter:
         width: 134
         height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

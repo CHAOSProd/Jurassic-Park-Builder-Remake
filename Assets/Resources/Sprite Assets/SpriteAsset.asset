@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
   m_Name: SpriteAsset
   m_EditorClassIdentifier: 
-  hashCode: 2542635
-  material: {fileID: 5818811744560791593}
-  materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
     m_FaceIndex: 0
@@ -38,15 +35,15 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
+  m_Material: {fileID: 5818811744560791593}
   spriteSheet: {fileID: 2800000, guid: 3b6c1290b87a87a4883cc9e0668f50ab, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 3
     m_Scale: 0.85
-    m_Name: MoneySprite
-    m_HashCode: -459401831
-  m_SpriteGlyphTable:
+    m_Name: money_icon
+  m_GlyphTable:
   - m_Index: 0
     m_Metrics:
       m_Width: 80
@@ -235,7 +232,8 @@ MonoBehaviour:
     sprite: {fileID: 4195649781779445339, guid: 3b6c1290b87a87a4883cc9e0668f50ab,
       type: 3}
   spriteInfoList: []
-  fallbackSpriteAssets: []
+  fallbackSpriteAssets:
+  - {fileID: 11400000, guid: d623f22de4022d34b9ddc81a7eedab39, type: 2}
 --- !u!21 &5818811744560791593
 Material:
   serializedVersion: 8
@@ -277,3 +275,4 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

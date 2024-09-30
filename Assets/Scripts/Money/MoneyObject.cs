@@ -14,7 +14,7 @@ public class MoneyObject : MonoBehaviour
     [SerializeField] private Animator _animator;  // Reference to the Animator
 
     public float MaximumMoney = 100;
-    public int CurrentMoneyInteger;
+    public int CurrentMoneyInteger = 0;
     public int MaximumMinutes = 5;
 
     private Selectable _selectable;
