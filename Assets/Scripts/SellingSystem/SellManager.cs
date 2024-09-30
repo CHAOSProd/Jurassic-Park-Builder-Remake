@@ -39,7 +39,7 @@ public class SellManager : Singleton<SellManager>
         int sellRefund = _objectToSell.data.SellRefund;
 
         sellPanel.SetActive(true);
-        sellSubtitle.text = $"Are you sure you want to sell {name} for <sprite sprite=\"HUD/HUD2\" name=\"MoneySprite\"> {sellRefund}?";
+        sellSubtitle.text = $"Are you sure you want to sell {name} for <sprite name=\"money_icon\"> {sellRefund}?";
     }
 
     public void OnClose()
@@ -53,9 +53,9 @@ public class SellManager : Singleton<SellManager>
         EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(_objectToSell.data.SellRefund, CurrencyType.Coins));
         SaveManager.Instance.SaveData.PlaceableObjects.Remove(_objectToSell.data);
 
-        _moneyCountText.text = _objectToSell.data.SellRefund.ToString();
         _moneyCounter.transform.position = _objectToSell.transform.position + new Vector3(0, .108f);
         _moneyCounter.SetActive(true);
+        _moneyCounter.GetComponentInChildren<MoneyCountDisplayer>().DisplayCount(_objectToSell.data.SellRefund);
 
         _sellSoundPlayer.gameObject.SetActive(true);
         _sellSoundPlayer.Play();

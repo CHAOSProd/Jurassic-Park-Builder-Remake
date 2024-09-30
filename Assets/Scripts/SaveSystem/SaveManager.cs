@@ -68,6 +68,6 @@ public class SaveManager : Singleton<SaveManager>
     {
         SaveSystem.Save(SaveData);
         Utils.SetDateTime("LastSaveTime", DateTime.UtcNow);
-        PlayerPrefs.Save();
+        
     }
 }
