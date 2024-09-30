@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlaceableObjectData : Data
 {
     // Create class to make it nullable (to save less data)
+    [Serializable]
     public class ProgressData
     {
         public int BuildTime { get; set; }
@@ -24,7 +25,7 @@ public class PlaceableObjectData : Data
         }
     }
     public string ItemName { get; set;}
-    public Vector3 Position { get; set; }
+    public (float x, float y, float z) Position { get; set; }
     public ProgressData Progress { get; set; }
     public bool ConstructionFinished { get; set; }
     public int SellRefund { get; set; }

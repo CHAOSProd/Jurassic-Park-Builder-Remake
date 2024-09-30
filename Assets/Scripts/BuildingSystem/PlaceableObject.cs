@@ -116,7 +116,7 @@ public class PlaceableObject : MonoBehaviour
         transform.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
         GridBuildingSystem.Instance.TakeArea(areaTemp);
         _origin = transform.position;
-        data.Position = transform.position;
+        data.Position = (transform.position.x, transform.position.y, transform.position.z);
         CameraObjectFollowing.Instance.SetTarget(null); 
 
         if (Placed) return;
@@ -212,7 +212,7 @@ public class PlaceableObject : MonoBehaviour
     {
         _placeableObjectItem = placeableObjectItem;
         data = placeableObjectData;
-        transform.position = data.Position;
+        transform.position = new Vector3(data.Position.x, data.Position.y, data.Position.z);
         this.ConstructionFinished = placeableObjectData.ConstructionFinished;
 
         if(ConstructionFinished)
@@ -230,8 +230,6 @@ public class PlaceableObject : MonoBehaviour
             this.BuildXp = placeableObjectData.Progress.XP;
 
             int newTime = (int)Math.Floor((DateTime.Now - placeableObjectData.Progress.LastTick).TotalSeconds) + placeableObjectData.Progress.ElapsedTime;
-
-            Debug.LogWarning(newTime);
 
             if(newTime >= BuildTime)
             {

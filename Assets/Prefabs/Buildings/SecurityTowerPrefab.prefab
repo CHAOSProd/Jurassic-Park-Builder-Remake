@@ -824,6 +824,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7168353428066853488}
+  - component: {fileID: 4146736767412850234}
   m_Layer: 0
   m_Name: XpCounter (1)
   m_TagString: Untagged
@@ -847,6 +848,18 @@ Transform:
   - {fileID: 4193952732440162206}
   m_Father: {fileID: 9178189859837490023}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &4146736767412850234
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149240662755325642}
+  m_Enabled: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 4
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &1410328309379611694
 GameObject:
   m_ObjectHideFlags: 0

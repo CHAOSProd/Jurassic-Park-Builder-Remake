@@ -553,6 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4363911508973047158}
+  - component: {fileID: 3087540702988698019}
   m_Layer: 0
   m_Name: Xpnotification
   m_TagString: Untagged
@@ -576,6 +577,18 @@ Transform:
   - {fileID: 4899170572012934361}
   m_Father: {fileID: 6518462502695424633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &3087540702988698019
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3121313761361143356}
+  m_Enabled: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 4
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &3349952607450785649
 GameObject:
   m_ObjectHideFlags: 0
