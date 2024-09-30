@@ -19,9 +19,5 @@ public class SaveManagerEditor : Editor
                 File.Delete(SaveSystem.FilePath);
             }
         }
-        if (GUILayout.Button("Clear player prefs"))
-        {
-            PlayerPrefs.DeleteAll();
-        }
     }
 }

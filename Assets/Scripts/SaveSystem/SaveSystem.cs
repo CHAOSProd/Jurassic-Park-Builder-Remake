@@ -3,6 +3,8 @@ using NUnit.Framework;
 using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem
 {
@@ -26,20 +28,23 @@ public static class SaveSystem
 
     public static void Save(SaveData saveData)
     {
-        var settings = new JsonSerializerSettings();
-        settings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        IFormatter formatter = new BinaryFormatter();
+        FileStream stream = new FileStream(FilePath, FileMode.OpenOrCreate);
+        
+        formatter.Serialize(stream, saveData);
 
-        string saveString = JsonConvert.SerializeObject(saveData, settings);
-        Debug.Log("Saved string to " + FilePath);
-        File.WriteAllText(FilePath, saveString);
+        stream.Close();
     }
 
     public static SaveData Load()
     {
         if (File.Exists(FilePath))
         {
-            string saveString = File.ReadAllText(FilePath);
-            SaveData loaded = JsonConvert.DeserializeObject<SaveData>(saveString);
+            IFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(FilePath, FileMode.OpenOrCreate);
+            SaveData loaded = (SaveData)formatter.Deserialize(stream);
+
+            stream.Close();
             if (loaded == null)
             {
                 return new SaveData();

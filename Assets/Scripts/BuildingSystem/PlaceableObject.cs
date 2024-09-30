@@ -65,7 +65,7 @@ public class PlaceableObject : MonoBehaviour
         //    }
         //}
 
-        if (PlacedFromBeginning && !PlayerPrefs.HasKey("IsDefaultObjectInitialized"))
+        if (PlacedFromBeginning && !Attributes.HaveKey("IsDefaultObjectInitialized"))
         {
             PlaceableObjectItem defaultPlaceableObjectItem = Resources.Load<PlaceableObjectItem>("Placeables/TriceratopsItem");
             Initialize(defaultPlaceableObjectItem);
@@ -82,7 +82,7 @@ public class PlaceableObject : MonoBehaviour
             data.Progress = null;
             _construction.SetActive(false);
 
-            PlayerPrefs.SetInt("IsDefaultObjectInitialized", 1);
+            Attributes.SetBool("IsDefaultObjectInitialized", true);
         }
 
         _editButton = EditButton.Instance.GetComponent<Button>();

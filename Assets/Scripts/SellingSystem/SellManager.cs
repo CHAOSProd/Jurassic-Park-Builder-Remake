@@ -23,7 +23,6 @@ public class SellManager : Singleton<SellManager>
     private PlaceableObject _objectToSell;
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
         sellPanel.SetActive(false);
 
         exitButton.onClick.AddListener(OnClose);

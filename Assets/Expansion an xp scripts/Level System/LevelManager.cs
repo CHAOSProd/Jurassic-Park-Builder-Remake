@@ -23,8 +23,8 @@ public class LevelManager : MonoBehaviour
         {
             Instance = this;
             EventManager.Instance.AddListener<XPAddedGameEvent>(GiveXP);
-            XP = PlayerPrefs.GetFloat("xp", 0);
-            level = PlayerPrefs.GetInt("level", 1);
+            XP = Attributes.GetFloat("xp", 0);
+            level = Attributes.GetInt("level", 1);
             UpdateUI();
         }
         else
@@ -131,8 +131,8 @@ public class LevelManager : MonoBehaviour
     // Handles saving
     private void Save()
     {
-        PlayerPrefs.SetFloat("xp", XP);
-        PlayerPrefs.SetInt("level", (int)level);
+        Attributes.SetFloat("xp", XP);
+        Attributes.SetInt("level", (int)level);
     }
 }
 

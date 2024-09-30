@@ -21,9 +21,9 @@ public class EvolutionChanger : MonoBehaviour
 
         _skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
 
-        if(PlayerPrefs.HasKey("CurrentSkin" + _parrentName))
+        if(Attributes.HaveKey("CurrentSkin" + _parrentName))
         {
-            _currentSkin = PlayerPrefs.GetInt("CurrentSkin" + _parrentName);
+            _currentSkin = Attributes.GetInt("CurrentSkin" + _parrentName);
 
             ChangeSkin(_currentSkin);
         }
@@ -44,7 +44,7 @@ public class EvolutionChanger : MonoBehaviour
     {
         _currentSkin = index;
 
-        PlayerPrefs.SetInt("CurrentSkin" + _parrentName, index);
+        Attributes.SetInt("CurrentSkin" + _parrentName, index);
 
         switch (index)
         {

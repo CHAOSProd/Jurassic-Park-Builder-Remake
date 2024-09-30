@@ -39,7 +39,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
     {
         for(int i = 0; i < _texts.Count; i++)
         {
-            _currencyAmounts[(CurrencyType)i] = PlayerPrefs.GetInt(((CurrencyType)i).ToString(), _defaultValues[(CurrencyType)i]);
+            _currencyAmounts[(CurrencyType)i] = Attributes.GetInt(((CurrencyType)i).ToString(), _defaultValues[(CurrencyType)i]);
             if((CurrencyType)i == CurrencyType.Coins)
             {
                 _currencyAmounts[(CurrencyType)i] = 100000;
@@ -69,7 +69,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
                 return;
             }
             _currencyAmounts[currencyType] += amount;
-            PlayerPrefs.SetInt(currencyType.ToString(), amount);
+            Attributes.SetInt(currencyType.ToString(), amount);
             _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("#,#", new CultureInfo("en-US"));
         }
     }

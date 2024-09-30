@@ -13,15 +13,14 @@ public class SaveManager : Singleton<SaveManager>
     private void Awake()
     {
         SaveSystem.Initialize();
-    }
-
-    private void Start()
-    {
         SaveData = SaveSystem.Load();
 
+        Attributes.SetAttributes(SaveData.Attributes);
+    }
+    private void Start()
+    {
         LoadGame();
     }
-
     private void LoadGame()
     {
         LoadPlaceableObjects();
@@ -60,14 +59,13 @@ public class SaveManager : Singleton<SaveManager>
             Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(tree.position);
             treeArea.position = new Vector3Int(treeArea.position.x + positionInt.x, treeArea.position.y + positionInt.y, 0);
             tree.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
-
             GridBuildingSystem.Instance.TakeArea(treeArea);
         }
     }
     private void OnApplicationQuit()
     {
+        SaveData.Attributes = Attributes.Export();
         SaveSystem.Save(SaveData);
-        Utils.SetDateTime("LastSaveTime", DateTime.UtcNow);
-        
+        Attributes.SetAttribute("LastSaveTime", DateTime.UtcNow);
     }
 }

@@ -38,9 +38,9 @@ public class MoneyObject : MonoBehaviour
         if (GetComponent<Paddock>())
             _paddock = GetComponent<Paddock>();
 
-        if (PlayerPrefs.HasKey("CurrentMoney" + gameObject.name))
+        if (Attributes.HaveKey("CurrentMoney" + gameObject.name))
         {
-            CurrentMoneyInteger = PlayerPrefs.GetInt("CurrentMoney" + gameObject.name);
+            CurrentMoneyInteger = Attributes.GetInt("CurrentMoney" + gameObject.name);
         }
         else
         {
@@ -49,7 +49,7 @@ public class MoneyObject : MonoBehaviour
 
         InitializeMoneyPerSecond();
 
-        DateTime lastSaveTime = Utils.GetDateTime("LastSaveTime", DateTime.UtcNow);
+        DateTime lastSaveTime = Attributes.GetAttribute("LastSaveTime", DateTime.UtcNow);
         TimeSpan timePassed = DateTime.UtcNow - lastSaveTime;
         int secondsPassed = (int)timePassed.TotalSeconds;
 
@@ -90,8 +90,8 @@ public class MoneyObject : MonoBehaviour
         {
             _currentMoneyFloated += _moneyPerSecond;
             CurrentMoneyInteger = Mathf.FloorToInt(_currentMoneyFloated);
-            PlayerPrefs.SetInt("CurrentMoney" + gameObject.name, CurrentMoneyInteger);
-            Utils.SetDateTime("LastSaveTime", DateTime.UtcNow);
+            Attributes.SetInt("CurrentMoney" + gameObject.name, CurrentMoneyInteger);
+            Attributes.SetAttribute("LastSaveTime", DateTime.UtcNow);
             _currentSecond++;
 
             _timeFromLastMoneyAdding = 0;
