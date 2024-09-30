@@ -39,7 +39,7 @@ public class SellManager : Singleton<SellManager>
         int sellRefund = _objectToSell.data.SellRefund;
 
         sellPanel.SetActive(true);
-        sellSubtitle.text = $"Are you sure that you want to sell {name} for <sprite sprite=\"HUD/HUD2\" name=\"MoneySprite\"> {sellRefund}?";
+        sellSubtitle.text = $"Are you sure you want to sell {name} for <sprite sprite=\"HUD/HUD2\" name=\"MoneySprite\"> {sellRefund}?";
     }
 
     public void OnClose()
