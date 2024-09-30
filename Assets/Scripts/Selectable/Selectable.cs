@@ -2,13 +2,9 @@ using UnityEngine;
 
 public class Selectable : SoundObject
 {
-    public bool IsSelected;
+    public bool IsSelected = false;
 
     [SerializeField] private FadeInOut _objectsFadeInOut;
-    private void Start()
-    {
-        Unselect();
-    }
     public virtual void Select()
     {
         SelectablesManager.Instance.UnselectAll();
@@ -25,8 +21,6 @@ public class Selectable : SoundObject
         IsSelected = false;
 
         _objectsFadeInOut.SetFade(IsSelected);
-
-        SelectablesManager.Instance.SetSelected(this);
     }
 
     public void PlayPlacementSound()
