@@ -58,7 +58,7 @@ public class SaveManager : Singleton<SaveManager>
             BoundsInt treeArea = tree.GetComponent<TreeChopper>().Area;
             Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(tree.position);
             treeArea.position = new Vector3Int(treeArea.position.x + positionInt.x, treeArea.position.y + positionInt.y, 0);
-            tree.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
+
             GridBuildingSystem.Instance.TakeArea(treeArea);
         }
     }
