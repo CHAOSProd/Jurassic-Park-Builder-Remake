@@ -15,7 +15,6 @@ public class SellManager : Singleton<SellManager>
     [Header("VFX Objects")]
     [SerializeField] private GameObject _moneyCounter;
     [SerializeField] private TextMeshProUGUI _moneyCountText;
-    [SerializeField] private AudioSource _sellSoundPlayer;
 
     [Header("Sell Button Component")]
     [SerializeField] private Button sellButton;
@@ -56,9 +55,6 @@ public class SellManager : Singleton<SellManager>
         _moneyCounter.SetActive(true);
         _moneyCounter.GetComponentInChildren<MoneyCountDisplayer>().DisplayCount(_objectToSell.data.SellRefund);
 
-        _sellSoundPlayer.gameObject.SetActive(true);
-        _sellSoundPlayer.Play();
-
         // Clear occupied tiles from Placed Object
         Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.WorldToCell(_objectToSell.transform.position);
         BoundsInt areaTemp = _objectToSell.Area;
@@ -72,8 +68,6 @@ public class SellManager : Singleton<SellManager>
         UnityTimer.Instance.Wait(.5f, () =>
         {
             _moneyCounter.SetActive(false);
-            _sellSoundPlayer.gameObject.SetActive(false);
-            _sellSoundPlayer.Stop();
         });
     }
 }
