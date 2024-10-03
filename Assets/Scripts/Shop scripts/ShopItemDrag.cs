@@ -48,8 +48,6 @@ public class ShopItemDrag : MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        ShopManager.Instance.ShopButton_Click();
-
         Color c = img.color;
         c.a = 0f;
         img.color = c;

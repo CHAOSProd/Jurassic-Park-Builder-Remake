@@ -6,32 +6,7 @@ using UnityEngine;
 
 public class ShopManager : Singleton<ShopManager>
 {
-    public static Dictionary<CurrencyType, Sprite> currencySprites = new Dictionary<CurrencyType, Sprite>();
-
-    [SerializeField] private List<Sprite> sprites;
-
-    private RectTransform rt;
-    private RectTransform prt;
-    private bool opened;
-
-    [SerializeField] public TabGroup shopTabs;
-
     [SerializeField] private List<AnimalToggle> _animalToggles;
-    private void Awake()
-    {
-
-        rt = GetComponent<RectTransform>();
-        prt = transform.parent.GetComponent<RectTransform>();
-        Debug.Log(gameObject.name);
-    }
-
-    private void Start()
-    {
-        currencySprites.Add(CurrencyType.Coins, sprites[0]);
-        currencySprites.Add(CurrencyType.Crystals, sprites[1]);
-        
-        gameObject.SetActive(false);
-    }
 
     public void InitalizeAnimals(List<AnimalShopData> animalShopData)
     {
@@ -63,24 +38,5 @@ public class ShopManager : Singleton<ShopManager>
     public AnimalToggle GetAnimalByIndex(int index)
     {
         return _animalToggles[index];
-    }
-    public void ShopButton_Click()
-    {
-        float time = 0.2f;
-        if (!opened)
-        {
-            LeanTween.moveX(prt, prt.anchoredPosition.x + rt.sizeDelta.x, time);
-            opened = true;
-            gameObject.SetActive(true);
-        }
-        else
-        {
-            LeanTween.moveX(prt, prt.anchoredPosition.x - rt.sizeDelta.x, time)
-                .setOnComplete(delegate()
-                {
-                    gameObject.SetActive(false);
-                });
-            opened = false;
-        }
     }
 }

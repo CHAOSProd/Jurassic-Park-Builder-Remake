@@ -22,7 +22,6 @@ public class ShopItemHolder : MonoBehaviour
         iconImage.sprite = Item.Icon;
         titleText.text = Item.Name;
         descriptionText.text = Item.Description;
-        currencyImage.sprite = ShopManager.currencySprites[Item.Currency];
         priceText.text = Item.Price.ToString();
 
 
