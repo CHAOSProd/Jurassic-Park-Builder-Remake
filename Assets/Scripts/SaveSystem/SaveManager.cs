@@ -34,7 +34,6 @@ public class SaveManager : Singleton<SaveManager>
         foreach (PlaceableObjectData placeableObjectData in SaveData.PlaceableObjects) 
         {
             PlaceableObjectItem placeableObjectItem = Resources.Load<PlaceableObjectItem>(placeablesPath + "/" + placeableObjectData.ItemName);
-            Debug.Log(placeablesPath + "/" + placeableObjectData.ItemName);
             GameObject obj = Instantiate(placeableObjectItem.Prefab, Vector3.zero, Quaternion.identity);
 
             PlaceableObject placeableObject = obj.GetComponent<PlaceableObject>();
@@ -42,6 +41,25 @@ public class SaveManager : Singleton<SaveManager>
             placeableObject.Initialize(placeableObjectItem, placeableObjectData);
 
             placeableObject.PlaceWithoutSave();
+        }
+
+        if(!Attributes.HaveKey("IsDefaultObjectInitialized")) {
+            PlaceableObjectItem defaultPlaceableObjectItem = Resources.Load<PlaceableObjectItem>("Placeables/Triceratops");
+            PlaceableObject placeableTriceratops = Instantiate(defaultPlaceableObjectItem.Prefab).GetComponent<PlaceableObject>();
+
+            placeableTriceratops.Initialize(defaultPlaceableObjectItem, new PlaceableObjectData()
+            {
+                ItemName = "Triceratops",
+                ConstructionFinished = true,
+                Position = (-2.9f, -1.5f, 0f),
+                SellRefund = 100,
+                Progress = null
+            });
+
+            placeableTriceratops.PlaceWithoutSave();
+            SaveData.PlaceableObjects.Add(placeableTriceratops.data);
+
+            Attributes.SetBool("IsDefaultObjectInitialized", true);
         }
     }
     private void LoadChoppedTrees()

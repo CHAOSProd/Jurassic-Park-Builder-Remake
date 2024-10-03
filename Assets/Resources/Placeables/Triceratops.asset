@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 164e079544c75f041b98221539b961a3, type: 3}
-  m_Name: Water Pump Station item
+  m_Name: Triceratops
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1767751471661403557, guid: 32742155670b3b344be7a884b0329343, type: 3}
+  Prefab: {fileID: 4039173826091507982, guid: cbed3b1448308fa4e8b573cc0c571dc8, type: 3}

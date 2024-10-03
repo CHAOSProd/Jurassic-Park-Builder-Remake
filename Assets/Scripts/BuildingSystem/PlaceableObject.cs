@@ -9,7 +9,6 @@ public class PlaceableObject : MonoBehaviour
 
     public BoundsInt Area;
     public int GridBuildingID;
-    public bool PlacedFromBeginning = false;
     public bool ConstructionFinished = false;
     public int BuildTime; //time to build in SECONDS
     public int BuildXp;
@@ -57,34 +56,6 @@ public class PlaceableObject : MonoBehaviour
 
     private void Start()
     {
-        //if (Placed && !PlacedFromBeginning)
-        //{
-        //    if (CanBePlaced())
-        //    {
-        //        Place();
-        //    }
-        //}
-
-        if (PlacedFromBeginning && !Attributes.HaveKey("IsDefaultObjectInitialized"))
-        {
-            PlaceableObjectItem defaultPlaceableObjectItem = Resources.Load<PlaceableObjectItem>("Placeables/TriceratopsItem");
-            Initialize(defaultPlaceableObjectItem);
-            data.SellRefund = 0;
-            data.ItemName = "Triceratops";
-            
-
-            if (CanBePlaced())
-            {
-                Place();
-            }
-
-            ConstructionFinished = true;
-            data.Progress = null;
-            _construction.SetActive(false);
-
-            Attributes.SetBool("IsDefaultObjectInitialized", true);
-        }
-
         _editButton = EditButton.Instance.GetComponent<Button>();
         _editButton.onClick.AddListener(StartEditing);
     }
@@ -125,10 +96,6 @@ public class PlaceableObject : MonoBehaviour
         Placed = true;
         
         SaveManager.Instance.SaveData.PlaceableObjects.Add(data);
-
-        
-
-        if (PlacedFromBeginning) return;
 
         data.Progress = new PlaceableObjectData.ProgressData(BuildTime, 0, DateTime.Now, BuildXp);
         //Update Progress every second and display xp icon when construction is finished

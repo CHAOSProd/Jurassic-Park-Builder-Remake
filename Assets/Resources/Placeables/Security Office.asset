@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 164e079544c75f041b98221539b961a3, type: 3}
-  m_Name: TriceratopsItem
+  m_Name: Security Office
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 4039173826091507982, guid: cbed3b1448308fa4e8b573cc0c571dc8, type: 3}
+  Prefab: {fileID: 6613613811045656493, guid: b6aaac37a0e5bab4ab3331049a39a3ff, type: 3}

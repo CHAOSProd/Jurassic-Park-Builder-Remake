@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 164e079544c75f041b98221539b961a3, type: 3}
-  m_Name: DilophosaurusItem
+  m_Name: Security Tower
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 7114299692754577622, guid: abd11fd727a147c47a79177627c6c3b1, type: 3}
+  Prefab: {fileID: 4451266486492135696, guid: fbaa68f7e4b3e3d4b89709787fb35575, type: 3}

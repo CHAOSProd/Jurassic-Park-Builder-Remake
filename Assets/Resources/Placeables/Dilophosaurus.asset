@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 164e079544c75f041b98221539b961a3, type: 3}
-  m_Name: Sabertooth Diner item
+  m_Name: Dilophosaurus
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 4027252535754380947, guid: 4e7399f3b4c5cc349874ea42f51605fc, type: 3}
+  Prefab: {fileID: 7114299692754577622, guid: abd11fd727a147c47a79177627c6c3b1, type: 3}
