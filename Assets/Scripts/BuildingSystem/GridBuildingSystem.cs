@@ -26,6 +26,17 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
     private Vector3 _prevPosition;
     private BoundsInt _prevArea;
 
+    private VoidCallback _onAccept;
+
+    public void SetAcceptCallback(VoidCallback function)
+    {
+        _onAccept = function;
+    }
+    public void ResetAcceptCallback()
+    {
+        _onAccept = null;
+    }
+
     #region Unity Methods
     private void Start()
     {
@@ -266,25 +277,13 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
         if (!TempPlaceableObject)
             return;
 
-        if (!TempPlaceableObject.Placed)
+        if (TempPlaceableObject.CanBePlaced())
         {
-            if (TempPlaceableObject.CanBePlaced())
-            {
-                TempPlaceableObject.Place();
-                TempPlaceableObject = null;
-                ReloadUI();
-                TempTilemap.gameObject.SetActive(false);
-            }
-        }
-        else
-        {
-            if (TempPlaceableObject.CanBePlaced())
-            {
-                TempPlaceableObject.Place();
-                TempPlaceableObject = null;
-                ReloadUI();
-                TempTilemap.gameObject.SetActive(false);
-            }
+            TempPlaceableObject.Place();
+            TempPlaceableObject = null;
+            ReloadUI();
+            TempTilemap.gameObject.SetActive(false);
+            _onAccept?.Invoke();
         }
     }
 

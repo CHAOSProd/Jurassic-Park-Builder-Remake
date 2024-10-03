@@ -47,9 +47,7 @@ public class PurchasableItem : MonoBehaviour
             {
                 isProcessingPurchase = true;
 
-                Debug.Log(gameObject.name + " purchased!");
                 purchased = true;
-                EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-itemPrice, CurrencyType.Coins));
                 EnableBuildingSystem();
                 shopPanel.SetActive(false); // Close the shop panel after a successful purchase
             }

@@ -19,14 +19,11 @@ public class SaveManager : Singleton<SaveManager>
     }
     private void Start()
     {
-        LoadGame();
-    }
-    private void LoadGame()
-    {
         LoadPlaceableObjects();
         LoadChoppedTrees();
         CurrencySystem.Instance.Load();
         TreeChopManager.Instance.Load();
+        ShopManager.Instance.InitalizeAnimals(SaveData.AnimalShopData);
     }
 
     private void LoadPlaceableObjects()
@@ -53,7 +50,8 @@ public class SaveManager : Singleton<SaveManager>
                 ConstructionFinished = true,
                 Position = (-2.9f, -1.5f, 0f),
                 SellRefund = 100,
-                Progress = null
+                Progress = null,
+                AnimalIndex = 0
             });
 
             placeableTriceratops.PlaceWithoutSave();
@@ -82,8 +80,10 @@ public class SaveManager : Singleton<SaveManager>
     }
     private void OnApplicationQuit()
     {
-        SaveData.Attributes = Attributes.Export();
-        SaveSystem.Save(SaveData);
         Attributes.SetAttribute("LastSaveTime", DateTime.UtcNow);
+        SaveData.Attributes = Attributes.Export();
+        SaveData.AnimalShopData = ShopManager.Instance.GetAnimalShopData();
+
+        SaveSystem.Save(SaveData);
     }
 }

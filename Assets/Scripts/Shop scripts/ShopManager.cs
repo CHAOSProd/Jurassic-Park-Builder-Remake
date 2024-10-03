@@ -14,18 +14,15 @@ public class ShopManager : Singleton<ShopManager>
     private RectTransform prt;
     private bool opened;
 
-    [SerializeField] private GameObject itemPrefab;
-    private Dictionary<ObjectType, List<ShopItem>> shopItems = new Dictionary<ObjectType, List<ShopItem>>(5);
-
     [SerializeField] public TabGroup shopTabs;
 
+    [SerializeField] private List<AnimalToggle> _animalToggles;
     private void Awake()
     {
 
         rt = GetComponent<RectTransform>();
         prt = transform.parent.GetComponent<RectTransform>();
-        
-       
+        Debug.Log(gameObject.name);
     }
 
     private void Start()
@@ -33,42 +30,40 @@ public class ShopManager : Singleton<ShopManager>
         currencySprites.Add(CurrencyType.Coins, sprites[0]);
         currencySprites.Add(CurrencyType.Crystals, sprites[1]);
         
-        Load();
-        Initialize();
-        
         gameObject.SetActive(false);
     }
 
-    private void Load()
+    public void InitalizeAnimals(List<AnimalShopData> animalShopData)
     {
-        ShopItem[] items = Resources.LoadAll<ShopItem>("Shop");
-        
-        shopItems.Add(ObjectType.Animals, new List<ShopItem>());
-        shopItems.Add(ObjectType.AnimalHomes, new List<ShopItem>());
-        shopItems.Add(ObjectType.ProductionBuildings, new List<ShopItem>());
-        shopItems.Add(ObjectType.TreesBushes, new List<ShopItem>());
-        shopItems.Add(ObjectType.Decorations, new List<ShopItem>());
-
-        foreach (var item in items)
+        if(animalShopData == null || animalShopData.Count == 0)
         {
-            shopItems[item.Type].Add(item);
+            _animalToggles[0].SetPurchased(true);
+            return;
+        }
+
+        for (int i = 0; i < animalShopData.Count; i++)
+        {
+            _animalToggles[i].SetPurchased(animalShopData[i].Purchased);
         }
     }
-
-    private void Initialize()
+    public List<AnimalShopData> GetAnimalShopData()
     {
-        for (int i = 0; i < shopItems.Keys.Count; i++)
+        List<AnimalShopData> animalShopData = new List<AnimalShopData>();
+        foreach (AnimalToggle at in _animalToggles)
         {
-            foreach (var item in shopItems[(ObjectType)i])
-            {
-                GameObject itemObject = Instantiate(itemPrefab, shopTabs.objectsToSwap[i].transform);
-                itemObject.GetComponent<ShopItemHolder>().Initialize(item);
-            }
+            animalShopData.Add(new AnimalShopData() { Purchased = at.Purchased });
         }
-    }
 
-    
-    
+        return animalShopData;
+    }
+    public int IndexOfAnimal(AnimalToggle animal)
+    {
+        return _animalToggles.IndexOf(animal);
+    }
+    public AnimalToggle GetAnimalByIndex(int index)
+    {
+        return _animalToggles[index];
+    }
     public void ShopButton_Click()
     {
         float time = 0.2f;

@@ -61,6 +61,12 @@ public class SellManager : Singleton<SellManager>
         areaTemp.position = positionInt;
         GridBuildingSystem.Instance.SetAreaWhite(areaTemp, GridBuildingSystem.Instance.MainTilemap);
 
+        // Make Animal Purchasable again
+        if(_objectToSell.data.AnimalIndex != null)
+        {
+            ShopManager.Instance.GetAnimalByIndex(_objectToSell.data.AnimalIndex ?? 0).SetPurchased(false);
+        }
+
         Destroy(_objectToSell.gameObject);
         _objectToSell = null;
         sellPanel.SetActive(false);

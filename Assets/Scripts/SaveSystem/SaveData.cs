@@ -8,6 +8,6 @@ public class SaveData
 { 
     public List<PlaceableObjectData> PlaceableObjects { get; set; } = new List<PlaceableObjectData>();
     public List<ChoppedTreeData> ChoppedTrees { get; set; } = new List<ChoppedTreeData>();
-
+    public List<AnimalShopData> AnimalShopData { get; set; } = new List<AnimalShopData>();
     public Dictionary<string, object> Attributes { get; set; }
 }

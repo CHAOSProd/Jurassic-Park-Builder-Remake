@@ -11,6 +11,8 @@ public class DebugBuildingButton : MonoBehaviour
     public GameObject panelToShow; // Reference to the panel to show
     public PurchasableItem myPurchasableItem;
 
+    [SerializeField] private AnimalToggle _animalToggle = null;
+
     private void Awake()
     {
         _button = GetComponent<Button>();
@@ -57,11 +59,22 @@ public class DebugBuildingButton : MonoBehaviour
     private void CreateObject()
     {
         // Your existing code to create an object
+        GridBuildingSystem.Instance.SetAcceptCallback(() =>
+        {
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-myPurchasableItem.itemPrice, CurrencyType.Coins));
+            GridBuildingSystem.Instance.ResetAcceptCallback();
+
+            if(_animalToggle != null)
+                _animalToggle.SetPurchased(true);
+        });
         var obj = GridBuildingSystem.Instance.InitializeWithBuilding(PlaceableObjectItem.Prefab);
         PlaceableObject placeableObj = obj.GetComponent<PlaceableObject>();
 
         placeableObj.Initialize(PlaceableObjectItem);
         placeableObj.data.SellRefund = (int)Mathf.Round(myPurchasableItem.itemPrice * .5f);
+
+        if(_animalToggle != null)
+            placeableObj.data.AnimalIndex = ShopManager.Instance.IndexOfAnimal(_animalToggle);
     }
 
     // Additional method to show a panel
