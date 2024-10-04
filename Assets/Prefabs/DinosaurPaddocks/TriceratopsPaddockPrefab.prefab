@@ -2697,6 +2697,7 @@ GameObject:
   - component: {fileID: 3145948506117694345}
   - component: {fileID: 7672226095032279634}
   - component: {fileID: 7993644218080104318}
+  - component: {fileID: 8949341496624570604}
   m_Layer: 0
   m_Name: EvolutionCanvas
   m_TagString: Untagged
@@ -2799,6 +2800,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0aa2052bd86bc24ba38543e73593e9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!210 &8949341496624570604
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3566031748829286184}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &3766712710396110564
 GameObject:
   m_ObjectHideFlags: 0

@@ -50,9 +50,9 @@ TagManager:
   - name: VFX
     uniqueID: 645792657
     locked: 0
-  - name: UserInterface
-    uniqueID: 2687100443
-    locked: 0
   - name: GridBuilding
     uniqueID: 2950253721
+    locked: 0
+  - name: UserInterface
+    uniqueID: 2687100443
     locked: 0
