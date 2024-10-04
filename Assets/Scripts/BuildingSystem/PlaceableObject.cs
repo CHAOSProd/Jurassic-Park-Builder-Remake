@@ -2,6 +2,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.Rendering;
 
 public class PlaceableObject : MonoBehaviour
 {
@@ -27,8 +28,6 @@ public class PlaceableObject : MonoBehaviour
     [SerializeField] private GameObject _display;
     [SerializeField] private GameObject _construction;
     [SerializeField] private GameObject _main;
-
-    private bool _isEditing = false;
 
     public GameObject Display
     {
@@ -236,7 +235,6 @@ public class PlaceableObject : MonoBehaviour
             GridBuildingSystem.Instance.FollowBuilding();
             GridBuildingSystem.Instance.ReloadUI();
 
-            _isEditing = true;
         }
     }
 
@@ -244,7 +242,30 @@ public class PlaceableObject : MonoBehaviour
     {
         transform.position = _origin;
         Place();
-        _isEditing = false;
+    }
+
+    public void SortAtTop()
+    {
+        if(ConstructionFinished)
+        {
+            _display.GetComponent<SortingGroup>().sortingOrder = 2;
+        }
+        else
+        {
+            _construction.GetComponent<SortingGroup>().sortingOrder = 2;
+        }
+    }
+
+    public void ResetSortingOrder()
+    {
+        if (ConstructionFinished)
+        {
+            _display.GetComponent<SortingGroup>().sortingOrder = 0;
+        }
+        else
+        {
+            _construction.GetComponent<SortingGroup>().sortingOrder = 0;
+        }
     }
 
     #endregion

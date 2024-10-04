@@ -430,9 +430,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 738122557006344997}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 4
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!114 &4191673498828045377
 MonoBehaviour:
@@ -1330,7 +1330,6 @@ MonoBehaviour:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 3, y: 3, z: 1}
   GridBuildingID: 0
-  PlacedFromBeginning: 0
   ConstructionFinished: 0
   BuildTime: 10
   BuildXp: 27
@@ -2454,7 +2453,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: -1344713575
   m_SortingLayer: 4
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &8131006269033104123
 GameObject:

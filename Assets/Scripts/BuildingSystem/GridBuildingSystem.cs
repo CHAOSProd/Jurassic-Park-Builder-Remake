@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
 
 public class GridBuildingSystem : Singleton<GridBuildingSystem>
@@ -25,6 +26,7 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
 
     private Vector3 _prevPosition;
     private BoundsInt _prevArea;
+    private bool _prevBuildable = false;
 
     private VoidCallback _onAccept;
 
@@ -106,9 +108,13 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
     {
         TempPlaceableObject = Instantiate(building, Vector3.zero, Quaternion.identity).GetComponent<PlaceableObject>();
         TempPlaceableObject.InitializeDisplayObjects(true);
+
+        TempPlaceableObject.SortAtTop();
+        TempTilemap.GetComponent<TilemapRenderer>().sortingOrder = 1;
+
         ReloadUI();
 
-        Vector3 screenMiddlePoint = _camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2));
+        Vector3 screenMiddlePoint = _camera.ScreenToWorldPoint(new Vector3(Screen.width >> 1, Screen.height >> 1));
         Vector3Int cellPosition = GridLayout.WorldToCell(screenMiddlePoint);
 
         TempPlaceableObject.transform.localPosition = GridLayout.CellToLocalInterpolated(new Vector3(cellPosition.x, cellPosition.y, 0f));
@@ -139,6 +145,8 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
 
         int size = baseArray.Length;
         TileBase[] tileArray = new TileBase[size];
+        
+        bool buildable = true;
 
         for (int i = 0; i < baseArray.Length; i++)
         {
@@ -149,7 +157,23 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
             else
             {
                 FillTiles(tileArray, TileType.Red);
+                buildable = false;
                 break;
+            }
+        }
+
+        if(_prevBuildable != buildable)
+        {
+            _prevBuildable = buildable;
+            if(buildable)
+            {
+                TempTilemap.GetComponent<TilemapRenderer>().sortingOrder = -1;
+                TempPlaceableObject.ResetSortingOrder();
+            }
+            else
+            {
+                TempTilemap.GetComponent<TilemapRenderer>().sortingOrder = 1;
+                TempPlaceableObject.SortAtTop();
             }
         }
 
