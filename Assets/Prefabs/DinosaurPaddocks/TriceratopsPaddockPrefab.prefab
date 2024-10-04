@@ -665,9 +665,9 @@ RectTransform:
   - {fileID: 4283870490375046977}
   m_Father: {fileID: 2944874686885302167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 97.18721, y: -55.80065}
   m_SizeDelta: {x: 80.7, y: 99.6}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &7074921232497999863
@@ -1375,9 +1375,9 @@ RectTransform:
   - {fileID: 520948898031775627}
   m_Father: {fileID: 2944874686885302167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 188.8787, y: -55.80065}
   m_SizeDelta: {x: 80.7, y: 99.6}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5466375275201666853
@@ -1740,9 +1740,9 @@ RectTransform:
   - {fileID: 9177628011131298984}
   m_Father: {fileID: 2944874686885302167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 280.57016, y: -55.80065}
   m_SizeDelta: {x: 80.7, y: 99.6}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1148889122380196413
@@ -3515,6 +3515,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8430213818656843052}
   - component: {fileID: 4710427275361968274}
+  - component: {fileID: 1012719781780329009}
   m_Layer: 0
   m_Name: TriceratopsPaddockPrefab
   m_TagString: Untagged
@@ -3573,6 +3574,57 @@ MonoBehaviour:
   _main: {fileID: 7903622861051776897}
   _selectable: {fileID: 8443815566639342024}
   _editButton: {fileID: 0}
+--- !u!60 &1012719781780329009
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039173826091507982}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.19}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.1, y: 1.53}
+    newSize: {x: 2, y: 1.46}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.78395665, y: 0.39423478}
+      - {x: 0.0031049252, y: 0.7953298}
+      - {x: -0.79420114, y: 0.39053094}
+      - {x: 0.0046683177, y: -0.012899399}
+  m_UseDelaunayMesh: 0
 --- !u!1 &4507620685316106947
 GameObject:
   m_ObjectHideFlags: 0
@@ -5717,9 +5769,9 @@ RectTransform:
   - {fileID: 8168856783909629332}
   m_Father: {fileID: 2944874686885302167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 5.495739, y: -55.80065}
   m_SizeDelta: {x: 80.7, y: 99.6}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &989973951141134787
@@ -6290,7 +6342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6352632041645811912
 Transform:
   m_ObjectHideFlags: 0
