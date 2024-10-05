@@ -27,4 +27,8 @@ public class Selectable : SoundObject
     {
         PlaySound(Sounds[1]);
     }
+    public void PlaySound(int index)
+    {
+        PlaySound(Sounds[index]);
+    }
 }

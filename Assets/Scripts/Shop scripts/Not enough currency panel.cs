@@ -20,6 +20,19 @@ public class PurchasePanel : MonoBehaviour
         // Assuming you have a different way to set the sprite, ensure it is set before calling this method
         messageText.text = "You need        "+ FormatPrice(item.itemPrice) + " to do this!";
     }
+    public void ShowNotEnoughCoinsPanel(int cost)
+    {
+        if (cost <= 0)
+        {
+            Debug.LogError("Item price is not set or is set to 0.");
+            return;
+        }
+
+        gameObject.SetActive(true);
+        // Assuming you have a different way to set the sprite, ensure it is set before calling this method
+        messageText.text = "You need        " + FormatPrice(cost) + " to do this!";
+    }
+
 
     // Method to format the price with commas for thousands
     private string FormatPrice(int price)

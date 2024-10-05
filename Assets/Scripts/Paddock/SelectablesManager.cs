@@ -6,6 +6,7 @@ public class SelectablesManager : Singleton<SelectablesManager>
 {
     [SerializeField] private GameObject[] _paddockSelectedUI;
     [SerializeField] private GameObject[] _buildingSelectedUI;
+    [SerializeField] private GameObject[] _expansionSelectedUI;
     [SerializeField] private GameObject[] _nothingIsSelected;
 
     public Selectable CurrentSelectable { get; private set; } = null;
@@ -29,7 +30,13 @@ public class SelectablesManager : Singleton<SelectablesManager>
         CurrentSelectable = null;
         InitializeUI();
     }
-
+    private void SetUIActive(GameObject[] objects, bool active)
+    {
+        foreach(GameObject obj in objects)
+        {
+            obj.SetActive(active);
+        }
+    }
     public void InitializeUI()
     {
         if (GridBuildingSystem.Instance.TempPlaceableObject)
@@ -37,57 +44,34 @@ public class SelectablesManager : Singleton<SelectablesManager>
 
         if (CurrentSelectable != null)
         {
-            if (CurrentSelectable.GetComponent<Paddock>())
+            switch (CurrentSelectable)
             {
-                for (int i = 0; i < _buildingSelectedUI.Length; i++)
-                {
-                    _buildingSelectedUI[i].SetActive(false);
-                }
-
-                for (int i = 0; i < _nothingIsSelected.Length; i++)
-                {
-                    _nothingIsSelected[i].SetActive(false);
-                }
-
-                for (int i = 0; i < _paddockSelectedUI.Length; i++)
-                {
-                    _paddockSelectedUI[i].SetActive(true);
-                }
-            }
-            else if (CurrentSelectable.GetComponent<Building>())
-            {
-                for (int i = 0; i < _paddockSelectedUI.Length; i++)
-                {
-                    _paddockSelectedUI[i].SetActive(false);
-                }
-
-                for (int i = 0; i < _nothingIsSelected.Length; i++)
-                {
-                    _nothingIsSelected[i].SetActive(false);
-                }
-
-                for (int i = 0; i < _buildingSelectedUI.Length; i++)
-                {
-                    _buildingSelectedUI[i].SetActive(true);
-                }
+                case Paddock:
+                    SetUIActive(_buildingSelectedUI, false);
+                    SetUIActive(_paddockSelectedUI, true);
+                    SetUIActive(_expansionSelectedUI, false);
+                    SetUIActive(_nothingIsSelected, false);
+                    break;
+                case Building:
+                    SetUIActive(_buildingSelectedUI, true);
+                    SetUIActive(_paddockSelectedUI, false);
+                    SetUIActive(_expansionSelectedUI, false);
+                    SetUIActive(_nothingIsSelected, false);
+                    break;
+                case TreeChopper:
+                    SetUIActive(_buildingSelectedUI, false);
+                    SetUIActive(_paddockSelectedUI, false);
+                    SetUIActive(_expansionSelectedUI, true);
+                    SetUIActive(_nothingIsSelected, false);
+                    break;
             }
         }
         else
         {
-            for (int i = 0; i < _paddockSelectedUI.Length; i++)
-            {
-                _paddockSelectedUI[i].SetActive(false);
-            }
-
-            for (int i = 0; i < _buildingSelectedUI.Length; i++)
-            {
-                _buildingSelectedUI[i].SetActive(false);
-            }
-
-            for (int i = 0; i < _nothingIsSelected.Length; i++)
-            {
-                _nothingIsSelected[i].SetActive(true);
-            }
+            SetUIActive(_buildingSelectedUI, false);
+            SetUIActive(_paddockSelectedUI, false);
+            SetUIActive(_expansionSelectedUI, false);
+            SetUIActive(_nothingIsSelected, true);
         }
     }
 }

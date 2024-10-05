@@ -48,7 +48,7 @@ public class SaveManager : Singleton<SaveManager>
             {
                 ItemName = "Triceratops",
                 ConstructionFinished = true,
-                Position = (-2.9f, -1.5f, 0f),
+                Position = (0.2625f, 0f, 0f),
                 SellRefund = 100,
                 Progress = null,
                 AnimalIndex = 0
@@ -62,21 +62,59 @@ public class SaveManager : Singleton<SaveManager>
     }
     private void LoadChoppedTrees()
     {
-        foreach (ChoppedTreeData ctd in SaveData.ChoppedTrees)
+        if (SaveData.TreeData.Count == 0)
         {
-            // Immediately destroys the tree game object, so we can use treesObject.transform.childCount correctly
-            DestroyImmediate(Resources.InstanceIDToObject(ctd.TreeInstanceID) as GameObject);
+            for(int i = 0; i < treesObject.transform.childCount; i++)
+            {
+                Transform tree = treesObject.transform.GetChild(i);
+
+                TreeData td = new TreeData(tree.gameObject.GetInstanceID());
+                SaveData.TreeData.Add(td);
+                tree.GetComponent<TreeChopper>().SetData(td);
+            }
         }
+        else
+        {
+            foreach (TreeData td in SaveData.TreeData)
+            {
+                if (td.Chopped)
+                {
+                    DestroyImmediate(Resources.InstanceIDToObject(td.TreeInstanceID) as GameObject);
+                    continue;
+                }
+
+                (Resources.InstanceIDToObject(td.TreeInstanceID) as GameObject).GetComponent<TreeChopper>().SetData(td);
+            }
+        }
+
+        Dictionary<float, Dictionary<float, TreeChopper>> mappedTrees = new();
         for (int i = 0; i < treesObject.transform.childCount; i++)
         {
             Transform tree = treesObject.transform.GetChild(i);
+            TreeChopper chopper = tree.GetComponent<TreeChopper>();
 
+            //Take area of expansion
             BoundsInt treeArea = tree.GetComponent<TreeChopper>().Area;
             Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(tree.position);
             treeArea.position = new Vector3Int(treeArea.position.x + positionInt.x, treeArea.position.y + positionInt.y, 0);
 
             GridBuildingSystem.Instance.TakeArea(treeArea);
+
+            //Add trees to map
+            if (mappedTrees.ContainsKey(tree.localPosition.y))
+            {
+                mappedTrees[tree.localPosition.y].Add(tree.localPosition.x, chopper);
+            }
+            else
+            {
+                mappedTrees.Add(tree.localPosition.y, new Dictionary<float, TreeChopper>()
+                {
+                    { tree.localPosition.x, chopper }
+                });
+            }
+
         }
+        TreeChopManager.Instance.SetTreeMap(mappedTrees);
     }
     private void OnApplicationQuit()
     {

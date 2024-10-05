@@ -1,120 +1,119 @@
 using UnityEngine;
 
 // Handles tree chopping mechanics and visual changes
-public class TreeChopper : MonoBehaviour
+public class TreeChopper : Selectable
 {
     public BoundsInt Area;
 
-    private SelectedTreeVisual selectedVisual; // Visual indicator for selected tree
-    private TreeDebris treeDebris; // Debris object for the tree
-    private TreeVisual treeVisual; // Main tree visual object
+    [Header("Display Objects")]
+    [SerializeField] private GameObject _trees;
+    [SerializeField] private GameObject _debris;
+    [SerializeField] private GameObject _selected;
 
+    [Header("XP Objects")]
     [SerializeField] private GameObject _xpNotification;
     [SerializeField] private GameObject _tapVFX;
     [SerializeField] private GameObject _xpCounter;
     [SerializeField] private MoneyCountDisplayer _xpCountDisplayer;
 
-    private bool hasTreeDebris = false; // Tracks if tree has debris after being chopped
-    private bool allowSelection = true; // Determines if tree can be selected
+    [Header("Selection")]
+    [SerializeField] private bool _selectableFromBeginning;
+
+    public bool AllowSelection { get; private set; }
+
+    private bool hasTreeDebris = false;
     private bool chopped = false;
 
-    // Initializes references to visual components
-    private void Awake() {
-        // Get references to the child components for visual indicators and debris
-        selectedVisual = GetComponentInChildren<SelectedTreeVisual>();
-        treeDebris = GetComponentInChildren<TreeDebris>(true);
-        treeVisual = GetComponentInChildren<TreeVisual>();
+    private TreeData _treeData;
+
+    private void Awake()
+    {
+        AllowSelection = _selectableFromBeginning;
+    }
+    private void Start() 
+    {
+        _trees.SetActive(true);
+        _debris.SetActive(false);
     }
 
-    // Sets initial state of visual components
-    private void Start() {
-        // Deselect the tree visual and disable debris at the start
-        selectedVisual.DeselectVisual();
-        treeDebris.DisableDebris();
-        treeVisual.EnableVisual();
-    }
-
-    // Handles tree chopping and debris collection logic on mouse click
     private void OnMouseDown() 
     {
-        if (PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject != null || chopped) return;
-        // ARBITARY VALUES -- figure out how much bucks coins are equivalent to --
-        int chopCost = 50;
-        // -----------------------------------------------------------------------
+        if (chopped || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) 
+            return;
 
-        // If the tree already has debris, collect it
-        if (hasTreeDebris) {
+        if (hasTreeDebris) 
+        {
             CollectDebris();
-        } 
-        else if (TreeChopManager.Instance.HasTreeChops() && CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Coins, TreeChopManager.Instance.CurrentCost))
-        {
-            PerformChopAction();
-            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-TreeChopManager.Instance.CurrentCost, CurrencyType.Coins));
-            // Reduce the player's available tree chops
-            TreeChopManager.Instance.ChopTree();
-            TreeChopManager.Instance.UpdadeCost();
-        } 
-        else if (CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Bucks, chopCost)) 
-        {
-            // Perform chopping action
-            PerformChopAction();
+            return;
+        }
 
-            // Deduct currency for chopping
-            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-chopCost, CurrencyType.Bucks));
+        if(AllowSelection && SelectablesManager.Instance.CurrentSelectable != this)
+        {
+            TreeChopManager.Instance.SetExpansionCostText();
+            Select();
         }
     }
 
-    private void PerformChopAction() {
-        // Prevent further selection
-        allowSelection = false;
+    public void PerformChopAction() 
+    {
+        AllowSelection = false;
 
-        // Update visuals to reflect the chopped state
-        selectedVisual.DeselectVisual(); // Hide selection visuals
-        treeVisual.DisableVisual(); // Hide tree visuals
-        treeDebris.EnableDebris(); // Show debris visuals
+        _trees.SetActive(false);
+        _debris.SetActive(true);
 
         _xpNotification.SetActive(true);
-        // Mark that the tree now has debris
         hasTreeDebris = true;
     }
-
-    // Highlights the tree when mouse is over it
-    private void OnMouseEnter() {
-        if (PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) return;
-
-        if (allowSelection) {
-            selectedVisual.SelectVisual();
-        }
-    }
-
-    // Removes highlight from the tree when mouse leaves it
-    private void OnMouseExit() {
-        if (allowSelection) {
-            selectedVisual.DeselectVisual();
-        }
-    }
-
-    // Collects tree debris and awards XP to the player
-    private void CollectDebris() {
-        hasTreeDebris = false; // Mark that the tree no longer has debris
+    private void CollectDebris() 
+    {
+        hasTreeDebris = false;
         _xpNotification.SetActive(false);
         _tapVFX.SetActive(true);
         _xpCounter.SetActive(true);
         _xpCountDisplayer.DisplayCount(TreeChopManager.Instance.CurrentXP);
-        EventManager.Instance.TriggerEvent(new XPAddedGameEvent(TreeChopManager.Instance.CurrentXP)); // Award XP to the player
+        EventManager.Instance.TriggerEvent(new XPAddedGameEvent(TreeChopManager.Instance.CurrentXP));
         TreeChopManager.Instance.UpdateXP();
+        _debris.SetActive(false);
 
-        treeDebris.DisableDebris();
-        SaveManager.Instance.SaveData.ChoppedTrees.Add(new ChoppedTreeData(gameObject.GetInstanceID()));
+        _treeData.Chopped = true;
+        TreeChopManager.Instance.UnlockAdjacentTrees(this);
 
-        // Give back area that Trees took up
         BoundsInt tempArea = Area;
         Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
         tempArea.position = new Vector3Int(tempArea.position.x + positionInt.x, tempArea.position.y + positionInt.y, 0);
         GridBuildingSystem.Instance.SetAreaWhite(tempArea, GridBuildingSystem.Instance.MainTilemap);
 
         chopped = true;
-        Destroy(gameObject, .5f); // Destroy the tree object after some time, to ensure the xp effect still plays
+        Destroy(gameObject, .5f);
     }
 
+    public override void Unselect()
+    {
+        _selected.SetActive(false);
+        base.Unselect();
+    }
+    public override void Select()
+    {
+        _selected.SetActive(true);
+        PlaySound(0);
+        base.Select();
+    }
+
+    public void Unlock()
+    {
+        AllowSelection = true;
+        _treeData.Selectable = true;
+    }
+    public void SetData(TreeData td)
+    {
+        _treeData = td;
+        if(_selectableFromBeginning)
+        {
+            AllowSelection = true;
+            _treeData.Selectable = true;
+            return;
+        }
+
+        AllowSelection = td.Selectable;
+    }
 }
