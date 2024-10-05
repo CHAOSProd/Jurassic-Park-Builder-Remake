@@ -76,14 +76,14 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -389,14 +389,25 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      7x7_construction_site_0: -2682578472852683842
+      7x7_construction_site_1: -179106999105744915
+      7x7_construction_site_10: 8348375603618356283
+      7x7_construction_site_2: -713083704873307252
+      7x7_construction_site_3: -7047657965275420018
+      7x7_construction_site_4: -7626917789563198653
+      7x7_construction_site_5: 2827480910029621133
+      7x7_construction_site_6: -1325437194153328073
+      7x7_construction_site_7: -4637048153813764733
+      7x7_construction_site_8: 6349766724401683448
+      7x7_construction_site_9: -4935246067411365040
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
