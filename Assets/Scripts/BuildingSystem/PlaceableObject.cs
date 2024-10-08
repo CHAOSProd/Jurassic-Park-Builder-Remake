@@ -279,14 +279,12 @@ public class PlaceableObject : MonoBehaviour
     }
     private void OnMouseUp()
     {
-        Debug.Log("mouseup");
         if (!PointerOverUIChecker.Instance.IsPointerOverUIObject() && !_isPointerMoving && !GridBuildingSystem.Instance.TempPlaceableObject)
         {
             if (ConstructionFinished)
             {
                 GetComponentInChildren<MoneyObject>().GetMoneyIfAvaliable();
                 _selectable.Select();
-                
             }
             else
             {
