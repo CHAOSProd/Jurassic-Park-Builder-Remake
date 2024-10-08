@@ -48,21 +48,21 @@ public class SelectablesManager : Singleton<SelectablesManager>
             {
                 case Paddock:
                     SetUIActive(_buildingSelectedUI, false);
-                    SetUIActive(_paddockSelectedUI, true);
                     SetUIActive(_expansionSelectedUI, false);
                     SetUIActive(_nothingIsSelected, false);
+                    SetUIActive(_paddockSelectedUI, true);
                     break;
                 case Building:
-                    SetUIActive(_buildingSelectedUI, true);
                     SetUIActive(_paddockSelectedUI, false);
                     SetUIActive(_expansionSelectedUI, false);
                     SetUIActive(_nothingIsSelected, false);
+                    SetUIActive(_buildingSelectedUI, true);
                     break;
                 case TreeChopper:
                     SetUIActive(_buildingSelectedUI, false);
                     SetUIActive(_paddockSelectedUI, false);
-                    SetUIActive(_expansionSelectedUI, true);
                     SetUIActive(_nothingIsSelected, false);
+                    SetUIActive(_expansionSelectedUI, true);
                     break;
             }
         }
@@ -74,10 +74,4 @@ public class SelectablesManager : Singleton<SelectablesManager>
             SetUIActive(_nothingIsSelected, true);
         }
     }
-}
-
-public enum SelectableType
-{
-    Paddock,
-    Building
 }

@@ -53,9 +53,6 @@ public class MoneyObject : MonoBehaviour
         TimeSpan timePassed = DateTime.UtcNow - lastSaveTime;
         int secondsPassed = (int)timePassed.TotalSeconds;
 
-        Debug.Log(lastSaveTime);
-        Debug.Log(timePassed);
-
         CurrentMoneyInteger += Mathf.FloorToInt(_moneyPerSecond * secondsPassed);
 
 
@@ -63,8 +60,6 @@ public class MoneyObject : MonoBehaviour
 
 
         _collectMoneyButton.onClick.AddListener(GetMoneyIfAvaliableByButton);
-
-        Debug.Log("MoneyObject initialized!");
     }
 
     private void Update()
@@ -165,7 +160,6 @@ public class MoneyObject : MonoBehaviour
 
     private void GetMoney()
     {
-        Debug.Log("Getting money...");
         _notification.SetActive(false);
         _tapVFX.SetActive(true);
         _moneyCounter.SetActive(true);
@@ -177,7 +171,6 @@ public class MoneyObject : MonoBehaviour
         _currentMoneyFloated = 0;
         CurrentMoneyInteger = 0;
         _selectable.PlaySound(_selectable.Sounds[0]);
-        Debug.Log("Money added successfully!");
     }
 
 
