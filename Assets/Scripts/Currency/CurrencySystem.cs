@@ -42,7 +42,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
             _currencyAmounts[(CurrencyType)i] = Attributes.GetInt(((CurrencyType)i).ToString(), _defaultValues[(CurrencyType)i]);
             if((CurrencyType)i == CurrencyType.Coins)
             {
-                _currencyAmounts[(CurrencyType)i] = 100000;
+                _currencyAmounts[(CurrencyType)i] = 10000;
             }
             _currencyTexts[(CurrencyType)i].text = _currencyAmounts[(CurrencyType)i].ToString("#,#", new CultureInfo("en-US"));
         }

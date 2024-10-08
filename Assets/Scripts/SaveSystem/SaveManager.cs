@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.Profiling;
 using UnityEditor;
 using UnityEngine;
 
@@ -87,7 +88,7 @@ public class SaveManager : Singleton<SaveManager>
             }
         }
 
-        Dictionary<float, Dictionary<float, TreeChopper>> mappedTrees = new();
+        Dictionary<(int x, int y), TreeChopper> mappedTrees = new();
         for (int i = 0; i < treesObject.transform.childCount; i++)
         {
             Transform tree = treesObject.transform.GetChild(i);
@@ -100,20 +101,15 @@ public class SaveManager : Singleton<SaveManager>
 
             GridBuildingSystem.Instance.TakeArea(treeArea);
 
-            //Add trees to map
-            if (mappedTrees.ContainsKey(tree.localPosition.y))
-            {
-                mappedTrees[tree.localPosition.y].Add(tree.localPosition.x, chopper);
-            }
-            else
-            {
-                mappedTrees.Add(tree.localPosition.y, new Dictionary<float, TreeChopper>()
-                {
-                    { tree.localPosition.x, chopper }
-                });
-            }
 
+            int mappedXPos = int.Parse((2f * tree.localPosition.x / TreeChopManager.Instance.CellSize.width).ToString());
+            int mappedYPos = int.Parse((2f * tree.localPosition.y / TreeChopManager.Instance.CellSize.height).ToString());
+
+            chopper.SetMappedPosition(mappedXPos, mappedYPos);
+
+            mappedTrees.Add((mappedXPos, mappedYPos), chopper);
         }
+
         TreeChopManager.Instance.SetTreeMap(mappedTrees);
     }
     private void OnApplicationQuit()

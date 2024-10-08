@@ -20,6 +20,7 @@ public class TreeChopper : Selectable
     [SerializeField] private bool _selectableFromBeginning;
 
     public bool AllowSelection { get; private set; }
+    public (int x, int y) MappedPosition { get; private set; }
 
     private bool hasTreeDebris = false;
     private bool chopped = false;
@@ -115,5 +116,9 @@ public class TreeChopper : Selectable
         }
 
         AllowSelection = td.Selectable;
+    }
+    public void SetMappedPosition(int x, int y)
+    {
+        MappedPosition = (x,y);
     }
 }

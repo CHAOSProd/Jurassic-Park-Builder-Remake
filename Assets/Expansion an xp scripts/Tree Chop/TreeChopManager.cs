@@ -8,23 +8,23 @@ public class TreeChopManager : Singleton<TreeChopManager>
 {
     [SerializeField] private PurchasePanel _notEnoughCoinsPanel;
     [SerializeField] private TextMeshProUGUI _expansionCoinText;
+    [SerializeField] private Grid _cellGrid;
 
-    [SerializeField] private Vector3 _cellSize;
+    public (float width, float height) CellSize { get; private set; }
 
     private int availableTreeChops = 10; // Number of available tree chops
 
     private int _currentXPAdder = 20;
     private int _currentCostAdder = 600;
 
-    private Dictionary<float, Dictionary<float, TreeChopper>> _treeMap;
-    private (float x, float y) _halfCellSize;
+    private Dictionary<(int x, int y), TreeChopper> _treeMap;
 
     public int CurrentXP { get; private set; } = 16;
     public int CurrentCost { get; private set; } = 200;
 
     private void Awake()
     {
-        _halfCellSize = (_cellSize.x * .5f, _cellSize.y * .5f);
+        CellSize = (_cellGrid.cellSize.x, _cellGrid.cellSize.y);
     }
     // Increases the number of available tree chops
     public void IncreaseTreeChops() 
@@ -69,6 +69,8 @@ public class TreeChopManager : Singleton<TreeChopManager>
         Attributes.SetInt("TreeExpansionCostAdder", _currentCostAdder);
 
         availableTreeChops = Mathf.Max(0, availableTreeChops - 1);
+
+        SelectablesManager.Instance.UnselectAll();
     }
 
     public void SetExpansionCostText()
@@ -76,33 +78,35 @@ public class TreeChopManager : Singleton<TreeChopManager>
         _expansionCoinText.text = "<sprite name=\"money_icon\"> " + CurrentCost;
     }
 
-    public void SetTreeMap(Dictionary<float, Dictionary<float, TreeChopper>> treeMap)
+    public void SetTreeMap(Dictionary<(int x, int y), TreeChopper> treeMap)
     {
         _treeMap = treeMap;
     }
 
     public void UnlockAdjacentTrees(TreeChopper currentTree)
     {
+        int top = currentTree.MappedPosition.y + 1;
+        int left = currentTree.MappedPosition.x - 1;
 
-        float leftX = currentTree.transform.localPosition.x - _halfCellSize.x;
-        float rightX = currentTree.transform.localPosition.x + _halfCellSize.x;
+        int bottom = currentTree.MappedPosition.y - 1;
+        int right = currentTree.MappedPosition.x + 1;
 
-        UnlockLeftRight(currentTree.transform.localPosition.y - _halfCellSize.y, leftX, rightX);
-        UnlockLeftRight(currentTree.transform.localPosition.y + _halfCellSize.y, leftX, rightX);
-    }
 
-    private void UnlockLeftRight(float currentY, float leftX, float rightX)
-    {
-        if (_treeMap.ContainsKey(currentY))
+        if (_treeMap.TryGetValue((left, top), out TreeChopper chopper))
         {
-            if (_treeMap[currentY].ContainsKey(leftX))
-            {
-                _treeMap[currentY][leftX].Unlock();
-            }
-            if (_treeMap[currentY].ContainsKey(rightX))
-            {
-                _treeMap[currentY][rightX].Unlock();
-            }
+            chopper.Unlock();
+        }
+        if (_treeMap.TryGetValue((right, top), out chopper))
+        {
+            chopper.Unlock();
+        }
+        if (_treeMap.TryGetValue((left, bottom), out chopper))
+        {
+            chopper.Unlock();
+        }
+        if (_treeMap.TryGetValue((right, bottom), out chopper))
+        {
+            chopper.Unlock();
         }
     }
 }
