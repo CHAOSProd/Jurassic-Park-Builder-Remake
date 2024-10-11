@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      velociraptor evo 1 _0: 3853166689778068902
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
