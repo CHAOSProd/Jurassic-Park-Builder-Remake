@@ -4318,6 +4318,7 @@ MonoBehaviour:
   _objectsFadeInOut: {fileID: 3708635208963666018}
   _evolutionsChanger: {fileID: 7148360279365762116}
   _dinosaurAnimationEventsListener: {fileID: 270434831778980419}
+  _foodType: 1
 --- !u!114 &8288538152985744141
 MonoBehaviour:
   m_ObjectHideFlags: 0

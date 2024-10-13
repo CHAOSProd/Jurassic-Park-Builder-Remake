@@ -75,7 +75,7 @@ TextureImporter:
       213: 6936067097246830880
     second: FeedGrass_2
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -699,10 +699,10 @@ TextureImporter:
       name: FeedGrass_3
       rect:
         serializedVersion: 2
-        x: 929
+        x: 924
         y: 1125
-        width: 129
-        height: 125
+        width: 130
+        height: 126
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -720,10 +720,10 @@ TextureImporter:
       name: FeedGrass_1
       rect:
         serializedVersion: 2
-        x: 1061
+        x: 1056
         y: 1125
-        width: 129
-        height: 125
+        width: 130
+        height: 126
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -741,10 +741,10 @@ TextureImporter:
       name: FeedGrass_2
       rect:
         serializedVersion: 2
-        x: 1193
+        x: 1188
         y: 1125
-        width: 129
-        height: 125
+        width: 130
+        height: 126
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -926,6 +926,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: HUD1_2
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 1653
+        width: 130
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d9f8e154bcd9cd4e8090d33853d1707
+      internalID: -1173607734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD1_3
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 1653
+        width: 129
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 571594ff913ccc840bf74376545c3783
+      internalID: 823183581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HUD1_4
+      rect:
+        serializedVersion: 2
+        x: 1861
+        y: 1655
+        width: 129
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9de96b482bd3b4542bb5dde35119a8d7
+      internalID: -215022544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -951,7 +1014,10 @@ TextureImporter:
       HUD1_1: 1920605716
       HUD1_12: 4271460032404734298
       HUD1_19: 5780758935872706004
+      HUD1_2: -1173607734
       HUD1_22: 3062346749280548401
+      HUD1_3: 823183581
+      HUD1_4: -215022544
       HUD1_8: -1662243007386092038
       Home_1: -5679780796083437369
       Home_2: -1541394346241002985

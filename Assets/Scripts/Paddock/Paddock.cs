@@ -3,8 +3,10 @@ using UnityEngine;
 public class Paddock : Selectable
 {
     [SerializeField] private GameObject _evolutionsChanger;
-
     [SerializeField] private AnimationEventsListener _dinosaurAnimationEventsListener;
+    [SerializeField] private FoodType _foodType;
+
+
     private MoneyObject _moneyObject;
     private Animator _dinosaurAnimator;
 
@@ -24,6 +26,7 @@ public class Paddock : Selectable
     {
         base.Select();
         _evolutionsChanger.SetActive(IsSelected);
+        FeedButton.Instance.UpdateButton(_foodType);
 
         if (_dinosaurAnimationEventsListener.IsAnimationEnded && _moneyObject.CurrentMoneyInteger != 0)
         {
@@ -39,4 +42,10 @@ public class Paddock : Selectable
 
         _evolutionsChanger.SetActive(IsSelected);
     }
+}
+
+public enum FoodType
+{
+    Herbivore,
+    Carnivore
 }
