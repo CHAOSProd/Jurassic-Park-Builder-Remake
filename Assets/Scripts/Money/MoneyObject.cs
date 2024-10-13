@@ -63,6 +63,8 @@ public class MoneyObject : MonoBehaviour
 
     private void Update()
     {
+        if (_maxMoneyReached) return;
+
         if (CurrentMoneyInteger >= MaximumMoney && !_maxMoneyReached)
         {
             _currentMoneyFloated = MaximumMoney;
