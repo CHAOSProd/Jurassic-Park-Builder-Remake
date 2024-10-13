@@ -76,7 +76,8 @@ public class DebugBuildingButton : MonoBehaviour
         if(_animalToggle != null)
             placeableObj.data.AnimalIndex = ShopManager.Instance.IndexOfAnimal(_animalToggle);
 
-        
+        UIManager.Instance.ChangeFixedTo("DefaultUI");
+        UIManager.Instance.DisableCurrentFixed();
     }
 
     // Additional method to show a panel
