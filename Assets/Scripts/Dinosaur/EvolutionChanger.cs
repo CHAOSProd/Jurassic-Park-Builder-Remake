@@ -70,15 +70,9 @@ public class EvolutionChanger : MonoBehaviour
             _buttons[i].interactable = true;
         }
 
-        foreach (GameObject star in _stars)
+        for (int i = 0; i < _stars.Count; i++)
         {
-            star.gameObject.SetActive(false);
-        }
-
-        for (int i = 0; i <= index; i++)
-        {
-            if (_stars.Contains(_stars[i]))
-            _stars[i].gameObject.SetActive(true);
+            _stars[i].SetActive(i < index);
         }
 
         _buttons[index].interactable = false;
