@@ -6144,6 +6144,7 @@ MonoBehaviour:
   _objectsFadeInOut: {fileID: 3411297017016814323}
   _evolutionsChanger: {fileID: 3566031748829286184}
   _dinosaurAnimationEventsListener: {fileID: 1331852711686860529}
+  _foodType: 0
 --- !u!114 &7111821246533221281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6216,7 +6217,7 @@ MonoBehaviour:
   _moneyPerSecond: 0.33
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
-  _animator: {fileID: 0}
+  _animator: {fileID: 4241858978803487881}
   MaximumMoney: 128.46
   CurrentMoneyInteger: 0
   MaximumMinutes: 5

@@ -25,7 +25,7 @@ public class MoneyObject : MonoBehaviour
     private float _timeFromLastMoneyAdding;
     private bool _isPointerMoving;
     private Vector3 _lastPointerPosition;
-    private bool _maxMoneyReachedPreviously;  // To track if max money was reached before
+    private bool _maxMoneyReached;
 
     private void Awake() //Havik changed from start to awake to not miss any references
     {
@@ -34,7 +34,6 @@ public class MoneyObject : MonoBehaviour
 
         _maximumSeconds = MaximumMinutes * 60;
         _selectable = GetComponentInParent<Selectable>();
-        _animator = GetComponent<Animator>();
         if (GetComponent<Paddock>())
             _paddock = GetComponent<Paddock>();
 
@@ -64,15 +63,17 @@ public class MoneyObject : MonoBehaviour
 
     private void Update()
     {
-        if (CurrentMoneyInteger >= MaximumMoney)
+        if (CurrentMoneyInteger >= MaximumMoney && !_maxMoneyReached)
         {
             _currentMoneyFloated = MaximumMoney;
             CurrentMoneyInteger = Mathf.FloorToInt(_currentMoneyFloated);
             _notification.SetActive(true);
+
+            _animator.SetTrigger("MaxMoneyReached");
+            _maxMoneyReached = true;
+
             return;
         }
-
-        _maxMoneyReachedPreviously = false;  // Reset this flag when money is below max
 
         if (_selectable.IsSelected)
         {
@@ -170,6 +171,7 @@ public class MoneyObject : MonoBehaviour
 
         _currentMoneyFloated = 0;
         CurrentMoneyInteger = 0;
+        _maxMoneyReached = false;
         _selectable.PlaySound(_selectable.Sounds[0]);
     }
 

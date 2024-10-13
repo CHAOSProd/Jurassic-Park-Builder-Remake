@@ -28,6 +28,8 @@ public class Paddock : Selectable
         _evolutionsChanger.SetActive(IsSelected);
         FeedButton.Instance.UpdateButton(_foodType);
 
+        Debug.Log(_dinosaurAnimationEventsListener.IsAnimationEnded);
+
         if (_dinosaurAnimationEventsListener.IsAnimationEnded && _moneyObject.CurrentMoneyInteger != 0)
         {
             _dinosaurAnimator.SetTrigger("Fun");

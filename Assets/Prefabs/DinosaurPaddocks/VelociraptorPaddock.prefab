@@ -962,6 +962,7 @@ MonoBehaviour:
   _objectsFadeInOut: {fileID: 5920640430491668148}
   _evolutionsChanger: {fileID: 5611361149836481946}
   _dinosaurAnimationEventsListener: {fileID: 8734577474018018442}
+  _foodType: 0
 --- !u!114 &4922702988812172581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,7 +1035,7 @@ MonoBehaviour:
   _moneyPerSecond: 0.33
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
-  _animator: {fileID: 0}
+  _animator: {fileID: 8063038282121719514}
   MaximumMoney: 440
   CurrentMoneyInteger: 0
   MaximumMinutes: 30
@@ -1908,7 +1909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1491230077082198041
 Transform:
   m_ObjectHideFlags: 0

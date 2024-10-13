@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class AnimationEventsListener : MonoBehaviour
 {
     [SerializeField] private UnityEvent _eventOnAnimationEnded;
-
     public bool IsAnimationEnded { get; set; } = true;
 
     public void OnAnimationEnded()
@@ -18,10 +17,5 @@ public class AnimationEventsListener : MonoBehaviour
     public void OnAnimationStarted()
     {
         IsAnimationEnded = false;
-    }
-
-    private void OnDisable()
-    {
-        OnAnimationEnded();
     }
 }
