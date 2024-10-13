@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopManager : Singleton<ShopManager>
 {
+    [Header("Animals")]
     [SerializeField] private List<AnimalToggle> _animalToggles;
+
+    [Header("UI")]
+    [SerializeField] private GameObject _shopPanel;
 
     public void InitalizeAnimals(List<AnimalShopData> animalShopData)
     {
@@ -38,5 +42,17 @@ public class ShopManager : Singleton<ShopManager>
     public AnimalToggle GetAnimalByIndex(int index)
     {
         return _animalToggles[index];
+    }
+    public void OpenShop()
+    {
+        _shopPanel.SetActive(true);
+        UIManager.Instance.ChangeFixedTo("PanelUI");
+        UIManager.Instance.DisableCurrent();
+    }
+    public void CloseShop()
+    {
+        _shopPanel.SetActive(false);
+        UIManager.Instance.ChangeFixedTo("DefaultUI");
+        UIManager.Instance.EnableCurrent();
     }
 }

@@ -58,7 +58,6 @@ public class DebugBuildingButton : MonoBehaviour
 
     private void CreateObject()
     {
-        // Your existing code to create an object
         GridBuildingSystem.Instance.SetAcceptCallback(() =>
         {
             EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-myPurchasableItem.itemPrice, CurrencyType.Coins));
@@ -67,6 +66,7 @@ public class DebugBuildingButton : MonoBehaviour
             if(_animalToggle != null)
                 _animalToggle.SetPurchased(true);
         });
+
         var obj = GridBuildingSystem.Instance.InitializeWithBuilding(PlaceableObjectItem.Prefab);
         PlaceableObject placeableObj = obj.GetComponent<PlaceableObject>();
 
@@ -75,6 +75,8 @@ public class DebugBuildingButton : MonoBehaviour
 
         if(_animalToggle != null)
             placeableObj.data.AnimalIndex = ShopManager.Instance.IndexOfAnimal(_animalToggle);
+
+        
     }
 
     // Additional method to show a panel

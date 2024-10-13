@@ -53,7 +53,6 @@ public class PurchasableItem : MonoBehaviour
             }
             else
             {
-                Debug.Log("Not enough coins to buy " + gameObject.name);
                 notEnoughCoinsPanel.ShowNotEnoughCoinsPanel(this);
                 ShowDebugBuildingPanel();
             }

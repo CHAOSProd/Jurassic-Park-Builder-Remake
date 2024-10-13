@@ -1,16 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class GridBuildingSystem : Singleton<GridBuildingSystem>
 {
 
     public GridLayout GridLayout;
 
-    [SerializeField] private GameObject[] _buildingUI;
-    [SerializeField] private GameObject[] _notBuildingUI;
-    [SerializeField] private GameObject[] _defaultUI;
     [SerializeField] private Camera _camera;
     [SerializeField] private string _highestLayerName;
 
@@ -243,29 +240,11 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
     {
         if (TempPlaceableObject)
         {
-            for (int i = 0; i < _notBuildingUI.Length; i++)
-            {
-                _notBuildingUI[i].SetActive(false);
-            }
-
-            for (int i = 0; i < _buildingUI.Length; i++)
-            {
-                _buildingUI[i].SetActive(true);
-            }
-
-            SelectablesManager.Instance.UnselectAll();
+            UIManager.Instance.ChangeTo("PlacementUI");
         }
         else
         {
-            for (int i = 0; i < _buildingUI.Length; i++)
-            {
-                _buildingUI[i].SetActive(false);
-            }
-
-            for (int i = 0; i < _defaultUI.Length; i++)
-            {
-                _defaultUI[i].SetActive(true);
-            }
+            SelectablesManager.Instance.UnselectAll();
         }
     }
 
@@ -282,31 +261,38 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
         {
             ClearArea();
             Destroy(TempPlaceableObject.gameObject);
-            TempPlaceableObject = null;
-            ReloadUI();
-            TempTilemap.gameObject.SetActive(false);
         }
         else
         {
             TempPlaceableObject.CancelEditing();
             ClearArea();
-            TempPlaceableObject = null;
-            ReloadUI();
-            TempTilemap.gameObject.SetActive(false);
+
         }
+
+        TempPlaceableObject = null;
+        ReloadUI();
+        TempTilemap.gameObject.SetActive(false);
+
+        UIManager.Instance.ChangeFixedTo("DefaultUI");
     }
 
     public void Accept()
     {
         if (!TempPlaceableObject)
+        {
             return;
+        }
+            
 
         if (TempPlaceableObject.CanBePlaced())
         {
             TempPlaceableObject.Place();
             TempPlaceableObject = null;
-            ReloadUI();
             TempTilemap.gameObject.SetActive(false);
+
+            ReloadUI();
+            UIManager.Instance.ChangeFixedTo("DefaultUI");
+
             _onAccept?.Invoke();
         }
     }

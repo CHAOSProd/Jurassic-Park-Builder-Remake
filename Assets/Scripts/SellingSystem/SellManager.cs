@@ -38,12 +38,18 @@ public class SellManager : Singleton<SellManager>
 
         sellPanel.SetActive(true);
         sellSubtitle.text = $"Are you sure you want to sell {name} for <sprite name=\"money_icon\"> {sellRefund}?";
+
+        UIManager.Instance.ChangeFixedTo("PanelUI");
+        UIManager.Instance.DisableCurrent();
     }
 
     public void OnClose()
     {
         _objectToSell = null;
         sellPanel.SetActive(false);
+
+        UIManager.Instance.ChangeFixedTo("DefaultUI");
+        UIManager.Instance.EnableCurrent();
     }
 
     public void OnSell()
@@ -66,6 +72,9 @@ public class SellManager : Singleton<SellManager>
         {
             ShopManager.Instance.GetAnimalByIndex(_objectToSell.data.AnimalIndex ?? 0).SetPurchased(false);
         }
+
+        SelectablesManager.Instance.UnselectAll();
+        UIManager.Instance.ChangeFixedTo("DefaultUI");
 
         Destroy(_objectToSell.gameObject);
         _objectToSell = null;

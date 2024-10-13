@@ -234,7 +234,7 @@ public class PlaceableObject : MonoBehaviour
 
             GridBuildingSystem.Instance.FollowBuilding();
             GridBuildingSystem.Instance.ReloadUI();
-
+            UIManager.Instance.DisableCurrentFixed();
         }
     }
 
