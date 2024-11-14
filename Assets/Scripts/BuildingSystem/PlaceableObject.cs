@@ -29,6 +29,10 @@ public class PlaceableObject : MonoBehaviour
     [SerializeField] private GameObject _construction;
     [SerializeField] private GameObject _main;
 
+    [SerializeField] private GameObject _timerBarPrefab;
+
+    private TimerBar _timerBarInstance;
+
     public GameObject Display
     {
         get
@@ -97,8 +101,11 @@ public class PlaceableObject : MonoBehaviour
         SaveManager.Instance.SaveData.PlaceableObjects.Add(data);
 
         data.Progress = new PlaceableObjectData.ProgressData(BuildTime, 0, DateTime.Now, BuildXp);
+        _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
+        _timerBarInstance.transform.position = _construction.transform.position;
+
         //Update Progress every second and display xp icon when construction is finished
-        UnityTimer.Instance.Tick(BuildTime, 1, UpdateProgress, OnConstructionFinished);
+        _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished);
     }
 
     public void PlaceWithoutSave()
@@ -121,6 +128,10 @@ public class PlaceableObject : MonoBehaviour
     private void OnConstructionFinished()
     {
         _xpNotification.SetActive(true);
+        if(_timerBarInstance != null)
+        {
+            Destroy(_timerBarInstance.gameObject);
+        }
     }
     private void UpdateProgress()
     {
@@ -206,8 +217,12 @@ public class PlaceableObject : MonoBehaviour
                 data.Progress.ElapsedTime = newTime;
                 data.Progress.LastTick = DateTime.Now;
                 data.Progress = new PlaceableObjectData.ProgressData(BuildTime, BuildTime - newTime, DateTime.Now, BuildXp);
+
+                _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
+                _timerBarInstance.transform.position = _construction.transform.position;
+
                 //Update Progress every second and display xp icon when construction is finished
-                UnityTimer.Instance.Tick(BuildTime - newTime, 1, UpdateProgress, OnConstructionFinished);
+                _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished, newTime);
             }
         }
     }

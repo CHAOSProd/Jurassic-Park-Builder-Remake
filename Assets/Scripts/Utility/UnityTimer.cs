@@ -33,4 +33,29 @@ public class UnityTimer : Singleton<UnityTimer>
 
         StartCoroutine(TickForTime(time, tick, onTick, onFinished));
     }
+
+    public void Interval(float time, float interval, VoidCallback onTick, VoidCallback onIntervalTick, VoidCallback onFinished = null)
+    {
+        static IEnumerator TickForTime(float time, float interval, VoidCallback onTick, VoidCallback onIntervalTick, VoidCallback onFinished = null)
+        {
+            float elapsed = 0;
+            int intervalCount = 1;
+            while (elapsed < time)
+            {
+                onTick.Invoke();
+
+                if(elapsed > interval * intervalCount)
+                {
+                    onIntervalTick.Invoke();
+                    intervalCount++;
+                }
+
+                elapsed += Time.deltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+            onFinished?.Invoke();
+        }
+
+        StartCoroutine(TickForTime(time,interval, onTick, onIntervalTick, onFinished));
+    }
 }

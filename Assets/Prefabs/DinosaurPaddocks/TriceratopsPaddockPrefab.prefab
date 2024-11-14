@@ -3210,6 +3210,8 @@ MonoBehaviour:
   _display: {fileID: 2643819738091942103}
   _construction: {fileID: 3866294781841880391}
   _main: {fileID: 7903622861051776897}
+  _timerBarPrefab: {fileID: 883946588406857642, guid: 58607b56b6e58bd47a039a1a4bc26fc9,
+    type: 3}
   _selectable: {fileID: 8443815566639342024}
   _editButton: {fileID: 0}
 --- !u!60 &1012719781780329009
