@@ -1,3 +1,5 @@
+using System;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 
 // Handles tree chopping mechanics and visual changes
@@ -19,6 +21,10 @@ public class TreeChopper : Selectable
     [Header("Selection")]
     [SerializeField] private bool _selectableFromBeginning;
 
+    [Header("Chopping Time")]
+    [SerializeField] private GameObject _timerBarPrefab;
+    [SerializeField] private int _chopTime;
+
     public bool AllowSelection { get; private set; }
     public (int x, int y) MappedPosition { get; private set; }
 
@@ -26,6 +32,8 @@ public class TreeChopper : Selectable
     private bool chopped = false;
 
     private TreeData _treeData;
+
+    private TimerBar _timerBarInstance;
 
     private void Awake()
     {
@@ -62,8 +70,22 @@ public class TreeChopper : Selectable
         _trees.SetActive(false);
         _debris.SetActive(true);
 
+        _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
+        _timerBarInstance.transform.position = _debris.transform.position;
+
+        //Initialize Progress
+        _treeData.Progress = new ProgressData(_chopTime, 0, DateTime.Now, -1);
+        _timerBarInstance.FillOverInterval(_chopTime, 1, UpdateProgress, EnableDebris);
+    }
+    private void EnableDebris()
+    {
         _xpNotification.SetActive(true);
         hasTreeDebris = true;
+
+        Destroy(_timerBarInstance.gameObject);
+        _timerBarInstance = null;
+
+        _treeData.Progress = null;
     }
     private void CollectDebris() 
     {
@@ -108,6 +130,7 @@ public class TreeChopper : Selectable
     public void SetData(TreeData td)
     {
         _treeData = td;
+        InitializeProgress();
         if(_selectableFromBeginning)
         {
             AllowSelection = true;
@@ -116,6 +139,39 @@ public class TreeChopper : Selectable
         }
 
         AllowSelection = td.Selectable;
+    }
+    private void InitializeProgress()
+    {
+        if (_treeData.Progress != null)
+        {
+            AllowSelection = false;
+
+            _trees.SetActive(false);
+            _debris.SetActive(true);
+
+            int newTime = (int)Math.Floor((DateTime.Now - _treeData.Progress.LastTick).TotalSeconds) + _treeData.Progress.ElapsedTime;
+            _chopTime = _treeData.Progress.BuildTime;
+            if(newTime >= _chopTime)
+            {
+                EnableDebris();
+            }
+            else
+            {
+                _treeData.Progress.LastTick = DateTime.Now;
+                _treeData.Progress.ElapsedTime = newTime;
+
+                _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
+                _timerBarInstance.transform.position = _debris.transform.position;
+
+                //Update Progress every second and display xp icon when construction is finished
+                _timerBarInstance.FillOverInterval(_chopTime, 1, UpdateProgress, EnableDebris, newTime);
+            }
+        }
+    }
+    private void UpdateProgress()
+    {
+        _treeData.Progress.ElapsedTime += 1;
+        _treeData.Progress.LastTick = DateTime.Now;
     }
     public void SetMappedPosition(int x, int y)
     {

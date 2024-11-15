@@ -69,7 +69,7 @@ public class SaveManager : Singleton<SaveManager>
             {
                 Transform tree = treesObject.transform.GetChild(i);
 
-                TreeData td = new TreeData(tree.gameObject.GetInstanceID());
+                TreeData td = new TreeData(i);
                 SaveData.TreeData.Add(td);
                 tree.GetComponent<TreeChopper>().SetData(td);
             }
@@ -78,13 +78,18 @@ public class SaveManager : Singleton<SaveManager>
         {
             foreach (TreeData td in SaveData.TreeData)
             {
+                if(!td.Chopped)
+                {
+                    treesObject.transform.GetChild(td.InstanceIndex).GetComponent<TreeChopper>().SetData(td);
+                }
+            }
+
+            foreach(TreeData td in SaveData.TreeData)
+            {
                 if (td.Chopped)
                 {
-                    DestroyImmediate(Resources.InstanceIDToObject(td.TreeInstanceID) as GameObject);
-                    continue;
+                    DestroyImmediate(treesObject.transform.GetChild(td.InstanceIndex).gameObject);
                 }
-
-                (Resources.InstanceIDToObject(td.TreeInstanceID) as GameObject).GetComponent<TreeChopper>().SetData(td);
             }
         }
 

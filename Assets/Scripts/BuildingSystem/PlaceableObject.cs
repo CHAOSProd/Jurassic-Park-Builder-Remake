@@ -100,7 +100,7 @@ public class PlaceableObject : MonoBehaviour
         
         SaveManager.Instance.SaveData.PlaceableObjects.Add(data);
 
-        data.Progress = new PlaceableObjectData.ProgressData(BuildTime, 0, DateTime.Now, BuildXp);
+        data.Progress = new ProgressData(BuildTime, 0, DateTime.Now, BuildXp);
         _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
         _timerBarInstance.transform.position = _construction.transform.position;
 
@@ -131,6 +131,7 @@ public class PlaceableObject : MonoBehaviour
         if(_timerBarInstance != null)
         {
             Destroy(_timerBarInstance.gameObject);
+            _timerBarInstance = null;
         }
     }
     private void UpdateProgress()
@@ -214,9 +215,7 @@ public class PlaceableObject : MonoBehaviour
             }
             else
             {
-                data.Progress.ElapsedTime = newTime;
-                data.Progress.LastTick = DateTime.Now;
-                data.Progress = new PlaceableObjectData.ProgressData(BuildTime, BuildTime - newTime, DateTime.Now, BuildXp);
+                data.Progress = new ProgressData(BuildTime, BuildTime - newTime, DateTime.Now, BuildXp);
 
                 _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
                 _timerBarInstance.transform.position = _construction.transform.position;

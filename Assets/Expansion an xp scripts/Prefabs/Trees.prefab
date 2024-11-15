@@ -68,6 +68,10 @@ MonoBehaviour:
   _tapVFX: {fileID: 5685590419129225593}
   _xpCounter: {fileID: 1271760099580944600}
   _xpCountDisplayer: {fileID: 6178427011236212263}
+  _selectableFromBeginning: 0
+  _timerBarPrefab: {fileID: 883946588406857642, guid: 58607b56b6e58bd47a039a1a4bc26fc9,
+    type: 3}
+  _chopTime: 10
 --- !u!60 &725807684479647167
 PolygonCollider2D:
   m_ObjectHideFlags: 0

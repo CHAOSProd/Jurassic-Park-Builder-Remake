@@ -6,12 +6,12 @@ using UnityEngine;
 [Serializable]
 public class TreeData : Data
 {
-    public int TreeInstanceID { get; set; }
+    public int InstanceIndex { get; set; }
     public bool Chopped { get; set; } = false;
     public bool Selectable { get; set; } = false;
-
-    public TreeData(int treeObjectID)
+    public ProgressData Progress { get; set; }
+    public TreeData(int instanceIndex)
     {
-        this.TreeInstanceID = treeObjectID;
+        this.InstanceIndex = instanceIndex;
     }
 }
