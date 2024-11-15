@@ -11,8 +11,9 @@ public class TimerBar : MonoBehaviour
     private float _deltaScaleX;
     private void Awake()
     {
+        Sprite sprite = _barForeground.GetComponent<SpriteRenderer>().sprite;
         _deltaScaleX = _barForeground.localScale.x;
-        _startX = _barForeground.localPosition.x - _deltaScaleX * .5f;
+        _startX = _barForeground.localPosition.x - sprite.bounds.size.x * _barForeground.localScale.x * .5f;
         _deltaX = _barForeground.localPosition.x - _startX;
     }
 
