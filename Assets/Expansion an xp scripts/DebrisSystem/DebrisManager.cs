@@ -32,7 +32,7 @@ public class DebrisManager : Singleton<DebrisManager>
     private Dictionary<DebrisType, DebrisInfo> _debrisTypes = new Dictionary<DebrisType, DebrisInfo>();
     private int _currentExpansion = 0;
 
-    private Bounds _totalArea;
+    private BoundsInt _totalArea;
     private List<Bounds> _occupied;
     private List<Vector2> _availablePositions;
 
@@ -46,9 +46,11 @@ public class DebrisManager : Singleton<DebrisManager>
 
     public void SpawnDebris(TreeChopper tc)
     {
-        Vector2 startPos = new(tc.transform.position.x + tc.Area.x * _gridLayout.cellSize.x, tc.transform.position.y + tc.Area.y * _gridLayout.cellSize.y);
+        Vector2 startPos = tc.transform.position;
         _occupied = new List<Bounds>();
         _availablePositions = new List<Vector2>();
+        _totalArea = tc.Area;
+
         int prevSize = -1;
 
         foreach(DebrisAmountField daf in _debrisExpansionAmounts[_currentExpansion].DebrisAmounts)
@@ -60,8 +62,12 @@ public class DebrisManager : Singleton<DebrisManager>
                 GetAvailableFields(startPos, size);
             }
 
+            foreach(Vector2 pos in _availablePositions)
+            {
+                Instantiate(_debrisTypes[daf.DebrisType].Prefab, pos, Quaternion.identity);
+            }
             int index = UnityEngine.Random.Range(0, _availablePositions.Count);
-            Instantiate(_debrisTypes[daf.DebrisType].Prefab, _availablePositions[index], Quaternion.identity);
+            _occupied.Add(new Bounds(_availablePositions[index] + (Vector2)(size * .5f * _gridLayout.cellSize), size * .5f * _gridLayout.cellSize));
             _availablePositions.RemoveAt(index);
         }
 
@@ -71,9 +77,13 @@ public class DebrisManager : Singleton<DebrisManager>
     {
         _availablePositions.Clear();
 
-        Vector2 currentPos = new Vector2(startPos.x + currentSize * .5f * _gridLayout.cellSize.x, startPos.y + currentSize * .5f * _gridLayout.cellSize.y);
-        float step = _totalArea.extents.x / currentSize;
-        int steps = Mathf.RoundToInt( _totalArea.extents.x / step);
+        Vector2 currentPos = startPos;
+       
+        int steps = _totalArea.size.x / currentSize;
+        int step = _totalArea.size.x / steps;
+
+        Debug.Log($"Step = {step}");
+        Debug.Log($"Steps = {steps}");
 
         for (int y = 0; y < steps; y++)
         {
@@ -85,15 +95,17 @@ public class DebrisManager : Singleton<DebrisManager>
                 {
                     if(b.Contains(currentPos))
                     {
+                        Debug.Log("Disallowed.");
                         allowedPoint = false;
                         break;
                     }
                 }
 
                 if(allowedPoint) _availablePositions.Add(currentPos);
-                currentPos += Vector2.right * step;
+                //Use cellSize instead of cellSize.x
+                currentPos += Vector2.one * step * _gridLayout.cellSize.x * .5f;
             }
-            currentPos = tmp + Vector2.down * step;
+            currentPos = tmp + new Vector2(.5f,-.5f) * step * _gridLayout.cellSize.y;
         }
     }
 }

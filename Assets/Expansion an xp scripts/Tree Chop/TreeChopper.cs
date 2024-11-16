@@ -106,6 +106,8 @@ public class TreeChopper : Selectable
         tempArea.position = new Vector3Int(tempArea.position.x + positionInt.x, tempArea.position.y + positionInt.y, 0);
         GridBuildingSystem.Instance.SetAreaWhite(tempArea, GridBuildingSystem.Instance.MainTilemap);
 
+        DebrisManager.Instance.SpawnDebris(this);
+
         chopped = true;
         Destroy(gameObject, .5f);
     }
