@@ -312,7 +312,7 @@ TextureImporter:
         width: 16
         height: 22
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -320,6 +320,48 @@ TextureImporter:
       bones: []
       spriteID: cabc1a987b2f5cd4c99c5f8ef6f5d605
       internalID: 26838936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000000_8
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 1758
+        width: 371
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dd1bb50a5825fb4288036d629327765
+      internalID: -926926239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000000_9
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 1664
+        width: 371
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aadc8f39e56cde46a3c9c222eec8c74
+      internalID: 1505728660
       vertices: []
       indices: 
       edges: []
@@ -343,6 +385,8 @@ TextureImporter:
       00000000_5: 68923882
       00000000_6: -1498886627
       00000000_7: 26838936
+      00000000_8: -926926239
+      00000000_9: 1505728660
       XpBigIcon: 1101604287
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
