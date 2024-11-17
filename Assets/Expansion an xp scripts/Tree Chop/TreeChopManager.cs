@@ -52,15 +52,13 @@ public class TreeChopManager : Singleton<TreeChopManager>
     {
         if (availableTreeChops < 1 || SelectablesManager.Instance.CurrentSelectable == null || SelectablesManager.Instance.CurrentSelectable is not TreeChopper) return;
 
-        if(!CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Coins, CurrentCost))
+        if (!EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-CurrentCost, CurrencyType.Coins)))
         {
-            _notEnoughCoinsPanel.ShowNotEnoughCoinsPanel(CurrentCost);
             return;
         }
 
 
         (SelectablesManager.Instance.CurrentSelectable as TreeChopper).PerformChopAction();
-        EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-CurrentCost, CurrencyType.Coins));
 
         CurrentCost += _currentCostAdder;
         _currentCostAdder += 400;

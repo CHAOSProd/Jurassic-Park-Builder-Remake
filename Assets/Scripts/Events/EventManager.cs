@@ -7,7 +7,7 @@ using System.ComponentModel;
 
 public class EventManager : Singleton<EventManager>
 {
-    public delegate void EventDelegate<T>(T eventData);
+    public delegate bool EventDelegate<T>(T eventData);
 
     private Dictionary<Type, List<Delegate>> _events = new();
     public void AddListener<T>(EventDelegate<T> listener)
@@ -33,15 +33,17 @@ public class EventManager : Singleton<EventManager>
             }
         }
     }
-    public void TriggerEvent<T>(T eventData)
+    public bool TriggerEvent<T>(T eventData)
     {
         if(_events.ContainsKey(typeof(T)))
         {
             foreach(Delegate d in _events[typeof(T)])
             {
                 EventDelegate<T> eventDelegate = d as EventDelegate<T>;
-                eventDelegate.Invoke(eventData);
+                if(!eventDelegate.Invoke(eventData)) return false;
             }
+            return true;
         }
+        return false;
     }
 }

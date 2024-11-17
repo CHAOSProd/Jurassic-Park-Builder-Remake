@@ -60,25 +60,9 @@ public class TimerTooltip : MonoBehaviour
 
     public void SkipButton()
     {
-        EventManager.Instance.AddListener<EnoughCurrencyGameEvent>(OnEnoughCurrency);
-        EventManager.Instance.AddListener<NotEnoughCurrencyGameEvent>(OnNotEnoughCurrency);
-
         CurrencyChangeGameEvent info = new CurrencyChangeGameEvent(-timer.skipAmount, CurrencyType.Crystals);
         EventManager.Instance.TriggerEvent(info);
     }
-
-    private void OnEnoughCurrency(EnoughCurrencyGameEvent info)
-    {
-        timer.SkipTimer();
-        skipButton.gameObject.SetActive(false);
-        EventManager.Instance.RemoveListener<NotEnoughCurrencyGameEvent>(OnNotEnoughCurrency);
-    }
-
-    private void OnNotEnoughCurrency(NotEnoughCurrencyGameEvent info)
-    {
-        EventManager.Instance.RemoveListener<EnoughCurrencyGameEvent>(OnEnoughCurrency);
-    }
-
     public void HideTimer()
     {
         transform.parent.gameObject.SetActive(false);

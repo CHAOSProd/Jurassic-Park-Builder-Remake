@@ -22,8 +22,10 @@ public class SaveManager : Singleton<SaveManager>
     {
         LoadPlaceableObjects();
         LoadChoppedTrees();
+        LoadDebris();
         CurrencySystem.Instance.Load();
         TreeChopManager.Instance.Load();
+        DebrisManager.Instance.Load();
         ShopManager.Instance.InitalizeAnimals(SaveData.AnimalShopData);
     }
 
@@ -76,20 +78,22 @@ public class SaveManager : Singleton<SaveManager>
         }
         else
         {
+            List<GameObject> choppedTrees = new List<GameObject>();
             foreach (TreeData td in SaveData.TreeData)
             {
-                if(!td.Chopped)
+                if(td.Chopped)
+                {
+                    choppedTrees.Add(treesObject.transform.GetChild(td.InstanceIndex).gameObject);
+                }
+                else
                 {
                     treesObject.transform.GetChild(td.InstanceIndex).GetComponent<TreeChopper>().SetData(td);
                 }
             }
 
-            foreach(TreeData td in SaveData.TreeData)
+            foreach(GameObject go in choppedTrees)
             {
-                if (td.Chopped)
-                {
-                    DestroyImmediate(treesObject.transform.GetChild(td.InstanceIndex).gameObject);
-                }
+                DestroyImmediate(go);
             }
         }
 
@@ -116,6 +120,13 @@ public class SaveManager : Singleton<SaveManager>
         }
 
         TreeChopManager.Instance.SetTreeMap(mappedTrees);
+    }
+    private void LoadDebris()
+    {
+        foreach(DebrisData dd in SaveData.DebrisData)
+        {
+            DebrisManager.Instance.LoadDebris(dd);
+        }
     }
     private void OnApplicationQuit()
     {

@@ -10,12 +10,12 @@ public class DebrisInfo : ScriptableObject
 }
 public enum DebrisType
 {
-    Grass,
-    Stone,
-    BiggerStone,
-    Footprint,
-    Plants,
-    StoneLake,
-    Trees,
-    BiggestStone
+    SmallGrass,
+    SmallStones,
+    MediumStones,
+    Swamp,
+    Marsh,
+    BigStones,
+    BigGrassWithTree,
+    GiantStones
 }

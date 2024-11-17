@@ -7,16 +7,12 @@ using UnityEngine;
 [Serializable]
 public class ProgressData
 {
-    public int BuildTime { get; set; }
     public int ElapsedTime { get; set; }
     public DateTime LastTick { get; set; }
-    public int XP { get; set; }
 
-    public ProgressData(int buildTime, int elapsedTime, DateTime lastTick, int xp)
+    public ProgressData(int elapsedTime, DateTime lastTick)
     {
-        BuildTime = buildTime;
         ElapsedTime = elapsedTime;
         LastTick = lastTick;
-        XP = xp;
     }
 }

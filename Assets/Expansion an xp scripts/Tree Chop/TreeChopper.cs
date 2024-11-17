@@ -74,7 +74,7 @@ public class TreeChopper : Selectable
         _timerBarInstance.transform.position = _debris.transform.position;
 
         //Initialize Progress
-        _treeData.Progress = new ProgressData(_chopTime, 0, DateTime.Now, -1);
+        _treeData.Progress = new ProgressData(0, DateTime.Now);
         _timerBarInstance.FillOverInterval(_chopTime, 1, UpdateProgress, EnableDebris);
     }
     private void EnableDebris()
@@ -152,7 +152,6 @@ public class TreeChopper : Selectable
             _debris.SetActive(true);
 
             int newTime = (int)Math.Floor((DateTime.Now - _treeData.Progress.LastTick).TotalSeconds) + _treeData.Progress.ElapsedTime;
-            _chopTime = _treeData.Progress.BuildTime;
             if(newTime >= _chopTime)
             {
                 EnableDebris();

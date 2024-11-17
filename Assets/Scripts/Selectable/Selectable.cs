@@ -11,7 +11,7 @@ public class Selectable : SoundObject
 
         IsSelected = true;
 
-        _objectsFadeInOut.SetFade(IsSelected);
+        _objectsFadeInOut.SetFade(true);
 
         SelectablesManager.Instance.SetSelected(this);
     }
@@ -20,7 +20,7 @@ public class Selectable : SoundObject
     {
         IsSelected = false;
 
-        _objectsFadeInOut.SetFade(IsSelected);
+        _objectsFadeInOut.SetFade(false);
     }
 
     public void PlayPlacementSound()

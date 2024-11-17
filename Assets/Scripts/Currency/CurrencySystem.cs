@@ -7,7 +7,8 @@ using UnityEngine;
 public class CurrencySystem : Singleton<CurrencySystem>
 {
     [SerializeField] private List<GameObject> _texts;
-    
+    [SerializeField] private PurchasePanel _notEnoughCoinsPanel;
+
     private static Dictionary<CurrencyType, int> _currencyAmounts = new Dictionary<CurrencyType, int>();
 
     private static Dictionary<CurrencyType, TextMeshProUGUI> _currencyTexts = new Dictionary<CurrencyType, TextMeshProUGUI>();
@@ -33,7 +34,6 @@ public class CurrencySystem : Singleton<CurrencySystem>
     private void Start()
     {
         EventManager.Instance.AddListener<CurrencyChangeGameEvent>(AddCurrency);
-        EventManager.Instance.AddListener<NotEnoughCurrencyGameEvent>(OnNotEnoughCurrency);
     }
     public void Load()
     {
@@ -47,16 +47,12 @@ public class CurrencySystem : Singleton<CurrencySystem>
             _currencyTexts[(CurrencyType)i].text = _currencyAmounts[(CurrencyType)i].ToString("#,#", new CultureInfo("en-US"));
         }
     }
-    private void OnNotEnoughCurrency(NotEnoughCurrencyGameEvent info)
-    {
-        Debug.Log($"You dont have enough amount of {info.Amount} {info.CurrencyType}");
-    }
     public bool HasEnoughCurrency(CurrencyType currencyType, int amount)
     {
         return _currencyAmounts.ContainsKey(currencyType) && _currencyAmounts[currencyType] >= amount;
     }
 
-    private void AddCurrency(CurrencyChangeGameEvent currencyChange)
+    private bool AddCurrency(CurrencyChangeGameEvent currencyChange)
     {
         CurrencyType currencyType = currencyChange.CurrencyType;
         int amount = currencyChange.Amount;
@@ -65,13 +61,15 @@ public class CurrencySystem : Singleton<CurrencySystem>
         {
             if(amount < 0 && !HasEnoughCurrency(currencyType, -amount))
             {
-                Debug.Log($"Can't deduct more {currencyType} than you have. (You had {_currencyAmounts[currencyType]} and wanted to deduct {-amount})");
-                return;
+                _notEnoughCoinsPanel.ShowNotEnoughCoinsPanel(-amount);
+                return false;
             }
             _currencyAmounts[currencyType] += amount;
             Attributes.SetInt(currencyType.ToString(), amount);
             _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("#,#", new CultureInfo("en-US"));
+            return true;
         }
+        return false;
     }
 }
 

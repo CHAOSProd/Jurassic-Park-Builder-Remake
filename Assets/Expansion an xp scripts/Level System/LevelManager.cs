@@ -93,10 +93,11 @@ public class LevelManager : MonoBehaviour
         Save(); // Save progress
     }
     // Adds XP and triggers the XP changed event
-    public void GiveXP(XPAddedGameEvent xpEvent)
+    public bool GiveXP(XPAddedGameEvent xpEvent)
     {
         XP = Mathf.Max(0f, XP + xpEvent.Amount); // Ensure XP doesn't go below zero
         UpdateXP();
+        return true;
     }
     // Calculates if the player should level up based on current XP
     private void CalculateLevel()

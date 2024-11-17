@@ -1,7 +1,8 @@
-using NUnit.Framework.Interfaces;
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class DebrisManager : Singleton<DebrisManager>
 {
@@ -28,6 +29,9 @@ public class DebrisManager : Singleton<DebrisManager>
     [SerializeField] private List<DebrisTypeField> _debrisTypeFields;
     [SerializeField] private List<DebrisListElement> _debrisExpansionAmounts;
     [SerializeField] private GridLayout _gridLayout;
+    [SerializeField] private Transform _debrisParent;
+
+    [SerializeField] private TextMeshProUGUI _debrisCostText;
 
     private Dictionary<DebrisType, DebrisInfo> _debrisTypes = new Dictionary<DebrisType, DebrisInfo>();
     private int _currentExpansion = 0;
@@ -46,7 +50,7 @@ public class DebrisManager : Singleton<DebrisManager>
 
     public void SpawnDebris(TreeChopper tc)
     {
-        Vector2 startPos = tc.transform.position;
+        Vector2 startPos = (Vector2)tc.transform.position - TranslateToGrid(Axis.X, 5) - TranslateToGrid(Axis.Y, 5);
         _occupied = new List<Bounds>();
         _availablePositions = new List<Vector2>();
         _totalArea = tc.Area;
@@ -62,16 +66,23 @@ public class DebrisManager : Singleton<DebrisManager>
                 GetAvailableFields(startPos, size);
             }
 
-            foreach(Vector2 pos in _availablePositions)
+            for (int i = 0; i < daf.Amount; i++)
             {
-                Instantiate(_debrisTypes[daf.DebrisType].Prefab, pos, Quaternion.identity);
+                int index = UnityEngine.Random.Range(0, _availablePositions.Count);
+                GameObject debris = Instantiate(_debrisTypes[daf.DebrisType].Prefab, _availablePositions[index], Quaternion.identity, _debrisParent);
+
+                if(debris.TryGetComponent(out DebrisObject debrisObject))
+                {
+                    debrisObject.Initialize(size, daf.DebrisType);
+                }
+
+                _occupied.Add(new Bounds(_availablePositions[index], size * .5f * _gridLayout.cellSize));
+                _availablePositions.RemoveAt(index);
             }
-            int index = UnityEngine.Random.Range(0, _availablePositions.Count);
-            _occupied.Add(new Bounds(_availablePositions[index] + (Vector2)(size * .5f * _gridLayout.cellSize), size * .5f * _gridLayout.cellSize));
-            _availablePositions.RemoveAt(index);
         }
 
         _currentExpansion++;
+        Attributes.SetAttribute("DebrisManagerCurrentExpansion", _currentExpansion);
     }
     private void GetAvailableFields(Vector2 startPos, int currentSize)
     {
@@ -81,9 +92,6 @@ public class DebrisManager : Singleton<DebrisManager>
        
         int steps = _totalArea.size.x / currentSize;
         int step = _totalArea.size.x / steps;
-
-        Debug.Log($"Step = {step}");
-        Debug.Log($"Steps = {steps}");
 
         for (int y = 0; y < steps; y++)
         {
@@ -95,17 +103,47 @@ public class DebrisManager : Singleton<DebrisManager>
                 {
                     if(b.Contains(currentPos))
                     {
-                        Debug.Log("Disallowed.");
                         allowedPoint = false;
                         break;
                     }
                 }
 
                 if(allowedPoint) _availablePositions.Add(currentPos);
-                //Use cellSize instead of cellSize.x
-                currentPos += Vector2.one * step * _gridLayout.cellSize.x * .5f;
+                currentPos += TranslateToGrid(Axis.X, step);
             }
-            currentPos = tmp + new Vector2(.5f,-.5f) * step * _gridLayout.cellSize.y;
+            currentPos = tmp + TranslateToGrid(Axis.Y, step);
         }
+    }
+    private Vector2 TranslateToGrid(Axis axis, int tiles)
+    {
+        if (axis == Axis.X)
+        {
+            return .5f * tiles * (Vector2)_gridLayout.cellSize;
+        }
+
+        //Inverted Y Axis because of unity
+        return .5f * tiles * new Vector2(_gridLayout.cellSize.x, -_gridLayout.cellSize.y);
+    }
+
+    public void UpdateCoinText(int cost)
+    {
+        _debrisCostText.text = cost.ToString();
+    }
+
+    public void RemoveCurrentDebris()
+    {
+        (SelectablesManager.Instance.CurrentSelectable as DebrisObject).OnRemoveClick();
+    }
+
+    public void LoadDebris(DebrisData d)
+    {
+        DebrisObject debris = Instantiate(_debrisTypes[d.DebrisType].Prefab, _debrisParent).GetComponent<DebrisObject>();
+        debris.transform.position = new Vector3(d.Position.x, d.Position.y, d.Position.z);
+        debris.Load(d, _debrisTypes[d.DebrisType].AreaLength);
+    }
+
+    public void Load()
+    {
+        _currentExpansion = Attributes.GetInt("DebrisManagerCurrentExpansion", 0);
     }
 }
