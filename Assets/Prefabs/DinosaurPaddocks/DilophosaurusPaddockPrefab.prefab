@@ -5499,7 +5499,7 @@ MonoBehaviour:
   _display: {fileID: 7819796553852588921}
   _construction: {fileID: 4349622108027107102}
   _main: {fileID: 5949953740542757079}
-  _timerBarPrefab: {fileID: 883946588406857642, guid: 58607b56b6e58bd47a039a1a4bc26fc9,
+  _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
   _selectable: {fileID: 3399641557479624452}
   _editButton: {fileID: 0}

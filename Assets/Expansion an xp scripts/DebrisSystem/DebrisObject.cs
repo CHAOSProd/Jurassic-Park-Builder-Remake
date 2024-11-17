@@ -71,7 +71,7 @@ public class DebrisObject : Selectable
 
         _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
         _timerBarInstance.transform.position = _debrisVisual.transform.position + .25f * _debrisVisual.transform.lossyScale.y * Vector3.down;
-        _timerBarInstance.transform.localScale = new Vector3(.5f / transform.localScale.x, .5f / transform.localScale.y);
+        _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
 
         _data.Progress = new ProgressData(0, DateTime.Now);
         _timerBarInstance.FillOverInterval(_removeTime, 1, UpdateProgress, OnRemovalComplete);
@@ -143,7 +143,7 @@ public class DebrisObject : Selectable
 
                 _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
                 _timerBarInstance.transform.position = _debrisVisual.transform.position + .25f * _debrisVisual.transform.lossyScale.y * Vector3.down;
-                _timerBarInstance.transform.localScale = new Vector3(.4f / transform.localScale.x, .4f / transform.localScale.y);
+                _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
 
                 //Update Progress every second and display xp icon when construction is finished
                 _timerBarInstance.FillOverInterval(_removeTime, 1, UpdateProgress, OnRemovalComplete, newTime);

@@ -458,7 +458,7 @@ MonoBehaviour:
   _xpCountDisplayer: {fileID: 4288993157720808748}
   _selectableObject: {fileID: 8836922195227422705}
   _debrisVisual: {fileID: 8795782285475263027}
-  _timerBarPrefab: {fileID: 883946588406857642, guid: 58607b56b6e58bd47a039a1a4bc26fc9,
+  _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
 --- !u!114 &4706922938706621892
 MonoBehaviour:

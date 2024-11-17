@@ -103,6 +103,7 @@ public class PlaceableObject : MonoBehaviour
         data.Progress = new ProgressData(0, DateTime.Now);
         _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
         _timerBarInstance.transform.position = _construction.transform.position;
+        _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
 
         //Update Progress every second and display xp icon when construction is finished
         _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished);
@@ -216,6 +217,7 @@ public class PlaceableObject : MonoBehaviour
 
                 _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
                 _timerBarInstance.transform.position = _construction.transform.position;
+                _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
 
                 //Update Progress every second and display xp icon when construction is finished
                 _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished, newTime);
