@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 2533824692842807122}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.188, y: 0.61, z: 0}
+  m_LocalPosition: {x: 0.03, y: -0.28, z: 0}
   m_LocalScale: {x: 1.1243815, y: 1.892, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -602,7 +602,7 @@ Transform:
   m_GameObject: {fileID: 5583338779430857685}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.172, y: 0.624, z: 0}
+  m_LocalPosition: {x: 0.029999997, y: -0.28, z: 0}
   m_LocalScale: {x: 1.1243815, y: 1.892, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1017,10 +1017,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.23170751, y: 1.9435146}
-      - {x: -1.7412977, y: 0.43388236}
-      - {x: -0.22520679, y: -1.0558941}
-      - {x: 1.2702942, y: 0.43671232}
+    - - {x: -0.004733771, y: 0.9952687}
+      - {x: -1.50928, y: -0.4941882}
+      - {x: -0.0083209425, y: -2.0142279}
+      - {x: 1.502312, y: -0.4913581}
   m_UseDelaunayMesh: 0
 --- !u!82 &8268808398839525170
 AudioSource:

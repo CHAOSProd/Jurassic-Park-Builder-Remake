@@ -50,7 +50,7 @@ public class DebrisManager : Singleton<DebrisManager>
 
     public void SpawnDebris(TreeChopper tc)
     {
-        Vector2 startPos = (Vector2)tc.transform.position - TranslateToGrid(Axis.X, 5) - TranslateToGrid(Axis.Y, 5);
+        
         _occupied = new List<Bounds>();
         _availablePositions = new List<Vector2>();
         _totalArea = tc.Area;
@@ -60,9 +60,10 @@ public class DebrisManager : Singleton<DebrisManager>
         foreach(DebrisAmountField daf in _debrisExpansionAmounts[_currentExpansion].DebrisAmounts)
         {
             int size = _debrisTypes[daf.DebrisType].AreaLength;
-
+           
             if (size != prevSize)
             {
+                Vector2 startPos = (Vector2)tc.transform.position - TranslateToGrid(Axis.X, 7 - size + ((size + 1) / 2 - 1)) - TranslateToGrid(Axis.Y, 7 - size + size / 4);
                 GetAvailableFields(startPos, size);
             }
 

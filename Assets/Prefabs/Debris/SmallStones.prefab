@@ -332,10 +332,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.9404512, y: -0.09857564}
-      - {x: -0.06489313, y: -1.1127472}
-      - {x: -1.0630338, y: -0.10302236}
-      - {x: -0.068641156, y: 0.90243316}
+    - - {x: 0.99901456, y: 0.0047712475}
+      - {x: 0.00055998564, y: -1.0094002}
+      - {x: -1.0079155, y: 0.0003245622}
+      - {x: 0.00025662594, y: 0.9988902}
   m_UseDelaunayMesh: 0
 --- !u!82 &1473185183634867893
 AudioSource:
@@ -1080,7 +1080,7 @@ Transform:
   m_GameObject: {fileID: 8795782285475263027}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07, y: -0.054, z: 0}
+  m_LocalPosition: {x: 0.024, y: 0.069, z: 0}
   m_LocalScale: {x: 1.1083733, y: 2.4028227, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1181,7 +1181,7 @@ Transform:
   m_GameObject: {fileID: 8836922195227422705}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.102, y: 0.055, z: 0}
+  m_LocalPosition: {x: -0.01, y: 0.178, z: 0}
   m_LocalScale: {x: 1.1083733, y: 2.4028227, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
