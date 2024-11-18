@@ -615,8 +615,8 @@ Transform:
   m_GameObject: {fileID: 5302859805577552494}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.098, y: 0.20999998, z: 0}
-  m_LocalScale: {x: 1.1307453, y: 2.4362724, z: 1}
+  m_LocalPosition: {x: -0.094, y: 0.35, z: 0}
+  m_LocalScale: {x: 1.5, y: 3.231858, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3132584035062784445}
@@ -663,14 +663,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 5344222705146345919, guid: dca1609fda3059044aab333ff9580828,
-    type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: dca1609fda3059044aab333ff9580828, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.6, y: 1.47}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -944,10 +943,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.0004914608, y: 2.0059538}
-      - {x: -2.0073617, y: 0.0025234222}
-      - {x: 0.0050174976, y: -1.988374}
-      - {x: 1.9983857, y: 0.012149811}
+    - - {x: -0.08715381, y: 1.3486143}
+      - {x: -2.0840514, y: -0.64386046}
+      - {x: -0.08810543, y: -2.6566696}
+      - {x: 1.9271742, y: -0.6671011}
   m_UseDelaunayMesh: 0
 --- !u!114 &8912357829526371197
 MonoBehaviour:
@@ -1113,8 +1112,8 @@ Transform:
   m_GameObject: {fileID: 7768655753199764984}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.055, y: 0.21, z: 0}
-  m_LocalScale: {x: 1.1307453, y: 2.4362724, z: 1}
+  m_LocalPosition: {x: -0.094, y: 0.35, z: 0}
+  m_LocalScale: {x: 1.5, y: 3.231858, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3132584035062784445}
