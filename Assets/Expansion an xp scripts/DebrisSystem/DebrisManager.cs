@@ -63,7 +63,7 @@ public class DebrisManager : Singleton<DebrisManager>
            
             if (size != prevSize)
             {
-                Vector2 startPos = (Vector2)tc.transform.position - TranslateToGrid(Axis.X, 7 - size + ((size + 1) / 2 - 1)) - TranslateToGrid(Axis.Y, 7 - size + size / 4);
+                Vector2 startPos = (Vector2)tc.transform.position - TranslateFromGrid(Axis.X, 7 - size + ((size + 1) / 2 - 1)) - TranslateFromGrid(Axis.Y, 7 - size + size / 4);
                 GetAvailableFields(startPos, size);
             }
 
@@ -77,11 +77,12 @@ public class DebrisManager : Singleton<DebrisManager>
                     debrisObject.Initialize(size, daf.DebrisType);
                 }
 
-                _occupied.Add(new Bounds(_availablePositions[index], size * .5f * _gridLayout.cellSize));
+                _occupied.Add(new Bounds(_availablePositions[index], size * _gridLayout.cellSize));
                 _availablePositions.RemoveAt(index);
             }
         }
 
+        _occupied.Clear();
         _currentExpansion++;
         Attributes.SetAttribute("DebrisManagerCurrentExpansion", _currentExpansion);
     }
@@ -110,12 +111,12 @@ public class DebrisManager : Singleton<DebrisManager>
                 }
 
                 if(allowedPoint) _availablePositions.Add(currentPos);
-                currentPos += TranslateToGrid(Axis.X, step);
+                currentPos += TranslateFromGrid(Axis.X, step);
             }
-            currentPos = tmp + TranslateToGrid(Axis.Y, step);
+            currentPos = tmp + TranslateFromGrid(Axis.Y, step);
         }
     }
-    private Vector2 TranslateToGrid(Axis axis, int tiles)
+    private Vector2 TranslateFromGrid(Axis axis, int tiles)
     {
         if (axis == Axis.X)
         {
