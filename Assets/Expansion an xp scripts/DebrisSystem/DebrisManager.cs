@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -37,7 +38,6 @@ public class DebrisManager : Singleton<DebrisManager>
     private int _currentExpansion = 0;
 
     private BoundsInt _totalArea;
-    private List<Bounds> _occupied;
     private List<Vector2> _availablePositions;
 
     private void Awake()
@@ -50,8 +50,6 @@ public class DebrisManager : Singleton<DebrisManager>
 
     public void SpawnDebris(TreeChopper tc)
     {
-        
-        _occupied = new List<Bounds>();
         _availablePositions = new List<Vector2>();
         _totalArea = tc.Area;
 
@@ -76,13 +74,10 @@ public class DebrisManager : Singleton<DebrisManager>
                 {
                     debrisObject.Initialize(size, daf.DebrisType);
                 }
-
-                _occupied.Add(new Bounds(_availablePositions[index], size * _gridLayout.cellSize));
                 _availablePositions.RemoveAt(index);
             }
         }
 
-        _occupied.Clear();
         _currentExpansion++;
         Attributes.SetAttribute("DebrisManagerCurrentExpansion", _currentExpansion);
     }
@@ -100,17 +95,13 @@ public class DebrisManager : Singleton<DebrisManager>
             Vector2 tmp = currentPos;
             for (int x = 0; x < steps; x++)
             {
-                bool allowedPoint = true;
-                foreach(Bounds b in _occupied)
-                {
-                    if(b.Contains(currentPos))
-                    {
-                        allowedPoint = false;
-                        break;
-                    }
-                }
+                BoundsInt b = new BoundsInt(GridBuildingSystem.Instance.MainTilemap.WorldToCell(currentPos), Vector3Int.one * currentSize);
 
-                if(allowedPoint) _availablePositions.Add(currentPos);
+                Debug.Log(_gridLayout.CellToWorld(b.min) + " - " + _gridLayout.CellToWorld(b.max));
+
+                if (GridBuildingSystem.Instance.CanTakeArea(b))
+                    _availablePositions.Add(currentPos);
+
                 currentPos += TranslateFromGrid(Axis.X, step);
             }
             currentPos = tmp + TranslateFromGrid(Axis.Y, step);

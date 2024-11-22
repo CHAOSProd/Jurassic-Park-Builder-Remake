@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 417215955928361862}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.18, y: -0.5, z: 0}
+  m_LocalPosition: {x: -0.028, y: 0.44, z: 0}
   m_LocalScale: {x: 1.5, y: 3.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -569,7 +569,7 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.01, y: 0.99}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -581,10 +581,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1}
-      - {x: -1.502544, y: -0.49932775}
-      - {x: 0.0014755363, y: -1.9875386}
-      - {x: 1.513227, y: -0.49927747}
+    - - {x: 0.0068037855, y: 1.013608}
+      - {x: -1.4991417, y: -0.49252373}
+      - {x: 0.004877882, y: -1.9875386}
+      - {x: 1.5166284, y: -0.49927747}
   m_UseDelaunayMesh: 0
 --- !u!82 &5706879128048287275
 AudioSource:
@@ -1000,7 +1000,7 @@ Transform:
   m_GameObject: {fileID: 6842033933130794859}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.18, y: -0.5, z: 0}
+  m_LocalPosition: {x: -0.028000012, y: 0.4399999, z: 0}
   m_LocalScale: {x: 1.5, y: 3.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
