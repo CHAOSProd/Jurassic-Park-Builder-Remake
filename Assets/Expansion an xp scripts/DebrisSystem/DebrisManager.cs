@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -70,7 +72,7 @@ public class DebrisManager : Singleton<DebrisManager>
                 int index = UnityEngine.Random.Range(0, _availablePositions.Count);
                 GameObject debris = Instantiate(_debrisTypes[daf.DebrisType].Prefab, _availablePositions[index], Quaternion.identity, _debrisParent);
 
-                if(debris.TryGetComponent(out DebrisObject debrisObject))
+                if (debris.TryGetComponent(out DebrisObject debrisObject))
                 {
                     debrisObject.Initialize(size, daf.DebrisType);
                 }
@@ -95,12 +97,11 @@ public class DebrisManager : Singleton<DebrisManager>
             Vector2 tmp = currentPos;
             for (int x = 0; x < steps; x++)
             {
-                BoundsInt b = new BoundsInt(GridBuildingSystem.Instance.MainTilemap.WorldToCell(currentPos), Vector3Int.one * currentSize);
-
-                Debug.Log(_gridLayout.CellToWorld(b.min) + " - " + _gridLayout.CellToWorld(b.max));
+                BoundsInt b = new BoundsInt(GridBuildingSystem.Instance.MainTilemap.WorldToCell(currentPos) - Vector3Int.one * (currentSize >> 1), Vector3Int.one * currentSize);
 
                 if (GridBuildingSystem.Instance.CanTakeArea(b))
                     _availablePositions.Add(currentPos);
+
 
                 currentPos += TranslateFromGrid(Axis.X, step);
             }
