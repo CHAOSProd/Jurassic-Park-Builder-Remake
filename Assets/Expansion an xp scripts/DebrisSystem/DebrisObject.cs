@@ -56,6 +56,7 @@ public class DebrisObject : Selectable
             Select();
             DebrisManager.Instance.UpdateCoinText(_cost);
             UIManager.Instance.ChangeTo("DebrisUI");
+            PlaySound(0);
         }
     }
 
@@ -108,9 +109,11 @@ public class DebrisObject : Selectable
 
         _removing = true;
 
+        PlaySound(1);
+
         _debrisVisual.SetActive(false);
         SaveManager.Instance.SaveData.DebrisData.Remove(_data);
-        Destroy(gameObject, .25f);
+        Destroy(gameObject, 1.578f);
     }
     private void UpdateProgress()
     {
