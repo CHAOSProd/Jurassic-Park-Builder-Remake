@@ -67,7 +67,7 @@ public class DebrisObject : Selectable
 
     public void OnRemoveClick()
     {
-        if (!EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(_cost, CurrencyType.Coins))) return;
+        if (!EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-_cost, CurrencyType.Coins))) return;
 
         _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
         _timerBarInstance.transform.position = _debrisVisual.transform.position + .25f * _debrisVisual.transform.lossyScale.y * Vector3.down;
