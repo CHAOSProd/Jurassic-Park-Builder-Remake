@@ -582,7 +582,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -678,7 +678,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c12f8a886c4a1649a947a5d0fb63e4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sounds: []
+  Sounds:
+  - {fileID: 8300000, guid: 93ad3df578ff619468e0171f2ce58db4, type: 3}
+  - {fileID: 8300000, guid: 472d6fb2e7d585848bd76b93696a0942, type: 3}
   IsSelected: 0
   _objectsFadeInOut: {fileID: 8308401487884597625}
   _cost: 30000
