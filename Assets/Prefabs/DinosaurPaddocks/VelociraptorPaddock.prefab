@@ -962,7 +962,7 @@ MonoBehaviour:
   _objectsFadeInOut: {fileID: 5920640430491668148}
   _evolutionsChanger: {fileID: 5611361149836481946}
   _dinosaurAnimationEventsListener: {fileID: 8734577474018018442}
-  _foodType: 0
+  _foodType: 1
 --- !u!114 &4922702988812172581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4343,7 +4343,7 @@ MonoBehaviour:
     m_Size: {x: 8, y: 8, z: 1}
   GridBuildingID: 0
   ConstructionFinished: 0
-  BuildTime: 5
+  BuildTime: 0
   BuildXp: 192
   _xpNotification: {fileID: 301173621897557951}
   _tapVFX: {fileID: 2864252642858936466}
