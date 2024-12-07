@@ -82,7 +82,9 @@ public class TreeChopper : Selectable
         _xpNotification.SetActive(true);
         hasTreeDebris = true;
 
-        Destroy(_timerBarInstance.gameObject);
+        if(_timerBarInstance != null)
+            Destroy(_timerBarInstance.gameObject);
+
         _timerBarInstance = null;
 
         _treeData.Progress = null;

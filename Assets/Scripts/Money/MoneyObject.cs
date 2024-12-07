@@ -71,7 +71,9 @@ public class MoneyObject : MonoBehaviour
             CurrentMoneyInteger = Mathf.FloorToInt(_currentMoneyFloated);
             _notification.SetActive(true);
 
-            _animator.SetTrigger("MaxMoneyReached");
+            if(_animator != null)
+                _animator.SetTrigger("MaxMoneyReached");
+
             _maxMoneyReached = true;
 
             return;
