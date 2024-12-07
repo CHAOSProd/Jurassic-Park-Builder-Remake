@@ -121,7 +121,7 @@ public class DebrisManager : Singleton<DebrisManager>
 
     public void UpdateCoinText(int cost)
     {
-        _debrisCostText.text = cost.ToString();
+        _debrisCostText.text = $"<sprite name=\"money_icon\">{cost}";
     }
 
     public void RemoveCurrentDebris()
