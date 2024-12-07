@@ -57,7 +57,7 @@ public class SellManager : Singleton<SellManager>
         EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(_objectToSell.data.SellRefund, CurrencyType.Coins));
         SaveManager.Instance.SaveData.PlaceableObjects.Remove(_objectToSell.data);
 
-        _moneyCounter.transform.position = _objectToSell.transform.position + new Vector3(0, .108f);
+        _moneyCounter.transform.position = _objectToSell.transform.position + new Vector3(-0.1f, .408f);
         _moneyCounter.SetActive(true);
         _moneyCounter.GetComponentInChildren<MoneyCountDisplayer>().DisplayCount(_objectToSell.data.SellRefund);
 
