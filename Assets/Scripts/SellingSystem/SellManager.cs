@@ -80,7 +80,7 @@ public class SellManager : Singleton<SellManager>
         _objectToSell = null;
         sellPanel.SetActive(false);
 
-        UnityTimer.Instance.Wait(.5f, () =>
+        UnityTimer.Instance.Wait(.75f, () =>
         {
             _moneyCounter.SetActive(false);
         });
