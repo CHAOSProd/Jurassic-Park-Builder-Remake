@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using TMPro;
@@ -121,7 +122,7 @@ public class DebrisManager : Singleton<DebrisManager>
 
     public void UpdateCoinText(int cost)
     {
-        _debrisCostText.text = $"<sprite name=\"money_icon\">{cost}";
+        _debrisCostText.text = $"<sprite name=\"money_icon\">{cost.ToString("N0", CultureInfo.GetCultureInfo("en-US"))}";
     }
 
     public void RemoveCurrentDebris()

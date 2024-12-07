@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
@@ -73,7 +74,7 @@ public class TreeChopManager : Singleton<TreeChopManager>
 
     public void SetExpansionCostText()
     {
-        _expansionCoinText.text = "<sprite name=\"money_icon\"> " + CurrentCost;
+        _expansionCoinText.text = $"<sprite name=\"money_icon\"> {CurrentCost.ToString("N0",CultureInfo.GetCultureInfo("en-US"))}";
     }
 
     public void SetTreeMap(Dictionary<(int x, int y), TreeChopper> treeMap)
