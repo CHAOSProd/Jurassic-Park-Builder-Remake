@@ -17,7 +17,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
     private static readonly Dictionary<CurrencyType, int> _defaultValues = new() 
     {
         { CurrencyType.Coins, 100},
-        { CurrencyType.Bucks, 5}, 
+        { CurrencyType.Bucks, 50}, 
         { CurrencyType.Crystals, 0}
     };
 
