@@ -57,9 +57,9 @@ public class CurrencySystem : Singleton<CurrencySystem>
         CurrencyType currencyType = currencyChange.CurrencyType;
         int amount = currencyChange.Amount;
 
-        if (_currencyAmounts.ContainsKey(currencyType))
+        if (amount < 0 && _currencyAmounts.ContainsKey(currencyType))
         {
-            if(amount < 0 && !HasEnoughCurrency(currencyType, -amount))
+            if(!HasEnoughCurrency(currencyType, -amount))
             {
                 _notEnoughCoinsPanel.ShowNotEnoughCoinsPanel(-amount);
                 return false;
