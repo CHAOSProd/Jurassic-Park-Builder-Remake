@@ -9,7 +9,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
     [SerializeField] private List<GameObject> _texts;
     [SerializeField] private PurchasePanel _notEnoughCoinsPanel;
 
-    private static Dictionary<CurrencyType, int> _currencyAmounts = new Dictionary<CurrencyType, int>();
+    public static Dictionary<CurrencyType, int> _currencyAmounts = new Dictionary<CurrencyType, int>();
 
     private static Dictionary<CurrencyType, TextMeshProUGUI> _currencyTexts = new Dictionary<CurrencyType, TextMeshProUGUI>();
 
@@ -22,7 +22,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
     };
 
 
-    private void Awake()
+    public void Awake()
     {
         for (int i = 0; i < _texts.Count; i++)
         {
@@ -31,7 +31,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
         }
     }
 
-    private void Start()
+    public void Start()
     {
         EventManager.Instance.AddListener<CurrencyChangeGameEvent>(AddCurrency);
     }
@@ -52,7 +52,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
         return _currencyAmounts.ContainsKey(currencyType) && _currencyAmounts[currencyType] >= amount;
     }
 
-    private bool AddCurrency(CurrencyChangeGameEvent currencyChange)
+    public bool AddCurrency(CurrencyChangeGameEvent currencyChange)
     {
         CurrencyType currencyType = currencyChange.CurrencyType;
         int amount = currencyChange.Amount;
@@ -65,7 +65,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
                 return false;
             }
             _currencyAmounts[currencyType] += amount;
-            Attributes.SetInt(currencyType.ToString(), amount);
+            Attributes.SetInt(currencyType.ToString(), _currencyAmounts[currencyType]);
             _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("#,#", new CultureInfo("en-US"));
             return true;
         }
