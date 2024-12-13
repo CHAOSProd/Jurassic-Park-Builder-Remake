@@ -40,10 +40,14 @@ public class CurrencySystem : Singleton<CurrencySystem>
         for(int i = 0; i < _texts.Count; i++)
         {
             _currencyAmounts[(CurrencyType)i] = Attributes.GetInt(((CurrencyType)i).ToString(), _defaultValues[(CurrencyType)i]);
+
+            // For testing purposes
             if((CurrencyType)i == CurrencyType.Coins)
             {
                 _currencyAmounts[(CurrencyType)i] = 10000000;
             }
+
+            // Initial UI Update
             _currencyTexts[(CurrencyType)i].text = _currencyAmounts[(CurrencyType)i].ToString("#,#", new CultureInfo("en-US"));
         }
     }
@@ -65,7 +69,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
                 return false;
             }
             _currencyAmounts[currencyType] += amount;
-            Attributes.SetInt(currencyType.ToString(), amount);
+            Attributes.SetInt(currencyType.ToString(), _currencyAmounts[currencyType]);
             _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("#,#", new CultureInfo("en-US"));
             return true;
         }

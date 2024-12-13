@@ -1,30 +1,33 @@
 using UnityEngine;
 using TMPro;
 using System.Globalization;
+using UnityEngine.UI;
 
 public class ShopItemUnlock : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField] private GameObject lockPanel; // The panel that appears when the item is locked
-    [SerializeField] private GameObject insufficientCurrencyPanel; // The panel shown if the player doesn't have enough currency
-    [SerializeField] private TMP_Text premiumCurrencyText; // Text showing the current amount of bucks
 
     [Header("Item Details")]
     [SerializeField] private int requiredLevel; // The level required to unlock the item
     [SerializeField] private int premiumCost; // The amount of bucks required to unlock the item
     [SerializeField] private TMP_Text levelText; // The TMP_Text component displaying the current level on the UI
 
+    [Header("Logic")]
+    [SerializeField] private Button panelUnlockButton;
+
     private bool isUnlocked = false; // Whether the item is unlocked or not
 
     private void Start()
     {
-        if (lockPanel == null || insufficientCurrencyPanel == null || premiumCurrencyText == null || levelText == null)
+        if (lockPanel == null || levelText == null || panelUnlockButton == null)
         {
             Debug.LogError("Some UI elements are missing in the ShopItemUnlock script!");
             return;
         }
 
-        UpdateCurrencyUI();
+        // Sets unlock item of the panel to this object
+        panelUnlockButton.onClick.AddListener(() => ButtonUnlockHandler.Instance.SetUnlockItem(this));
 
         // Initialize the lock panel for this item based on the current level
         CheckLevelAndUnlock();
@@ -50,35 +53,19 @@ public class ShopItemUnlock : MonoBehaviour
     // Called when the unlock button is pressed for this specific item.
     public void OnUnlockButtonClicked()
     {
-        if (CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Bucks, premiumCost))
-        {
-            CurrencyChangeGameEvent currencyChange = new CurrencyChangeGameEvent
-            {
-                CurrencyType = CurrencyType.Bucks,
-                Amount = -premiumCost
-            };
+        CurrencyChangeGameEvent currencyChange = new(-premiumCost, CurrencyType.Bucks);
 
-            if (CurrencySystem.Instance.AddCurrency(currencyChange))
-            {
-                UpdateCurrencyUI();
-                UnlockItem(); // Unlock the specific item that was clicked
-                Debug.Log("Bucks deducted and item unlocked.");
-            }
-            else
-            {
-                Debug.LogError("Failed to deduct bucks.");
-            }
+        // The CurrencyChangeEvent method already handles showing the not enough coins panel and returns true if the transaction was succesful and false if not
+        if (EventManager.Instance.TriggerEvent(currencyChange)) 
+        {
+            //UpdateCurrencyUI();
+            UnlockItem(); // Unlock the specific item that was clicked
+            Debug.Log("Bucks deducted and item unlocked.");
         }
         else
         {
-            insufficientCurrencyPanel.SetActive(true);
-            Debug.Log("Not enough bucks.");
+            Debug.LogError("Failed to deduct bucks.");
         }
-    }
-
-    public void OnInsufficientCurrencyCloseButtonClicked()
-    {
-        insufficientCurrencyPanel.SetActive(false);
     }
 
     // Show the lock panel only if the item is not unlocked
@@ -102,19 +89,6 @@ public class ShopItemUnlock : MonoBehaviour
         else
         {
             Debug.LogError("UnlockItem: lockPanel is not assigned in the Inspector!");
-        }
-    }
-
-    // Update the UI to show the current amount of bucks
-    private void UpdateCurrencyUI()
-    {
-        if (CurrencySystem.Instance != null && premiumCurrencyText != null)
-        {
-            int currentBucks = CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Bucks, 0)
-                ? CurrencySystem._currencyAmounts[CurrencyType.Bucks]
-                : 0;
-
-            premiumCurrencyText.text = currentBucks.ToString("#,#", new CultureInfo("en-US"));
         }
     }
 

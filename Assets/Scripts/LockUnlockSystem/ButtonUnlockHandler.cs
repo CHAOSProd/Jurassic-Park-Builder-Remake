@@ -1,29 +1,33 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonUnlockHandler : MonoBehaviour
+public class ButtonUnlockHandler : Singleton<ButtonUnlockHandler>
 {
-    [SerializeField] private ShopItemUnlock itemToUnlock; // The item this button unlocks
+    [SerializeField] private Button _unlockButton;
+    private ShopItemUnlock _itemToUnlock; // The item this button unlocks
 
     private void Start()
     {
-        Button button = GetComponent<Button>();
-        if (button != null && itemToUnlock != null)
+        if (_unlockButton != null)
         {
-            button.onClick.AddListener(OnButtonClicked);
+            _unlockButton.onClick.AddListener(OnButtonClicked);
         }
         else
         {
-            Debug.LogError("Button or itemToUnlock reference is missing!");
+            Debug.LogError("Button reference is missing!");
         }
     }
 
     private void OnButtonClicked()
     {
-        if (itemToUnlock != null)
+        if (_itemToUnlock != null)
         {
-            itemToUnlock.OnUnlockButtonClicked(); // Only unlock the specific item this button refers to
+            _itemToUnlock.OnUnlockButtonClicked(); // Only unlock the specific item this button refers to
         }
+    }
+    public void SetUnlockItem(ShopItemUnlock unlockItem)
+    {
+        _itemToUnlock = unlockItem;
     }
 }
 
