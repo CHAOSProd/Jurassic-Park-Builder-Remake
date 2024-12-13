@@ -11,20 +11,25 @@ public class ShopItemUnlock : MonoBehaviour
     [Header("Item Details")]
     [SerializeField] private int requiredLevel; // The level required to unlock the item
     [SerializeField] private int premiumCost; // The amount of bucks required to unlock the item
-    [SerializeField] private TMP_Text levelText; // The TMP_Text component displaying the current level on the UI
 
     [Header("Logic")]
     [SerializeField] private Button panelUnlockButton;
+    [SerializeField] private string saveName;
 
-    private bool isUnlocked = false; // Whether the item is unlocked or not
+    private bool isUnlocked; // Whether the item is unlocked or not
 
     private void Start()
     {
-        if (lockPanel == null || levelText == null || panelUnlockButton == null)
+        if (lockPanel == null || panelUnlockButton == null)
         {
             Debug.LogError("Some UI elements are missing in the ShopItemUnlock script!");
             return;
         }
+
+        isUnlocked = Attributes.GetBool(saveName, false);
+
+        // Don't do the rest if it's already unlocked
+        if (isUnlocked) return;
 
         // Sets unlock item of the panel to this object
         panelUnlockButton.onClick.AddListener(() => ButtonUnlockHandler.Instance.SetUnlockItem(this));
@@ -36,9 +41,7 @@ public class ShopItemUnlock : MonoBehaviour
     // Check if the player meets level requirements and unlock the item accordingly
     private void CheckLevelAndUnlock()
     {
-        if (isUnlocked) return; // Avoid checking again if already unlocked
-
-        int currentLevel = GetPlayerLevel();
+        int currentLevel = Attributes.GetInt("level", 1);
 
         if (currentLevel >= requiredLevel)
         {
@@ -49,7 +52,6 @@ public class ShopItemUnlock : MonoBehaviour
             ShowLockPanel(); // Show the lock panel if the level is insufficient
         }
     }
-
     // Called when the unlock button is pressed for this specific item.
     public void OnUnlockButtonClicked()
     {
@@ -84,25 +86,12 @@ public class ShopItemUnlock : MonoBehaviour
         {
             lockPanel.SetActive(false); // Hide the lock panel for this item
             isUnlocked = true; // Mark this item as unlocked
+            Attributes.SetBool(saveName, true);
             Debug.Log("UnlockItem: Lock panel deactivated and item unlocked.");
         }
         else
         {
             Debug.LogError("UnlockItem: lockPanel is not assigned in the Inspector!");
-        }
-    }
-
-    // Get the player's current level from the levelText UI
-    private int GetPlayerLevel()
-    {
-        if (levelText != null && int.TryParse(levelText.text, out int level))
-        {
-            return level;
-        }
-        else
-        {
-            Debug.LogError("Level text is not properly set or can't be parsed.");
-            return 1; // Default to level 1 if parsing fails
         }
     }
 }
