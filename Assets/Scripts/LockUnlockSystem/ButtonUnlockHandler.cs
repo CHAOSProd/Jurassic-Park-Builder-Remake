@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class ButtonUnlockHandler : Singleton<ButtonUnlockHandler>
 {
     [SerializeField] private Button _unlockButton;
+    [SerializeField] private Transform _buildingContainer;
     private ShopItemUnlock _itemToUnlock; // The item this button unlocks
 
     private void Start()
@@ -28,6 +29,15 @@ public class ButtonUnlockHandler : Singleton<ButtonUnlockHandler>
     public void SetUnlockItem(ShopItemUnlock unlockItem)
     {
         _itemToUnlock = unlockItem;
+    }
+    public void UpdateUnlockItems()
+    {
+        int itemCount = _buildingContainer.childCount;
+        for (int i = 0; i < itemCount; i++)
+        {
+            ShopItemUnlock item = _buildingContainer.GetChild(i).GetComponent<ShopItemUnlock>();
+            if (item.CheckLevelAndUnlock()) return;
+        }
     }
 }
 
