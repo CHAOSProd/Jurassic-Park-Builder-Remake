@@ -125,13 +125,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1114122060423095687}
   - component: {fileID: 1694273549722059999}
-  - component: {fileID: 2670345936914607488}
   - component: {fileID: 3568875328770311534}
   - component: {fileID: 9181914270627094662}
   - component: {fileID: 1357787211617081991}
   - component: {fileID: 4647589561746264560}
   - component: {fileID: 2357536708258815039}
   - component: {fileID: 4191673498828045377}
+  - component: {fileID: 6354549605723057098}
   m_Layer: 0
   m_Name: Museum
   m_TagString: Untagged
@@ -201,79 +201,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 282eab7e763fa484db7d4eb08b25e0f6, type: 3}
+  m_Sprite: {fileID: -7404615360559911982, guid: 154e0fd1e7b278942a18a770645bb4cf,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3, y: 2.12}
+  m_Size: {x: 1.96, y: 1.18}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &2670345936914607488
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 738122557006344997}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -0.1, y: 0.1}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 2.12}
-    newSize: {x: 3, y: 2.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.8542064, y: -0.171229}
-      - {x: 0.7030754, y: 0.057458576}
-      - {x: 0.5556436, y: 0.22745632}
-      - {x: 0.38781896, y: 0.20885262}
-      - {x: 0.4854505, y: 0.4071074}
-      - {x: -0.03123258, y: 0.881465}
-      - {x: -0.5637202, y: 0.43107024}
-      - {x: -0.54179543, y: 0.27856797}
-      - {x: -0.7817523, y: 0.19571044}
-      - {x: -0.85702187, y: -0.03776759}
-      - {x: -0.8269246, y: -0.31342894}
-      - {x: -0.56377673, y: -0.62554973}
-      - {x: -0.09550926, y: -0.8576421}
-      - {x: 0.3417536, y: -0.7336848}
-      - {x: 0.7297866, y: -0.5098342}
-  m_UseDelaunayMesh: 0
 --- !u!114 &3568875328770311534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +387,93 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animatorControllers:
   - {fileID: 1989726438926072640}
+--- !u!60 &6354549605723057098
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738122557006344997}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.96, y: 1.18}
+    newSize: {x: 1.96, y: 1.18}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.57, y: -0.34}
+      - {x: 0.65, y: -0.26999998}
+      - {x: 0.7, y: -0.19}
+      - {x: 0.78999996, y: -0.19}
+      - {x: 0.87, y: -0.13}
+      - {x: 0.93, y: -0.02}
+      - {x: 0.93, y: 0.02}
+      - {x: 0.85999995, y: 0.14}
+      - {x: 0.78, y: 0.24}
+      - {x: 0.65, y: 0.26}
+      - {x: 0.48999998, y: 0.35999998}
+      - {x: 0.39999998, y: 0.42}
+      - {x: 0.25, y: 0.53}
+      - {x: 0.19, y: 0.57}
+      - {x: -0.06, y: 0.57}
+      - {x: -0.08, y: 0.53999996}
+      - {x: -0.19999999, y: 0.57}
+      - {x: -0.34, y: 0.57}
+      - {x: -0.42999998, y: 0.53}
+      - {x: -0.52, y: 0.42999998}
+      - {x: -0.59, y: 0.31}
+      - {x: -0.65999997, y: 0.32999998}
+      - {x: -0.68, y: 0.31}
+      - {x: -0.71, y: 0.26}
+      - {x: -0.87, y: 0.24}
+      - {x: -0.90999997, y: 0.19999999}
+      - {x: -0.95, y: 0.089999996}
+      - {x: -0.95, y: -0.03}
+      - {x: -0.94, y: -0.07}
+      - {x: -0.87, y: -0.14}
+      - {x: -0.71999997, y: -0.21}
+      - {x: -0.68, y: -0.28}
+      - {x: -0.61, y: -0.29999998}
+      - {x: -0.35, y: -0.44}
+      - {x: -0.24, y: -0.42}
+      - {x: -0.12, y: -0.53}
+      - {x: 0.16, y: -0.53}
+      - {x: 0.21, y: -0.44}
+      - {x: 0.39, y: -0.41}
+      - {x: 0.53999996, y: -0.37}
+  m_UseDelaunayMesh: 0
 --- !u!1 &754165538876624333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1211,10 +1237,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9178189859837490023}
-  - component: {fileID: 4685975212433028286}
   - component: {fileID: 7781577779913143244}
   - component: {fileID: 8366415940449587912}
   - component: {fileID: 8032065180384785206}
+  - component: {fileID: 6866602969964193252}
   m_Layer: 0
   m_Name: Museum prefab
   m_TagString: Untagged
@@ -1243,76 +1269,6 @@ Transform:
   - {fileID: 1114122060423095687}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &4685975212433028286
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4451266486492135696}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.13296174, y: 0.22150883}
-      - {x: 0.13040182, y: 0.23559737}
-      - {x: 0.1466774, y: 0.2490206}
-      - {x: 0.1462202, y: 0.29831675}
-      - {x: 0.085605934, y: 0.3175701}
-      - {x: -0.032731008, y: 0.3201832}
-      - {x: -0.22000988, y: 0.25610223}
-      - {x: -0.23640522, y: 0.21160196}
-      - {x: -0.1987036, y: 0.18539141}
-      - {x: -0.12276535, y: 0.20078994}
-      - {x: -0.062056288, y: 0.18773195}
-      - {x: -0.08919192, y: 0.15113404}
-      - {x: -0.06907918, y: 0.08443349}
-      - {x: -0.022352789, y: 0.059274606}
-      - {x: 0.008106194, y: 0.044820808}
-      - {x: 0.08738348, y: 0.052902207}
-      - {x: 0.09091153, y: 0.066802114}
-      - {x: 0.09935382, y: 0.070549406}
-      - {x: 0.10561218, y: 0.05262598}
-      - {x: 0.14790173, y: 0.06006495}
-      - {x: 0.2091628, y: 0.1060664}
-      - {x: 0.20938438, y: 0.19021872}
-      - {x: 0.16577815, y: 0.21880332}
-  m_UseDelaunayMesh: 0
 --- !u!114 &7781577779913143244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1460,6 +1416,57 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!60 &6866602969964193252
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451266486492135696}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.05130811, y: 0.42021865}
+      - {x: -0.40471518, y: 0.23306814}
+      - {x: -0.048793733, y: 0.058269024}
+      - {x: 0.3109398, y: 0.23711634}
+  m_UseDelaunayMesh: 0
 --- !u!1 &4492888884954326183
 GameObject:
   m_ObjectHideFlags: 0
@@ -2352,7 +2359,7 @@ SpriteRenderer:
   m_Size: {x: 3, y: 2.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!60 &7539021009721416532
@@ -2960,7 +2967,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6b6f13d6a480cd74da4e7999c5044a1c, type: 3}
+  m_Sprite: {fileID: -7404615360559911982, guid: 154e0fd1e7b278942a18a770645bb4cf,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
