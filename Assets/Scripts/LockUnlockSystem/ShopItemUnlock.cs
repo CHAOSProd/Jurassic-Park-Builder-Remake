@@ -39,17 +39,19 @@ public class ShopItemUnlock : MonoBehaviour
     }
 
     // Check if the player meets level requirements and unlock the item accordingly
-    private void CheckLevelAndUnlock()
+    public bool CheckLevelAndUnlock()
     {
         int currentLevel = Attributes.GetInt("level", 1);
 
         if (currentLevel >= requiredLevel)
         {
             UnlockItem(); // Unlock the item if the level is sufficient
+            return true;
         }
         else
         {
             ShowLockPanel(); // Show the lock panel if the level is insufficient
+            return false;
         }
     }
     // Called when the unlock button is pressed for this specific item.
