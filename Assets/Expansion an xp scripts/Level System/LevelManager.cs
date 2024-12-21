@@ -80,9 +80,9 @@ public class LevelManager : MonoBehaviour
             Debug.LogError("TreeChopManager.Instance is null. Make sure TreeChopManager is initialized properly.");
         }
 
+        Save(); // Save progress
         ButtonUnlockHandler.Instance.UpdateUnlockItems();
         UpdateUI(); // Update the UI to reflect new level
-        Save(); // Save progress
     }
 
     // Updates the level and UI when XP changes

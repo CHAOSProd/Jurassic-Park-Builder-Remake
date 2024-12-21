@@ -60,7 +60,7 @@ public class OptionsPanel : MonoBehaviour
     private void UpdateSound(bool isEnabled)
     {
         // Mute/unmute all AudioSources except music
-        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+        AudioSource[] allAudioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
         foreach (AudioSource audioSource in allAudioSources)
         {
             if (audioSource != musicSource)

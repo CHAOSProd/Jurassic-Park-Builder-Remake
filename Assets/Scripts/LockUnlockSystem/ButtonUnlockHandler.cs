@@ -36,6 +36,11 @@ public class ButtonUnlockHandler : Singleton<ButtonUnlockHandler>
         for (int i = 0; i < itemCount; i++)
         {
             ShopItemUnlock item = _buildingContainer.GetChild(i).GetComponent<ShopItemUnlock>();
+            if(item == null)
+            {
+                Debug.LogError($"{_buildingContainer.GetChild(i).name}'s ShopItemUnlock script is not attached!");
+                continue;
+            }
             if (item.CheckLevelAndUnlock()) return;
         }
     }
