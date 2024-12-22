@@ -58,6 +58,8 @@ public class ShopItemUnlock : MonoBehaviour
     // Called when the unlock button is pressed for this specific item.
     public void OnUnlockButtonClicked()
     {
+        int currentLevel = Attributes.GetInt("level", 1);
+        premiumCost = (requiredLevel-currentLevel)*2;
         CurrencyChangeGameEvent currencyChange = new(-premiumCost, CurrencyType.Bucks);
 
         // The CurrencyChangeEvent method already handles showing the not enough coins panel and returns true if the transaction was succesful and false if not
