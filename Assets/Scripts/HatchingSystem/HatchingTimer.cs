@@ -155,4 +155,9 @@ public class HatchingTimer : MonoBehaviour
         _xpCountDisplayer.DisplayCount(HatchXP);
         NewSpeciesManager.Instance.OpenPanel(data);
     }
+
+    public void RemoveData()
+    {
+        SaveManager.Instance.SaveData.HatchingData.Remove(data);
+    }
 }

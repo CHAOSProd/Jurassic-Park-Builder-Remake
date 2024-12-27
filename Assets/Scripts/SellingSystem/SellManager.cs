@@ -71,6 +71,7 @@ public class SellManager : Singleton<SellManager>
         if(_objectToSell.data.AnimalIndex != null)
         {
             ShopManager.Instance.GetAnimalByIndex(_objectToSell.data.AnimalIndex ?? 0).SetPurchased(false);
+            _objectToSell.GetComponentInChildren<HatchingTimer>(true).RemoveData();
         }
 
         SelectablesManager.Instance.UnselectAll();
