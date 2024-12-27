@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PaddockInfo : MonoBehaviour
 {
-    [SerializeField] private string _dinosaurName;
+    [SerializeField] public string _dinosaurName;
     [SerializeField] private int _currentLevel;
     [SerializeField] private int _maximumMinutes;
     [SerializeField] private float _maximumMoney;

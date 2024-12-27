@@ -7,6 +7,7 @@ using UnityEngine;
 public class SaveData 
 { 
     public List<PlaceableObjectData> PlaceableObjects { get; set; } = new List<PlaceableObjectData>();
+    public List<HatchingData> HatchingData { get; set; } = new List<HatchingData>();
     public List<TreeData> TreeData { get; set; } = new List<TreeData>();
     public List<DebrisData> DebrisData { get; set; } = new List<DebrisData>();
     public List<AnimalShopData> AnimalShopData { get; set; } = new List<AnimalShopData>();

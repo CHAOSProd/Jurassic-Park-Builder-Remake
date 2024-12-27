@@ -569,6 +569,32 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -3618,7 +3644,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 000000042_145
+      name: Dilophosaurus
       rect:
         serializedVersion: 2
         x: 622
@@ -3785,7 +3811,6 @@ TextureImporter:
       000000042_142: -3599881446987856534
       000000042_143: 3011574914833283106
       000000042_144: 2683747158676504477
-      000000042_145: 1988987771739071285
       000000042_146: -8698337499857302110
       000000042_147: 7256435547245616924
       000000042_148: 176677255772811680
@@ -3883,6 +3908,7 @@ TextureImporter:
       000000042_97: -5384118509074129703
       000000042_98: 3390499910930781549
       000000042_99: -8980293381434856011
+      Dilophosaurus: 1988987771739071285
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

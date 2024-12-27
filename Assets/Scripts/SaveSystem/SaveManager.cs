@@ -41,6 +41,15 @@ public class SaveManager : Singleton<SaveManager>
             placeableObject.Initialize(placeableObjectItem, placeableObjectData);
 
             placeableObject.PlaceWithoutSave();
+
+            HatchingTimer hatchingTimer = obj.GetComponentInChildren<HatchingTimer>(true);
+            PaddockInfo paddockInfo = placeableObject.GetComponentInChildren<PaddockInfo>(true);
+            HatchingData matchingHatchingData = SaveData.HatchingData.Find(hd => hd.DinoName == paddockInfo._dinosaurName);
+
+            if (placeableObject._isPaddock && matchingHatchingData != null)
+            {
+                hatchingTimer.Load(matchingHatchingData);
+            }
         }
 
         if(!Attributes.HaveKey("IsDefaultObjectInitialized")) {
@@ -56,6 +65,13 @@ public class SaveManager : Singleton<SaveManager>
                 Progress = null,
                 AnimalIndex = 0
             });
+
+            HatchingTimer hatchingTimer = placeableTriceratops.GetComponentInChildren<HatchingTimer>(true);
+
+            if (placeableTriceratops._isPaddock)
+            {
+                hatchingTimer.InitializeTriceratops();
+            }
 
             placeableTriceratops.PlaceWithoutSave();
             SaveData.PlaceableObjects.Add(placeableTriceratops.data);
@@ -121,6 +137,7 @@ public class SaveManager : Singleton<SaveManager>
 
         TreeChopManager.Instance.SetTreeMap(mappedTrees);
     }
+
     private void LoadDebris()
     {
         foreach(DebrisData dd in SaveData.DebrisData)

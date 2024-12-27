@@ -28,14 +28,17 @@ public class FeedButton : Singleton<FeedButton>
 
     public void UpdateButton(FoodType foodType)
     {
-        switch(foodType)
+        if (enabled)
         {
-            case FoodType.Herbivore:
-                _buttonImage.sprite = _herbivore;
-                break;
-            case FoodType.Carnivore:
-                _buttonImage.sprite = _carnivore;
-                break;
+            switch (foodType)
+            {
+                case FoodType.Herbivore:
+                    _buttonImage.sprite = _herbivore;
+                    break;
+                case FoodType.Carnivore:
+                    _buttonImage.sprite = _carnivore;
+                    break;
+            }
         }
 
         _currentType = foodType;

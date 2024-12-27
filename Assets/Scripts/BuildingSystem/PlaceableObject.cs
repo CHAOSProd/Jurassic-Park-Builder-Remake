@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Rendering;
+using static UnityEngine.GraphicsBuffer;
+using UnityEditor;
 
 public class PlaceableObject : MonoBehaviour
 {
@@ -18,8 +20,6 @@ public class PlaceableObject : MonoBehaviour
     [SerializeField] private GameObject _tapVFX;
     [SerializeField] private GameObject _xpCounter;
     [SerializeField] private MoneyCountDisplayer _xpCountDisplayer;
-
-
 
     [ReadOnly()] public PlaceableObjectData data = new PlaceableObjectData();
 
@@ -49,7 +49,13 @@ public class PlaceableObject : MonoBehaviour
     [SerializeField] private Selectable _selectable;
     public Button _editButton;
     private Vector3 _origin;
-    
+
+    [Header("Dinos")]
+
+    [HideInInspector] public bool _isPaddock;
+    [HideInInspector] public GameObject Hatching;
+    [HideInInspector] public GameObject Dino;
+
     #region Unity Methods
 
     private void Awake()
@@ -172,6 +178,13 @@ public class PlaceableObject : MonoBehaviour
     public void InitializeConstructedBuilding()
     {
         Debug.Log("Constructed the building!");
+
+        if (_isPaddock)
+        {
+            Hatching.SetActive(true);
+            Dino.SetActive(false);
+        }
+
         _xpNotification.SetActive(false);
         _tapVFX.SetActive(true);
         _xpCounter.SetActive(true);
@@ -316,4 +329,36 @@ public class PlaceableObject : MonoBehaviour
         }
     }
     #endregion
+}
+
+//this just makes it so that the Hatching and Dino variables appears when _isPadlock is true
+[CustomEditor(typeof(PlaceableObject))]
+public class PlaceableObjectEditor : Editor
+{
+    private SerializedProperty isPaddockProperty;
+    private SerializedProperty hatchingProperty;
+    private SerializedProperty dinoProperty;
+
+    private void OnEnable()
+    {
+        isPaddockProperty = serializedObject.FindProperty("_isPaddock");
+        hatchingProperty = serializedObject.FindProperty("Hatching");
+        dinoProperty = serializedObject.FindProperty("Dino");
+    }
+
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+
+        DrawDefaultInspector();
+
+        EditorGUILayout.PropertyField(isPaddockProperty, new GUIContent("Is Paddock"));
+
+        if (isPaddockProperty.boolValue)
+        {
+            EditorGUILayout.PropertyField(hatchingProperty, new GUIContent("Hatching"));
+            EditorGUILayout.PropertyField(dinoProperty, new GUIContent("Dino"));
+        }
+        serializedObject.ApplyModifiedProperties();
+    }
 }
