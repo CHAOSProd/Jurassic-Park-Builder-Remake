@@ -69,27 +69,31 @@ public class HatchingTimer : MonoBehaviour
             gameObject.SetActive(true);
             _paddockVisual.SetActive(true);
 
-            int newTime = (int)Math.Floor((DateTime.Now - hatchingData.HatchingProgress.LastTick).TotalSeconds) + hatchingData.HatchingProgress.ElapsedTime;
+            int elapsed = (int)Math.Floor((DateTime.Now - hatchingData.HatchingProgress.LastTick).TotalSeconds);
+            int newElapsedTime = elapsed + hatchingData.HatchingProgress.ElapsedTime;
 
-            if (newTime >= _hatchDuration)
+            if (newElapsedTime >= _hatchDuration)
             {
                 paddockScript.is_hatching = false;
                 paddockScript.hatching_completed = true;
-
                 OnHatchComplete();
             }
             else
             {
-                data.HatchingProgress = new ProgressData(_hatchDuration - newTime, DateTime.Now);
+                data.HatchingProgress.ElapsedTime = newElapsedTime;
+                data.HatchingProgress.LastTick = DateTime.Now;
 
                 paddockScript.is_hatching = true;
                 paddockScript.hatching_completed = false;
-
+            if (_timerBarInstance != null)
+            {
+                Destroy(_timerBarInstance.gameObject);
+            }
                 _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
                 _timerBarInstance.transform.position = _eggVisual.transform.position + 2.5f * _eggVisual.transform.lossyScale.y * Vector3.down;
                 _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
 
-                _timerBarInstance.FillOverInterval(_hatchDuration, 1, UpdateProgress, OnHatchComplete, newTime);
+                _timerBarInstance.FillOverInterval(_hatchDuration, 1, UpdateProgress, OnHatchComplete, newElapsedTime);
             }
         }
     }
