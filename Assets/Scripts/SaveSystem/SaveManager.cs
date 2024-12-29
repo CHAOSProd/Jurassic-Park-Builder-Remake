@@ -44,11 +44,14 @@ public class SaveManager : Singleton<SaveManager>
 
             HatchingTimer hatchingTimer = obj.GetComponentInChildren<HatchingTimer>(true);
             PaddockInfo paddockInfo = placeableObject.GetComponentInChildren<PaddockInfo>(true);
-            HatchingData matchingHatchingData = SaveData.HatchingData.Find(hd => hd.DinoName == paddockInfo._dinosaurName);
-
+            HatchingData matchingHatchingData = null;
+            if (placeableObject._isPaddock)
+            {
+            matchingHatchingData = SaveData.HatchingData.Find(hd => hd.DinoName == paddockInfo._dinosaurName);
+            }
             if (placeableObject._isPaddock && matchingHatchingData != null)
             {
-                hatchingTimer.Load(matchingHatchingData);
+            hatchingTimer.Load(matchingHatchingData);
             }
         }
 
