@@ -67,9 +67,14 @@ public class SellManager : Singleton<SellManager>
         areaTemp.position = positionInt;
         GridBuildingSystem.Instance.SetAreaWhite(areaTemp, GridBuildingSystem.Instance.MainTilemap);
 
-        // Make Animal Purchasable again
+        // Make Animal Purchasable again and reset its stats
         if(_objectToSell.data.AnimalIndex != null)
         {
+            EvolutionChanger evolutionChanger = _objectToSell.GetComponentInChildren<EvolutionChanger>();
+            if (evolutionChanger != null)
+            {
+                evolutionChanger.ChangeSkin(0);
+            }
             ShopManager.Instance.GetAnimalByIndex(_objectToSell.data.AnimalIndex ?? 0).SetPurchased(false);
             _objectToSell.GetComponentInChildren<HatchingTimer>(true).RemoveData();
         }
