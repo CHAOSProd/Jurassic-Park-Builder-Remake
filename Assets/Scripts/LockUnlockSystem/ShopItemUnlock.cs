@@ -1,16 +1,15 @@
 using UnityEngine;
 using TMPro;
-using System.Globalization;
 using UnityEngine.UI;
 
 public class ShopItemUnlock : MonoBehaviour
 {
     [Header("UI Elements")]
     [SerializeField] private GameObject lockPanel; // The panel that appears when the item is locked
+    [SerializeField] private TMP_Text premiumCostText; // TMPRO field to display the calculated price
 
     [Header("Item Details")]
     [SerializeField] private int requiredLevel; // The level required to unlock the item
-    [SerializeField] private int premiumCost; // The amount of bucks required to unlock the item
 
     [Header("Logic")]
     [SerializeField] private Button panelUnlockButton;
@@ -20,7 +19,7 @@ public class ShopItemUnlock : MonoBehaviour
 
     private void Start()
     {
-        if (lockPanel == null || panelUnlockButton == null)
+        if (lockPanel == null || panelUnlockButton == null || premiumCostText == null)
         {
             Debug.LogError("Some UI elements are missing in the ShopItemUnlock script!");
             return;
@@ -38,10 +37,42 @@ public class ShopItemUnlock : MonoBehaviour
         CheckLevelAndUnlock();
     }
 
+    // Call this method when the UI panel is opened
+    public void OnUIOpen()
+    {
+        Debug.Log("UI Panel opened. Updating premium cost display.");
+        UpdatePremiumCostDisplay();
+    }
+
+    private void UpdatePremiumCostDisplay()
+    {
+        int currentLevel = Attributes.GetInt("level", 1);
+
+        // Debug: Log the current and required levels
+        Debug.Log($"Current Level: {currentLevel}, Required Level: {requiredLevel}");
+
+        // Calculate the bucks required based on level difference
+        if (currentLevel < requiredLevel)
+        {
+            int bucks = (requiredLevel - currentLevel) * 2;
+            premiumCostText.text = $"{bucks}?"; // Display cost with "?"
+            Debug.Log($"Calculated Bucks: {bucks}");
+        }
+        else
+        {
+            premiumCostText.text = "0?";
+            Debug.Log("Player level meets or exceeds required level. No cost needed.");
+        }
+
+        // Force TextMeshPro and Canvas to update
+        premiumCostText.ForceMeshUpdate();
+        Canvas.ForceUpdateCanvases();
+    }
+
     // Check if the player meets level requirements and unlock the item accordingly
     public bool CheckLevelAndUnlock()
     {
-        if(isUnlocked) return false;
+        if (isUnlocked) return false;
         int currentLevel = Attributes.GetInt("level", 1);
 
         if (currentLevel >= requiredLevel)
@@ -55,17 +86,18 @@ public class ShopItemUnlock : MonoBehaviour
             return false;
         }
     }
+
     // Called when the unlock button is pressed for this specific item.
     public void OnUnlockButtonClicked()
     {
         int currentLevel = Attributes.GetInt("level", 1);
-        premiumCost = (requiredLevel-currentLevel)*2;
-        CurrencyChangeGameEvent currencyChange = new(-premiumCost, CurrencyType.Bucks);
+        int bucks = currentLevel < requiredLevel ? (requiredLevel - currentLevel) * 2 : 0;
 
-        // The CurrencyChangeEvent method already handles showing the not enough coins panel and returns true if the transaction was succesful and false if not
-        if (EventManager.Instance.TriggerEvent(currencyChange)) 
+        CurrencyChangeGameEvent currencyChange = new(-bucks, CurrencyType.Bucks);
+
+        // The CurrencyChangeEvent method already handles showing the not enough coins panel and returns true if the transaction was successful and false if not
+        if (EventManager.Instance.TriggerEvent(currencyChange))
         {
-            //UpdateCurrencyUI();
             UnlockItem(); // Unlock the specific item that was clicked
             Debug.Log("Bucks deducted and item unlocked.");
         }
@@ -100,6 +132,7 @@ public class ShopItemUnlock : MonoBehaviour
         }
     }
 }
+
 
 
 
