@@ -11,7 +11,7 @@ public class DinosaurLevelManager : MonoBehaviour
 
     public int CurrentLevel;
 
-    private void Start()
+    private void Awake()
     {
         _moneyObject = GetComponent<MoneyObject>();
         _dinosaurLevelResourcesManager = GetComponent<DinosaurLevelResourcesManager>();
