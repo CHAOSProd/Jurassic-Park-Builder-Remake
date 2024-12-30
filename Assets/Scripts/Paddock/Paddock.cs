@@ -23,7 +23,6 @@ public class Paddock : Selectable
     private void Start()
     {
         _evolutionsChanger.SetActive(IsSelected);
-        _moneyObject.enabled = false;
 
         _dinosaurAnimator = _dinosaurAnimationEventsListener.GetComponent<Animator>();
     }

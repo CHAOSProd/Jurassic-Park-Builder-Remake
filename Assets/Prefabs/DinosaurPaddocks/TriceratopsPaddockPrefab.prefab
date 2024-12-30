@@ -6373,7 +6373,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7903622861051776897}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 467a7484960b2f94d9294b530cad431f, type: 3}
   m_Name: 
@@ -6387,7 +6387,6 @@ MonoBehaviour:
   _collectMoneyButton: {fileID: 0}
   _animator: {fileID: 4241858978803487881}
   MaximumMoney: 128.46
-  CurrentMoneyInteger: 0
   MaximumMinutes: 5
 --- !u!114 &5498177297821217796
 MonoBehaviour:
@@ -6402,6 +6401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentMaximumMoneyForTime: 0
+  _moneyObject: {fileID: 0}
+  _dinosaurLevelResourcesManager: {fileID: 0}
   CurrentLevel: 1
 --- !u!114 &7815530151903487157
 MonoBehaviour:

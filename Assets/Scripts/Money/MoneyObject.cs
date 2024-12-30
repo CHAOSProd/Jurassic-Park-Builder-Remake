@@ -13,8 +13,15 @@ public class MoneyObject : MonoBehaviour
     [SerializeField] private Button _collectMoneyButton;
     [SerializeField] private Animator _animator;  // Reference to the Animator
 
+    public int CurrentMoneyInteger
+    {
+        get
+        {
+            return _data.Money;
+        }
+    }
+
     public float MaximumMoney = 100;
-    public int CurrentMoneyInteger = 0;
     public int MaximumMinutes = 5;
     private DinosaurLevelManager _levelManager;  
     private Selectable _selectable;
@@ -27,12 +34,13 @@ public class MoneyObject : MonoBehaviour
     private Vector3 _lastPointerPosition;
     private bool _maxMoneyReached;
 
-    private void Awake()
+    private MoneyObjectData _data;
+    private void Start()
     {
         _collectMoneyDisplay = CollectMoneyDisplay.Instance;
         _collectMoneyButton = CollectMoneyButton.Instance.GetComponent<Button>();
 
-        _maximumSeconds = MaximumMinutes * 60;
+       
         _selectable = GetComponentInParent<Selectable>();
         if (GetComponent<Paddock>())
             _paddock = GetComponent<Paddock>();
@@ -52,29 +60,6 @@ public class MoneyObject : MonoBehaviour
             }
         }
 
-        if (Attributes.HaveKey("CurrentMoney" + gameObject.name))
-        {
-            CurrentMoneyInteger = Attributes.GetInt("CurrentMoney" + gameObject.name);
-        }
-        else
-        {
-            CurrentMoneyInteger = 0;
-        }
-
-        InitializeMoneyPerSecond();
-
-        DateTime lastSaveTime = Attributes.GetAttribute("LastSaveTime", DateTime.UtcNow);
-        TimeSpan timePassed = DateTime.UtcNow - lastSaveTime;
-        int secondsPassed = (int)timePassed.TotalSeconds;
-
-        CurrentMoneyInteger += Mathf.FloorToInt(_moneyPerSecond * secondsPassed);
-
-        if (CurrentMoneyInteger > MaximumMoney)
-        {
-            CurrentMoneyInteger = Mathf.FloorToInt(MaximumMoney);
-        }
-
-        _currentMoneyFloated = CurrentMoneyInteger;
 
         _collectMoneyButton.onClick.AddListener(GetMoneyIfAvaliableByButton);
     }
@@ -83,10 +68,10 @@ public class MoneyObject : MonoBehaviour
     {
         if (_maxMoneyReached) return;
 
-        if (CurrentMoneyInteger >= MaximumMoney && !_maxMoneyReached)
+        if (_data.Money >= MaximumMoney && !_maxMoneyReached)
         {
             _currentMoneyFloated = MaximumMoney;
-            CurrentMoneyInteger = Mathf.FloorToInt(_currentMoneyFloated);
+            _data.Money = Mathf.FloorToInt(_currentMoneyFloated);
             _notification.SetActive(true);
 
             if (_animator != null)
@@ -99,7 +84,7 @@ public class MoneyObject : MonoBehaviour
 
         if (_selectable.IsSelected)
         {
-            _collectMoneyDisplay.Display(CurrentMoneyInteger);
+            _collectMoneyDisplay.Display(_data.Money);
         }
 
         _timeFromLastMoneyAdding += Time.deltaTime;
@@ -115,9 +100,7 @@ public class MoneyObject : MonoBehaviour
                 _maxMoneyReached = true;
             }
 
-            CurrentMoneyInteger = Mathf.FloorToInt(_currentMoneyFloated);
-            Attributes.SetInt("CurrentMoney" + gameObject.name, CurrentMoneyInteger);
-            Attributes.SetAttribute("LastSaveTime", DateTime.UtcNow);
+            _data.Money = Mathf.FloorToInt(_currentMoneyFloated);
             _currentSecond++;
 
             _timeFromLastMoneyAdding = 0;
@@ -150,15 +133,40 @@ public class MoneyObject : MonoBehaviour
             _isPointerMoving = false;
         }
     }
+    public void Initialise(MoneyObjectData data)
+    {
+        this._data = data;
 
+        _maximumSeconds = MaximumMinutes * 60;
+        InitializeMoneyPerSecond();
+
+
+        DateTime lastSaveTime = Attributes.GetAttribute("LastSaveTime", DateTime.Now);
+        TimeSpan timePassed = DateTime.Now - lastSaveTime;
+        int secondsPassed = (int)timePassed.TotalSeconds;
+
+        _data.Money += Mathf.FloorToInt(_moneyPerSecond * secondsPassed);
+
+        if (_data.Money > MaximumMoney)
+        {
+            _data.Money = Mathf.FloorToInt(MaximumMoney);
+        }
+
+        _currentMoneyFloated = _data.Money;
+    }
+    public void InitData(int placeableIndex)
+    {
+        _data = new MoneyObjectData(0, placeableIndex);
+        SaveManager.Instance.SaveData.MoneyData.Add(_data);
+    }
     public void InitializeMoneyPerSecond()
     {
-    _moneyPerSecond = MaximumMoney / _maximumSeconds;
+        _moneyPerSecond = MaximumMoney / _maximumSeconds;
     }
 
     public void GetMoneyIfAvaliable()
     {
-        if (CurrentMoneyInteger != 0 && !_moneyCounter.activeInHierarchy && !GridBuildingSystem.Instance.TempPlaceableObject)
+        if (_data.Money != 0 && !_moneyCounter.activeInHierarchy && !GridBuildingSystem.Instance.TempPlaceableObject)
         {
             if (_selectable)
             {
@@ -178,7 +186,7 @@ public class MoneyObject : MonoBehaviour
 
     private void GetMoneyIfAvaliableByButton()
     {
-        if (CurrentMoneyInteger != 0 && _selectable.IsSelected && !GridBuildingSystem.Instance.TempPlaceableObject)
+        if (_data.Money != 0 && _selectable.IsSelected && !GridBuildingSystem.Instance.TempPlaceableObject)
         {
             if (_selectable)
             {
@@ -194,19 +202,14 @@ public class MoneyObject : MonoBehaviour
         _notification.SetActive(false);
         _tapVFX.SetActive(true);
         _moneyCounter.SetActive(true);
-        _moneyCountDisplayer.DisplayCount(CurrentMoneyInteger);
+        _moneyCountDisplayer.DisplayCount(_data.Money);
 
         // Add coins
-        EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(CurrentMoneyInteger, CurrencyType.Coins));
+        EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(_data.Money, CurrencyType.Coins));
 
         _currentMoneyFloated = 0;
-        CurrentMoneyInteger = 0;
+        _data.Money = 0;
         _maxMoneyReached = false;
         _selectable.PlaySound(_selectable.Sounds[0]);
     }
 }
-
-
-
-
-
