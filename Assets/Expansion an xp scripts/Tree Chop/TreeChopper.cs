@@ -28,7 +28,7 @@ public class TreeChopper : Selectable
     public bool AllowSelection { get; private set; }
     public (int x, int y) MappedPosition { get; private set; }
 
-    private bool hasTreeDebris = false;
+    public bool hasTreeDebris = false;
     private bool chopped = false;
 
     private TreeData _treeData;
@@ -77,10 +77,13 @@ public class TreeChopper : Selectable
         _treeData.Progress = new ProgressData(0, DateTime.Now);
         _timerBarInstance.FillOverInterval(_chopTime, 1, UpdateProgress, EnableDebris);
     }
-    private void EnableDebris()
+    public void EnableDebris()
     {
+        _trees.SetActive(false);
+        _debris.SetActive(true);
         _xpNotification.SetActive(true);
         hasTreeDebris = true;
+        _treeData.HasDebris = true;
 
         if(_timerBarInstance != null)
             Destroy(_timerBarInstance.gameObject);
@@ -92,6 +95,7 @@ public class TreeChopper : Selectable
     private void CollectDebris() 
     {
         hasTreeDebris = false;
+        _treeData.HasDebris = false;
         _xpNotification.SetActive(false);
         _tapVFX.SetActive(true);
         _xpCounter.SetActive(true);
@@ -135,7 +139,12 @@ public class TreeChopper : Selectable
     {
         _treeData = td;
         InitializeProgress();
-        if(_selectableFromBeginning)
+
+        if (_treeData.HasDebris)
+        {
+            EnableDebris();
+        }
+        else if (_selectableFromBeginning)
         {
             AllowSelection = true;
             _treeData.Selectable = true;
@@ -170,6 +179,10 @@ public class TreeChopper : Selectable
                 _timerBarInstance.FillOverInterval(_chopTime, 1, UpdateProgress, EnableDebris, newTime);
             }
         }
+    }
+    public TreeData GetTreeData()
+    {
+        return _treeData;
     }
     private void UpdateProgress()
     {

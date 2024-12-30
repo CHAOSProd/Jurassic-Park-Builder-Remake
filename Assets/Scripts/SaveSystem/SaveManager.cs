@@ -100,6 +100,14 @@ public class SaveManager : Singleton<SaveManager>
             List<GameObject> choppedTrees = new List<GameObject>();
             foreach (TreeData td in SaveData.TreeData)
             {
+                var treeChopper = treesObject.transform.GetChild(td.InstanceIndex).GetComponent<TreeChopper>();
+                treeChopper.SetData(td);
+
+                if (td.HasDebris)
+                {
+                treeChopper.EnableDebris();
+                }
+                
                 if(td.Chopped)
                 {
                     choppedTrees.Add(treesObject.transform.GetChild(td.InstanceIndex).gameObject);
@@ -153,7 +161,6 @@ public class SaveManager : Singleton<SaveManager>
         Attributes.SetAttribute("LastSaveTime", DateTime.UtcNow);
         SaveData.Attributes = Attributes.Export();
         SaveData.AnimalShopData = ShopManager.Instance.GetAnimalShopData();
-
         SaveSystem.Save(SaveData);
     }
 }
