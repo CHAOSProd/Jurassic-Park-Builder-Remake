@@ -13,6 +13,7 @@ public class EvolutionChanger : MonoBehaviour
     private SkinnedMeshRenderer _skinnedMeshRenderer;
     private int _currentSkin;
     private string _parrentName;
+    int levelToSet;
 
     private void Start()
     {
@@ -24,15 +25,16 @@ public class EvolutionChanger : MonoBehaviour
         if(Attributes.HaveKey("CurrentSkin" + _parrentName))
         {
             _currentSkin = Attributes.GetInt("CurrentSkin" + _parrentName);
-
             ChangeSkin(_currentSkin);
         }
         else
         {
             _currentSkin = 0;
-
             ChangeSkin(_currentSkin);
         }
+
+        int savedLevel = Attributes.GetInt("CurrentLevel" + _parrentName, 1);
+        _dinosaurLevelManager.SetLevel(savedLevel);
 
         foreach (Button button in _buttons)
         {
@@ -45,21 +47,40 @@ public class EvolutionChanger : MonoBehaviour
         _currentSkin = index;
 
         Attributes.SetInt("CurrentSkin" + _parrentName, index);
+        Attributes.SetInt("CurrentLevel" + _parrentName, levelToSet);
 
+        _dinosaurLevelManager.SetLevel(levelToSet);
+
+        _dinosaurLevelManager.Initialize();
         switch (index)
         {
             case 0:
-                _dinosaurLevelManager.SetLevel(1);
+                levelToSet = 1;
                 break;
             case 1:
-                _dinosaurLevelManager.SetLevel(11);
+                levelToSet = 11;
                 break;
             case 2:
-                _dinosaurLevelManager.SetLevel(21);
+                levelToSet = 21;
                 break;
             case 3:
-                _dinosaurLevelManager.SetLevel(31);
+                levelToSet = 31;
                 break;
+        }
+
+        _dinosaurLevelManager.SetLevel(levelToSet);
+        Attributes.SetInt("CurrentLevel" + _parrentName, levelToSet);
+
+        //Tried to fix the max cap by level save when quitting there but it still doesn't get saved
+        if (_dinosaurLevelManager._dinosaurLevelResourcesManager != null)
+        {
+            float newMaximumMoney = _dinosaurLevelManager._dinosaurLevelResourcesManager.GetMaximumMoneyByLevel(_dinosaurLevelManager.CurrentLevel);
+            MoneyObject moneyObject = GetComponentInParent<MoneyObject>();
+            if (moneyObject != null)
+            {
+                moneyObject.MaximumMoney = newMaximumMoney;
+                moneyObject.InitializeMoneyPerSecond();
+            }
         }
 
         if (!_skinMaterials.Contains(_skinMaterials[index]))

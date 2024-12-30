@@ -16,7 +16,7 @@ public class MoneyObject : MonoBehaviour
     public float MaximumMoney = 100;
     public int CurrentMoneyInteger = 0;
     public int MaximumMinutes = 5;
-
+    private DinosaurLevelManager _levelManager;  
     private Selectable _selectable;
     private Paddock _paddock;
     private float _maximumSeconds;
@@ -27,7 +27,7 @@ public class MoneyObject : MonoBehaviour
     private Vector3 _lastPointerPosition;
     private bool _maxMoneyReached;
 
-    private void Awake() //Havik changed from start to awake to not miss any references
+    private void Awake()
     {
         _collectMoneyDisplay = CollectMoneyDisplay.Instance;
         _collectMoneyButton = CollectMoneyButton.Instance.GetComponent<Button>();
@@ -36,6 +36,21 @@ public class MoneyObject : MonoBehaviour
         _selectable = GetComponentInParent<Selectable>();
         if (GetComponent<Paddock>())
             _paddock = GetComponent<Paddock>();
+
+        // Get the DinosaurLevelManager values
+        _levelManager = GetComponentInParent<DinosaurLevelManager>();
+        if (_levelManager != null)
+        {
+            if (_levelManager._dinosaurLevelResourcesManager == null)
+            {
+                _levelManager._dinosaurLevelResourcesManager = FindAnyObjectByType<DinosaurLevelResourcesManager>();
+            }
+
+            if (_levelManager._dinosaurLevelResourcesManager != null)
+            {
+                MaximumMoney = _levelManager._dinosaurLevelResourcesManager.GetMaximumMoneyByLevel(_levelManager.CurrentLevel);
+            }
+        }
 
         if (Attributes.HaveKey("CurrentMoney" + gameObject.name))
         {
@@ -54,9 +69,12 @@ public class MoneyObject : MonoBehaviour
 
         CurrentMoneyInteger += Mathf.FloorToInt(_moneyPerSecond * secondsPassed);
 
+        if (CurrentMoneyInteger > MaximumMoney)
+        {
+            CurrentMoneyInteger = Mathf.FloorToInt(MaximumMoney);
+        }
 
         _currentMoneyFloated = CurrentMoneyInteger;
-
 
         _collectMoneyButton.onClick.AddListener(GetMoneyIfAvaliableByButton);
     }
@@ -71,7 +89,7 @@ public class MoneyObject : MonoBehaviour
             CurrentMoneyInteger = Mathf.FloorToInt(_currentMoneyFloated);
             _notification.SetActive(true);
 
-            if(_animator != null)
+            if (_animator != null)
                 _animator.SetTrigger("MaxMoneyReached");
 
             _maxMoneyReached = true;
@@ -89,6 +107,14 @@ public class MoneyObject : MonoBehaviour
         if (_timeFromLastMoneyAdding >= 1)
         {
             _currentMoneyFloated += _moneyPerSecond;
+
+            // Reset the moneys to max cap when re entering the game
+            if (_currentMoneyFloated > MaximumMoney)
+            {
+                _currentMoneyFloated = MaximumMoney;
+                _maxMoneyReached = true;
+            }
+
             CurrentMoneyInteger = Mathf.FloorToInt(_currentMoneyFloated);
             Attributes.SetInt("CurrentMoney" + gameObject.name, CurrentMoneyInteger);
             Attributes.SetAttribute("LastSaveTime", DateTime.UtcNow);
@@ -127,7 +153,7 @@ public class MoneyObject : MonoBehaviour
 
     public void InitializeMoneyPerSecond()
     {
-        _moneyPerSecond = MaximumMoney / _maximumSeconds;
+    _moneyPerSecond = MaximumMoney / _maximumSeconds;
     }
 
     public void GetMoneyIfAvaliable()
@@ -178,8 +204,6 @@ public class MoneyObject : MonoBehaviour
         _maxMoneyReached = false;
         _selectable.PlaySound(_selectable.Sounds[0]);
     }
-
-
 }
 
 
