@@ -71,7 +71,6 @@ public class EvolutionChanger : MonoBehaviour
         _dinosaurLevelManager.SetLevel(levelToSet);
         Attributes.SetInt("CurrentLevel" + _parrentName, levelToSet);
 
-        //Tried to fix the max cap by level save when quitting there but it still doesn't get saved
         if (_dinosaurLevelManager._dinosaurLevelResourcesManager != null)
         {
             float newMaximumMoney = _dinosaurLevelManager._dinosaurLevelResourcesManager.GetMaximumMoneyByLevel(_dinosaurLevelManager.CurrentLevel);
