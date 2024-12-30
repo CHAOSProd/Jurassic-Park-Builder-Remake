@@ -56,7 +56,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
         return _currencyAmounts.ContainsKey(currencyType) && _currencyAmounts[currencyType] >= amount;
     }
 
-    private bool AddCurrency(CurrencyChangeGameEvent currencyChange)
+    public bool AddCurrency(CurrencyChangeGameEvent currencyChange)
     {
         CurrencyType currencyType = currencyChange.CurrencyType;
         int amount = currencyChange.Amount;

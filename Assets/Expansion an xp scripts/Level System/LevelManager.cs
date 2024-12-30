@@ -139,10 +139,22 @@ public class LevelManager : MonoBehaviour
         // Hide the panel after a delay (optional)
         Invoke(nameof(HideLevelUpPanel), 2f); // Hide after 2 seconds, adjust as needed
     }
-    // Hides the level up panel
+    // Hides the level up panel and add 2 bucks ( It should go into the next part of the level up instead of hiding once the next part is added)
     private void HideLevelUpPanel()
     {
         levelUpPanel.SetActive(false);
+        if (CurrencySystem.Instance != null)
+        {
+            CurrencySystem.Instance.AddCurrency(new CurrencyChangeGameEvent
+            {
+                CurrencyType = CurrencyType.Bucks,
+                Amount = 2
+            });
+        }
+        else
+        {
+            Debug.LogError("CurrencySystem.Instance is null. Make sure CurrencySystem is initialized properly.");
+        }
     }
     // Handles saving
     private void Save()
