@@ -44,7 +44,7 @@ public class DebrisObject : Selectable
     
     private void OnMouseUp()
     {
-        if (_removing || SelectablesManager.Instance.CurrentSelectable == this || PointerOverUIChecker.Instance.IsPointerOverUIObject()) return;
+        if (_removing || SelectablesManager.Instance.CurrentSelectable == this || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) return;
 
         if(_removed)
         {
