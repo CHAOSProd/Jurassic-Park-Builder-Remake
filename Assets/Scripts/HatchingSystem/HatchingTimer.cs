@@ -1,10 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.UI;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class HatchingTimer : MonoBehaviour
 {
@@ -50,7 +45,7 @@ public class HatchingTimer : MonoBehaviour
     }
 
     public void Load(HatchingData hatchingData)
-    { 
+    {
         data = hatchingData;
 
         if (data.HatchingFinished)
@@ -85,10 +80,10 @@ public class HatchingTimer : MonoBehaviour
 
                 paddockScript.is_hatching = true;
                 paddockScript.hatching_completed = false;
-            if (_timerBarInstance != null)
-            {
-                Destroy(_timerBarInstance.gameObject);
-            }
+                if (_timerBarInstance != null)
+                {
+                    Destroy(_timerBarInstance.gameObject);
+                }
                 _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
                 _timerBarInstance.transform.position = _eggVisual.transform.position + 2.5f * _eggVisual.transform.lossyScale.y * Vector3.down;
                 _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
@@ -101,9 +96,9 @@ public class HatchingTimer : MonoBehaviour
     private void StartHatchingTimer()
     {
         CreateTimer();
-        
+
         _timerBarInstance.FillOverInterval(_hatchDuration, 1, UpdateProgress, OnHatchComplete);
-        
+
         paddockScript.is_hatching = true;
         paddockScript.hatching_completed = false;
     }
@@ -137,8 +132,6 @@ public class HatchingTimer : MonoBehaviour
         {
             Destroy(_timerBarInstance.gameObject);
         }
-
-        Debug.Log("wow");
 
         paddockScript.is_hatching = false;
         paddockScript.hatching_completed = true;

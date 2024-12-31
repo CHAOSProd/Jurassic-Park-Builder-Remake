@@ -35,15 +35,24 @@ public class MoneyObject : MonoBehaviour
     private bool _maxMoneyReached;
 
     private MoneyObjectData _data;
+
+    private void Awake()
+    {
+        Paddock p = GetComponent<Paddock>();
+        if (p != null)
+        {
+            _paddock = p;
+            _selectable = p;
+        }
+        else
+        {
+            _selectable = GetComponentInParent<Building>();
+        }
+    }
     private void Start()
     {
         _collectMoneyDisplay = CollectMoneyDisplay.Instance;
         _collectMoneyButton = CollectMoneyButton.Instance.GetComponent<Button>();
-
-       
-        _selectable = GetComponentInParent<Selectable>();
-        if (GetComponent<Paddock>())
-            _paddock = GetComponent<Paddock>();
 
         // Get the DinosaurLevelManager values
         _levelManager = GetComponentInParent<DinosaurLevelManager>();
@@ -137,8 +146,7 @@ public class MoneyObject : MonoBehaviour
     {
         this._data = data;
 
-        _maximumSeconds = MaximumMinutes * 60;
-        InitializeMoneyPerSecond();
+        InitMoneyPerSecond();
 
 
         DateTime lastSaveTime = Attributes.GetAttribute("LastSaveTime", DateTime.Now);
@@ -159,8 +167,9 @@ public class MoneyObject : MonoBehaviour
         _data = new MoneyObjectData(0, placeableIndex);
         SaveManager.Instance.SaveData.MoneyData.Add(_data);
     }
-    public void InitializeMoneyPerSecond()
+    public void InitMoneyPerSecond()
     {
+        _maximumSeconds = MaximumMinutes * 60;
         _moneyPerSecond = MaximumMoney / _maximumSeconds;
     }
 

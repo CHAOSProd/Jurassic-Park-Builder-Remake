@@ -78,7 +78,7 @@ public class EvolutionChanger : MonoBehaviour
             if (moneyObject != null)
             {
                 moneyObject.MaximumMoney = newMaximumMoney;
-                moneyObject.InitializeMoneyPerSecond();
+                moneyObject.InitMoneyPerSecond();
             }
         }
 

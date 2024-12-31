@@ -45,6 +45,6 @@ public class DinosaurLevelManager : MonoBehaviour
 
         _moneyObject.MaximumMoney = _currentMaximumMoneyForTime;
 
-        _moneyObject.InitializeMoneyPerSecond();
+        _moneyObject.InitMoneyPerSecond();
     }
 }
