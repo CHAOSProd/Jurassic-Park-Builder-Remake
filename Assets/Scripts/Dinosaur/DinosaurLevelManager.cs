@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DinosaurLevelManager : MonoBehaviour
@@ -43,10 +41,10 @@ public class DinosaurLevelManager : MonoBehaviour
 
     public void Initialize()
     {
-    _currentMaximumMoneyForTime = _dinosaurLevelResourcesManager.GetMaximumMoneyByLevel(CurrentLevel);
+        _currentMaximumMoneyForTime = _dinosaurLevelResourcesManager.GetMaximumMoneyByLevel(CurrentLevel);
 
-    _moneyObject.MaximumMoney = _currentMaximumMoneyForTime;
+        _moneyObject.MaximumMoney = _currentMaximumMoneyForTime;
 
-    _moneyObject.InitializeMoneyPerSecond();
-    }   
+        _moneyObject.InitializeMoneyPerSecond();
+    }
 }

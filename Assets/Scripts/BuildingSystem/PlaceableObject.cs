@@ -106,6 +106,8 @@ public class PlaceableObject : MonoBehaviour
         
         SaveManager.Instance.SaveData.PlaceableObjects.Add(data);
 
+        GetComponentInChildren<MoneyObject>(true).InitData(SaveManager.Instance.SaveData.PlaceableObjects.Count - 1);
+
         data.Progress = new ProgressData(0, DateTime.Now);
         _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
         _timerBarInstance.transform.position = _construction.transform.position;

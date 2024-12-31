@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.Profiling;
-using UnityEditor;
 using UnityEngine;
 
 public class SaveManager : Singleton<SaveManager>
@@ -31,33 +29,16 @@ public class SaveManager : Singleton<SaveManager>
 
     private void LoadPlaceableObjects()
     {
-        foreach (PlaceableObjectData placeableObjectData in SaveData.PlaceableObjects) 
+        int placableIndex = 0;
+        int moneyIndex = 0;
+
+        if (!Attributes.HaveKey("IsDefaultObjectInitialized"))
         {
-            PlaceableObjectItem placeableObjectItem = Resources.Load<PlaceableObjectItem>(placeablesPath + "/" + placeableObjectData.ItemName);
-            GameObject obj = Instantiate(placeableObjectItem.Prefab, Vector3.zero, Quaternion.identity);
-
-            PlaceableObject placeableObject = obj.GetComponent<PlaceableObject>();
-
-            placeableObject.Initialize(placeableObjectItem, placeableObjectData);
-
-            placeableObject.PlaceWithoutSave();
-
-            HatchingTimer hatchingTimer = obj.GetComponentInChildren<HatchingTimer>(true);
-            PaddockInfo paddockInfo = placeableObject.GetComponentInChildren<PaddockInfo>(true);
-            HatchingData matchingHatchingData = null;
-            if (placeableObject._isPaddock)
-            {
-            matchingHatchingData = SaveData.HatchingData.Find(hd => hd.DinoName == paddockInfo._dinosaurName);
-            }
-            if (placeableObject._isPaddock && matchingHatchingData != null)
-            {
-            hatchingTimer.Load(matchingHatchingData);
-            }
-        }
-
-        if(!Attributes.HaveKey("IsDefaultObjectInitialized")) {
             PlaceableObjectItem defaultPlaceableObjectItem = Resources.Load<PlaceableObjectItem>("Placeables/Triceratops");
             PlaceableObject placeableTriceratops = Instantiate(defaultPlaceableObjectItem.Prefab).GetComponent<PlaceableObject>();
+
+            SaveData.MoneyData.Add(new MoneyObjectData(0, 0));
+            placeableTriceratops.GetComponentInChildren<MoneyObject>(true).Initialise(SaveData.MoneyData[0]);
 
             placeableTriceratops.Initialize(defaultPlaceableObjectItem, new PlaceableObjectData()
             {
@@ -80,13 +61,49 @@ public class SaveManager : Singleton<SaveManager>
             SaveData.PlaceableObjects.Add(placeableTriceratops.data);
 
             Attributes.SetBool("IsDefaultObjectInitialized", true);
+
+            placableIndex++;
+            moneyIndex++;
+        }
+
+
+        for (; placableIndex < SaveData.PlaceableObjects.Count; placableIndex++)
+        {
+            PlaceableObjectData placeableObjectData = SaveData.PlaceableObjects[placableIndex];
+
+            PlaceableObjectItem placeableObjectItem = Resources.Load<PlaceableObjectItem>(placeablesPath + "/" + placeableObjectData.ItemName);
+            GameObject obj = Instantiate(placeableObjectItem.Prefab, Vector3.zero, Quaternion.identity);
+
+            PlaceableObject placeableObject = obj.GetComponent<PlaceableObject>();
+
+            placeableObject.Initialize(placeableObjectItem, placeableObjectData);
+
+            placeableObject.PlaceWithoutSave();
+
+            HatchingTimer hatchingTimer = obj.GetComponentInChildren<HatchingTimer>(true);
+            PaddockInfo paddockInfo = placeableObject.GetComponentInChildren<PaddockInfo>(true);
+            HatchingData matchingHatchingData = null;
+            if (placeableObject._isPaddock)
+            {
+                matchingHatchingData = SaveData.HatchingData.Find(hd => hd.DinoName == paddockInfo._dinosaurName);
+            }
+            if (placeableObject._isPaddock && matchingHatchingData != null)
+            {
+                hatchingTimer.Load(matchingHatchingData);
+            }
+
+            if (moneyIndex < SaveData.MoneyData.Count && SaveData.MoneyData[moneyIndex].PlaceableObjectIndex == placableIndex)
+            {
+                obj.GetComponentInChildren<MoneyObject>().Initialise(SaveData.MoneyData[moneyIndex]);
+                moneyIndex++;
+            }
         }
     }
     private void LoadChoppedTrees()
     {
         if (SaveData.TreeData.Count == 0)
         {
-            for(int i = 0; i < treesObject.transform.childCount; i++)
+            for (int i = 0; i < treesObject.transform.childCount; i++)
             {
                 Transform tree = treesObject.transform.GetChild(i);
 
@@ -105,10 +122,10 @@ public class SaveManager : Singleton<SaveManager>
 
                 if (td.HasDebris)
                 {
-                treeChopper.EnableDebris();
+                    treeChopper.EnableDebris();
                 }
-                
-                if(td.Chopped)
+
+                if (td.Chopped)
                 {
                     choppedTrees.Add(treesObject.transform.GetChild(td.InstanceIndex).gameObject);
                 }
@@ -118,7 +135,7 @@ public class SaveManager : Singleton<SaveManager>
                 }
             }
 
-            foreach(GameObject go in choppedTrees)
+            foreach (GameObject go in choppedTrees)
             {
                 DestroyImmediate(go);
             }
@@ -151,14 +168,14 @@ public class SaveManager : Singleton<SaveManager>
 
     private void LoadDebris()
     {
-        foreach(DebrisData dd in SaveData.DebrisData)
+        foreach (DebrisData dd in SaveData.DebrisData)
         {
             DebrisManager.Instance.LoadDebris(dd);
         }
     }
     private void OnApplicationQuit()
     {
-        Attributes.SetAttribute("LastSaveTime", DateTime.UtcNow);
+        Attributes.SetAttribute("LastSaveTime", DateTime.Now);
         SaveData.Attributes = Attributes.Export();
         SaveData.AnimalShopData = ShopManager.Instance.GetAnimalShopData();
         SaveSystem.Save(SaveData);
