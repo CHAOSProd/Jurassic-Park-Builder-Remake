@@ -18,6 +18,7 @@ public class Paddock : Selectable
     private void Awake()
     {
         _moneyObject = GetComponent<MoneyObject>();
+        _moneyObject.enabled = false;
     }
 
     private void Start()
