@@ -220,7 +220,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.26, y: 1.26}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -886,6 +886,9 @@ MonoBehaviour:
     type: 3}
   _selectable: {fileID: 7428123493962814247}
   _editButton: {fileID: 0}
+  _isPaddock: 0
+  Hatching: {fileID: 0}
+  Dino: {fileID: 0}
 --- !u!60 &172341857545030221
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1447,7 +1450,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.26, y: 1.26}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2358,7 +2361,6 @@ MonoBehaviour:
   _collectMoneyButton: {fileID: 0}
   _animator: {fileID: 0}
   MaximumMoney: 50
-  CurrentMoneyInteger: 0
   MaximumMinutes: 5
 --- !u!114 &5958596276040142164
 MonoBehaviour:
