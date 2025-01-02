@@ -2,17 +2,23 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance; // Singleton instance
-
-    [SerializeField] private TMP_Text levelText; // UI element displaying the current level
+     [SerializeField] private TMP_Text levelText; // UI element displaying the current level
+    [SerializeField] private TMP_Text EarnedUnlockedText; // UI element displaying the you earning/you unlocked text
     [SerializeField] private Image XPFillImage; // UI element displaying the XP bar
+    [SerializeField] private GameObject ScrollRect; // UI element displaying the scroll rect
+    [SerializeField] private Image BuckImage; // UI element displaying the buck image
+    [SerializeField] private TMP_Text BuckAmountText; // UI element displaying the buck amount text
+    [SerializeField] private Button CollectButton;
+    [SerializeField] private Button OkButton;
     [SerializeField] private GameObject levelUpPanel; // Panel that pops up on level up
     [SerializeField] private float[] xpPerLevel; // Array to store XP required for each level
-
     [SerializeField] private Image[] levelImages; // Array to store number images
+    [SerializeField] private List<LevelReqItem> levelRequiredItems; // List for item's levelReq Filter
 
     private float level; // Current player level
     private float XP; // Current player XP
@@ -60,6 +66,10 @@ public class LevelManager : MonoBehaviour
             if (image != null) image.gameObject.SetActive(false);
         }
 
+        CollectButton.onClick.AddListener(OnCollectButtonClicked);
+        OkButton.onClick.AddListener(OnOkButtonClicked);
+        EarnedUnlockedText.text = "You earned";
+        UpdateUnlockItems();
         UpdateUI();
     }
     // Handles logic for leveling up
@@ -90,7 +100,21 @@ public class LevelManager : MonoBehaviour
 
         Save(); // Save progress
         ButtonUnlockHandler.Instance.UpdateUnlockItems();
+        UpdateUnlockItems(); // Update the unlocked item filter
         UpdateUI(); // Update the UI to reflect new level
+    }
+
+    private void UpdateUnlockItems()
+    {
+        Debug.Log($"Updating items for level {level}");
+        foreach (var item in levelRequiredItems)
+        {
+            if (item != null)
+            {
+                Debug.Log($"Checking item {item.name} with required level {item.requiredLevel}");
+                item.UpdateItemVisibility((int)level);
+            }
+        }
     }
 
     private void UpdateLevelImages()
@@ -136,13 +160,16 @@ public class LevelManager : MonoBehaviour
     private void ShowLevelUpPanel()
     {
         levelUpPanel.SetActive(true);
-        // Hide the panel after a delay (optional)
-        Invoke(nameof(HideLevelUpPanel), 2f); // Hide after 2 seconds, adjust as needed
     }
-    // Hides the level up panel and add 2 bucks ( It should go into the next part of the level up instead of hiding once the next part is added)
+    // Hides the level up panel
     private void HideLevelUpPanel()
     {
         levelUpPanel.SetActive(false);
+    }
+    // Update the UI and add bucks
+    private void OnCollectButtonClicked()
+    {
+    EarnedUnlockedText.text = "You unlocked";
         if (CurrencySystem.Instance != null)
         {
             CurrencySystem.Instance.AddCurrency(new CurrencyChangeGameEvent
@@ -151,10 +178,22 @@ public class LevelManager : MonoBehaviour
                 Amount = 2
             });
         }
-        else
-        {
-            Debug.LogError("CurrencySystem.Instance is null. Make sure CurrencySystem is initialized properly.");
-        }
+    CollectButton.gameObject.SetActive(false);
+    OkButton.gameObject.SetActive(true);
+    BuckImage.gameObject.SetActive(false);
+    BuckAmountText.gameObject.SetActive(false);
+    ScrollRect.gameObject.SetActive(true);
+    }
+    // Hide the level up panel and reset the UI
+    private void OnOkButtonClicked()
+    {
+        HideLevelUpPanel();
+        EarnedUnlockedText.text = "You earned";
+        CollectButton.gameObject.SetActive(true);
+        OkButton.gameObject.SetActive(false);
+        BuckImage.gameObject.SetActive(true);
+        BuckAmountText.gameObject.SetActive(true);
+        ScrollRect.gameObject.SetActive(false);
     }
     // Handles saving
     private void Save()
