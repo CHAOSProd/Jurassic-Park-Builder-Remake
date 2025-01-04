@@ -12,15 +12,15 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
     mipMapsPreserveCoverage: 0
-    alphaTestReferenceValue: 0.5
-    mipMapFadeDistanceStart: 1
-    mipMapFadeDistanceEnd: 3
+    alphaTestReferenceValue: 1
+    mipMapFadeDistanceStart: 8
+    mipMapFadeDistanceEnd: 10
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
@@ -54,9 +54,9 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 50
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 2
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -75,7 +75,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -171,10 +171,10 @@ TextureImporter:
       name: VFX_1
       rect:
         serializedVersion: 2
-        x: 389
-        y: 379
-        width: 129
-        height: 128
+        x: 390
+        y: 380
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,55 +231,76 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VFX_1_1
+      name: VFX_3_1
       rect:
         serializedVersion: 2
-        x: 873
-        y: 502
-        width: 132
-        height: 132
+        x: 394
+        y: 768
+        width: 249
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e41d016ab12dac546be15c67244d7c26
-      internalID: -1689112079
+      spriteID: 546b8fa91f255324ea22bb4c0ba503b7
+      internalID: -2143057738
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VFX_1_2
+      name: VFX3_1
       rect:
         serializedVersion: 2
-        x: 314
-        y: 522
-        width: 143
-        height: 240
+        x: 0
+        y: 503
+        width: 271
+        height: 273
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d31cbe9e635b6074d9d29ae8cd4a9d1c
-      internalID: -269400774
+      spriteID: e70def4e3d4d04e489ddeb40e6678499
+      internalID: 43738107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VFX_1_3
+      name: VFX3_3
       rect:
         serializedVersion: 2
-        x: 386
-        y: 311
-        width: 66
-        height: 67
+        x: 0
+        y: 842
+        width: 156
+        height: 108
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 497f864aa0935be468d3121ff7c8303b
+      internalID: -984530801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_3_4
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 58
+        width: 61
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,8 +308,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b8bdd3dc94bdeb49b513111c4e71ca6
-      internalID: -1767647968
+      spriteID: 756a608d78c9da94eb6e8d2001388e86
+      internalID: -2103532854
       vertices: []
       indices: 
       edges: []
@@ -304,12 +325,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Beam1_1: -12491269
+      Beam1_2: -1861339705
+      Beam1_3: 727479978
+      Beam1_4: 728981345
+      Beam2_1: -830353272
+      Beam2_2: 1217427115
+      Beam2_3: -2013182786
+      Beam2_4: -1615993853
+      VFX3_1: 43738107
+      VFX3_3: -984530801
       VFX_1: -5573167902805457136
       VFX_1_0: 1883587665
-      VFX_1_1: -1689112079
-      VFX_1_2: -269400774
-      VFX_1_3: -1767647968
       VFX_2: -6564587279912768190
+      VFX_3_1: -2143057738
+      VFX_3_4: -2103532854
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -36,6 +36,7 @@ public class NewSpeciesManager : Singleton<NewSpeciesManager>
         PanelOpeningSound.GetComponent<AudioSource>().Play();
 
         NewSpeciesPanel.SetActive(true);
+        NewSpeciesPanel.GetComponent<Animator>().Play("openAnimation");
 
         GetDinoInfo();
 
