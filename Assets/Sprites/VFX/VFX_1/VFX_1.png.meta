@@ -75,10 +75,14 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
+<<<<<<< HEAD
     maxTextureSize: 1024
+=======
+    maxTextureSize: 2048
+>>>>>>> parent of c3e1635 (Level up animation not finished)
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -218,7 +222,7 @@ TextureImporter:
         width: 126
         height: 126
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -230,6 +234,7 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+<<<<<<< HEAD
     - serializedVersion: 2
       name: VFX_3_1
       rect:
@@ -314,6 +319,8 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+=======
+>>>>>>> parent of c3e1635 (Level up animation not finished)
     outline: []
     physicsShape: []
     bones: []
