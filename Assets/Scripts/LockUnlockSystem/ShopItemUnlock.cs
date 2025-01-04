@@ -43,7 +43,12 @@ public class ShopItemUnlock : MonoBehaviour
         Debug.Log("UI Panel opened. Updating premium cost display.");
         UpdatePremiumCostDisplay();
     }
-
+    // Added in order to make the item not show while levelling up if the item was bought with bucks
+    public void UnlockItemWithBucks()
+    {
+    UnlockItem();
+    Attributes.SetBool(saveName + "_bucks", true);
+    }
     private void UpdatePremiumCostDisplay()
     {
         int currentLevel = Attributes.GetInt("level", 1);
@@ -98,7 +103,7 @@ public class ShopItemUnlock : MonoBehaviour
         // The CurrencyChangeEvent method already handles showing the not enough coins panel and returns true if the transaction was successful and false if not
         if (EventManager.Instance.TriggerEvent(currencyChange))
         {
-            UnlockItem(); // Unlock the specific item that was clicked
+            UnlockItemWithBucks(); // Unlock the specific item that was clicked
             Debug.Log("Bucks deducted and item unlocked.");
         }
         else
