@@ -92,9 +92,10 @@ public class SaveManager : Singleton<SaveManager>
                 hatchingTimer.Load(matchingHatchingData);
             }
 
+            MoneyObject moneyObject = obj.GetComponentInChildren<MoneyObject>(true);
             if (moneyIndex < SaveData.MoneyData.Count && SaveData.MoneyData[moneyIndex].PlaceableObjectIndex == placableIndex)
             {
-                obj.GetComponentInChildren<MoneyObject>().Initialise(SaveData.MoneyData[moneyIndex]);
+                moneyObject.Initialise(SaveData.MoneyData[moneyIndex]);
                 moneyIndex++;
             }
         }

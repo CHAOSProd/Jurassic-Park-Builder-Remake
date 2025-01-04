@@ -144,7 +144,7 @@ public class MoneyObject : MonoBehaviour
     }
     public void Initialise(MoneyObjectData data)
     {
-        this._data = data;
+        _data = data;
 
         InitMoneyPerSecond();
 
