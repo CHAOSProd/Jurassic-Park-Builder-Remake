@@ -12,7 +12,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -43,9 +43,9 @@ TextureImporter:
     filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -75,11 +75,20 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-<<<<<<< HEAD
-    maxTextureSize: 1024
-=======
     maxTextureSize: 2048
->>>>>>> parent of c3e1635 (Level up animation not finished)
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -91,7 +100,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Standalone
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -130,32 +139,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -172,13 +155,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: VFX_1
+      name: Beam1
       rect:
         serializedVersion: 2
-        x: 390
-        y: 380
-        width: 126
-        height: 126
+        x: 0
+        y: 506
+        width: 264
+        height: 262
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,20 +169,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0170caff15128a2b0800000000000000
-      internalID: -5573167902805457136
+      spriteID: f7acafa4e52a9c947b4f6560d8b9587c
+      internalID: -736061845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: VFX_2
+      name: Beam2
       rect:
         serializedVersion: 2
-        x: 749
-        y: 380
-        width: 118
-        height: 118
+        x: 390
+        y: 772
+        width: 253
+        height: 252
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,8 +190,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24d60cb46a6e5e4a0800000000000000
-      internalID: -6564587279912768190
+      spriteID: bb1a7bc5cdb2f2d4084ba54973f9754c
+      internalID: 1378067628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Star
+      rect:
+        serializedVersion: 2
+        x: 470
+        y: 61
+        width: 64
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e68ce9558df30c548beaae0e3e76f89b
+      internalID: -1620919275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Beam3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 864
+        width: 143
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f2c3b4fc77b5a64b9860780612f19fd
+      internalID: 860586705
       vertices: []
       indices: 
       edges: []
@@ -217,32 +242,10 @@ TextureImporter:
       name: VFX_1_0
       rect:
         serializedVersion: 2
-        x: 616
+        x: 615
         y: 379
-        width: 126
-        height: 126
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc3de23e1b26d3d4293a1dd7e88068e4
-      internalID: 1883587665
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-<<<<<<< HEAD
-    - serializedVersion: 2
-      name: VFX_3_1
-      rect:
-        serializedVersion: 2
-        x: 394
-        y: 768
-        width: 249
-        height: 256
+        width: 132
+        height: 133
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,81 +253,16 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 546b8fa91f255324ea22bb4c0ba503b7
-      internalID: -2143057738
+      spriteID: 5f71e82bc8cb1974d809cd9420aee97f
+      internalID: -1307524282
       vertices: []
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: VFX3_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 503
-        width: 271
-        height: 273
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e70def4e3d4d04e489ddeb40e6678499
-      internalID: 43738107
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: VFX3_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 842
-        width: 156
-        height: 108
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 497f864aa0935be468d3121ff7c8303b
-      internalID: -984530801
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: VFX_3_4
-      rect:
-        serializedVersion: 2
-        x: 470
-        y: 58
-        width: 61
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 756a608d78c9da94eb6e8d2001388e86
-      internalID: -2103532854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-=======
->>>>>>> parent of c3e1635 (Level up animation not finished)
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d9a6252cf8cb99e41ab51a901771f1ce
+    spriteID: a83b6d2a28fb5b94494d8586b5aae74a
     internalID: 0
     vertices: []
     indices: 
@@ -332,21 +270,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Beam1_1: -12491269
-      Beam1_2: -1861339705
-      Beam1_3: 727479978
-      Beam1_4: 728981345
-      Beam2_1: -830353272
-      Beam2_2: 1217427115
-      Beam2_3: -2013182786
-      Beam2_4: -1615993853
-      VFX3_1: 43738107
-      VFX3_3: -984530801
-      VFX_1: -5573167902805457136
-      VFX_1_0: 1883587665
-      VFX_2: -6564587279912768190
-      VFX_3_1: -2143057738
-      VFX_3_4: -2103532854
+      Beam1: -736061845
+      Beam2: 1378067628
+      Beam3: 860586705
+      Star: -1620919275
+      VFX_1_0: -1307524282
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
