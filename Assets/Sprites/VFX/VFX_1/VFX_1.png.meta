@@ -259,6 +259,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: VFX_1_1
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 379
+        width: 129
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 808f4f99b3a450840a2955955094e536
+      internalID: 1196105390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_1_2
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 377
+        width: 125
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd62d7a026840a946b5fc6b5ddfb7ed2
+      internalID: 1298174621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -275,6 +317,8 @@ TextureImporter:
       Beam3: 860586705
       Star: -1620919275
       VFX_1_0: -1307524282
+      VFX_1_1: 1196105390
+      VFX_1_2: 1298174621
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
