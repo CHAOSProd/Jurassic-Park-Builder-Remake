@@ -75,10 +75,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -171,10 +171,10 @@ TextureImporter:
       name: VFX_1
       rect:
         serializedVersion: 2
-        x: 390
-        y: 380
-        width: 126
-        height: 126
+        x: 389
+        y: 379
+        width: 129
+        height: 128
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,7 +218,7 @@ TextureImporter:
         width: 126
         height: 126
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -226,6 +226,69 @@ TextureImporter:
       bones: []
       spriteID: cc3de23e1b26d3d4293a1dd7e88068e4
       internalID: 1883587665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_1_1
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 502
+        width: 132
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e41d016ab12dac546be15c67244d7c26
+      internalID: -1689112079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_1_2
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 522
+        width: 143
+        height: 240
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d31cbe9e635b6074d9d29ae8cd4a9d1c
+      internalID: -269400774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_1_3
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 311
+        width: 66
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b8bdd3dc94bdeb49b513111c4e71ca6
+      internalID: -1767647968
       vertices: []
       indices: 
       edges: []
@@ -243,6 +306,9 @@ TextureImporter:
     nameFileIdTable:
       VFX_1: -5573167902805457136
       VFX_1_0: 1883587665
+      VFX_1_1: -1689112079
+      VFX_1_2: -269400774
+      VFX_1_3: -1767647968
       VFX_2: -6564587279912768190
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
