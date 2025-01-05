@@ -290,7 +290,7 @@ MonoBehaviour:
   _tapVFX: {fileID: 6413502638416436667}
   _moneyCounter: {fileID: 2511511749238511829}
   _moneyCountDisplayer: {fileID: 7288670398339259973}
-  _moneyPerSecond: 0.33
+  _moneyPerSecond: 0.1
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
   _animator: {fileID: 0}
@@ -807,8 +807,8 @@ Transform:
   m_GameObject: {fileID: 1038022921513953296}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.06349093, y: 0.12273884, z: 0}
-  m_LocalScale: {x: 1.03633, y: 1.03633, z: 1.03633}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4201076216796962934}
@@ -1624,8 +1624,8 @@ Transform:
   m_GameObject: {fileID: 6413502638416436667}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.16848491, y: -0.4713376, z: 0}
-  m_LocalScale: {x: 3.838259, y: 3.838259, z: 3.838259}
+  m_LocalPosition: {x: 0.16848491, y: -0.1, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5973779959252912341}
@@ -2486,7 +2486,7 @@ Transform:
   m_GameObject: {fileID: 8131006269033104123}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.002, y: 0.024, z: -1.5}
+  m_LocalPosition: {x: -0.1, y: 0.024, z: -1.5}
   m_LocalScale: {x: 0.3514721, y: 0.3514721, z: 0.3514721}
   m_ConstrainProportionsScale: 0
   m_Children: []
