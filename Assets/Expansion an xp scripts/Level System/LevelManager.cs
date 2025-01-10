@@ -23,7 +23,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private float[] xpPerLevel; // Array to store XP required for each level
     [SerializeField] private Image[] levelImages; // Array to store number images
     [SerializeField] private List<LevelReqItem> levelRequiredItems; // List for item's levelReq Filter
+    [SerializeField] private List<GameObject> ToggledUI;
     [SerializeField] private GameObject appearVFXPrefab;
+
 
     private float level; // Current player level
     private float XP; // Current player XP
@@ -165,6 +167,11 @@ public class LevelManager : MonoBehaviour
     // Shows the level up panel
     private void ShowLevelUpPanel()
     {
+        foreach(GameObject ui in ToggledUI)
+        {
+            ui.SetActive(false);
+        }
+
         levelUpPanel.SetActive(true);
         levelUpSound.GetComponent<AudioSource>().Play();
         StartCoroutine(PlayLevelUpAnimations());
@@ -263,6 +270,11 @@ public class LevelManager : MonoBehaviour
     {
         Transform textTransform = levelUpPanel.transform.Find("Text");
         Transform panelTransform = levelUpPanel.transform.Find("Panel");
+
+        foreach (GameObject ui in ToggledUI)
+        {
+            ui.SetActive(true);
+        }
 
         textTransform.gameObject.SetActive(false);
         panelTransform.gameObject.SetActive(false);
