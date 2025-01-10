@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
+using UnityEngine.VFX;
 
 public class LevelManager : MonoBehaviour
 {
@@ -16,9 +18,12 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Button CollectButton;
     [SerializeField] private Button OkButton;
     [SerializeField] private GameObject levelUpPanel; // Panel that pops up on level up
+    [SerializeField] private GameObject levelUpSound;
+    [SerializeField] private GameObject levelUpAppearSound;
     [SerializeField] private float[] xpPerLevel; // Array to store XP required for each level
     [SerializeField] private Image[] levelImages; // Array to store number images
     [SerializeField] private List<LevelReqItem> levelRequiredItems; // List for item's levelReq Filter
+    [SerializeField] private GameObject appearVFXPrefab;
 
     private float level; // Current player level
     private float XP; // Current player XP
@@ -116,6 +121,8 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+
+
     private void UpdateLevelImages()
     {
         for (int i = 0; i < levelImages.Length; i++)
@@ -159,16 +166,113 @@ public class LevelManager : MonoBehaviour
     private void ShowLevelUpPanel()
     {
         levelUpPanel.SetActive(true);
+        levelUpSound.GetComponent<AudioSource>().Play();
+        StartCoroutine(PlayLevelUpAnimations());
     }
+
+    private IEnumerator PlayLevelUpAnimations()
+    {
+        EnableVFX(true);
+
+        Transform textTransform = levelUpPanel.transform.Find("Text");
+        Transform panelTransform = levelUpPanel.transform.Find("Panel");
+
+        textTransform.gameObject.SetActive(true);
+
+        Animator textAnimator = textTransform.GetComponent<Animator>();
+        Animator panelAnimator = panelTransform.GetComponent<Animator>();
+
+        textAnimator.Play("LevelUpTextAnim1");
+        yield return WaitForAnimation("LevelUpTextAnim1", textAnimator);
+
+        textTransform.gameObject.SetActive(false);
+        panelTransform.gameObject.SetActive(true);
+
+        panelAnimator.Play("LevelUpPanelAnim");
+        yield return WaitForAnimation("LevelUpPanelAnim", panelAnimator);
+
+        EnableVFX(false);
+    }
+
+    private void EnableVFX(bool enabled)
+    {
+        foreach (Transform vfx in levelUpPanel.transform.Find("Panel").transform)
+        {
+            if (vfx.CompareTag("LevelUpVFX"))
+            {
+                vfx.gameObject.SetActive(enabled);
+            }
+        }
+    }
+
+    private IEnumerator WaitForAnimation(string animationName, Animator animator)
+    {
+        // Wait until the animation starts playing
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+        {
+            yield return null;
+        }
+
+        // Wait until the animation is done
+        while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+        {
+            yield return null;
+        }
+    }
+
+    private IEnumerator PlayAppearVFX()
+    {
+        foreach (Transform item in ScrollRect.transform.GetChild(0).transform.GetChild(0).transform)
+        {
+            if (item.GetComponent<Image>() != null)
+            {
+                if (item.gameObject.activeSelf)
+                {
+                    levelUpAppearSound.GetComponent<AudioSource>().Play();
+
+                    // Instantiate VFX
+                    GameObject vfx = Instantiate(appearVFXPrefab, item.gameObject.transform);
+                    vfx.transform.localPosition = Vector3.zero;
+
+                    // Play the VFX animation and wait for it to complete
+                    Animator vfxAnimator = vfx.GetComponent<Animator>();
+                    vfxAnimator.Play("Appear");
+
+                    // Play item animation if it has one
+                    Animator itemAnimator = item.GetComponent<Animator>();
+                    if (itemAnimator)
+                    {
+                        itemAnimator.enabled = true;
+                        itemAnimator.Play("ImageAppear");
+                    }
+
+                    yield return WaitForAnimation("Appear", vfxAnimator);
+                    Destroy(vfx);
+
+                    yield return WaitForAnimation("ImageAppear", itemAnimator);
+
+                    itemAnimator.enabled = false; 
+
+                }
+            }
+        }
+    }
+
     // Hides the level up panel
     private void HideLevelUpPanel()
     {
+        Transform textTransform = levelUpPanel.transform.Find("Text");
+        Transform panelTransform = levelUpPanel.transform.Find("Panel");
+
+        textTransform.gameObject.SetActive(false);
+        panelTransform.gameObject.SetActive(false);
         levelUpPanel.SetActive(false);
     }
     // Update the UI and add bucks
     private void OnCollectButtonClicked()
     {
-    EarnedUnlockedText.text = "You unlocked";
+        EarnedUnlockedText.text = "You unlocked";
+
         if (CurrencySystem.Instance != null)
         {
             CurrencySystem.Instance.AddCurrency(new CurrencyChangeGameEvent
@@ -181,12 +285,29 @@ public class LevelManager : MonoBehaviour
         {
             Debug.LogError("CurrencySystem.Instance is null. Make sure CurrencySystem is initialized properly.");
         }
-    CollectButton.gameObject.SetActive(false);
-    OkButton.gameObject.SetActive(true);
-    BuckImage.gameObject.SetActive(false);
-    BuckAmountText.gameObject.SetActive(false);
-    ScrollRect.gameObject.SetActive(true);
+
+        Animator animator = levelUpPanel.transform.Find("Panel").GetComponent<Animator>();
+
+        animator.Play("ChangeAnim");
+
+        EnableVFX(false);
+        StartCoroutine(WaitForCollectAnimation(animator));
     }
+
+    private IEnumerator WaitForCollectAnimation(Animator animator)
+    {
+        EnableVFX(false);
+        yield return WaitForAnimation("ChangeAnim", animator);
+        EnableVFX(false);
+        CollectButton.gameObject.SetActive(false);
+        OkButton.gameObject.SetActive(true);
+        BuckImage.gameObject.SetActive(false);
+        BuckAmountText.gameObject.SetActive(false);
+        ScrollRect.gameObject.SetActive(true);
+
+        StartCoroutine(PlayAppearVFX());
+    }
+
     // Hide the level up panel and reset the UI
     private void OnOkButtonClicked()
     {
