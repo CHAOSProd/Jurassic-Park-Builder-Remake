@@ -14,6 +14,7 @@ public class LevelReqItem : MonoBehaviour
         if (isUnlockedWithBucks)
         {
             Debug.Log($"Item {gameObject.name} was unlocked with bucks. Visibility update skipped.");
+            gameObject.SetActive(false);
             return;
         }
         bool isActive = currentLevel == requiredLevel;
