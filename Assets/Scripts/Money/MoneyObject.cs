@@ -161,6 +161,15 @@ public class MoneyObject : MonoBehaviour
         }
 
         _currentMoneyFloated = _data.Money;
+
+        if (_data.Money >= MaximumMoney)
+        {
+            _maxMoneyReached = true;
+            _notification.SetActive(true);
+
+        if (_animator != null)
+            _animator.SetTrigger("MaxMoneyReached");
+        }
     }
     public void InitData(int placeableIndex)
     {
