@@ -75,7 +75,16 @@ public class MoneyObject : MonoBehaviour
 
     private void Update()
     {
-        if (_maxMoneyReached) return;
+        if (_maxMoneyReached)
+        {
+            if (!_notification.activeSelf)
+            {
+                _notification.SetActive(true);
+                if (_animator != null)
+                    _animator.SetTrigger("MaxMoneyReached");
+            }
+            return;
+        }
 
         if (_data.Money >= MaximumMoney && !_maxMoneyReached)
         {
