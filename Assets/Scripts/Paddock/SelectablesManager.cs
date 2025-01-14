@@ -39,7 +39,7 @@ public class SelectablesManager : Singleton<SelectablesManager>
         {
             if (CurrentSelectable is Paddock paddock && paddock.is_hatching)
             {
-                UIManager.Instance.ChangeTo("SelectedUI");
+                UIManager.Instance.ChangeTo("HatchingUI");
             }
             else if (CurrentSelectable is Paddock)
             {
