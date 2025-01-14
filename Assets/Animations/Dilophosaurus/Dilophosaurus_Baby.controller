@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dilophosaurs_Baby_Sleep
-  m_Speed: 1.25
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8425670158084760329}
@@ -21,7 +21,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f32aa1a601f54d349aa415ffc6584d6e, type: 2}
+  m_Motion: {fileID: -1422011007694221501, guid: c4ef4d455472df54e93004b52bd04f46,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -74,7 +75,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours:
   - {fileID: -2073059160453291630}
   m_AnyStatePosition: {x: -110, y: -30, z: 0}
-  m_EntryPosition: {x: -40, y: 80, z: 0}
+  m_EntryPosition: {x: -100, y: 110, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 4126148805745810782}
@@ -158,7 +159,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Dilophosaurus_Baby_Fun
-  m_Speed: 1.25
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5903456298263835642}
@@ -171,7 +172,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f61f82825a1cbdb4f8adc494a6243ce1, type: 2}
+  m_Motion: {fileID: 4781951162920444690, guid: 78b016dc619586c47ab1722b60a75ec8,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -185,7 +187,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Idle
-  m_Speed: 1.25
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8664209473184353442}
@@ -199,7 +201,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: caed4a11032195249bcca489e6e0119c,
+  m_Motion: {fileID: 4781951162920444690, guid: a9f5c882ff77d484eb4dbbeec8e3edd6,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
