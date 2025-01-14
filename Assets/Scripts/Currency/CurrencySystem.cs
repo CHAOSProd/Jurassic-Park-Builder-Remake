@@ -9,6 +9,8 @@ public class CurrencySystem : Singleton<CurrencySystem>
     [SerializeField] private List<GameObject> _texts;
     [SerializeField] private PurchasePanel _notEnoughCoinsPanel;
 
+    [SerializeField] private PurchasePanel _notEnoughBucksPanel;
+
     private static Dictionary<CurrencyType, int> _currencyAmounts = new Dictionary<CurrencyType, int>();
 
     private static Dictionary<CurrencyType, TextMeshProUGUI> _currencyTexts = new Dictionary<CurrencyType, TextMeshProUGUI>();
@@ -44,7 +46,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
             // For testing purposes
             if((CurrencyType)i == CurrencyType.Coins)
             {
-                _currencyAmounts[(CurrencyType)i] = 10000000;
+                _currencyAmounts[(CurrencyType)i] = 100000;
             }
 
             // Initial UI Update
@@ -56,26 +58,41 @@ public class CurrencySystem : Singleton<CurrencySystem>
         return _currencyAmounts.ContainsKey(currencyType) && _currencyAmounts[currencyType] >= amount;
     }
 
-    public bool AddCurrency(CurrencyChangeGameEvent currencyChange)
-    {
-        CurrencyType currencyType = currencyChange.CurrencyType;
-        int amount = currencyChange.Amount;
+public bool AddCurrency(CurrencyChangeGameEvent currencyChange)
+{
+    CurrencyType currencyType = currencyChange.CurrencyType;
+    int amount = currencyChange.Amount;
 
-        if (_currencyAmounts.ContainsKey(currencyType))
+    if (_currencyAmounts.ContainsKey(currencyType))
+    {
+        if (amount < 0 && !HasEnoughCurrency(currencyType, -amount))
         {
-            if(amount < 0 && !HasEnoughCurrency(currencyType, -amount))
+            switch (currencyType)
             {
-                _notEnoughCoinsPanel.ShowNotEnoughCoinsPanel(-amount);
-                return false;
+                case CurrencyType.Coins:
+                    _notEnoughCoinsPanel.ShowNotEnoughCoinsPanel(-amount);
+                    break;
+                case CurrencyType.Bucks:
+                    _notEnoughBucksPanel.ShowNotEnoughCoinsPanel(-amount);
+                    break;
             }
-            _currencyAmounts[currencyType] += amount;
-            Attributes.SetInt(currencyType.ToString(), _currencyAmounts[currencyType]);
-            _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("#,#", new CultureInfo("en-US"));
-            return true;
+            return false;
         }
-        return false;
+
+        _currencyAmounts[currencyType] += amount;
+        Attributes.SetInt(currencyType.ToString(), _currencyAmounts[currencyType]);
+        _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("#,#", new CultureInfo("en-US"));
+        return true;
+    }
+    return false;
+}
+
+    public int GetCurrencyAmount(CurrencyType currencyType)
+    {
+        return _currencyAmounts.ContainsKey(currencyType) ? _currencyAmounts[currencyType] : 0;
     }
 }
+
 
 public enum CurrencyType
 {

@@ -312,12 +312,12 @@ public class LevelManager : MonoBehaviour
         yield return WaitForAnimation("ChangeAnim", animator);
         EnableVFX(false);
         CollectButton.gameObject.SetActive(false);
-        OkButton.gameObject.SetActive(true);
         BuckImage.gameObject.SetActive(false);
         BuckAmountText.gameObject.SetActive(false);
         ScrollRect.gameObject.SetActive(true);
-
         StartCoroutine(PlayAppearVFX());
+        yield return new WaitForSeconds(1.0f); 
+        OkButton.gameObject.SetActive(true);
     }
 
     // Hide the level up panel and reset the UI
