@@ -480,7 +480,7 @@ TextureImporter:
         width: 126
         height: 212
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -488,6 +488,69 @@ TextureImporter:
       bones: []
       spriteID: f3b271acacb4ee942beda257b6c1191f
       internalID: -913290304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000004_17
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 1498
+        width: 168
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b92f31f56d847a646a4455c28dd2c8ab
+      internalID: -2073856785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000004_18
+      rect:
+        serializedVersion: 2
+        x: 1812
+        y: 965
+        width: 197
+        height: 116
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ee4cb7b24c97c24eb2fd83dd6c47195
+      internalID: -1329722143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000004_19
+      rect:
+        serializedVersion: 2
+        x: 1067
+        y: 45
+        width: 129
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0ae09a245441424697335372f9b8e0b
+      internalID: 251416199
       vertices: []
       indices: 
       edges: []
@@ -512,6 +575,9 @@ TextureImporter:
       00000004_14: -527254933
       00000004_15: -128018034
       00000004_16: -913290304
+      00000004_17: -2073856785
+      00000004_18: -1329722143
+      00000004_19: 251416199
       00000004_2: -937492199
       00000004_3: 1582850102
       00000004_4: 898598778

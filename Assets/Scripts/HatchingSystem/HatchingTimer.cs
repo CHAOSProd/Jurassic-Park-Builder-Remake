@@ -23,6 +23,9 @@ public class HatchingTimer : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject _timerBarPrefab;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource _xpCollectSound; // Add an AudioSource for XP collection sound.
+
     private TimerBar _timerBarInstance;
     private HatchingData data;
 
@@ -149,6 +152,12 @@ public class HatchingTimer : MonoBehaviour
         data.isHatching = false;
 
         _xpCountDisplayer.DisplayCount(HatchXP);
+
+        if (_xpCollectSound != null) // Play sound if the AudioSource is set.
+        {
+            _xpCollectSound.Play();
+        }
+
         NewSpeciesManager.Instance.OpenPanel(data);
     }
 
@@ -157,3 +166,4 @@ public class HatchingTimer : MonoBehaviour
         SaveManager.Instance.SaveData.HatchingData.Remove(data);
     }
 }
+

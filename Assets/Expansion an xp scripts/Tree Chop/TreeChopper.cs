@@ -25,6 +25,10 @@ public class TreeChopper : Selectable
     [SerializeField] private GameObject _timerBarPrefab;
     [SerializeField] private int _chopTime;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip _xpCollectSound; // XP collect sound
+    private AudioSource _audioSource;
+
     public bool AllowSelection { get; private set; }
     public (int x, int y) MappedPosition { get; private set; }
 
@@ -38,32 +42,38 @@ public class TreeChopper : Selectable
     private void Awake()
     {
         AllowSelection = _selectableFromBeginning;
+        _audioSource = GetComponent<AudioSource>();
+        if (_audioSource == null)
+        {
+            // Add an AudioSource component if not present
+            _audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
-    private void Start() 
+    private void Start()
     {
         _trees.SetActive(true);
         _debris.SetActive(false);
     }
 
-    private void OnMouseDown() 
+    private void OnMouseDown()
     {
-        if (chopped || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) 
+        if (chopped || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject)
             return;
 
-        if (hasTreeDebris) 
+        if (hasTreeDebris)
         {
             CollectDebris();
             return;
         }
 
-        if(AllowSelection && SelectablesManager.Instance.CurrentSelectable != this)
+        if (AllowSelection && SelectablesManager.Instance.CurrentSelectable != this)
         {
             TreeChopManager.Instance.SetExpansionCostText();
             Select();
         }
     }
 
-    public void PerformChopAction() 
+    public void PerformChopAction()
     {
         AllowSelection = false;
 
@@ -85,14 +95,14 @@ public class TreeChopper : Selectable
         hasTreeDebris = true;
         _treeData.HasDebris = true;
 
-        if(_timerBarInstance != null)
+        if (_timerBarInstance != null)
             Destroy(_timerBarInstance.gameObject);
 
         _timerBarInstance = null;
 
         _treeData.Progress = null;
     }
-    private void CollectDebris() 
+    private void CollectDebris()
     {
         hasTreeDebris = false;
         _treeData.HasDebris = false;
@@ -100,6 +110,13 @@ public class TreeChopper : Selectable
         _tapVFX.SetActive(true);
         _xpCounter.SetActive(true);
         _xpCountDisplayer.DisplayCount(TreeChopManager.Instance.CurrentXP);
+
+        // Play XP collect sound
+        if (_xpCollectSound != null)
+        {
+            _audioSource.PlayOneShot(_xpCollectSound);
+        }
+
         EventManager.Instance.TriggerEvent(new XPAddedGameEvent(TreeChopManager.Instance.CurrentXP));
         TreeChopManager.Instance.UpdateXP();
         _debris.SetActive(false);
@@ -163,7 +180,7 @@ public class TreeChopper : Selectable
             _debris.SetActive(true);
 
             int newTime = (int)Math.Floor((DateTime.Now - _treeData.Progress.LastTick).TotalSeconds) + _treeData.Progress.ElapsedTime;
-            if(newTime >= _chopTime)
+            if (newTime >= _chopTime)
             {
                 EnableDebris();
             }
@@ -191,6 +208,6 @@ public class TreeChopper : Selectable
     }
     public void SetMappedPosition(int x, int y)
     {
-        MappedPosition = (x,y);
+        MappedPosition = (x, y);
     }
 }

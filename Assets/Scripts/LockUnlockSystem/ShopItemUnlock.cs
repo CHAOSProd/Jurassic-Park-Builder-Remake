@@ -93,25 +93,33 @@ public class ShopItemUnlock : MonoBehaviour
     }
 
     // Called when the unlock button is pressed for this specific item.
-    public void OnUnlockButtonClicked()
-    {
-        int currentLevel = Attributes.GetInt("level", 1);
-        int bucks = currentLevel < requiredLevel ? (requiredLevel - currentLevel) * 2 : 0;
+public void OnUnlockButtonClicked()
+{
+    int currentLevel = Attributes.GetInt("level", 1);
+    int bucks = currentLevel < requiredLevel ? (requiredLevel - currentLevel) * 2 : 0;
 
+    if (bucks > 0)
+    {
         CurrencyChangeGameEvent currencyChange = new(-bucks, CurrencyType.Bucks);
 
-        // The CurrencyChangeEvent method already handles showing the not enough coins panel and returns true if the transaction was successful and false if not
-        if (EventManager.Instance.TriggerEvent(currencyChange))
+        bool transactionSuccessful = CurrencySystem.Instance.AddCurrency(currencyChange);
+
+        if (transactionSuccessful)
         {
-            UnlockItemWithBucks(); // Unlock the specific item that was clicked
+            UnlockItemWithBucks();
             Debug.Log("Bucks deducted and item unlocked.");
         }
         else
         {
-            Debug.LogError("Failed to deduct bucks.");
+            Debug.LogWarning($"Not enough bucks to unlock the item. Required: {bucks}, Available: {CurrencySystem.Instance.GetCurrencyAmount(CurrencyType.Bucks)}");
         }
     }
-
+    else
+    {
+        Debug.Log("No bucks required to unlock this item.");
+        UnlockItem();
+    }
+}
     // Show the lock panel only if the item is not unlocked
     private void ShowLockPanel()
     {
