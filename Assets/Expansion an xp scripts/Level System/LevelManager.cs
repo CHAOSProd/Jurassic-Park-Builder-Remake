@@ -316,7 +316,16 @@ public class LevelManager : MonoBehaviour
         BuckAmountText.gameObject.SetActive(false);
         ScrollRect.gameObject.SetActive(true);
         StartCoroutine(PlayAppearVFX());
-        yield return new WaitForSeconds(1.0f); 
+        int itemCount = 0;
+        foreach (Transform item in ScrollRect.transform.GetChild(0).transform.GetChild(0).transform)
+        {
+            if (item.gameObject.activeSelf)
+            {
+                itemCount++;
+            }
+        }
+        float delay = itemCount * 0.65f;
+        yield return new WaitForSeconds(delay);
         OkButton.gameObject.SetActive(true);
     }
 
