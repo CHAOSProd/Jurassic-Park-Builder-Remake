@@ -877,6 +877,7 @@ MonoBehaviour:
   _tapVFX: {fileID: 958122866707918590}
   _xpCounter: {fileID: 2457046888706865611}
   _xpCountDisplayer: {fileID: 4210527620278925669}
+  _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   DisplayFadeInOut: {fileID: 0}
   _display: {fileID: 7482792473835618704}
   _construction: {fileID: 4168418753918362626}

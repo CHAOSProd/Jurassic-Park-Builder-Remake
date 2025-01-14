@@ -12,7 +12,7 @@ public class DebrisObject : Selectable
 {
     [Header("Properties")]
     [SerializeField] private int _cost;
-    [SerializeField] private int _removeTime; //In seconds
+    [SerializeField] private int _removeTime; // In seconds
     [SerializeField] private int _xp;
 
     [Header("XP Objects")]
@@ -28,11 +28,16 @@ public class DebrisObject : Selectable
     [Header("UI")]
     [SerializeField] private GameObject _timerBarPrefab;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip _xpCollectSound; // XP collect sound clip
+    private AudioSource _audioSource; // Audio source for sound playback
+
     private TimerBar _timerBarInstance;
     private bool _removing = false;
     private bool _removed = false;
     private BoundsInt _size;
     private DebrisData _data;
+
     private void Awake()
     {
         _xpNotification.SetActive(false);
@@ -40,13 +45,17 @@ public class DebrisObject : Selectable
         _xpCounter.SetActive(false);
         _selectableObject.SetActive(false);
         _debrisVisual.SetActive(true);
+
+        // Initialize the AudioSource component
+        _audioSource = gameObject.AddComponent<AudioSource>();
+        _audioSource.playOnAwake = false;
     }
-    
+
     private void OnMouseUp()
     {
         if (_removing || SelectablesManager.Instance.CurrentSelectable == this || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) return;
 
-        if(_removed)
+        if (_removed)
         {
             CollectDebris();
         }
@@ -81,13 +90,14 @@ public class DebrisObject : Selectable
         UIManager.Instance.ChangeTo("DefaultUI");
         Unselect();
     }
+
     private void OnRemovalComplete()
     {
         _xpNotification.SetActive(true);
         _removing = false;
         _removed = true;
 
-        if(_timerBarInstance != null)
+        if (_timerBarInstance != null)
         {
             Destroy(_timerBarInstance.gameObject);
             _timerBarInstance = null;
@@ -96,6 +106,7 @@ public class DebrisObject : Selectable
         _data.Progress = null;
         _data.Removed = true;
     }
+
     private void CollectDebris()
     {
         _xpNotification.SetActive(false);
@@ -104,7 +115,14 @@ public class DebrisObject : Selectable
         _xpCountDisplayer.DisplayCount(_xp);
         EventManager.Instance.TriggerEvent(new XPAddedGameEvent(_xp));
 
-        //Give Gridbuild Area back
+        // Play XP collect sound
+        if (_xpCollectSound != null)
+        {
+            _audioSource.clip = _xpCollectSound;
+            _audioSource.Play();
+        }
+
+        // Give Gridbuild Area back
         GridBuildingSystem.Instance.SetAreaWhite(_size, GridBuildingSystem.Instance.MainTilemap);
 
         _removing = true;
@@ -115,11 +133,13 @@ public class DebrisObject : Selectable
         SaveManager.Instance.SaveData.DebrisData.Remove(_data);
         Destroy(gameObject, 1.578f);
     }
+
     private void UpdateProgress()
     {
         _data.Progress.ElapsedTime += 1;
         _data.Progress.LastTick = DateTime.Now;
     }
+
     public void Initialize(int size, DebrisType type)
     {
         Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.WorldToCell(transform.position);
@@ -129,10 +149,11 @@ public class DebrisObject : Selectable
         _data = new DebrisData(type, (transform.position.x, transform.position.y, transform.position.z));
         SaveManager.Instance.SaveData.DebrisData.Add(_data);
     }
+
     public void Load(DebrisData d, int size)
     {
         _data = d;
-        if(_data.Progress != null)
+        if (_data.Progress != null)
         {
             int newTime = (int)Math.Floor((DateTime.Now - _data.Progress.LastTick).TotalSeconds) + _data.Progress.ElapsedTime;
             if (newTime >= _removeTime)
@@ -148,12 +169,12 @@ public class DebrisObject : Selectable
                 _timerBarInstance.transform.position = _debrisVisual.transform.position + .25f * _debrisVisual.transform.lossyScale.y * Vector3.down;
                 _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
 
-                //Update Progress every second and display xp icon when construction is finished
+                // Update Progress every second and display XP icon when construction is finished
                 _timerBarInstance.FillOverInterval(_removeTime, 1, UpdateProgress, OnRemovalComplete, newTime);
                 _removing = true;
             }
         }
-        else if(d.Removed)
+        else if (d.Removed)
         {
             OnRemovalComplete();
         }
@@ -163,3 +184,4 @@ public class DebrisObject : Selectable
         GridBuildingSystem.Instance.TakeArea(_size);
     }
 }
+

@@ -711,6 +711,7 @@ MonoBehaviour:
   _debrisVisual: {fileID: 417215955928361862}
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
+  _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
 --- !u!114 &1189576641446233304
 MonoBehaviour:
   m_ObjectHideFlags: 0

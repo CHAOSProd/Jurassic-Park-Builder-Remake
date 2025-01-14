@@ -20,6 +20,9 @@ public class PlaceableObject : MonoBehaviour
     [SerializeField] private GameObject _tapVFX;
     [SerializeField] private GameObject _xpCounter;
     [SerializeField] private MoneyCountDisplayer _xpCountDisplayer;
+    [SerializeField] private AudioClip _xpCollectSound; // New: XP collect sound
+
+    private AudioSource _audioSource; // New: Audio source for sound playback
 
     [ReadOnly()] public PlaceableObjectData data = new PlaceableObjectData();
 
@@ -61,6 +64,7 @@ public class PlaceableObject : MonoBehaviour
     private void Awake()
     {
         DisplayFadeInOut = _construction.GetComponent<FadeInOut>();
+        _audioSource = gameObject.AddComponent<AudioSource>(); // New: Initialize AudioSource
     }
 
     private void Start()
@@ -68,6 +72,7 @@ public class PlaceableObject : MonoBehaviour
         _editButton = EditButton.Instance.GetComponent<Button>();
         _editButton.onClick.AddListener(StartEditing);
     }
+
     #endregion
 
     #region Build Methods
@@ -97,13 +102,13 @@ public class PlaceableObject : MonoBehaviour
         GridBuildingSystem.Instance.TakeArea(areaTemp);
         _origin = transform.position;
         data.Position = (transform.position.x, transform.position.y, transform.position.z);
-        CameraObjectFollowing.Instance.SetTarget(null); 
+        CameraObjectFollowing.Instance.SetTarget(null);
 
         if (Placed) return;
 
         _selectable.PlayPlacementSound();
         Placed = true;
-        
+
         SaveManager.Instance.SaveData.PlaceableObjects.Add(data);
 
         GetComponentInChildren<MoneyObject>(true).InitData(SaveManager.Instance.SaveData.PlaceableObjects.Count - 1);
@@ -135,15 +140,17 @@ public class PlaceableObject : MonoBehaviour
 
         CameraObjectFollowing.Instance.SetTarget(null);
     }
+
     private void OnConstructionFinished()
     {
         _xpNotification.SetActive(true);
-        if(_timerBarInstance != null)
+        if (_timerBarInstance != null)
         {
             Destroy(_timerBarInstance.gameObject);
             _timerBarInstance = null;
         }
     }
+
     private void UpdateProgress()
     {
         this.data.Progress.ElapsedTime += 1;
@@ -163,7 +170,7 @@ public class PlaceableObject : MonoBehaviour
             {
                 _construction.GetComponent<Collider2D>().enabled = false;
             }
-            
+
         }
         else
         {
@@ -195,6 +202,12 @@ public class PlaceableObject : MonoBehaviour
         EventManager.Instance.TriggerEvent(new XPAddedGameEvent(BuildXp));
         _construction.SetActive(false);
         _main.SetActive(true);
+
+        // New: Play XP collect sound
+        if (_xpCollectSound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(_xpCollectSound);
+        }
     }
 
     public void Initialize(PlaceableObjectItem placeableObjectItem)
@@ -210,7 +223,7 @@ public class PlaceableObject : MonoBehaviour
         transform.position = new Vector3(data.Position.x, data.Position.y, data.Position.z);
         this.ConstructionFinished = placeableObjectData.ConstructionFinished;
 
-        if(ConstructionFinished)
+        if (ConstructionFinished)
         {
             // Make sure building is displayed
             _xpNotification.SetActive(false);
@@ -219,11 +232,11 @@ public class PlaceableObject : MonoBehaviour
             _construction.SetActive(false);
             _main.SetActive(true);
         }
-        else if(data.Progress != null)
+        else if (data.Progress != null)
         {
             int newTime = (int)Math.Floor((DateTime.Now - placeableObjectData.Progress.LastTick).TotalSeconds) + placeableObjectData.Progress.ElapsedTime;
 
-            if(newTime >= BuildTime)
+            if (newTime >= BuildTime)
             {
                 OnConstructionFinished();
             }
@@ -275,7 +288,7 @@ public class PlaceableObject : MonoBehaviour
 
     public void SortAtTop()
     {
-        if(ConstructionFinished)
+        if (ConstructionFinished)
         {
             _display.GetComponent<SortingGroup>().sortingOrder = 2;
         }
@@ -365,3 +378,4 @@ public class PlaceableObjectEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+
