@@ -33,7 +33,7 @@ public class DebrisObject : Selectable
     private AudioSource _audioSource; // Audio source for sound playback
 
     private TimerBar _timerBarInstance;
-    private bool _removing = false;
+    public bool removing = false;
     private bool _removed = false;
     private BoundsInt _size;
     private DebrisData _data;
@@ -51,9 +51,37 @@ public class DebrisObject : Selectable
         _audioSource.playOnAwake = false;
     }
 
+    //this makes the debris be white when the mouse hovers the debree its a bit buggy
+
+    //private void OnMouseEnter()
+    //{
+    //    if (SelectablesManager.Instance.CurrentSelectable == this) return;
+
+    //    _selectableObject.SetActive(true);
+
+    //    //Makes the sprite be fully visible
+    //    SpriteRenderer spriteRenderer = _selectableObject.GetComponent<SpriteRenderer>();
+    //    UnityEngine.Color oldColor = spriteRenderer.color;
+        
+    //    oldColor.a = 1.0f;
+    //    spriteRenderer.color = oldColor;
+
+    //    _selectableObject.GetComponent<Animator>().enabled = false;
+    //}
+
+    //private void OnMouseExit()
+    //{
+    //    if (!SelectablesManager.Instance.CurrentSelectable == this)
+    //    {
+    //        _selectableObject.SetActive(false);
+    //    }
+    //}
+
     private void OnMouseUp()
     {
-        if (_removing || SelectablesManager.Instance.CurrentSelectable == this || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) return;
+        if (SelectablesManager.Instance.CurrentSelectable == this || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) return;
+
+        _selectableObject.GetComponent<Animator>().enabled = true;
 
         if (_removed)
         {
@@ -64,7 +92,6 @@ public class DebrisObject : Selectable
             _selectableObject.SetActive(true);
             Select();
             DebrisManager.Instance.UpdateCoinText(_cost);
-            UIManager.Instance.ChangeTo("DebrisUI");
             PlaySound(0);
         }
     }
@@ -85,7 +112,10 @@ public class DebrisObject : Selectable
 
         _data.Progress = new ProgressData(0, DateTime.Now);
         _timerBarInstance.FillOverInterval(_removeTime, 1, UpdateProgress, OnRemovalComplete);
-        _removing = true;
+
+        removing = true;
+
+        SelectablesManager.Instance.UnselectAll();
 
         UIManager.Instance.ChangeTo("DefaultUI");
         Unselect();
@@ -94,7 +124,7 @@ public class DebrisObject : Selectable
     private void OnRemovalComplete()
     {
         _xpNotification.SetActive(true);
-        _removing = false;
+        removing = false;
         _removed = true;
 
         if (_timerBarInstance != null)
@@ -125,7 +155,7 @@ public class DebrisObject : Selectable
         // Give Gridbuild Area back
         GridBuildingSystem.Instance.SetAreaWhite(_size, GridBuildingSystem.Instance.MainTilemap);
 
-        _removing = true;
+        removing = true;
 
         PlaySound(1);
 
@@ -171,7 +201,7 @@ public class DebrisObject : Selectable
 
                 // Update Progress every second and display XP icon when construction is finished
                 _timerBarInstance.FillOverInterval(_removeTime, 1, UpdateProgress, OnRemovalComplete, newTime);
-                _removing = true;
+                removing = true;
             }
         }
         else if (d.Removed)

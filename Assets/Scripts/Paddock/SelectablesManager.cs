@@ -24,7 +24,7 @@ public class SelectablesManager : Singleton<SelectablesManager>
             InitializeUI();
             return;
         }
-            
+
 
         CurrentSelectable.Unselect();
         CurrentSelectable = null;
@@ -37,21 +37,36 @@ public class SelectablesManager : Singleton<SelectablesManager>
 
         if (CurrentSelectable != null)
         {
-            if(CurrentSelectable is Paddock paddock && paddock.is_hatching)
+            if (CurrentSelectable is Paddock paddock && paddock.is_hatching)
             {
-                UIManager.Instance.ChangeTo("HatchingUI");
-            } 
-            else if(CurrentSelectable is Paddock)
+                UIManager.Instance.ChangeTo("SelectedUI");
+            }
+            else if (CurrentSelectable is Paddock)
             {
                 UIManager.Instance.ChangeTo("PaddockUI");
             }
-            else if(CurrentSelectable is Building)
+            else if (CurrentSelectable is Building)
             {
                 UIManager.Instance.ChangeTo("BuildingUI");
             }
-            else if(CurrentSelectable is TreeChopper)
+            else if (CurrentSelectable is TreeChopper)
             {
                 UIManager.Instance.ChangeTo("ExpansionUI");
+            }
+            else if (CurrentSelectable is DebrisObject debris)
+            {
+                if (debris.removing)
+                {
+                    UIManager.Instance.ChangeTo("SelectedDebrisUI");
+                }
+                else
+                {
+                    UIManager.Instance.ChangeTo("DebrisUI");
+                }
+            }
+            else
+            {
+                UIManager.Instance.ChangeTo("DefaultUI");
             }
         }
         else
