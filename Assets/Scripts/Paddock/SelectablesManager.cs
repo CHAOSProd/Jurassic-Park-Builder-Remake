@@ -39,13 +39,13 @@ public class SelectablesManager : Singleton<SelectablesManager>
         {
             if (CurrentSelectable is Paddock paddock && paddock.is_hatching)
             {
-                UIManager.Instance.ChangeTo("HatchingUI");
+                UIManager.Instance.ChangeTo("BuildingsSelectedUI");
             }
             else if (CurrentSelectable is Paddock)
             {
                 UIManager.Instance.ChangeTo("PaddockUI");
             }
-            else if (CurrentSelectable is Building building)
+            else if (CurrentSelectable is Building)
             {
                 UIManager.Instance.ChangeTo("BuildingUI");
             }

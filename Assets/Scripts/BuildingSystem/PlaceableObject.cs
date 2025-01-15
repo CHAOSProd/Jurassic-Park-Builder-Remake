@@ -333,7 +333,7 @@ public class PlaceableObject : MonoBehaviour
                 if (!_xpNotification.activeSelf)
                 {
                     _selectable.Select();
-                    UIManager.Instance.ChangeTo("SelectedUI");
+                    UIManager.Instance.ChangeTo("BuildingsSelectedUI");
                     //TODO: Select the construction site and show how much time is left/bucks needed for speed up
                 }
                 else
