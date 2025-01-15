@@ -7,7 +7,7 @@ public class Paddock : Selectable
     [SerializeField] private FoodType _foodType;
     [SerializeField] private DinoNumber _dinoNumber;
 
-    [SerializeField] private HatchingTimer hatchingScript;
+    [SerializeField] public HatchingTimer hatchingScript;
 
     private MoneyObject _moneyObject;
     private Animator _dinosaurAnimator;

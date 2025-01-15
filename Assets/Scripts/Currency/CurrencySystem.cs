@@ -58,34 +58,34 @@ public class CurrencySystem : Singleton<CurrencySystem>
         return _currencyAmounts.ContainsKey(currencyType) && _currencyAmounts[currencyType] >= amount;
     }
 
-public bool AddCurrency(CurrencyChangeGameEvent currencyChange)
-{
-    CurrencyType currencyType = currencyChange.CurrencyType;
-    int amount = currencyChange.Amount;
-
-    if (_currencyAmounts.ContainsKey(currencyType))
+    public bool AddCurrency(CurrencyChangeGameEvent currencyChange)
     {
-        if (amount < 0 && !HasEnoughCurrency(currencyType, -amount))
-        {
-            switch (currencyType)
-            {
-                case CurrencyType.Coins:
-                    _notEnoughCoinsPanel.ShowNotEnoughCoinsPanel(-amount);
-                    break;
-                case CurrencyType.Bucks:
-                    _notEnoughBucksPanel.ShowNotEnoughCoinsPanel(-amount);
-                    break;
-            }
-            return false;
-        }
+        CurrencyType currencyType = currencyChange.CurrencyType;
+        int amount = currencyChange.Amount;
 
-        _currencyAmounts[currencyType] += amount;
-        Attributes.SetInt(currencyType.ToString(), _currencyAmounts[currencyType]);
-        _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("#,#", new CultureInfo("en-US"));
-        return true;
+        if (_currencyAmounts.ContainsKey(currencyType))
+        {
+            if (amount < 0 && !HasEnoughCurrency(currencyType, -amount))
+            {
+                switch (currencyType)
+                {
+                    case CurrencyType.Coins:
+                        _notEnoughCoinsPanel.ShowNotEnoughCoinsPanel(-amount);
+                        break;
+                    case CurrencyType.Bucks:
+                        _notEnoughBucksPanel.ShowNotEnoughCoinsPanel(-amount);
+                        break;
+                }
+                return false;
+            }
+
+            _currencyAmounts[currencyType] += amount;
+            Attributes.SetInt(currencyType.ToString(), _currencyAmounts[currencyType]);
+            _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("#,#", new CultureInfo("en-US"));
+            return true;
+        }
+        return false;
     }
-    return false;
-}
 
     public int GetCurrencyAmount(CurrencyType currencyType)
     {

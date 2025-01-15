@@ -146,17 +146,17 @@ public class DebrisObject : Selectable
     /// Calculates and returns the remaining time for the debris removal.
     /// </summary>
     /// <returns>Remaining time in seconds, or 0 if no progress data is available.</returns>
-    public int GetRemainingTime()
-    {
-        if (_data?.Progress == null)
-            return 0;
+    //public int GetRemainingTime()
+    //{
+    //    if (_data?.Progress == null)
+    //        return 0;
 
-        // Calculate elapsed time
-        int elapsedTime = (int)(DateTime.Now - _data.Progress.LastTick).TotalSeconds + _data.Progress.ElapsedTime;
+    //    // Calculate elapsed time
+    //    int elapsedTime = (int)(DateTime.Now - _data.Progress.LastTick).TotalSeconds + _data.Progress.ElapsedTime;
 
-        // Calculate remaining time
-        return Mathf.Max(0, _removeTime - elapsedTime);
-    }
+    //    // Calculate remaining time
+    //    return Mathf.Max(0, _removeTime - elapsedTime);
+    //}
 
     public void Initialize(int size, DebrisType type)
     {

@@ -45,7 +45,7 @@ public class SelectablesManager : Singleton<SelectablesManager>
             {
                 UIManager.Instance.ChangeTo("PaddockUI");
             }
-            else if (CurrentSelectable is Building)
+            else if (CurrentSelectable is Building building)
             {
                 UIManager.Instance.ChangeTo("BuildingUI");
             }
@@ -57,7 +57,7 @@ public class SelectablesManager : Singleton<SelectablesManager>
             {
                 if (debris.removing)
                 {
-                    UIManager.Instance.ChangeTo("SelectedDebrisUI");
+                    UIManager.Instance.ChangeTo("SelectedUI");
                 }
                 else
                 {

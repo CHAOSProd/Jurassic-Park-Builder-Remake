@@ -8,11 +8,13 @@ public class SpeedUp : MonoBehaviour
     [SerializeField] private TMP_Text hoursField;
     [SerializeField] private TMP_Text minutesField;
     [SerializeField] private TMP_Text secondsField;
+    [SerializeField] private TMP_Text moneyField;
 
     [Header("UI Elements")]
     [SerializeField] private Button speedUpButton;
 
-    private DebrisObject currentDebris; // Currently selected debris
+    private Selectable currentSelectable;
+    private TimerBar timerBar;
 
     private void Start()
     {
@@ -24,19 +26,22 @@ public class SpeedUp : MonoBehaviour
 
     private void Update()
     {
-        // Detect the currently selected debris object
-        DebrisObject selectedDebris = SelectablesManager.Instance.CurrentSelectable as DebrisObject;
-
-        if (selectedDebris != currentDebris)
-        {
-            // If the selected debris has changed, update tracking
-            currentDebris = selectedDebris;
-        }
+        currentSelectable = SelectablesManager.Instance.CurrentSelectable;
 
         // Update the timer display for the current debris
-        if (currentDebris != null && currentDebris.removing)
+        if (currentSelectable != null)
         {
-            int remainingTime = currentDebris.GetRemainingTime();
+            timerBar = currentSelectable.gameObject.GetComponentInChildren<TimerBar>(true);
+
+            if (currentSelectable is Paddock paddock && paddock.is_hatching)
+            {
+                timerBar = paddock.hatchingScript.GetComponentInChildren<TimerBar>(true);
+            }
+
+            if (timerBar == null) return;
+
+            int remainingTime = timerBar.GetRemainingTime();
+            int requiredMoney = GetRequiredMoney();
 
             if (remainingTime > 0)
             {
@@ -58,20 +63,27 @@ public class SpeedUp : MonoBehaviour
     /// </summary>
     private void SpeedUpRemoval()
     {
-        if (currentDebris == null || !currentDebris.removing) return;
+        //add an hour to the timer
+        int requiredMoney = GetRequiredMoney();
 
-        // Set elapsed time to remove time to trigger immediate removal
-        if (currentDebris._data.Progress != null)
+        if (CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Bucks, requiredMoney))
         {
-            currentDebris._data.Progress.ElapsedTime = currentDebris._removeTime;
+            CurrencySystem.Instance.AddCurrency(new CurrencyChangeGameEvent(-requiredMoney, CurrencyType.Bucks));
+            timerBar.endTimer = true;
+            SelectablesManager.Instance.UnselectAll();
         }
-
-        // Call OnRemovalComplete directly to finalize removal
-        currentDebris.Invoke("OnRemovalComplete", 0);
-
-        // Clear the timer display
-        ClearTimeDisplay();
     }
+
+    private int GetRequiredMoney()
+    {
+        int remainingTime = timerBar.GetRemainingTime();
+
+        // Calculate the required money (1 money per hour, rounded up)
+        int requiredMoney = Mathf.CeilToInt(remainingTime / 3600f);
+
+        return requiredMoney;
+    }
+
 
     /// <summary>
     /// Updates the TMP fields to display time in HH:MM:SS format.
@@ -86,6 +98,7 @@ public class SpeedUp : MonoBehaviour
         if (hoursField != null) hoursField.text = hours.ToString("00");
         if (minutesField != null) minutesField.text = minutes.ToString("00");
         if (secondsField != null) secondsField.text = seconds.ToString("00");
+        if (moneyField != null) moneyField.text = GetRequiredMoney().ToString("0");
     }
 
     /// <summary>

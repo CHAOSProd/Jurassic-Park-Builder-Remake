@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class TimerBar : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class TimerBar : MonoBehaviour
     private float _deltaX;
     private float _deltaScaleX;
 
+    public bool endTimer = false;
+
     private void Awake()
     {
         Sprite sprite = _barForeground.GetComponent<SpriteRenderer>().sprite;
@@ -25,6 +28,11 @@ public class TimerBar : MonoBehaviour
         {
             resetButton.onClick.AddListener(ResetTimeAndReduceScore);
         }
+    }
+
+    public int GetRemainingTime()
+    { 
+        return (int)remainingTimeInSeconds;
     }
 
     public void SetProgress(float value)
@@ -68,6 +76,12 @@ public class TimerBar : MonoBehaviour
             elapsed += Time.deltaTime;
             remainingTimeInSeconds = Mathf.Max(seconds - elapsed, 0);
             SetProgress(elapsed / seconds);
+
+            if (endTimer)
+            {
+                endTimer = false;
+                elapsed += remainingTimeInSeconds;
+            }
 
             if (elapsed >= interval * amount)
             {
