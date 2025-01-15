@@ -109,6 +109,7 @@ public class SpeedUp : MonoBehaviour
         if (hoursField != null) hoursField.text = "00";
         if (minutesField != null) minutesField.text = "00";
         if (secondsField != null) secondsField.text = "00";
+        if (moneyField != null) moneyField.text = "0";
     }
 }
 
