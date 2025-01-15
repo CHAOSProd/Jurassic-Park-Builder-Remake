@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AreaLength: 3
   Prefab: {fileID: 6082906996574217255, guid: f40f3d7cf5e057a4b8f8f2bcfbd37bc6, type: 3}
+  Type: 4
+  DebrisLevel: 5
