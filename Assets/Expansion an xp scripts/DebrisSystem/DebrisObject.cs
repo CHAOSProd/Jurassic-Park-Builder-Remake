@@ -35,6 +35,7 @@ public class DebrisObject : Selectable
     private bool _removed = false;
     private BoundsInt _size;
     public DebrisData _data;
+    private bool _xpCollected = false;
 
     private void Awake()
     {
@@ -51,7 +52,7 @@ public class DebrisObject : Selectable
 
     private void OnMouseUp()
     {
-        if (SelectablesManager.Instance.CurrentSelectable == this || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) return;
+        if (_xpCollected || SelectablesManager.Instance.CurrentSelectable == this || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) return;
 
         _selectableObject.GetComponent<Animator>().enabled = true;
 
@@ -111,6 +112,9 @@ public class DebrisObject : Selectable
 
     private void CollectDebris()
     {
+        if (_xpCollected) return;
+        _xpCollected = true;
+
         _xpNotification.SetActive(false);
         _tapVFX.SetActive(true);
         _xpCounter.SetActive(true);

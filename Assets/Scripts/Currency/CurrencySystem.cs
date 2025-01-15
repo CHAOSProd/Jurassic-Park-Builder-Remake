@@ -7,9 +7,9 @@ using UnityEngine;
 public class CurrencySystem : Singleton<CurrencySystem>
 {
     [SerializeField] private List<GameObject> _texts;
-    [SerializeField] private PurchasePanel _notEnoughCoinsPanel;
+    [SerializeField] public PurchasePanel _notEnoughCoinsPanel;
 
-    [SerializeField] private PurchasePanel _notEnoughBucksPanel;
+    [SerializeField] public PurchasePanel _notEnoughBucksPanel;
 
     private static Dictionary<CurrencyType, int> _currencyAmounts = new Dictionary<CurrencyType, int>();
 
@@ -81,7 +81,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
 
             _currencyAmounts[currencyType] += amount;
             Attributes.SetInt(currencyType.ToString(), _currencyAmounts[currencyType]);
-            _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("#,#", new CultureInfo("en-US"));
+            _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("N0", new CultureInfo("en-US"));
             return true;
         }
         return false;

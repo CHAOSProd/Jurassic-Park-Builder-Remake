@@ -63,15 +63,17 @@ public class SpeedUp : MonoBehaviour
     /// </summary>
     private void SpeedUpRemoval()
     {
-        //add an hour to the timer
         int requiredMoney = GetRequiredMoney();
 
-        if (CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Bucks, requiredMoney))
+        if (!CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Bucks, requiredMoney))
         {
-            CurrencySystem.Instance.AddCurrency(new CurrencyChangeGameEvent(-requiredMoney, CurrencyType.Bucks));
-            timerBar.endTimer = true;
-            SelectablesManager.Instance.UnselectAll();
+            CurrencySystem.Instance._notEnoughBucksPanel.ShowNotEnoughCoinsPanel(requiredMoney);
+            return;
         }
+
+        CurrencySystem.Instance.AddCurrency(new CurrencyChangeGameEvent(-requiredMoney, CurrencyType.Bucks));
+        timerBar.endTimer = true;
+        SelectablesManager.Instance.UnselectAll();
     }
 
     private int GetRequiredMoney()
