@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using TMPro;
-using TreeEditor;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +10,7 @@ public class DebrisObject : Selectable
 {
     [Header("Properties")]
     [SerializeField] private int _cost;
-    [SerializeField] private int _removeTime; // In seconds
+    [SerializeField] public int _removeTime; // In seconds
     [SerializeField] private int _xp;
 
     [Header("XP Objects")]
@@ -22,8 +20,8 @@ public class DebrisObject : Selectable
     [SerializeField] private MoneyCountDisplayer _xpCountDisplayer;
 
     [Header("Selection")]
-    [SerializeField] GameObject _selectableObject;
-    [SerializeField] GameObject _debrisVisual;
+    [SerializeField] private GameObject _selectableObject;
+    [SerializeField] private GameObject _debrisVisual;
 
     [Header("UI")]
     [SerializeField] private GameObject _timerBarPrefab;
@@ -36,7 +34,7 @@ public class DebrisObject : Selectable
     public bool removing = false;
     private bool _removed = false;
     private BoundsInt _size;
-    private DebrisData _data;
+    public DebrisData _data;
 
     private void Awake()
     {
@@ -50,32 +48,6 @@ public class DebrisObject : Selectable
         _audioSource = gameObject.AddComponent<AudioSource>();
         _audioSource.playOnAwake = false;
     }
-
-    //this makes the debris be white when the mouse hovers the debree its a bit buggy
-
-    //private void OnMouseEnter()
-    //{
-    //    if (SelectablesManager.Instance.CurrentSelectable == this) return;
-
-    //    _selectableObject.SetActive(true);
-
-    //    //Makes the sprite be fully visible
-    //    SpriteRenderer spriteRenderer = _selectableObject.GetComponent<SpriteRenderer>();
-    //    UnityEngine.Color oldColor = spriteRenderer.color;
-        
-    //    oldColor.a = 1.0f;
-    //    spriteRenderer.color = oldColor;
-
-    //    _selectableObject.GetComponent<Animator>().enabled = false;
-    //}
-
-    //private void OnMouseExit()
-    //{
-    //    if (!SelectablesManager.Instance.CurrentSelectable == this)
-    //    {
-    //        _selectableObject.SetActive(false);
-    //    }
-    //}
 
     private void OnMouseUp()
     {
@@ -152,7 +124,7 @@ public class DebrisObject : Selectable
             _audioSource.Play();
         }
 
-        // Give Gridbuild Area back
+        // Give GridBuild Area back
         GridBuildingSystem.Instance.SetAreaWhite(_size, GridBuildingSystem.Instance.MainTilemap);
 
         removing = true;
@@ -168,6 +140,22 @@ public class DebrisObject : Selectable
     {
         _data.Progress.ElapsedTime += 1;
         _data.Progress.LastTick = DateTime.Now;
+    }
+
+    /// <summary>
+    /// Calculates and returns the remaining time for the debris removal.
+    /// </summary>
+    /// <returns>Remaining time in seconds, or 0 if no progress data is available.</returns>
+    public int GetRemainingTime()
+    {
+        if (_data?.Progress == null)
+            return 0;
+
+        // Calculate elapsed time
+        int elapsedTime = (int)(DateTime.Now - _data.Progress.LastTick).TotalSeconds + _data.Progress.ElapsedTime;
+
+        // Calculate remaining time
+        return Mathf.Max(0, _removeTime - elapsedTime);
     }
 
     public void Initialize(int size, DebrisType type)
@@ -214,4 +202,5 @@ public class DebrisObject : Selectable
         GridBuildingSystem.Instance.TakeArea(_size);
     }
 }
+
 
