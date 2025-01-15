@@ -86,12 +86,11 @@ public class MoneyObject : MonoBehaviour
             return;
         }
 
-        if (_data.Money >= MaximumMoney && !_maxMoneyReached)
+        if (_data.Money > MaximumMoney && !_maxMoneyReached)
         {
             _currentMoneyFloated = MaximumMoney;
             _data.Money = Mathf.FloorToInt(_currentMoneyFloated);
             _notification.SetActive(true);
-
             if (_animator != null)
                 _animator.SetTrigger("MaxMoneyReached");
 

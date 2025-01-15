@@ -1616,7 +1616,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3301608206654383840}
   - component: {fileID: 4770666362960262213}
-  - component: {fileID: 3393720187637885698}
   m_Layer: 0
   m_Name: Dinos_Shadow
   m_TagString: Untagged
@@ -1693,21 +1692,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3393720187637885698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3086720532078291333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39a6d83d93fbefc439dfa727c3e6eaa5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetBone: {fileID: 7588431000526712382}
-  offset: {x: -0.008, y: -0.035, z: 0.08}
-  shadowScale: {x: 0.075, y: 0.05, z: 0.05}
 --- !u!1 &3109967011854166149
 GameObject:
   m_ObjectHideFlags: 0
@@ -3099,6 +3083,7 @@ GameObject:
   - component: {fileID: 5952810285563800082}
   - component: {fileID: 4490858272988570628}
   - component: {fileID: 1638373029439378061}
+  - component: {fileID: 2956789325124266086}
   m_Layer: 0
   m_Name: Dilophosaurus
   m_TagString: Untagged
@@ -3284,6 +3269,24 @@ MonoBehaviour:
   - {fileID: 4122404540009945654}
   - {fileID: 5955046430803001428}
   - {fileID: 2630638139909224526}
+--- !u!114 &2956789325124266086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4761323592477273085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a6d83d93fbefc439dfa727c3e6eaa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetBone1: {fileID: 7588431000526712382}
+  targetBone2: {fileID: 0}
+  shadowObject1: {fileID: 3086720532078291333}
+  shadowObject2: {fileID: 0}
+  offset: {x: -0.008, y: -0.035, z: 0.08}
+  shadowScale: {x: 0.075, y: 0.05, z: 0.05}
 --- !u!1 &4949860175419822245
 GameObject:
   m_ObjectHideFlags: 0
@@ -4072,7 +4075,7 @@ MonoBehaviour:
   _moneyPerSecond: 0.33
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
-  _animator: {fileID: 0}
+  _animator: {fileID: 9008793938918187504}
   MaximumMoney: 100
   MaximumMinutes: 15
 --- !u!114 &1910003470799255841
