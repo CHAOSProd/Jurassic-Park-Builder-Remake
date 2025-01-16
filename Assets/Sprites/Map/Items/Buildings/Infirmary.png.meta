@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 81adefb787e1d6442bd853bb4ece849c
+guid: c8a967e85d50ef74c9deffd9c7d411d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4623053741824179794
-    second: Infirmary 2_0
+      213: 2953876991575245600
+    second: AAAA 3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,9 +75,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
-    compressionQuality: 100
-    crunchedCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Infirmary 2_0
+      name: AAAA 3_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 2
-        width: 170
-        height: 122
+        x: 0
+        y: 0
+        width: 209
+        height: 137
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 25e78fa52e2682040800000000000000
-      internalID: 4623053741824179794
+      spriteID: 023ca0939774ef820800000000000000
+      internalID: 2953876991575245600
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Infirmary 2_0: 4623053741824179794
+      AAAA 3_0: 2953876991575245600
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 907c0552f1816984287709ae220d08bc
+guid: e54b42defed80d54ab1f56c6bf681eaa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1588702366277662633
-    second: row-2-column-1 (1) 2_0
+      213: -3277034427761116659
+    second: image (77)_0
   - first:
-      213: -7062508029559343064
-    second: row-2-column-1 (1) 2_1
+      213: 7784740568020374837
+    second: image (77)_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: row-2-column-1 (1) 2_0
+      name: image (77)_0
       rect:
         serializedVersion: 2
-        x: 75
-        y: 147
-        width: 15
-        height: 5
+        x: 5
+        y: 1
+        width: 7
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,20 +117,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9a77dc382643c0610800000000000000
-      internalID: 1588702366277662633
+      spriteID: d0ab298ec82a582d0800000000000000
+      internalID: -3277034427761116659
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: row-2-column-1 (1) 2_1
+      name: image (77)_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 4
-        width: 194
-        height: 141
+        x: 17
+        y: 0
+        width: 272
+        height: 164
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,8 +138,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82875caad5eecfd90800000000000000
-      internalID: -7062508029559343064
+      spriteID: 5355d612d44f80c60800000000000000
+      internalID: 7784740568020374837
       vertices: []
       indices: 
       edges: []
@@ -155,8 +155,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      row-2-column-1 (1) 2_0: 1588702366277662633
-      row-2-column-1 (1) 2_1: -7062508029559343064
+      image (77)_0: -3277034427761116659
+      image (77)_1: 7784740568020374837
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

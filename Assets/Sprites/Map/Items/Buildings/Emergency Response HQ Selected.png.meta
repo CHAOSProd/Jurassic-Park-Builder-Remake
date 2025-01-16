@@ -1,7 +1,13 @@
 fileFormatVersion: 2
-guid: 2902f9396932b1640b61971f18463183
+guid: c46e93f33567b494ebb09e762e0b2513
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4235029827269633790
+    second: image (70)_0
+  - first:
+      213: 8297198014631831672
+    second: image (70)_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,9 +78,9 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
-    compressionQuality: 100
-    crunchedCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -93,22 +99,51 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: image (70)_0
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 73
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 209d86c6fc62a35c0800000000000000
+      internalID: -4235029827269633790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: image (70)_1
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 16
+        width: 185
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 878e43542a1952370800000000000000
+      internalID: 8297198014631831672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +154,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      image (70)_0: -4235029827269633790
+      image (70)_1: 8297198014631831672
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
