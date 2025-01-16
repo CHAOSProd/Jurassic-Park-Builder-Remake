@@ -13,16 +13,16 @@ public class PlaceableObject : MonoBehaviour
     public BoundsInt Area;
     public int GridBuildingID;
     public bool ConstructionFinished = false;
-    public int BuildTime; //time to build in SECONDS
+    public int BuildTime; // time to build in SECONDS
     public int BuildXp;
 
     [SerializeField] private GameObject _xpNotification;
     [SerializeField] private GameObject _tapVFX;
     [SerializeField] private GameObject _xpCounter;
     [SerializeField] private MoneyCountDisplayer _xpCountDisplayer;
-    [SerializeField] private AudioClip _xpCollectSound; // New: XP collect sound
+    [SerializeField] private AudioClip _xpCollectSound;
 
-    private AudioSource _audioSource; // New: Audio source for sound playback
+    private AudioSource _audioSource;
 
     [ReadOnly()] public PlaceableObjectData data = new PlaceableObjectData();
 
@@ -38,14 +38,8 @@ public class PlaceableObject : MonoBehaviour
 
     public GameObject Display
     {
-        get
-        {
-            return _display;
-        }
-        set
-        {
-            _display = value;
-        }
+        get { return _display; }
+        set { _display = value; }
     }
 
     private PlaceableObjectItem _placeableObjectItem;
@@ -59,12 +53,15 @@ public class PlaceableObject : MonoBehaviour
     [HideInInspector] public GameObject Hatching;
     [HideInInspector] public GameObject Dino;
 
+    private bool _isPointerMoving;
+    private Vector3 _lastPointerPosition;
+
     #region Unity Methods
 
     private void Awake()
     {
         DisplayFadeInOut = _construction.GetComponent<FadeInOut>();
-        _audioSource = gameObject.AddComponent<AudioSource>(); // New: Initialize AudioSource
+        _audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void Start()
@@ -119,7 +116,7 @@ public class PlaceableObject : MonoBehaviour
         _timerBarInstance.transform.position = _construction.transform.position;
         _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
 
-        //Update Progress every second and display xp icon when construction is finished
+        // Update Progress every second and display XP icon when construction is finished
         _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished);
     }
 
@@ -171,25 +168,32 @@ public class PlaceableObject : MonoBehaviour
         if (!ConstructionFinished)
         {
             _construction.SetActive(true);
-            if (!isBuildingEnabled)
-            {
-                _construction.GetComponent<Collider2D>().enabled = false;
-            }
 
+            // Ensure collider is correctly enabled/disabled based on whether the object can be edited
+            Collider2D collider = _construction.GetComponent<Collider2D>();
+            if (collider != null)
+            {
+                collider.enabled = isBuildingEnabled; // Enable collider only if editing is allowed
+            }
         }
         else
         {
             _main.SetActive(!isBuildingEnabled);
             _display.SetActive(isBuildingEnabled);
             _construction.SetActive(false);
+
+            // If the object is finished, ensure the main display is interactable
             if (TryGetComponent(out Collider2D collider))
             {
                 Destroy(collider);
             }
+
             DisplayFadeInOut = _display.GetComponent<FadeInOut>();
         }
-
     }
+
+
+
     public void InitializeConstructedBuilding()
     {
         Debug.Log("Constructed the building!");
@@ -208,7 +212,6 @@ public class PlaceableObject : MonoBehaviour
         _construction.SetActive(false);
         _main.SetActive(true);
 
-        // New: Play XP collect sound
         if (_xpCollectSound != null && _audioSource != null)
         {
             _audioSource.PlayOneShot(_xpCollectSound);
@@ -230,7 +233,6 @@ public class PlaceableObject : MonoBehaviour
 
         if (ConstructionFinished)
         {
-            // Make sure building is displayed
             _xpNotification.SetActive(false);
             _tapVFX.SetActive(false);
             _xpCounter.SetActive(false);
@@ -253,7 +255,7 @@ public class PlaceableObject : MonoBehaviour
                 _timerBarInstance.transform.position = _construction.transform.position;
                 _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
 
-                //Update Progress every second and display xp icon when construction is finished
+                // Update Progress every second and display XP icon when construction is finished
                 _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished, newTime);
             }
         }
@@ -265,7 +267,7 @@ public class PlaceableObject : MonoBehaviour
 
     public void StartEditing()
     {
-        Debug.Log("started editing!");
+        Debug.Log("StartEditing triggered");
         if (_selectable.IsSelected)
         {
             GridBuildingSystem.Instance.TempPlaceableObject = this;
@@ -282,6 +284,10 @@ public class PlaceableObject : MonoBehaviour
             GridBuildingSystem.Instance.FollowBuilding();
             GridBuildingSystem.Instance.ReloadUI();
             UIManager.Instance.DisableCurrentFixed();
+        }
+        else
+        {
+            Debug.LogWarning("StartEditing called, but object is not selected.");
         }
     }
 
@@ -318,43 +324,56 @@ public class PlaceableObject : MonoBehaviour
     #endregion
 
     #region Construction Methods
-    private bool _isPointerMoving;
-    private Vector3 _lastPointerPosition;
+
     private void OnMouseDown()
     {
         _lastPointerPosition = Input.mousePosition;
     }
+
     private void OnMouseUp()
     {
-        if (!PointerOverUIChecker.Instance.IsPointerOverUIObject() && !_isPointerMoving && !GridBuildingSystem.Instance.TempPlaceableObject)
+        if (!PointerOverUIChecker.Instance.IsPointerOverUIObject() &&
+            !_isPointerMoving &&
+            !GridBuildingSystem.Instance.TempPlaceableObject)
         {
-            if (ConstructionFinished)
+            Debug.Log("OnMouseUp triggered");
+
+            if (!ConstructionFinished)
             {
-                GetComponentInChildren<MoneyObject>().GetMoneyIfAvaliable();
-                _selectable.Select();
-            }
-            else
-            {
-                if (!_xpNotification.activeSelf)
+                Debug.Log("Object under construction");
+
+                if (_xpNotification.activeSelf)
                 {
-                    _selectable.Select();
-                    UIManager.Instance.ChangeTo("BuildingsSelectedUI");
-                    //TODO: Select the construction site and show how much time is left/bucks needed for speed up
-                }
-                else
-                {
+                    // Collect XP if the notification is active
+                    Debug.Log("Collecting XP during construction");
                     InitializeConstructedBuilding();
                     ConstructionFinished = true;
                     data.ConstructionFinished = true;
                     data.Progress = null;
                 }
+                else
+                {
+                    // Allow selection but do not collect XP
+                    _selectable.Select();
+                    Debug.Log("Selected object under construction");
+                    UIManager.Instance.ChangeTo("BuildingsSelectedUI");
+                }
+            }
+            else
+            {
+                Debug.Log("Object is already constructed");
+                GetComponentInChildren<MoneyObject>().GetMoneyIfAvaliable();
+                _selectable.Select();
             }
         }
     }
+
+
+
     #endregion
 }
 
-//this just makes it so that the Hatching and Dino variables appears when _isPadlock is true
+// This just makes it so that the Hatching and Dino variables appear when _isPaddock is true
 [CustomEditor(typeof(PlaceableObject))]
 public class PlaceableObjectEditor : Editor
 {
@@ -385,4 +404,5 @@ public class PlaceableObjectEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+
 
