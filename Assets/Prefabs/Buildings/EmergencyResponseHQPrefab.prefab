@@ -1026,6 +1026,8 @@ MonoBehaviour:
   _xpCounter: {fileID: 7925089836596989598}
   _xpCountDisplayer: {fileID: 9045954691470233311}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
+  _constructionFinishedSound: {fileID: 8300000, guid: 78ed6552ef8970f4b82cf45c45b2e219,
+    type: 3}
   DisplayFadeInOut: {fileID: 0}
   _display: {fileID: 8325204637480980859}
   _construction: {fileID: 8936940771829713731}

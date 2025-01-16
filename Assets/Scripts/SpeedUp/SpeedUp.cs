@@ -14,6 +14,9 @@ public class SpeedUp : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private Button speedUpButton;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource speedUpSound;
+
     private Selectable currentSelectable;
     private TimerBar timerBar;
 
@@ -24,6 +27,7 @@ public class SpeedUp : MonoBehaviour
             speedUpButton.onClick.AddListener(SpeedUpRemoval);
         }
     }
+
     private IEnumerator HidePanelWithDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -67,7 +71,8 @@ public class SpeedUp : MonoBehaviour
     }
 
     /// <summary>
-    /// Speeds up the removal of the selected debris by setting elapsed time to match remove time.
+    /// Speeds up the removal of the selected debris or placeable object.
+    /// Plays a sound only if the object is a placeable object.
     /// </summary>
     private void SpeedUpRemoval()
     {
@@ -79,9 +84,28 @@ public class SpeedUp : MonoBehaviour
             return;
         }
 
+        // Deduct currency
         CurrencySystem.Instance.AddCurrency(new CurrencyChangeGameEvent(-requiredMoney, CurrencyType.Bucks));
         timerBar.endTimer = true;
+
+        // Check if the current selectable is a PlaceableObject
+        if (currentSelectable != null && currentSelectable.GetComponent<PlaceableObject>() != null)
+        {
+            PlaySpeedUpSound();
+        }
+
         SelectablesManager.Instance.UnselectAll();
+    }
+
+    /// <summary>
+    /// Plays the speed-up sound effect if AudioSource is assigned.
+    /// </summary>
+    private void PlaySpeedUpSound()
+    {
+        if (speedUpSound != null)
+        {
+            speedUpSound.Play();
+        }
     }
 
     private int GetRequiredMoney()
@@ -93,7 +117,6 @@ public class SpeedUp : MonoBehaviour
 
         return requiredMoney;
     }
-
 
     /// <summary>
     /// Updates the TMP fields to display time in HH:MM:SS format.
@@ -122,6 +145,9 @@ public class SpeedUp : MonoBehaviour
         if (moneyField != null) moneyField.text = "0";
     }
 }
+
+
+
 
 
 

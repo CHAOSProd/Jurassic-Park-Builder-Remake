@@ -21,6 +21,8 @@ public class PlaceableObject : MonoBehaviour
     [SerializeField] private GameObject _xpCounter;
     [SerializeField] private MoneyCountDisplayer _xpCountDisplayer;
     [SerializeField] private AudioClip _xpCollectSound;
+    [SerializeField] private AudioClip _constructionFinishedSound;
+
 
     private AudioSource _audioSource;
 
@@ -212,9 +214,15 @@ public class PlaceableObject : MonoBehaviour
         _construction.SetActive(false);
         _main.SetActive(true);
 
+        // Play both sounds at the same time
         if (_xpCollectSound != null && _audioSource != null)
         {
             _audioSource.PlayOneShot(_xpCollectSound);
+        }
+
+        if (_constructionFinishedSound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(_constructionFinishedSound);
         }
     }
 
