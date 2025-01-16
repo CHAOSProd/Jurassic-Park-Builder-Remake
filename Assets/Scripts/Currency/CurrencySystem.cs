@@ -50,7 +50,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
             }
 
             // Initial UI Update
-            _currencyTexts[(CurrencyType)i].text = _currencyAmounts[(CurrencyType)i].ToString("#,#", new CultureInfo("en-US"));
+            _currencyTexts[(CurrencyType)i].text = _currencyAmounts[(CurrencyType)i].ToString("N0", CultureInfo.InvariantCulture);
         }
     }
     public bool HasEnoughCurrency(CurrencyType currencyType, int amount)

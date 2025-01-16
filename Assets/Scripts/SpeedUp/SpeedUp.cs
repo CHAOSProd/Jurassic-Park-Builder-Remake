@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class SpeedUp : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class SpeedUp : MonoBehaviour
         {
             speedUpButton.onClick.AddListener(SpeedUpRemoval);
         }
+    }
+    private IEnumerator HidePanelWithDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        gameObject.SetActive(false);
+        SelectablesManager.Instance.UnselectAll();
     }
 
     private void Update()
@@ -50,6 +57,7 @@ public class SpeedUp : MonoBehaviour
             else
             {
                 ClearTimeDisplay(); // Clear display if time runs out
+                StartCoroutine(HidePanelWithDelay(1.1f));
             }
         }
         else

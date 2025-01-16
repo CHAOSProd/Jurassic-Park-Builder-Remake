@@ -149,6 +149,11 @@ public class PlaceableObject : MonoBehaviour
             Destroy(_timerBarInstance.gameObject);
             _timerBarInstance = null;
         }
+
+        if (_selectable.IsSelected)
+        {
+            SelectablesManager.Instance.UnselectAll();
+        }
     }
 
     private void UpdateProgress()
