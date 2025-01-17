@@ -1840,8 +1840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e81fd244f8af84db0fee8accc729fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hatchDuration: 2520
-  HatchXP: 192
+  _hatchDuration: 10
+  HatchXP: 16
   _eggVisual: {fileID: 8369108262537016402}
   dino: {fileID: 3786970993323661030}
   _xpNotification: {fileID: 301173621897557951}
@@ -2047,12 +2047,12 @@ SpriteRenderer:
   m_SortingLayerID: -1344713575
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 25021c907112ab64ca4739cf92dbd572, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e77f38fc94d2804390fd8b69e3cd176, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 6.62, y: 3.77}
+  m_Size: {x: 6.6666665, y: 3.5555556}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2135,8 +2135,8 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.16, y: 4.04}
-    newSize: {x: 6.62, y: 3.77}
+    oldSize: {x: 6, y: 3.2}
+    newSize: {x: 6.6666665, y: 3.5555556}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -4551,7 +4551,7 @@ MonoBehaviour:
   GridBuildingID: 0
   ConstructionFinished: 0
   BuildTime: 0
-  BuildXp: 34
+  BuildXp: 192
   _xpNotification: {fileID: 301173621897557951}
   _tapVFX: {fileID: 2864252642858936466}
   _xpCounter: {fileID: 7707790853155919545}
@@ -5454,12 +5454,12 @@ SpriteRenderer:
   m_SortingLayerID: -1344713575
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 25021c907112ab64ca4739cf92dbd572, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2e77f38fc94d2804390fd8b69e3cd176, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.79607844}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.4026667, y: 1.1013334}
+  m_Size: {x: 6.6666665, y: 3.5555556}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
