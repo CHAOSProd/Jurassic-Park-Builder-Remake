@@ -1077,7 +1077,7 @@ MonoBehaviour:
   IsSelected: 0
   _objectsFadeInOut: {fileID: 8912357829526371197}
   _cost: 15000
-  _removeTime: 41400
+  _removeTime: 43200
   _xp: 5000
   _xpNotification: {fileID: 6133466448222386783}
   _tapVFX: {fileID: 3923663685072062210}
@@ -1088,6 +1088,7 @@ MonoBehaviour:
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
+  removing: 0
 --- !u!1 &7768655753199764984
 GameObject:
   m_ObjectHideFlags: 0

@@ -1840,8 +1840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e81fd244f8af84db0fee8accc729fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hatchDuration: 10
-  HatchXP: 16
+  _hatchDuration: 2520
+  HatchXP: 192
   _eggVisual: {fileID: 8369108262537016402}
   dino: {fileID: 3786970993323661030}
   _xpNotification: {fileID: 301173621897557951}
@@ -4551,12 +4551,13 @@ MonoBehaviour:
   GridBuildingID: 0
   ConstructionFinished: 0
   BuildTime: 0
-  BuildXp: 192
+  BuildXp: 34
   _xpNotification: {fileID: 301173621897557951}
   _tapVFX: {fileID: 2864252642858936466}
   _xpCounter: {fileID: 7707790853155919545}
   _xpCountDisplayer: {fileID: 860663416128418026}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
+  _constructionFinishedSound: {fileID: 0}
   DisplayFadeInOut: {fileID: 0}
   _display: {fileID: 4352929147623236688}
   _construction: {fileID: 3703017736648969121}
