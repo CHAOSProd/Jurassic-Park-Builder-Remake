@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: 2e77f38fc94d2804390fd8b69e3cd176
+guid: d99327b0b65844d4d8b31e163c695648
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5967618668369030457
-    second: 8x8 construction sprite (7)_0
+      213: 5561495741976099158
+    second: 8x8 construction sprite (8)_0
   - first:
-      213: -4177722323058435216
-    second: 8x8 construction sprite (7)_1
+      213: 7334833582193825811
+    second: 8x8 construction sprite (8)_1
   - first:
-      213: -7616453095782025163
-    second: 8x8 construction sprite (7)_2
+      213: 2960035280077441564
+    second: 8x8 construction sprite (8)_2
   - first:
-      213: -3866489681664318038
-    second: 8x8 construction sprite (7)_3
+      213: 4298898602477099102
+    second: 8x8 construction sprite (8)_3
   - first:
-      213: 7931968026545266412
-    second: 8x8 construction sprite (7)_4
+      213: 405774566741775073
+    second: 8x8 construction sprite (8)_4
   - first:
-      213: -9050129376911042329
-    second: 8x8 construction sprite (7)_5
+      213: -8197528719243225849
+    second: 8x8 construction sprite (8)_5
   - first:
-      213: -7725688186609041493
-    second: 8x8 construction sprite (7)_6
+      213: -5155850396426836206
+    second: 8x8 construction sprite (8)_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -95,7 +95,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 0
     compressionQuality: 50
-    crunchedCompression: 0
+    crunchedCompression: 1
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -118,7 +118,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 8x8 construction sprite (7)_0
+      name: 8x8 construction sprite (8)_0
       rect:
         serializedVersion: 2
         x: 244
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 93d2023af8d31d250800000000000000
-      internalID: 5967618668369030457
+      spriteID: 659355849e66e2d40800000000000000
+      internalID: 5561495741976099158
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8x8 construction sprite (7)_1
+      name: 8x8 construction sprite (8)_1
       rect:
         serializedVersion: 2
         x: 253
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 07bd1e38eafb506c0800000000000000
-      internalID: -4177722323058435216
+      spriteID: 318d44908409ac560800000000000000
+      internalID: 7334833582193825811
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8x8 construction sprite (7)_2
+      name: 8x8 construction sprite (8)_2
       rect:
         serializedVersion: 2
         x: 305
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 538fc79534cec4690800000000000000
-      internalID: -7616453095782025163
+      spriteID: c1ac3af7768241920800000000000000
+      internalID: 2960035280077441564
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8x8 construction sprite (7)_3
+      name: 8x8 construction sprite (8)_3
       rect:
         serializedVersion: 2
         x: 29
         y: 0
         width: 548
-        height: 288
+        height: 279
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa56facbe18775ac0800000000000000
-      internalID: -3866489681664318038
+      spriteID: e58121e9081c8ab30800000000000000
+      internalID: 4298898602477099102
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8x8 construction sprite (7)_4
+      name: 8x8 construction sprite (8)_4
       rect:
         serializedVersion: 2
         x: 281
@@ -216,19 +216,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cee9cff05e2041e60800000000000000
-      internalID: 7931968026545266412
+      spriteID: 1e2188d81d991a500800000000000000
+      internalID: 405774566741775073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8x8 construction sprite (7)_5
+      name: 8x8 construction sprite (8)_5
       rect:
         serializedVersion: 2
-        x: 285
+        x: 284
         y: 269
-        width: 21
+        width: 22
         height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -237,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7e8d3e5084b776280800000000000000
-      internalID: -9050129376911042329
+      spriteID: 705d17def078c3e80800000000000000
+      internalID: -8197528719243225849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 8x8 construction sprite (7)_6
+      name: 8x8 construction sprite (8)_6
       rect:
         serializedVersion: 2
         x: 553
@@ -258,8 +258,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: baf7cb7d687d8c490800000000000000
-      internalID: -7725688186609041493
+      spriteID: 217ebed916db278b0800000000000000
+      internalID: -5155850396426836206
       vertices: []
       indices: 
       edges: []
@@ -275,13 +275,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      8x8 construction sprite (7)_0: 5967618668369030457
-      8x8 construction sprite (7)_1: -4177722323058435216
-      8x8 construction sprite (7)_2: -7616453095782025163
-      8x8 construction sprite (7)_3: -3866489681664318038
-      8x8 construction sprite (7)_4: 7931968026545266412
-      8x8 construction sprite (7)_5: -9050129376911042329
-      8x8 construction sprite (7)_6: -7725688186609041493
+      8x8 construction sprite (8)_0: 5561495741976099158
+      8x8 construction sprite (8)_1: 7334833582193825811
+      8x8 construction sprite (8)_2: 2960035280077441564
+      8x8 construction sprite (8)_3: 4298898602477099102
+      8x8 construction sprite (8)_4: 405774566741775073
+      8x8 construction sprite (8)_5: -8197528719243225849
+      8x8 construction sprite (8)_6: -5155850396426836206
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
