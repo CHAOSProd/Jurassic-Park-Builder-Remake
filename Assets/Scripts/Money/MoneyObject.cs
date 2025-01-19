@@ -75,6 +75,11 @@ public class MoneyObject : MonoBehaviour
 
     private void Update()
     {
+        if(_data == null)
+        {
+            return;
+        }
+
         if (_maxMoneyReached)
         {
             if (!_notification.activeSelf)
@@ -192,14 +197,16 @@ public class MoneyObject : MonoBehaviour
 
     public void GetMoneyIfAvaliable()
     {
-        if (_data.Money != 0 && !_moneyCounter.activeInHierarchy && !GridBuildingSystem.Instance.TempPlaceableObject)
+        if (!_moneyCounter.activeInHierarchy && !GridBuildingSystem.Instance.TempPlaceableObject)
         {
             if (_selectable)
             {
                 _selectable.Select();
             }
-
-            GetMoney();
+            if(_data.Money != 0)
+            {
+                GetMoney();
+            }
         }
         else
         {

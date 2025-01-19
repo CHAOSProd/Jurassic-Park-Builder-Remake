@@ -17,7 +17,7 @@ public class HatchingTimer : MonoBehaviour
     [SerializeField] private GameObject _paddockVisual;
 
     [Header("Scripts")]
-    [SerializeField] private Paddock paddockScript;
+    [SerializeField] public Paddock paddockScript;
     [SerializeField] private MoneyCountDisplayer _xpCountDisplayer;
 
     [Header("UI")]
