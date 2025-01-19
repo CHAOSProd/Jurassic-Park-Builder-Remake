@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 549c257b9329be54489b82edd7048536
+guid: fb63135112b4d4d4bb1765b52dbb1a4c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2268829479238318799
-    second: Trees expansion remade (8)_0
+      213: -6651378378998555103
+    second: Trees expansion remade (9)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,11 +100,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Trees expansion remade (8)_0
+      name: Trees expansion remade (9)_0
       rect:
         serializedVersion: 2
-        x: 33
-        y: 67
+        x: 36
+        y: 70
         width: 948
         height: 554
       alignment: 0
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fca3fedf3608c7f10800000000000000
-      internalID: 2268829479238318799
+      spriteID: 12ed315da9e81b3a0800000000000000
+      internalID: -6651378378998555103
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Trees expansion remade (8)_0: 2268829479238318799
+      Trees expansion remade (9)_0: -6651378378998555103
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

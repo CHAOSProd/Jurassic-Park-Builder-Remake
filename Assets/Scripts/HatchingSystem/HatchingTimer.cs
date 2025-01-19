@@ -128,7 +128,10 @@ public class HatchingTimer : MonoBehaviour
 
     private void OnHatchComplete()
     {
-        SelectablesManager.Instance.UnselectAll();
+        if (paddockScript.IsSelected)
+        {
+            SelectablesManager.Instance.UnselectAll();
+        }
         _xpNotification.SetActive(true);
         _xpNotification.transform.position = _eggVisual.transform.position + 4f * _eggVisual.transform.lossyScale.y * Vector3.up;
 
