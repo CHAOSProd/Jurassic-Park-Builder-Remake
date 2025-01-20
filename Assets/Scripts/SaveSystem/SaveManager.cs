@@ -91,7 +91,7 @@ public class SaveManager : Singleton<SaveManager>
             {
                 hatchingTimer.Load(matchingHatchingData);
             }
-            if (placeableObject.ConstructionFinished || hatchingTimer.paddockScript.hatching_completed)
+            if (placeableObject._construction || (placeableObject._isPaddock && hatchingTimer != null && hatchingTimer.paddockScript.hatching_completed))
             {
                 MoneyObject moneyObject = obj.GetComponentInChildren<MoneyObject>(true);
                 if (moneyObject != null && moneyIndex < SaveData.MoneyData.Count && SaveData.MoneyData[moneyIndex].PlaceableObjectIndex == placableIndex)

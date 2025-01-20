@@ -23,7 +23,6 @@ public class PlaceableObject : MonoBehaviour
     [SerializeField] private AudioClip _xpCollectSound;
     [SerializeField] private AudioClip _constructionFinishedSound;
 
-
     private AudioSource _audioSource;
 
     [ReadOnly()] public PlaceableObjectData data = new PlaceableObjectData();
@@ -31,7 +30,7 @@ public class PlaceableObject : MonoBehaviour
     [HideInInspector] public FadeInOut DisplayFadeInOut;
 
     [SerializeField] private GameObject _display;
-    [SerializeField] private GameObject _construction;
+    [SerializeField] public GameObject _construction;
     [SerializeField] private GameObject _main;
 
     [SerializeField] private GameObject _timerBarPrefab;
@@ -273,62 +272,60 @@ public class PlaceableObject : MonoBehaviour
 
     #region Editing Mode
 
-public void StartEditing()
-{
-    Debug.Log("StartEditing triggered");
-    Animator mainObjectAnimator = GetComponentInChildren<Animator>();
-    if (mainObjectAnimator != null)
+    public void StartEditing()
     {
-        mainObjectAnimator.enabled = false;
+            if (_selectable.IsSelected)
+            {
+            Debug.Log("StartEditing triggered");
+            Animator mainObjectAnimator = GetComponentInChildren<Animator>();
+            if (mainObjectAnimator != null)
+            {
+                mainObjectAnimator.enabled = false;
+            }
+            if (_isPaddock)
+            {
+                Transform dinoTransform = Dino?.transform;
+                Vector3 dinoOriginalPosition = Vector3.zero;
+
+                if (dinoTransform != null)
+                {
+                    dinoOriginalPosition = dinoTransform.position;
+                    dinoTransform.SetParent(null);
+                } 
+
+                Animator dinoAnimator = Dino?.GetComponentInChildren<Animator>();
+                if (dinoAnimator != null)
+                {
+                    dinoAnimator.enabled = true;
+                }
+
+                if (dinoTransform != null)
+                {
+                    dinoTransform.SetParent(transform);
+                    dinoTransform.position = dinoOriginalPosition;
+                }
+            }
+
+            if (mainObjectAnimator != null)
+            {
+                mainObjectAnimator.enabled = true;
+            }
+            GridBuildingSystem.Instance.TempPlaceableObject = this;
+            InitializeDisplayObjects(true);
+            CameraObjectFollowing.Instance.SetTarget(transform);
+            GridBuildingSystem.Instance.TempTilemap.gameObject.SetActive(true);
+
+            Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.WorldToCell(transform.position);
+            BoundsInt areaTemp = Area;
+            areaTemp.position = positionInt;
+
+            GridBuildingSystem.Instance.SetAreaWhite(areaTemp, GridBuildingSystem.Instance.MainTilemap);
+
+            GridBuildingSystem.Instance.FollowBuilding();
+            GridBuildingSystem.Instance.ReloadUI();
+            UIManager.Instance.DisableCurrentFixed();
+        }
     }
-    Transform dinoTransform = Dino?.transform;
-    Vector3 dinoOriginalPosition = Vector3.zero;
-
-    if (dinoTransform != null)
-    {
-        dinoOriginalPosition = dinoTransform.position;
-        dinoTransform.SetParent(null);
-    }
-
-    Animator dinoAnimator = Dino?.GetComponentInChildren<Animator>();
-    if (dinoAnimator != null)
-    {
-        dinoAnimator.enabled = true;
-    }
-
-    if (_selectable.IsSelected)
-    {
-        GridBuildingSystem.Instance.TempPlaceableObject = this;
-        InitializeDisplayObjects(true);
-        CameraObjectFollowing.Instance.SetTarget(transform);
-        GridBuildingSystem.Instance.TempTilemap.gameObject.SetActive(true);
-
-        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.WorldToCell(transform.position);
-        BoundsInt areaTemp = Area;
-        areaTemp.position = positionInt;
-
-        GridBuildingSystem.Instance.SetAreaWhite(areaTemp, GridBuildingSystem.Instance.MainTilemap);
-
-        GridBuildingSystem.Instance.FollowBuilding();
-        GridBuildingSystem.Instance.ReloadUI();
-        UIManager.Instance.DisableCurrentFixed();
-    }
-    else
-    {
-        Debug.LogWarning("StartEditing called, but object is not selected.");
-    }
-
-    if (mainObjectAnimator != null)
-    {
-        mainObjectAnimator.enabled = true;
-    }
-
-    if (dinoTransform != null)
-    {
-        dinoTransform.SetParent(transform);
-        dinoTransform.position = dinoOriginalPosition;
-    }
-}
 
     public void CancelEditing()
     {

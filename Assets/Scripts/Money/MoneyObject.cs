@@ -202,10 +202,14 @@ public class MoneyObject : MonoBehaviour
             if (_selectable)
             {
                 _selectable.Select();
-            }
-            if(_data.Money != 0)
-            {
-                GetMoney();
+                if(_data.Money == null)
+                {
+                    return;
+                }
+                if(_data.Money != 0)
+                {
+                    GetMoney();
+                }
             }
         }
         else
