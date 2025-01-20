@@ -56,6 +56,7 @@ public class PlaceableObject : MonoBehaviour
 
     private bool _isPointerMoving;
     private Vector3 _lastPointerPosition;
+    private bool isProgressUpdated = false;
 
     #region Unity Methods
 
@@ -156,8 +157,12 @@ public class PlaceableObject : MonoBehaviour
 
     private void UpdateProgress()
     {
-        this.data.Progress.ElapsedTime += 1;
-        this.data.Progress.LastTick = DateTime.Now;
+        if (!isProgressUpdated)
+        {
+            this.data.Progress.ElapsedTime += 1;
+            this.data.Progress.LastTick = DateTime.Now;
+            isProgressUpdated = true;
+        }
     }
 
     #endregion
@@ -248,23 +253,29 @@ public class PlaceableObject : MonoBehaviour
         }
         else if (data.Progress != null)
         {
-            int newTime = (int)Math.Floor((DateTime.Now - placeableObjectData.Progress.LastTick).TotalSeconds) + placeableObjectData.Progress.ElapsedTime;
+            TimeSpan elapsedSpan = DateTime.Now - data.Progress.LastTick;
+            int elapsedSeconds = Mathf.Max(0, (int)elapsedSpan.TotalSeconds);
+            data.Progress.ElapsedTime = data.Progress.ElapsedTime + elapsedSeconds;
+            data.Progress.LastTick = DateTime.Now;
 
-            if (newTime >= BuildTime)
+            int newElapsedTime = data.Progress.ElapsedTime;
+
+            if (newElapsedTime >= BuildTime)
             {
                 OnConstructionFinished();
             }
             else
             {
-                data.Progress = new ProgressData(BuildTime - newTime, DateTime.Now);
 
                 _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
                 _timerBarInstance.transform.position = _construction.transform.position;
                 _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
 
                 // Update Progress every second and display XP icon when construction is finished
-                _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished, newTime);
+                _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished, newElapsedTime);
             }
+            Debug.Log($"Elapsed seconds since last session: {elapsedSeconds}");
+            Debug.Log($"Updated ElapsedTime: {data.Progress.ElapsedTime}");
         }
     }
 

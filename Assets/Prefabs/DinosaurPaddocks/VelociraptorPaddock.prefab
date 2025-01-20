@@ -1840,8 +1840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e81fd244f8af84db0fee8accc729fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hatchDuration: 10
-  HatchXP: 16
+  _hatchDuration: 2520
+  HatchXP: 192
   _eggVisual: {fileID: 8369108262537016402}
   dino: {fileID: 3786970993323661030}
   _xpNotification: {fileID: 301173621897557951}
@@ -2733,7 +2733,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   m_Resource: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4535,7 +4535,7 @@ MonoBehaviour:
   GridBuildingID: 0
   ConstructionFinished: 0
   BuildTime: 0
-  BuildXp: 192
+  BuildXp: 34
   _xpNotification: {fileID: 301173621897557951}
   _tapVFX: {fileID: 2864252642858936466}
   _xpCounter: {fileID: 7707790853155919545}

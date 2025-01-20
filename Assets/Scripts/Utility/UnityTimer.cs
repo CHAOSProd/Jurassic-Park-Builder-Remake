@@ -42,16 +42,15 @@ public class UnityTimer : Singleton<UnityTimer>
             int intervalCount = 1;
             while (elapsed < time)
             {
+                yield return new WaitForEndOfFrame();
+                elapsed += Time.deltaTime;
                 onTick.Invoke();
 
-                if(elapsed > interval * intervalCount)
+                if (elapsed >= interval * intervalCount)
                 {
                     onIntervalTick.Invoke();
                     intervalCount++;
                 }
-
-                elapsed += Time.deltaTime;
-                yield return new WaitForEndOfFrame();
             }
             onFinished?.Invoke();
         }

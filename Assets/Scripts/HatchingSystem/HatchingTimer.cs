@@ -28,6 +28,7 @@ public class HatchingTimer : MonoBehaviour
 
     private TimerBar _timerBarInstance;
     private HatchingData data;
+    private bool isProgressUpdated = false;
 
     private void Start()
     {
@@ -122,8 +123,12 @@ public class HatchingTimer : MonoBehaviour
 
     private void UpdateProgress()
     {
-        data.HatchingProgress.ElapsedTime += 1;
-        data.HatchingProgress.LastTick = DateTime.Now;
+        if (!isProgressUpdated)
+        {
+            data.HatchingProgress.ElapsedTime += 1;
+            data.HatchingProgress.LastTick = DateTime.Now;
+            isProgressUpdated = true;
+        }
     }
 
     private void OnHatchComplete()
