@@ -76,6 +76,16 @@ public class PlaceableObject : MonoBehaviour
 
     #region Build Methods
 
+    private void SetSpriteOpacity(GameObject target, float opacity)
+    {
+        SpriteRenderer spriteRenderer = target.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Color color = spriteRenderer.color;
+            color.a = opacity / 255f;
+            spriteRenderer.color = color;
+        }
+    }
     public bool CanBePlaced()
     {
         Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
@@ -174,7 +184,7 @@ public class PlaceableObject : MonoBehaviour
         if (!ConstructionFinished)
         {
             _construction.SetActive(true);
-
+            SetSpriteOpacity(_construction, isBuildingEnabled ? 210f : 255f);
             // Ensure collider is correctly enabled/disabled based on whether the object can be edited
             Collider2D collider = _construction.GetComponent<Collider2D>();
             if (collider != null)
@@ -187,7 +197,7 @@ public class PlaceableObject : MonoBehaviour
             _main.SetActive(!isBuildingEnabled);
             _display.SetActive(isBuildingEnabled);
             _construction.SetActive(false);
-
+            SetSpriteOpacity(_display, 255f);
             // If the object is finished, ensure the main display is interactable
             if (TryGetComponent(out Collider2D collider))
             {

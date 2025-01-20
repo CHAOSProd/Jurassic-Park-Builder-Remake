@@ -77,6 +77,7 @@ public class SaveManager : Singleton<SaveManager>
             PlaceableObject placeableObject = obj.GetComponent<PlaceableObject>();
 
             placeableObject.Initialize(placeableObjectItem, placeableObjectData);
+            SaveData.MoneyData[placableIndex].PlaceableObjectIndex = placableIndex;
 
             placeableObject.PlaceWithoutSave();
 
@@ -101,7 +102,7 @@ public class SaveManager : Singleton<SaveManager>
                 }
                 else
                 {
-                    return;
+                    moneyObject.Initialise(new MoneyObjectData(placableIndex, 0));
                 }
             }
         }
