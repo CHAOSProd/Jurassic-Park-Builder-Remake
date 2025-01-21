@@ -77,13 +77,8 @@ public class TreeChopper : Selectable
 
     public void PerformChopAction()
     {
-<<<<<<< Updated upstream
-        AllowSelection = false;
-=======
-        //AllowSelection = false;
         canSpeedUp = true;
 
->>>>>>> Stashed changes
         _trees.SetActive(false);
         _debris.SetActive(true);
 
