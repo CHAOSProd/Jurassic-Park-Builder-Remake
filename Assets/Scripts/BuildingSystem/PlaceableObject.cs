@@ -184,7 +184,7 @@ public class PlaceableObject : MonoBehaviour
         if (!ConstructionFinished)
         {
             _construction.SetActive(true);
-            SetSpriteOpacity(_construction, isBuildingEnabled ? 210f : 255f);
+            SetSpriteOpacity(_construction, isBuildingEnabled ? 200f : 255f);
             // Ensure collider is correctly enabled/disabled based on whether the object can be edited
             Collider2D collider = _construction.GetComponent<Collider2D>();
             if (collider != null)
