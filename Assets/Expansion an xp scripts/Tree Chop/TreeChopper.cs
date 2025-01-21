@@ -11,6 +11,7 @@ public class TreeChopper : Selectable
     [SerializeField] private GameObject _trees;
     [SerializeField] private GameObject _debris;
     [SerializeField] private GameObject _selected;
+    [SerializeField] private GameObject _selectedDebris;
 
     [Header("XP Objects")]
     [SerializeField] private GameObject _xpNotification;
@@ -23,7 +24,7 @@ public class TreeChopper : Selectable
 
     [Header("Chopping Time")]
     [SerializeField] private GameObject _timerBarPrefab;
-    [SerializeField] private int _chopTime;
+    public int chopTime;
 
     [Header("Audio")]
     [SerializeField] private AudioClip _xpCollectSound; // XP collect sound
@@ -33,6 +34,7 @@ public class TreeChopper : Selectable
     public (int x, int y) MappedPosition { get; private set; }
 
     public bool hasTreeDebris = false;
+    public bool canSpeedUp = false;
     private bool chopped = false;
 
     private TreeData _treeData;
@@ -75,7 +77,13 @@ public class TreeChopper : Selectable
 
     public void PerformChopAction()
     {
+<<<<<<< Updated upstream
         AllowSelection = false;
+=======
+        //AllowSelection = false;
+        canSpeedUp = true;
+
+>>>>>>> Stashed changes
         _trees.SetActive(false);
         _debris.SetActive(true);
 
@@ -84,7 +92,7 @@ public class TreeChopper : Selectable
 
         //Initialize Progress
         _treeData.Progress = new ProgressData(0, DateTime.Now);
-        _timerBarInstance.FillOverInterval(_chopTime, 1, UpdateProgress, EnableDebris);
+        _timerBarInstance.FillOverInterval(chopTime, 1, UpdateProgress, EnableDebris);
     }
     public void EnableDebris()
     {
@@ -93,6 +101,8 @@ public class TreeChopper : Selectable
         _xpNotification.SetActive(true);
         hasTreeDebris = true;
         _treeData.HasDebris = true;
+        canSpeedUp = true;
+        SelectablesManager.Instance.UnselectAll();
 
         if (_timerBarInstance != null)
             Destroy(_timerBarInstance.gameObject);
@@ -109,6 +119,8 @@ public class TreeChopper : Selectable
         _tapVFX.SetActive(true);
         _xpCounter.SetActive(true);
         _xpCountDisplayer.DisplayCount(TreeChopManager.Instance.CurrentXP);
+        canSpeedUp = false;
+        SelectablesManager.Instance.UnselectAll();
 
         // Play XP collect sound
         if (_xpCollectSound != null)
@@ -136,12 +148,24 @@ public class TreeChopper : Selectable
 
     public override void Unselect()
     {
+        _selectedDebris.SetActive(false);
         _selected.SetActive(false);
+
         base.Unselect();
     }
     public override void Select()
     {
-        _selected.SetActive(true);
+        if (canSpeedUp)
+        {
+            _selectedDebris.SetActive(true);
+            _selected.SetActive(false);
+        }
+        else
+        {
+            _selected.SetActive(true);
+            _selectedDebris.SetActive(true);
+        }
+        
         PlaySound(0);
         base.Select();
     }
@@ -179,7 +203,7 @@ public class TreeChopper : Selectable
             _debris.SetActive(true);
 
             int newTime = (int)Math.Floor((DateTime.Now - _treeData.Progress.LastTick).TotalSeconds) + _treeData.Progress.ElapsedTime;
-            if (newTime >= _chopTime)
+            if (newTime >= chopTime)
             {
                 EnableDebris();
             }
@@ -192,7 +216,7 @@ public class TreeChopper : Selectable
                 _timerBarInstance.transform.position = _debris.transform.position;
 
                 //Update Progress every second and display xp icon when construction is finished
-                _timerBarInstance.FillOverInterval(_chopTime, 1, UpdateProgress, EnableDebris, newTime);
+                _timerBarInstance.FillOverInterval(chopTime, 1, UpdateProgress, EnableDebris, newTime);
             }
         }
     }

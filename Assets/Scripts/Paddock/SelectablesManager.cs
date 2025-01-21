@@ -49,9 +49,16 @@ public class SelectablesManager : Singleton<SelectablesManager>
             {
                 UIManager.Instance.ChangeTo("BuildingUI");
             }
-            else if (CurrentSelectable is TreeChopper)
+            else if (CurrentSelectable is TreeChopper tree)
             {
-                UIManager.Instance.ChangeTo("ExpansionUI");
+                if (tree.canSpeedUp)
+                {
+                    UIManager.Instance.ChangeTo("SelectedUI");
+                }
+                else
+                {
+                    UIManager.Instance.ChangeTo("ExpansionUI");
+                }
             }
             else if (CurrentSelectable is DebrisObject debris)
             {

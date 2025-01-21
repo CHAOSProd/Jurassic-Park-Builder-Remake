@@ -18,7 +18,9 @@ public class TreeChopManager : Singleton<TreeChopManager>
 
     private int _currentXPAdder = 20;
     private int _currentCostAdder = 600;
+    private int _chopeedTrees = 0;
 
+    [SerializeField] private List<int> _chopTime;
     private Dictionary<(int x, int y), TreeChopper> _treeMap;
 
     public int CurrentXP { get; private set; } = 16;
@@ -40,6 +42,7 @@ public class TreeChopManager : Singleton<TreeChopManager>
         _currentXPAdder = Attributes.GetInt("TreeExpansionXPAdder", 20);
         CurrentCost = Attributes.GetInt("TreeExpansionCost", 200);
         _currentCostAdder = Attributes.GetInt("TreeExpansionCostAdder", 600);
+        _chopeedTrees = Attributes.GetInt("ChoppedTrees", 0);
     }
     public void UpdateXP()
     {
@@ -59,14 +62,16 @@ public class TreeChopManager : Singleton<TreeChopManager>
             return;
         }
 
-
+        (SelectablesManager.Instance.CurrentSelectable as TreeChopper).chopTime = _chopTime[_chopeedTrees];
         (SelectablesManager.Instance.CurrentSelectable as TreeChopper).PerformChopAction();
         _chopSoundEffect.GetComponent<AudioSource>().Play();
         CurrentCost += _currentCostAdder;
         _currentCostAdder += 400;
+        _chopeedTrees += 1;
 
         Attributes.SetInt("TreeExpansionCost", CurrentCost);
         Attributes.SetInt("TreeExpansionCostAdder", _currentCostAdder);
+        Attributes.SetInt("ChoppedTrees", _chopeedTrees);
 
         availableTreeChops = Mathf.Max(0, availableTreeChops - 1);
 
