@@ -76,7 +76,6 @@ public class TreeChopper : Selectable
     public void PerformChopAction()
     {
         AllowSelection = false;
-
         _trees.SetActive(false);
         _debris.SetActive(true);
 

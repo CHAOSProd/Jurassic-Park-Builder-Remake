@@ -8,6 +8,7 @@ public class EvolutionChanger : MonoBehaviour
     [SerializeField] private List<Material> _skinMaterials;
     [SerializeField] private List<Button> _buttons;
     [SerializeField] private List<GameObject> _stars;
+    [SerializeField] private List<GameObject> _editingStars;
 
     private DinosaurLevelManager _dinosaurLevelManager;
     private SkinnedMeshRenderer _skinnedMeshRenderer;
@@ -93,6 +94,11 @@ public class EvolutionChanger : MonoBehaviour
         for (int i = 0; i < _stars.Count; i++)
         {
             _stars[i].SetActive(i < index);
+        }
+
+        for (int i = 0; i < _editingStars.Count; i++)
+        {
+            _editingStars[i].SetActive(i < index);
         }
 
         _buttons[index].interactable = false;

@@ -10,6 +10,7 @@ public class TreeChopManager : Singleton<TreeChopManager>
     [SerializeField] private PurchasePanel _notEnoughCoinsPanel;
     [SerializeField] private TextMeshProUGUI _expansionCoinText;
     [SerializeField] private Grid _cellGrid;
+    [SerializeField] private GameObject _chopSoundEffect;
 
     public (float width, float height) CellSize { get; private set; }
 
@@ -60,7 +61,7 @@ public class TreeChopManager : Singleton<TreeChopManager>
 
 
         (SelectablesManager.Instance.CurrentSelectable as TreeChopper).PerformChopAction();
-
+        _chopSoundEffect.GetComponent<AudioSource>().Play();
         CurrentCost += _currentCostAdder;
         _currentCostAdder += 400;
 

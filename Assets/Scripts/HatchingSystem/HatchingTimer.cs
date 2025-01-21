@@ -156,6 +156,7 @@ public class HatchingTimer : MonoBehaviour
         _xpNotification.SetActive(false);
         _tapVFX.SetActive(true);
         _xpCounter.SetActive(true);
+        EventManager.Instance.TriggerEvent(new XPAddedGameEvent(HatchXP));
 
         data.HatchingFinished = true;
         data.isHatching = false;
