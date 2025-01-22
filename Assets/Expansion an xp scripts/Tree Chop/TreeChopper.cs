@@ -25,6 +25,7 @@ public class TreeChopper : Selectable
     [Header("Chopping Time")]
     [SerializeField] private GameObject _timerBarPrefab;
     public int chopTime;
+    private bool isProgressUpdated = false;
 
     [Header("Audio")]
     [SerializeField] private AudioClip _xpCollectSound; // XP collect sound
@@ -86,11 +87,13 @@ public class TreeChopper : Selectable
         _timerBarInstance.transform.position = _debris.transform.position;
 
         //Initialize Progress
+        _treeData.ChopTime = chopTime;
         _treeData.Progress = new ProgressData(0, DateTime.Now);
         _timerBarInstance.FillOverInterval(chopTime, 1, UpdateProgress, EnableDebris);
     }
     public void EnableDebris()
     {
+        AllowSelection = true;
         _trees.SetActive(false);
         _debris.SetActive(true);
         _xpNotification.SetActive(true);
@@ -173,6 +176,7 @@ public class TreeChopper : Selectable
     public void SetData(TreeData td)
     {
         _treeData = td;
+        chopTime = td.ChopTime;
         InitializeProgress();
 
         if (_treeData.HasDebris)
@@ -221,8 +225,12 @@ public class TreeChopper : Selectable
     }
     private void UpdateProgress()
     {
+        if (!isProgressUpdated)
+        {
         _treeData.Progress.ElapsedTime += 1;
         _treeData.Progress.LastTick = DateTime.Now;
+        isProgressUpdated = true;
+        }
     }
     public void SetMappedPosition(int x, int y)
     {

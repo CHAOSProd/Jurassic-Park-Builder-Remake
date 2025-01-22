@@ -115,7 +115,10 @@ public class SaveManager : Singleton<SaveManager>
             {
                 Transform tree = treesObject.transform.GetChild(i);
 
-                TreeData td = new TreeData(i);
+            TreeData td = new TreeData(i)
+            {
+                ChopTime = tree.GetComponent<TreeChopper>().chopTime
+            };
                 SaveData.TreeData.Add(td);
                 tree.GetComponent<TreeChopper>().SetData(td);
             }
@@ -127,6 +130,7 @@ public class SaveManager : Singleton<SaveManager>
             {
                 var treeChopper = treesObject.transform.GetChild(td.InstanceIndex).GetComponent<TreeChopper>();
                 treeChopper.SetData(td);
+                treeChopper.chopTime = td.ChopTime;
 
                 if (td.HasDebris)
                 {

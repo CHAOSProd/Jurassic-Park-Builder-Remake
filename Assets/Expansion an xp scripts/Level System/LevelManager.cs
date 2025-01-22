@@ -113,12 +113,10 @@ public class LevelManager : MonoBehaviour
 
     private void UpdateUnlockItems()
     {
-        Debug.Log($"Updating items for level {level}");
         foreach (var item in levelRequiredItems)
         {
             if (item != null)
             {
-                Debug.Log($"Checking item {item.name} with required level {item.requiredLevel}");
                 item.UpdateItemVisibility((int)level);
             }
         }
