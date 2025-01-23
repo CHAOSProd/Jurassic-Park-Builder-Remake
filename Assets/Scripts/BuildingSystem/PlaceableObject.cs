@@ -58,6 +58,10 @@ public class PlaceableObject : MonoBehaviour
     private Vector3 _lastPointerPosition;
     private bool isProgressUpdated = false;
 
+    public bool isEditing = false;
+
+    public bool DinoCheck = false;
+
     #region Unity Methods
 
     private void Awake()
@@ -114,6 +118,15 @@ public class PlaceableObject : MonoBehaviour
         CameraObjectFollowing.Instance.SetTarget(null);
 
         if (Placed) return;
+
+        if (isEditing)
+        {
+            DinoCheck = false;
+        }
+        else if (!isEditing)
+        {
+            DinoCheck = true;
+        }
 
         _selectable.PlayPlacementSound();
         Placed = true;
@@ -297,13 +310,14 @@ public class PlaceableObject : MonoBehaviour
     {
             if (_selectable.IsSelected)
             {
+            isEditing = true;
             Debug.Log("StartEditing triggered");
             Animator mainObjectAnimator = GetComponentInChildren<Animator>();
             if (mainObjectAnimator != null)
             {
                 mainObjectAnimator.enabled = false;
             }
-            if (_isPaddock)
+            if (_isPaddock && !Hatching.GetComponent<HatchingTimer>().paddockScript.is_hatching) 
             {
                 Transform dinoTransform = Dino?.transform;
                 Vector3 dinoOriginalPosition = Vector3.zero;
@@ -351,6 +365,7 @@ public class PlaceableObject : MonoBehaviour
     public void CancelEditing()
     {
         transform.position = _origin;
+        isEditing = false;
         Place();
     }
 

@@ -58,20 +58,23 @@ public class DebugBuildingButton : MonoBehaviour
 
     private void CreateObject()
     {
-        GridBuildingSystem.Instance.SetAcceptCallback(() =>
-        {
-            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-myPurchasableItem.itemPrice, CurrencyType.Coins));
-            GridBuildingSystem.Instance.ResetAcceptCallback();
-
-            if(_animalToggle != null)
-                _animalToggle.SetPurchased(true);
-        });
 
         var obj = GridBuildingSystem.Instance.InitializeWithBuilding(PlaceableObjectItem.Prefab);
         PlaceableObject placeableObj = obj.GetComponent<PlaceableObject>();
 
         placeableObj.Initialize(PlaceableObjectItem);
         placeableObj.data.SellRefund = (int)Mathf.Round(myPurchasableItem.itemPrice * .5f);
+
+        GridBuildingSystem.Instance.SetAcceptCallback(() =>
+        {
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-myPurchasableItem.itemPrice, CurrencyType.Coins));
+            GridBuildingSystem.Instance.ResetAcceptCallback();
+            if(placeableObj.DinoCheck)
+            {
+                if(_animalToggle != null)
+                _animalToggle.SetPurchased(true);
+            }
+        });
 
         if(_animalToggle != null)
             placeableObj.data.AnimalIndex = ShopManager.Instance.IndexOfAnimal(_animalToggle);
