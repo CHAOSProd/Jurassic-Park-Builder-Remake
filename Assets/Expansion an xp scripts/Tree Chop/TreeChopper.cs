@@ -197,6 +197,7 @@ public class TreeChopper : Selectable
         if (_treeData.Progress != null)
         {
             AllowSelection = false;
+            canSpeedUp = true;
 
             _trees.SetActive(false);
             _debris.SetActive(true);
@@ -211,11 +212,18 @@ public class TreeChopper : Selectable
                 _treeData.Progress.LastTick = DateTime.Now;
                 _treeData.Progress.ElapsedTime = newTime;
 
-                _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
-                _timerBarInstance.transform.position = _debris.transform.position;
+                if (transform.Find("TimerBar(Clone)"))
+                {
+                    _timerBarInstance = transform.Find("TimerBar(Clone)").GetComponent<TimerBar>();
+                }
+                else
+                {
+                    _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
+                    _timerBarInstance.transform.position = _debris.transform.position;
 
-                //Update Progress every second and display xp icon when construction is finished
-                _timerBarInstance.FillOverInterval(chopTime, 1, UpdateProgress, EnableDebris, newTime);
+                    //Update Progress every second and display xp icon when construction is finished
+                    _timerBarInstance.FillOverInterval(chopTime, 1, UpdateProgress, EnableDebris, newTime);
+                }
             }
         }
     }
