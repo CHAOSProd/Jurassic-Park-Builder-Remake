@@ -36,6 +36,7 @@ public class DebrisObject : Selectable
     private BoundsInt _size;
     public DebrisData _data;
     private bool _xpCollected = false;
+    private bool isProgressUpdated = false;
 
     private void Awake()
     {
@@ -96,6 +97,10 @@ public class DebrisObject : Selectable
 
     private void OnRemovalComplete()
     {
+        if (SelectablesManager.Instance.CurrentSelectable == this)
+        {
+            SelectablesManager.Instance.UnselectAll();
+        }
         _xpNotification.SetActive(true);
         removing = false;
         _removed = true;
@@ -142,8 +147,12 @@ public class DebrisObject : Selectable
 
     private void UpdateProgress()
     {
-        _data.Progress.ElapsedTime += 1;
-        _data.Progress.LastTick = DateTime.Now;
+        if (!isProgressUpdated)
+        {
+            _data.Progress.ElapsedTime += 1;
+            _data.Progress.LastTick = DateTime.Now;
+            isProgressUpdated = true;
+        }
     }
 
     /// <summary>
