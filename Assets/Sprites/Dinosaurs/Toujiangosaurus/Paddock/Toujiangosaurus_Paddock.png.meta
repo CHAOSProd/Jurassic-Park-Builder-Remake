@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 325fd3d2632f46d47879d839c866c4a0
+guid: cd3098dbdfff06c4cb86873d266e2179
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 974838642289068769
-    second: Triceratops paddock (7)_0
-  - first:
-      213: 7414528630238306610
-    second: Triceratops paddock (7)_1
+      213: -692913583075456578
+    second: Toujiangosaurus paddock_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -54,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 484
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Triceratops paddock (7)_0
+      name: Toujiangosaurus paddock_0
       rect:
         serializedVersion: 2
-        x: 71
-        y: 325
-        width: 7
-        height: 9
+        x: 22
+        y: 27
+        width: 663
+        height: 396
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,29 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1eac6fa8492578d00800000000000000
-      internalID: 974838642289068769
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Triceratops paddock (7)_1
-      rect:
-        serializedVersion: 2
-        x: 73
-        y: 57
-        width: 763
-        height: 535
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 231615e5182b5e660800000000000000
-      internalID: 7414528630238306610
+      spriteID: eb98eb474c64266f0800000000000000
+      internalID: -692913583075456578
       vertices: []
       indices: 
       edges: []
@@ -155,8 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Triceratops paddock (7)_0: 974838642289068769
-      Triceratops paddock (7)_1: 7414528630238306610
+      Toujiangosaurus paddock_0: -692913583075456578
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
