@@ -59,6 +59,7 @@ public class PlaceableObject : MonoBehaviour
     private bool isProgressUpdated = false;
 
     public bool isEditing = false;
+    public bool isPlacing = false;
 
     public bool DinoCheck = false;
 
@@ -112,7 +113,16 @@ public class PlaceableObject : MonoBehaviour
     public void Place()
     {
         InitializeDisplayObjects(false);
-
+        if (isEditing)
+        {
+            DinoCheck = false;
+        }
+        else if (!isEditing)
+        {
+            DinoCheck = true;
+        }
+        isPlacing=false;
+        isEditing=false;
         Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = Area;
         areaTemp.position = positionInt;
@@ -122,15 +132,9 @@ public class PlaceableObject : MonoBehaviour
         data.Position = (transform.position.x, transform.position.y, transform.position.z);
         CameraObjectFollowing.Instance.SetTarget(null);
 
-        if (Placed) return;
-
-        if (isEditing)
+        if (Placed)
         {
-            DinoCheck = false;
-        }
-        else if (!isEditing)
-        {
-            DinoCheck = true;
+            return;
         }
 
         _selectable.PlayPlacementSound();
@@ -148,8 +152,6 @@ public class PlaceableObject : MonoBehaviour
 
         // Update Progress every second and display XP icon when construction is finished
         _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished);
-
-        SetIndicatorState(false, false); // Turn off indicators
     }
 
     public void PlaceWithoutSave()
@@ -168,8 +170,6 @@ public class PlaceableObject : MonoBehaviour
         _origin = transform.position;
 
         CameraObjectFollowing.Instance.SetTarget(null);
-
-        SetIndicatorState(false, false); // Turn off indicators
     }
 
     private void OnConstructionFinished()
@@ -205,6 +205,7 @@ public class PlaceableObject : MonoBehaviour
     {
         if (!ConstructionFinished)
         {
+            isPlacing = true;
             _construction.SetActive(true);
             SetSpriteOpacity(_construction, isBuildingEnabled ? 200f : 255f);
             // Ensure collider is correctly enabled/disabled based on whether the object can be edited
@@ -368,18 +369,14 @@ public class PlaceableObject : MonoBehaviour
             GridBuildingSystem.Instance.FollowBuilding();
             GridBuildingSystem.Instance.ReloadUI();
             UIManager.Instance.DisableCurrentFixed();
-
-            // Update indicators based on placement validity
-            SetIndicatorState(CanBePlaced(), !CanBePlaced());
         }
     }
 
     public void CancelEditing()
     {
         transform.position = _origin;
-        isEditing = false;
+        isEditing=false;
         Place();
-        SetIndicatorState(false, false); // Turn off indicators
     }
 
     public void SortAtTop()
@@ -455,10 +452,15 @@ public class PlaceableObject : MonoBehaviour
 
     private void Update()
     {
-        if (isEditing)
+        if (isEditing || isPlacing)
         {
-            // Check placement validity in real-time during editing
+            // Check placement validity in real-time during placing or editing
             SetIndicatorState(CanBePlaced(), !CanBePlaced());
+        }
+        else
+        {
+            // Ensure indicators are off when not placing or editing
+            SetIndicatorState(false, false);
         }
     }
 
