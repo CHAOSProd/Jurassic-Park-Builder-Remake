@@ -62,6 +62,10 @@ public class PlaceableObject : MonoBehaviour
 
     public bool DinoCheck = false;
 
+    [Header("Indicators")]
+    [SerializeField] private GameObject greenIndicator;
+    [SerializeField] private GameObject redIndicator;
+
     #region Unity Methods
 
     private void Awake()
@@ -74,6 +78,7 @@ public class PlaceableObject : MonoBehaviour
     {
         _editButton = EditButton.Instance.GetComponent<Button>();
         _editButton.onClick.AddListener(StartEditing);
+        SetIndicatorState(false, false); // Ensure indicators are off at start
     }
 
     #endregion
@@ -143,6 +148,8 @@ public class PlaceableObject : MonoBehaviour
 
         // Update Progress every second and display XP icon when construction is finished
         _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished);
+
+        SetIndicatorState(false, false); // Turn off indicators
     }
 
     public void PlaceWithoutSave()
@@ -161,6 +168,8 @@ public class PlaceableObject : MonoBehaviour
         _origin = transform.position;
 
         CameraObjectFollowing.Instance.SetTarget(null);
+
+        SetIndicatorState(false, false); // Turn off indicators
     }
 
     private void OnConstructionFinished()
@@ -308,8 +317,8 @@ public class PlaceableObject : MonoBehaviour
 
     public void StartEditing()
     {
-            if (_selectable.IsSelected)
-            {
+        if (_selectable.IsSelected)
+        {
             isEditing = true;
             Debug.Log("StartEditing triggered");
             Animator mainObjectAnimator = GetComponentInChildren<Animator>();
@@ -317,7 +326,7 @@ public class PlaceableObject : MonoBehaviour
             {
                 mainObjectAnimator.enabled = false;
             }
-            if (_isPaddock && !Hatching.GetComponent<HatchingTimer>().paddockScript.is_hatching) 
+            if (_isPaddock && !Hatching.GetComponent<HatchingTimer>().paddockScript.is_hatching)
             {
                 Transform dinoTransform = Dino?.transform;
                 Vector3 dinoOriginalPosition = Vector3.zero;
@@ -326,7 +335,7 @@ public class PlaceableObject : MonoBehaviour
                 {
                     dinoOriginalPosition = dinoTransform.position;
                     dinoTransform.SetParent(null);
-                } 
+                }
 
                 Animator dinoAnimator = Dino?.GetComponentInChildren<Animator>();
                 if (dinoAnimator != null)
@@ -359,6 +368,9 @@ public class PlaceableObject : MonoBehaviour
             GridBuildingSystem.Instance.FollowBuilding();
             GridBuildingSystem.Instance.ReloadUI();
             UIManager.Instance.DisableCurrentFixed();
+
+            // Update indicators based on placement validity
+            SetIndicatorState(CanBePlaced(), !CanBePlaced());
         }
     }
 
@@ -367,6 +379,7 @@ public class PlaceableObject : MonoBehaviour
         transform.position = _origin;
         isEditing = false;
         Place();
+        SetIndicatorState(false, false); // Turn off indicators
     }
 
     public void SortAtTop()
@@ -440,7 +453,23 @@ public class PlaceableObject : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (isEditing)
+        {
+            // Check placement validity in real-time during editing
+            SetIndicatorState(CanBePlaced(), !CanBePlaced());
+        }
+    }
 
+    private void SetIndicatorState(bool greenActive, bool redActive)
+    {
+        if (greenIndicator != null)
+            greenIndicator.SetActive(greenActive);
+
+        if (redIndicator != null)
+            redIndicator.SetActive(redActive);
+    }
 
     #endregion
 }
@@ -476,5 +505,7 @@ public class PlaceableObjectEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+
+
 
 
