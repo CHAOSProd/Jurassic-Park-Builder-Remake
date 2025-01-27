@@ -163,6 +163,7 @@ public class MoneyObject : MonoBehaviour
         PlaceableObject placeableObject = GetComponentInParent<PlaceableObject>();
         if (_paddock != null && _paddock.is_hatching || placeableObject != null && !placeableObject.ConstructionFinished)
         {
+            _data.Money=0;
             return;
         }
 
