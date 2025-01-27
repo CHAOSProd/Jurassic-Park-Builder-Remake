@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c4ef4d455472df54e93004b52bd04f46
+guid: d1ff116197c33bd4c80bd6e369c5c7ee
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,9 +31,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Armature|ArmatureAction.001
-      takeName: Armature|ArmatureAction.001
-      internalID: -1422011007694221501
+      name: Armature|Armature|Armature|ArmatureAction.001
+      takeName: Armature|Armature|Armature|ArmatureAction.001
+      internalID: 8003312214571475973
       firstFrame: 0
       lastFrame: 159
       wrapMode: 0
