@@ -14,7 +14,8 @@ public class UIManager : Singleton<UIManager>
         public List<GameObject> objects;
     }
 
-    
+    [SerializeField] private GameObject cam;
+
     [SerializeField] private List<UIManagerField> groups;
     [SerializeField] private List<UIManagerField> fixedGroups;
 
@@ -26,6 +27,12 @@ public class UIManager : Singleton<UIManager>
 
     private string _fixedKey;
     private bool _fixedEnabled = true;
+
+    public void ChangeCameraPanningStatus(bool enabled)
+    {
+        cam.GetComponent<PanZoomMobile>().enabled = enabled;
+        cam.GetComponent<PanZoomPC>().enabled = enabled;
+    }
 
     private void Awake()
     {
@@ -40,6 +47,7 @@ public class UIManager : Singleton<UIManager>
             _fixedUIElements.Add(field.key, field.objects);
         }
         _fixedKey = fixedGroups[0].key;
+        ChangeCameraPanningStatus(true);
     }
 
     /// <summary>
@@ -62,6 +70,7 @@ public class UIManager : Singleton<UIManager>
         }
         _activeKey = key;
         _currentEnabled = true;
+        ChangeCameraPanningStatus(true);
     }
 
     /// <summary>
@@ -75,6 +84,7 @@ public class UIManager : Singleton<UIManager>
         }
 
         _currentEnabled = false;
+        ChangeCameraPanningStatus(false);
     }
 
     /// <summary>
@@ -88,6 +98,7 @@ public class UIManager : Singleton<UIManager>
         }
 
         _currentEnabled = true;
+        ChangeCameraPanningStatus(true);
     }
 
     public void ChangeFixedTo(string key)

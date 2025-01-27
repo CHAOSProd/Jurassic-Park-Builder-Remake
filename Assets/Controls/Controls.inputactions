@@ -6,6 +6,15 @@
             "id": "9ece4046-32e4-4b0b-90e8-a8bf487f1c01",
             "actions": [
                 {
+                    "name": "LeftClick",
+                    "type": "Button",
+                    "id": "7a5490b9-6e63-4044-a0d0-ce4fe09de5db",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "MouseScrollButon",
                     "type": "Button",
                     "id": "fc1e76ea-c20c-457b-98cb-a6a807487e60",
@@ -44,6 +53,17 @@
                     "processors": "",
                     "groups": "Keyboard + Mouse",
                     "action": "MouseScroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b7f1c2b-ba8b-4910-be66-7fee00298060",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard + Mouse",
+                    "action": "LeftClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

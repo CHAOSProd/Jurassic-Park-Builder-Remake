@@ -25,6 +25,7 @@ public class SpeedUp : MonoBehaviour
         if (speedUpButton != null)
         {
             speedUpButton.onClick.AddListener(SpeedUpRemoval);
+            UIManager.Instance.ChangeCameraPanningStatus(false);
         }
     }
 
@@ -95,6 +96,7 @@ public class SpeedUp : MonoBehaviour
         }
 
         SelectablesManager.Instance.UnselectAll();
+        UIManager.Instance.ChangeCameraPanningStatus(true);
     }
 
     /// <summary>

@@ -12,6 +12,7 @@ public class PlaceableObjectMovementListener : MonoBehaviour
 
     private void Start()
     {
+        UIManager.Instance.ChangeCameraPanningStatus(false);
         _placeableObject = GetComponentInParent<PlaceableObject>();
     }
 
@@ -20,9 +21,10 @@ public class PlaceableObjectMovementListener : MonoBehaviour
         if (GridBuildingSystem.Instance.TempPlaceableObject != _placeableObject || PointerOverUIChecker.Instance.IsPointerOverUIObject())
         {
             _isCanMove = false;
+            UIManager.Instance.ChangeCameraPanningStatus(true);
             return;
         }
-
+        UIManager.Instance.ChangeCameraPanningStatus(false);
         GridBuildingSystem.Instance.SaveObjectOffset();
         _isCanMove = true;
     }

@@ -42,6 +42,7 @@ public class NewSpeciesManager : Singleton<NewSpeciesManager>
 
         UIManager.Instance.ChangeFixedTo("PanelUI");
         UIManager.Instance.DisableCurrent();
+        UIManager.Instance.ChangeCameraPanningStatus(false);
     }
 
     public void ClosePanel()
@@ -52,5 +53,6 @@ public class NewSpeciesManager : Singleton<NewSpeciesManager>
         UIManager.Instance.EnableCurrent();
 
         child.gameObject.SetActive(false);
+        UIManager.Instance.ChangeCameraPanningStatus(true);
     }
 }

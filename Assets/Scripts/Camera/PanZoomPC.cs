@@ -33,8 +33,8 @@ public class PanZoomPC : MonoBehaviour
         _controls.Enable();
 
         _controls.Main.MouseScroll.performed += OnZoom;
-        _controls.Main.MouseScrollButon.started += OnScrollButtonClick;
-        _controls.Main.MouseScrollButon.canceled += OnScrollButtonRelease;
+        _controls.Main.LeftClick.started += OnScrollButtonClick;
+        _controls.Main.LeftClick.canceled += OnScrollButtonRelease;
     }
 
     private void OnZoom(InputAction.CallbackContext context)

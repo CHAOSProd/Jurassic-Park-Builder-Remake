@@ -28,6 +28,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             ""id"": ""9ece4046-32e4-4b0b-90e8-a8bf487f1c01"",
             ""actions"": [
                 {
+                    ""name"": ""LeftClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a5490b9-6e63-4044-a0d0-ce4fe09de5db"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""MouseScrollButon"",
                     ""type"": ""Button"",
                     ""id"": ""fc1e76ea-c20c-457b-98cb-a6a807487e60"",
@@ -68,6 +77,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""MouseScroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b7f1c2b-ba8b-4910-be66-7fee00298060"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard + Mouse"",
+                    ""action"": ""LeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -93,6 +113,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
 }");
         // Main
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
+        m_Main_LeftClick = m_Main.FindAction("LeftClick", throwIfNotFound: true);
         m_Main_MouseScrollButon = m_Main.FindAction("MouseScrollButon", throwIfNotFound: true);
         m_Main_MouseScroll = m_Main.FindAction("MouseScroll", throwIfNotFound: true);
     }
@@ -156,12 +177,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     // Main
     private readonly InputActionMap m_Main;
     private List<IMainActions> m_MainActionsCallbackInterfaces = new List<IMainActions>();
+    private readonly InputAction m_Main_LeftClick;
     private readonly InputAction m_Main_MouseScrollButon;
     private readonly InputAction m_Main_MouseScroll;
     public struct MainActions
     {
         private @Controls m_Wrapper;
         public MainActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LeftClick => m_Wrapper.m_Main_LeftClick;
         public InputAction @MouseScrollButon => m_Wrapper.m_Main_MouseScrollButon;
         public InputAction @MouseScroll => m_Wrapper.m_Main_MouseScroll;
         public InputActionMap Get() { return m_Wrapper.m_Main; }
@@ -173,6 +196,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_MainActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_MainActionsCallbackInterfaces.Add(instance);
+            @LeftClick.started += instance.OnLeftClick;
+            @LeftClick.performed += instance.OnLeftClick;
+            @LeftClick.canceled += instance.OnLeftClick;
             @MouseScrollButon.started += instance.OnMouseScrollButon;
             @MouseScrollButon.performed += instance.OnMouseScrollButon;
             @MouseScrollButon.canceled += instance.OnMouseScrollButon;
@@ -183,6 +209,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IMainActions instance)
         {
+            @LeftClick.started -= instance.OnLeftClick;
+            @LeftClick.performed -= instance.OnLeftClick;
+            @LeftClick.canceled -= instance.OnLeftClick;
             @MouseScrollButon.started -= instance.OnMouseScrollButon;
             @MouseScrollButon.performed -= instance.OnMouseScrollButon;
             @MouseScrollButon.canceled -= instance.OnMouseScrollButon;
@@ -217,6 +246,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     }
     public interface IMainActions
     {
+        void OnLeftClick(InputAction.CallbackContext context);
         void OnMouseScrollButon(InputAction.CallbackContext context);
         void OnMouseScroll(InputAction.CallbackContext context);
     }

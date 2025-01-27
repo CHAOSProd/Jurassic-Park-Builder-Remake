@@ -190,6 +190,7 @@ public class LevelManager : MonoBehaviour
 
     private IEnumerator PlayLevelUpAnimations()
     {
+        UIManager.Instance.ChangeCameraPanningStatus(false);
         EnableVFX(true);
 
         Transform textTransform = levelUpPanel.transform.Find("Text");
@@ -343,6 +344,7 @@ public class LevelManager : MonoBehaviour
     // Hide the level up panel and reset the UI
     private void OnOkButtonClicked()
     {
+        UIManager.Instance.ChangeCameraPanningStatus(true);
         HideLevelUpPanel();
         EarnedUnlockedText.text = "You earned";
         CollectButton.gameObject.SetActive(true);
