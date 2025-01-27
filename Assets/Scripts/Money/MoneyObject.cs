@@ -160,7 +160,11 @@ public class MoneyObject : MonoBehaviour
         _data = data;
 
         InitMoneyPerSecond();
-
+        PlaceableObject placeableObject = GetComponentInParent<PlaceableObject>();
+        if (_paddock != null && _paddock.is_hatching || placeableObject != null && !placeableObject.ConstructionFinished)
+        {
+            return;
+        }
 
         DateTime lastSaveTime = Attributes.GetAttribute("LastSaveTime", DateTime.Now);
         TimeSpan timePassed = DateTime.Now - lastSaveTime;

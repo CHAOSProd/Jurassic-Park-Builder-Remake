@@ -205,7 +205,10 @@ public class PlaceableObject : MonoBehaviour
     {
         if (!ConstructionFinished)
         {
-            isPlacing = true;
+            if(data.Progress == null)
+            {
+                isPlacing = true;
+            }
             _construction.SetActive(true);
             SetSpriteOpacity(_construction, isBuildingEnabled ? 200f : 255f);
             // Ensure collider is correctly enabled/disabled based on whether the object can be edited
