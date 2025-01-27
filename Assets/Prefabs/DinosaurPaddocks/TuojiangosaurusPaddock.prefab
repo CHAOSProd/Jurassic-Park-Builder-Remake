@@ -1418,6 +1418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4078053952259722219}
   - component: {fileID: 8110044466093357426}
+  - component: {fileID: 9209803015428827570}
   m_Layer: 0
   m_Name: GreenIndicator
   m_TagString: Untagged
@@ -1480,8 +1481,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7028499029218662583, guid: 30b8a8d746281794a8bbd1eab111282f,
     type: 3}
@@ -1495,6 +1496,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &9209803015428827570
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914425679542547964}
+  m_Enabled: 1
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &2031145140385051479
 GameObject:
   m_ObjectHideFlags: 0
@@ -5619,6 +5632,7 @@ MonoBehaviour:
   Hatching: {fileID: 8317435165583424928}
   Dino: {fileID: 5256209430337117908}
   isEditing: 0
+  isPlacing: 0
   DinoCheck: 0
   greenIndicator: {fileID: 1914425679542547964}
   redIndicator: {fileID: 9192653160264052414}
@@ -8449,6 +8463,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2756950486619347937}
   - component: {fileID: 3421691462457639492}
+  - component: {fileID: 8786751657367122865}
   m_Layer: 0
   m_Name: RedIndicator
   m_TagString: Untagged
@@ -8511,8 +8526,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -356375632821008442, guid: 52ce448a235a7de479be42a91936d3e9,
     type: 3}
@@ -8526,3 +8541,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &8786751657367122865
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192653160264052414}
+  m_Enabled: 1
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_SortAtRoot: 0

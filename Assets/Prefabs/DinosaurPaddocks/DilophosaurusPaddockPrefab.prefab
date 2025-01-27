@@ -156,9 +156,9 @@ RectTransform:
   - {fileID: 6967561698018530996}
   m_Father: {fileID: 5750636445090486787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 280.57016, y: -55.80065}
   m_SizeDelta: {x: 80.7, y: 99.6}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &92664566170087602
@@ -1137,6 +1137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4078053952259722219}
   - component: {fileID: 8110044466093357426}
+  - component: {fileID: 6316958886722722062}
   m_Layer: 0
   m_Name: GreenIndicator
   m_TagString: Untagged
@@ -1199,8 +1200,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7028499029218662583, guid: 30b8a8d746281794a8bbd1eab111282f,
     type: 3}
@@ -1214,6 +1215,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &6316958886722722062
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914425679542547964}
+  m_Enabled: 1
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &2031145140385051479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2999,9 +3012,9 @@ RectTransform:
   - {fileID: 5533950563825155213}
   m_Father: {fileID: 5750636445090486787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 97.18721, y: -55.80065}
   m_SizeDelta: {x: 80.7, y: 99.6}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6556783243831199919
@@ -4030,9 +4043,9 @@ RectTransform:
   - {fileID: 3078410511672176874}
   m_Father: {fileID: 5750636445090486787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 188.8787, y: -55.80065}
   m_SizeDelta: {x: 80.7, y: 99.6}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &9073321417382931921
@@ -4362,7 +4375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1854412203729794811
 Transform:
   m_ObjectHideFlags: 0
@@ -4372,8 +4385,8 @@ Transform:
   m_GameObject: {fileID: 5949953740542757079}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.45, z: 0}
-  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
+  m_LocalPosition: {x: -0.008, y: 0.438, z: 0}
+  m_LocalScale: {x: 0.81243855, y: 0.81243855, z: 0.81243855}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3636486999497475474}
@@ -5749,6 +5762,7 @@ MonoBehaviour:
   Hatching: {fileID: 8317435165583424928}
   Dino: {fileID: 4761323592477273085}
   isEditing: 0
+  isPlacing: 0
   DinoCheck: 0
   greenIndicator: {fileID: 1914425679542547964}
   redIndicator: {fileID: 9192653160264052414}
@@ -5981,8 +5995,8 @@ Transform:
   m_GameObject: {fileID: 7819796553852588921}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.45, z: -3}
-  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
+  m_LocalPosition: {x: -0.008, y: 0.438, z: 0}
+  m_LocalScale: {x: 0.81243855, y: 0.81243855, z: 0.81243855}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6658469642359829416}
@@ -6816,9 +6830,9 @@ RectTransform:
   - {fileID: 9054121326133392122}
   m_Father: {fileID: 5750636445090486787}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 5.495739, y: -55.80065}
   m_SizeDelta: {x: 80.7, y: 99.6}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3956408384065171785
@@ -7637,6 +7651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2756950486619347937}
   - component: {fileID: 3421691462457639492}
+  - component: {fileID: 2887682065177351887}
   m_Layer: 0
   m_Name: RedIndicator
   m_TagString: Untagged
@@ -7699,8 +7714,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -356375632821008442, guid: 52ce448a235a7de479be42a91936d3e9,
     type: 3}
@@ -7714,3 +7729,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!210 &2887682065177351887
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192653160264052414}
+  m_Enabled: 1
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
