@@ -83,8 +83,6 @@ public class LevelManager : MonoBehaviour
     private void OnLevelUp()
     {
         level++; // Increase the player level
-        XP = 0f; // Reset XP to zero
-
         // Ensure there is a next level to level up to
         if (level <= xpPerLevel.Length)
         {
@@ -153,14 +151,22 @@ public class LevelManager : MonoBehaviour
     {
         if (level < xpPerLevel.Length && XP >= xpPerLevel[(int)level - 1])
         {
+            XP -= xpPerLevel[(int)level - 1];
             OnLevelUp();
         }
     }
     // Updates the UI elements for level and XP bar
     private void UpdateUI()
     {
-        levelText.text = $"{level}"; // Update the level text
-        XPFillImage.fillAmount = Mathf.Clamp01(XP / xpPerLevel[(int)level - 1]); // Update the XP fill amount
+        levelText.text = $"{level}";
+        if (level <= xpPerLevel.Length)
+        {
+            XPFillImage.fillAmount = Mathf.Clamp01(XP / xpPerLevel[(int)level - 1]);
+        }
+        else
+        {
+            XPFillImage.fillAmount = 1f;
+        }
     }
     // Shows the level up panel
     private void ShowLevelUpPanel()
