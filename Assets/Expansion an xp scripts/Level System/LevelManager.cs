@@ -30,6 +30,9 @@ public class LevelManager : MonoBehaviour
     private float level; // Current player level
     private float XP; // Current player XP
 
+    private int levelsGained;
+    private int bucksToAdd;
+
     // Ensures only one instance of LevelManager exists
     private void Awake()
     {
@@ -149,11 +152,15 @@ public class LevelManager : MonoBehaviour
     // Calculates if the player should level up based on current XP
     private void CalculateLevel()
     {
-        if (level < xpPerLevel.Length && XP >= xpPerLevel[(int)level - 1])
+        levelsGained = 0;
+        while (level < xpPerLevel.Length && XP >= xpPerLevel[(int)level - 1])
         {
             XP -= xpPerLevel[(int)level - 1];
             OnLevelUp();
+            levelsGained++;
         }
+        bucksToAdd = levelsGained * 2;
+        BuckAmountText.text = $"{bucksToAdd}";
     }
     // Updates the UI elements for level and XP bar
     private void UpdateUI()
@@ -294,7 +301,7 @@ public class LevelManager : MonoBehaviour
             CurrencySystem.Instance.AddCurrency(new CurrencyChangeGameEvent
             {
                 CurrencyType = CurrencyType.Bucks,
-                Amount = 2
+                Amount = bucksToAdd
             });
         }
         else

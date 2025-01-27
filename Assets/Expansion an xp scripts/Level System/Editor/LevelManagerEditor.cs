@@ -8,6 +8,11 @@ public class LevelManagerEditor : Editor {
     public override void OnInspectorGUI() {
         DrawDefaultInspector(); // Draw the default inspector UI
 
+        // Adds a button to give 10000 XP for testing purposes
+        if (GUILayout.Button("Give 10000 XP (PLAY MODE ONLY)")) {
+            EventManager.Instance.TriggerEvent(new XPAddedGameEvent(10000));
+        }
+
         // Adds a button to give 150 XP for testing purposes
         if (GUILayout.Button("Give 150 XP (PLAY MODE ONLY)")) {
             EventManager.Instance.TriggerEvent(new XPAddedGameEvent(150));
