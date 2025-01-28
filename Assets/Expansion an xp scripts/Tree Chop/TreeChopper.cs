@@ -78,7 +78,10 @@ public class TreeChopper : Selectable
     private void OnMouseDown()
     {
         _lastPointerPosition = Input.mousePosition;
+    }
 
+    private void OnMouseUp()
+    {
         if (chopped || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject || _isPointerMoving)
             return;
 
