@@ -34,9 +34,12 @@ public class TreeChopper : Selectable
     public bool AllowSelection { get; private set; }
     public (int x, int y) MappedPosition { get; private set; }
 
+    private Vector3 _lastPointerPosition;
+
     public bool hasTreeDebris = false;
     public bool canSpeedUp = false;
     private bool chopped = false;
+    private bool _isPointerMoving;
 
     private TreeData _treeData;
 
@@ -58,9 +61,25 @@ public class TreeChopper : Selectable
         _debris.SetActive(false);
     }
 
+    private void OnMouseDrag()
+    {
+        Vector3 delta = Input.mousePosition - _lastPointerPosition;
+
+        if (delta.magnitude > 15f)
+        {
+            _isPointerMoving = true;
+        }
+        else
+        {
+            _isPointerMoving = false;
+        }
+    }
+
     private void OnMouseDown()
     {
-        if (chopped || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject)
+        _lastPointerPosition = Input.mousePosition;
+
+        if (chopped || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject || _isPointerMoving)
             return;
 
         if (hasTreeDebris)

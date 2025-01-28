@@ -35,8 +35,10 @@ public class DebrisObject : Selectable
     private bool _removed = false;
     private BoundsInt _size;
     public DebrisData _data;
+    private Vector3 _lastPointerPosition;
     private bool _xpCollected = false;
     private bool isProgressUpdated = false;
+    private bool _isPointerMoving;
 
     private void Awake()
     {
@@ -51,9 +53,28 @@ public class DebrisObject : Selectable
         _audioSource.playOnAwake = false;
     }
 
+    private void OnMouseDown()
+    {
+        _lastPointerPosition = Input.mousePosition;
+    }
+
+    private void OnMouseDrag()
+    {
+        Vector3 delta = Input.mousePosition - _lastPointerPosition;
+
+        if (delta.magnitude > 15f)
+        {
+            _isPointerMoving = true;
+        }
+        else
+        {
+            _isPointerMoving = false;
+        }
+    }
+
     private void OnMouseUp()
     {
-        if (_xpCollected || SelectablesManager.Instance.CurrentSelectable == this || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject) return;
+        if (_xpCollected || SelectablesManager.Instance.CurrentSelectable == this || PointerOverUIChecker.Instance.IsPointerOverUIObject() || GridBuildingSystem.Instance.TempPlaceableObject || _isPointerMoving) return;
 
         _selectableObject.GetComponent<Animator>().enabled = true;
 
