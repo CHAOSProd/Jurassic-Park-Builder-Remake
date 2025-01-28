@@ -11,21 +11,21 @@ public class EvolutionChanger : MonoBehaviour
     [SerializeField] private List<GameObject> _editingStars;
 
     private DinosaurLevelManager _dinosaurLevelManager;
-    private SkinnedMeshRenderer _skinnedMeshRenderer;
+    private SkinnedMeshRenderer[] _skinnedMeshRenderers;
     private int _currentSkin;
-    private string _parrentName;
-    int levelToSet;
+    private string _parentName;
+    private int levelToSet;
 
     private void Start()
     {
         _dinosaurLevelManager = GetComponentInParent<DinosaurLevelManager>();
-        _parrentName = GetComponentInParent<Paddock>().gameObject.name;
+        _parentName = GetComponentInParent<Paddock>().gameObject.name;
 
-        _skinnedMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        _skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
 
-        if(Attributes.HaveKey("CurrentSkin" + _parrentName))
+        if (Attributes.HaveKey("CurrentSkin" + _parentName))
         {
-            _currentSkin = Attributes.GetInt("CurrentSkin" + _parrentName);
+            _currentSkin = Attributes.GetInt("CurrentSkin" + _parentName);
             ChangeSkin(_currentSkin);
         }
         else
@@ -34,12 +34,13 @@ public class EvolutionChanger : MonoBehaviour
             ChangeSkin(_currentSkin);
         }
 
-        int savedLevel = Attributes.GetInt("CurrentLevel" + _parrentName, 1);
+        int savedLevel = Attributes.GetInt("CurrentLevel" + _parentName, 1);
         _dinosaurLevelManager.SetLevel(savedLevel);
 
         foreach (Button button in _buttons)
         {
-            button.onClick.AddListener(delegate { ChangeSkin(_buttons.IndexOf(button)); });
+            int index = _buttons.IndexOf(button);
+            button.onClick.AddListener(() => ChangeSkin(index));
         }
     }
 
@@ -47,12 +48,9 @@ public class EvolutionChanger : MonoBehaviour
     {
         _currentSkin = index;
 
-        Attributes.SetInt("CurrentSkin" + _parrentName, index);
-        Attributes.SetInt("CurrentLevel" + _parrentName, levelToSet);
+        Attributes.SetInt("CurrentSkin" + _parentName, index);
+        Attributes.SetInt("CurrentLevel" + _parentName, levelToSet);
 
-        _dinosaurLevelManager.SetLevel(levelToSet);
-
-        _dinosaurLevelManager.Initialize();
         switch (index)
         {
             case 0:
@@ -70,7 +68,7 @@ public class EvolutionChanger : MonoBehaviour
         }
 
         _dinosaurLevelManager.SetLevel(levelToSet);
-        Attributes.SetInt("CurrentLevel" + _parrentName, levelToSet);
+        Attributes.SetInt("CurrentLevel" + _parentName, levelToSet);
 
         if (_dinosaurLevelManager._dinosaurLevelResourcesManager != null)
         {
@@ -103,6 +101,9 @@ public class EvolutionChanger : MonoBehaviour
 
         _buttons[index].interactable = false;
 
-        _skinnedMeshRenderer.material = _skinMaterials[index];
+        foreach (var renderer in _skinnedMeshRenderers)
+        {
+            renderer.material = _skinMaterials[index];
+        }
     }
 }
