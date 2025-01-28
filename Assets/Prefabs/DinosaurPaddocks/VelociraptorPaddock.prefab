@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelResources:
-  - _maximumMoneyForTime: 100
+  - _maximumMoneyForTime: 880
   - _maximumMoneyForTime: 110
   - _maximumMoneyForTime: 120
   - _maximumMoneyForTime: 130
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 182
   - _maximumMoneyForTime: 192
   - _maximumMoneyForTime: 202
-  - _maximumMoneyForTime: 212
+  - _maximumMoneyForTime: 1782
   - _maximumMoneyForTime: 223
   - _maximumMoneyForTime: 233
   - _maximumMoneyForTime: 243
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 284
   - _maximumMoneyForTime: 294
   - _maximumMoneyForTime: 305
-  - _maximumMoneyForTime: 315
+  - _maximumMoneyForTime: 2684
   - _maximumMoneyForTime: 325
   - _maximumMoneyForTime: 335
   - _maximumMoneyForTime: 346
@@ -1074,7 +1074,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 387
   - _maximumMoneyForTime: 397
   - _maximumMoneyForTime: 407
-  - _maximumMoneyForTime: 417
+  - _maximumMoneyForTime: 3588
   - _maximumMoneyForTime: 428
   - _maximumMoneyForTime: 438
   - _maximumMoneyForTime: 448
@@ -1103,8 +1103,8 @@ MonoBehaviour:
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
   _animator: {fileID: 2487001706141272503}
-  MaximumMoney: 440
-  MaximumMinutes: 30
+  MaximumMoney: 880
+  MaximumMinutes: 60
 --- !u!114 &4593923847787510190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2859,8 +2859,8 @@ Transform:
   m_GameObject: {fileID: 3239740561673265501}
   serializedVersion: 2
   m_LocalRotation: {x: 0.09896088, y: 0.22993188, z: 0.96728885, w: -0.04111385}
-  m_LocalPosition: {x: -65.55354, y: -6.0521894, z: -11.381325}
-  m_LocalScale: {x: 22.109652, y: 22.109644, z: 22.109642}
+  m_LocalPosition: {x: -13.08, y: -19.95, z: -14.65}
+  m_LocalScale: {x: 12.533962, y: 12.5339575, z: 12.533957}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9055028004146973373}
@@ -3798,8 +3798,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4025526419168403485}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.258819, y: 0, z: 0, w: 0.9659259}
-  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalRotation: {x: -0.31249404, y: -0, z: -0, w: 0.94991976}
+  m_LocalPosition: {x: 0, y: -0.132, z: -0.193}
   m_LocalScale: {x: 0.003, y: 0.003, z: 0.003}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3808,7 +3808,7 @@ Transform:
   - {fileID: 7509761917106738846}
   - {fileID: 3293979947816393352}
   m_Father: {fileID: 4108349488091385288}
-  m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -36.419, y: 0, z: 0}
 --- !u!95 &2487001706141272503
 Animator:
   serializedVersion: 7
@@ -3988,10 +3988,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetBone1: {fileID: 2054083080406443486}
-  targetBone2: {fileID: 1220657484363976308}
+  targetBone2: {fileID: 5422456872512397915}
   shadowObject1: {fileID: 5570508334876214887}
   shadowObject2: {fileID: 3239740561673265501}
-  offset: {x: 0, y: 0, z: 0}
+  offset: {x: 0, y: -0.05, z: 0}
   shadowScale: {x: 15, y: 15, z: 15}
 --- !u!210 &5600429240914063564
 SortingGroup:
@@ -5565,8 +5565,8 @@ Transform:
   m_GameObject: {fileID: 5570508334876214887}
   serializedVersion: 2
   m_LocalRotation: {x: 0.071078286, y: 0.24002048, z: 0.95564127, w: -0.15520278}
-  m_LocalPosition: {x: -55.183628, y: -20.056837, z: -11.455745}
-  m_LocalScale: {x: 22.109646, y: 22.109644, z: 22.109642}
+  m_LocalPosition: {x: 1.56, y: 4.11, z: 1.57}
+  m_LocalScale: {x: 14.097332, y: 14.09733, z: 14.097329}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4622539354955328057}
