@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PanZoomPC : MonoBehaviour
 {
@@ -11,11 +12,12 @@ public class PanZoomPC : MonoBehaviour
     [SerializeField] private float _maxZoom = 7f;
     [SerializeField] private Vector2 _minPosition;
     [SerializeField] private Vector2 _maxPosition;
+    [SerializeField] private GameObject[] _uiElements; // Array of UI elements
 
     private Camera _camera;
     private Controls _controls;
     private Vector2 _startPoint;
-    private Vector3 _startCameraPosition; // Changed to Vector3 for clarity
+    private Vector3 _startCameraPosition;
     private float _zoomDelta;
     private bool _isZooming = false;
 
@@ -27,32 +29,41 @@ public class PanZoomPC : MonoBehaviour
 
     private void Start()
     {
-        // Calculate the zoom step size
         _zoomDelta = (_maxZoom - _minZoom) / 2f;
 
         _controls.Enable();
-
         _controls.Main.MouseScroll.performed += OnZoom;
         _controls.Main.LeftClick.started += OnScrollButtonClick;
         _controls.Main.LeftClick.canceled += OnScrollButtonRelease;
     }
 
+    private bool IsUIActive()
+    {
+        foreach (var uiElement in _uiElements)
+        {
+            if (uiElement.activeInHierarchy)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void OnZoom(InputAction.CallbackContext context)
     {
-        if (_startPoint == Vector2.zero && !_isZooming)
-        {
-            float scrollDelta = context.ReadValue<float>();
+        if (IsUIActive() || _startPoint != Vector2.zero || _isZooming) return;
 
-            // Ignore negligible scroll deltas
-            if (Mathf.Abs(scrollDelta) > 0.01f)
-            {
-                StartCoroutine(Zoom(_timeToZoom, scrollDelta));
-            }
+        float scrollDelta = context.ReadValue<float>();
+        if (Mathf.Abs(scrollDelta) > 0.01f)
+        {
+            StartCoroutine(Zoom(_timeToZoom, scrollDelta));
         }
     }
 
     private void OnScrollButtonClick(InputAction.CallbackContext context)
     {
+        if (IsUIActive()) return;
+
         Vector2 point = _camera.ScreenToViewportPoint(Input.mousePosition);
         _startPoint = point;
         _startCameraPosition = _camera.transform.position;
@@ -66,7 +77,7 @@ public class PanZoomPC : MonoBehaviour
 
     private void Update()
     {
-        if (_startPoint == Vector2.zero) return;
+        if (IsUIActive() || _startPoint == Vector2.zero) return;
 
         Vector2 point = _camera.ScreenToViewportPoint(Input.mousePosition);
         Vector2 offset = point - _startPoint;
@@ -98,5 +109,6 @@ public class PanZoomPC : MonoBehaviour
         _isZooming = false;
     }
 }
+
 
 

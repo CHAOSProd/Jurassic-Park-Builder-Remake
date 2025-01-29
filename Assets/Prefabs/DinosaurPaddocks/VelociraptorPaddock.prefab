@@ -1103,7 +1103,7 @@ MonoBehaviour:
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
   _animator: {fileID: 2487001706141272503}
-  MaximumMoney: 880
+  MaximumMoney: 100
   MaximumMinutes: 60
 --- !u!114 &4593923847787510190
 MonoBehaviour:
