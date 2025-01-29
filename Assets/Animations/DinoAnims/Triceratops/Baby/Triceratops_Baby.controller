@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0865418227380748b3d82e7f8ba65c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationToListen: Triceratops_Baby_Fun
+  _animationToListen: Triceratops_Baby_Roar
 --- !u!1102 &-2181510472262569706
 AnimatorState:
   serializedVersion: 6
@@ -35,7 +35,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 926c104e336e0d3429fe5695aa9b50b6, type: 2}
+  m_Motion: {fileID: 4781951162920444690, guid: e6c70168bc24c394588d3ea92bf584ee,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -132,7 +133,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Triceratops_Baby_Fun
+  m_Name: Triceratops_Baby_Roar
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -146,7 +147,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d1d04251dba12ef4880bd759c71fed09, type: 2}
+  m_Motion: {fileID: 4781951162920444690, guid: fcb8f46de1d0e1e44958f0584cfde7cf,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -202,7 +204,8 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e0b456a76204e4c4bb8474db5f6799c3, type: 2}
+  m_Motion: {fileID: 4781951162920444690, guid: 7755b7e120ff47b4fb69d9c73d1f8a47,
+    type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
