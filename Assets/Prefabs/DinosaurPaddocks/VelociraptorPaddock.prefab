@@ -1043,46 +1043,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelResources:
-  - _maximumMoneyForTime: 880
-  - _maximumMoneyForTime: 110
-  - _maximumMoneyForTime: 120
-  - _maximumMoneyForTime: 130
-  - _maximumMoneyForTime: 141
-  - _maximumMoneyForTime: 151
-  - _maximumMoneyForTime: 161
-  - _maximumMoneyForTime: 171
-  - _maximumMoneyForTime: 182
-  - _maximumMoneyForTime: 192
-  - _maximumMoneyForTime: 202
-  - _maximumMoneyForTime: 1782
-  - _maximumMoneyForTime: 223
-  - _maximumMoneyForTime: 233
-  - _maximumMoneyForTime: 243
-  - _maximumMoneyForTime: 253
-  - _maximumMoneyForTime: 264
-  - _maximumMoneyForTime: 274
-  - _maximumMoneyForTime: 284
-  - _maximumMoneyForTime: 294
-  - _maximumMoneyForTime: 305
-  - _maximumMoneyForTime: 2684
-  - _maximumMoneyForTime: 325
-  - _maximumMoneyForTime: 335
-  - _maximumMoneyForTime: 346
-  - _maximumMoneyForTime: 356
-  - _maximumMoneyForTime: 366
-  - _maximumMoneyForTime: 376
-  - _maximumMoneyForTime: 387
-  - _maximumMoneyForTime: 397
-  - _maximumMoneyForTime: 407
-  - _maximumMoneyForTime: 3588
-  - _maximumMoneyForTime: 428
-  - _maximumMoneyForTime: 438
-  - _maximumMoneyForTime: 448
-  - _maximumMoneyForTime: 459
-  - _maximumMoneyForTime: 469
-  - _maximumMoneyForTime: 479
-  - _maximumMoneyForTime: 489
-  - _maximumMoneyForTime: 500
+  - _maximumMoneyForTime: 0
+  - _maximumMoneyForTime: 440
+  - _maximumMoneyForTime: 484
+  - _maximumMoneyForTime: 530
+  - _maximumMoneyForTime: 575
+  - _maximumMoneyForTime: 620
+  - _maximumMoneyForTime: 665
+  - _maximumMoneyForTime: 711
+  - _maximumMoneyForTime: 756
+  - _maximumMoneyForTime: 801
+  - _maximumMoneyForTime: 846
+  - _maximumMoneyForTime: 891
+  - _maximumMoneyForTime: 936
+  - _maximumMoneyForTime: 981
+  - _maximumMoneyForTime: 1026
+  - _maximumMoneyForTime: 1072
+  - _maximumMoneyForTime: 1117
+  - _maximumMoneyForTime: 1162
+  - _maximumMoneyForTime: 1207
+  - _maximumMoneyForTime: 1252
+  - _maximumMoneyForTime: 1297
+  - _maximumMoneyForTime: 1342
+  - _maximumMoneyForTime: 1387
+  - _maximumMoneyForTime: 1433
+  - _maximumMoneyForTime: 1478
+  - _maximumMoneyForTime: 1523
+  - _maximumMoneyForTime: 1568
+  - _maximumMoneyForTime: 1613
+  - _maximumMoneyForTime: 1658
+  - _maximumMoneyForTime: 1703
+  - _maximumMoneyForTime: 1748
+  - _maximumMoneyForTime: 1794
+  - _maximumMoneyForTime: 1839
+  - _maximumMoneyForTime: 1883
+  - _maximumMoneyForTime: 1929
+  - _maximumMoneyForTime: 1974
+  - _maximumMoneyForTime: 2019
+  - _maximumMoneyForTime: 2064
+  - _maximumMoneyForTime: 2109
+  - _maximumMoneyForTime: 2155
 --- !u!114 &3976585046788256781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1104,7 +1104,7 @@ MonoBehaviour:
   _collectMoneyButton: {fileID: 0}
   _animator: {fileID: 2487001706141272503}
   MaximumMoney: 880
-  MaximumMinutes: 60
+  MaximumMinutes: 30
 --- !u!114 &4593923847787510190
 MonoBehaviour:
   m_ObjectHideFlags: 0

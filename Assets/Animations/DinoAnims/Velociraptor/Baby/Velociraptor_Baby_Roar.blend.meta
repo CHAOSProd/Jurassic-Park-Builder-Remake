@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bfdd6eff0eab8b643b6f06986ea14539
+guid: 8d82d56efebea9841b47f2e249ce4c14
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -58,7 +58,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
