@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0865418227380748b3d82e7f8ba65c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationToListen: Velociraptors_Baby_Roar
+  _animationToListen: Velociraptor_Baby_Roar
 --- !u!1102 &-2181510472262569706
 AnimatorState:
   serializedVersion: 6
@@ -20,7 +20,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Velociraptors_Baby_Idle
+  m_Name: Velociraptor_Baby_Idle
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -59,7 +59,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0
+  m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.952
   m_HasExitTime: 0
@@ -133,8 +133,8 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Velociraptors_Baby_Roar
-  m_Speed: 1.25
+  m_Name: Velociraptor_Baby_Roar
+  m_Speed: 1.32
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8888512060059885831}
@@ -147,7 +147,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: bfdd6eff0eab8b643b6f06986ea14539,
+  m_Motion: {fileID: -623603649343465320, guid: 8d82d56efebea9841b47f2e249ce4c14,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -190,7 +190,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Velociraptors_Baby_Sleep
+  m_Name: Velociraptor_Baby_Sleep
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
