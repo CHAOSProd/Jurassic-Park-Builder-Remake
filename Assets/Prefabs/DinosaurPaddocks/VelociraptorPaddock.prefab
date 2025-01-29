@@ -2529,7 +2529,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 5112279036913101063, guid: 931122dd592bee14abe2ed3275ccac32, type: 3}
+  m_Mesh: {fileID: 5112279036913101063, guid: 1901bbce8d0740544a32cc79aa16a4ae, type: 3}
   m_Bones:
   - {fileID: 6936385442292238677}
   - {fileID: 2054083080406443486}
@@ -3798,9 +3798,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4025526419168403485}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.31249404, y: -0, z: -0, w: 0.94991976}
+  m_LocalRotation: {x: -0.21643952, y: 0, z: 0, w: 0.97629607}
   m_LocalPosition: {x: 0, y: -0.132, z: -0.193}
-  m_LocalScale: {x: 0.003, y: 0.003, z: 0.003}
+  m_LocalScale: {x: 0.0028, y: 0.0028, z: 0.0028}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4622539354955328057}
@@ -3808,7 +3808,7 @@ Transform:
   - {fileID: 7509761917106738846}
   - {fileID: 3293979947816393352}
   m_Father: {fileID: 4108349488091385288}
-  m_LocalEulerAnglesHint: {x: -36.419, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -25, y: 0, z: 0}
 --- !u!95 &2487001706141272503
 Animator:
   serializedVersion: 7
@@ -3992,7 +3992,7 @@ MonoBehaviour:
   shadowObject1: {fileID: 5570508334876214887}
   shadowObject2: {fileID: 3239740561673265501}
   offset: {x: 0, y: -0.05, z: 0}
-  shadowScale: {x: 15, y: 15, z: 15}
+  shadowScale: {x: 15, y: 12, z: 12}
 --- !u!210 &5600429240914063564
 SortingGroup:
   m_ObjectHideFlags: 0

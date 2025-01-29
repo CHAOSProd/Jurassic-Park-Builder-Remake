@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0865418227380748b3d82e7f8ba65c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationToListen: Triceratops_Baby_Fun
+  _animationToListen: Velociraptors_Baby_Roar
 --- !u!1102 &-2181510472262569706
 AnimatorState:
   serializedVersion: 6
@@ -35,7 +35,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: 931122dd592bee14abe2ed3275ccac32,
+  m_Motion: {fileID: -623603649343465320, guid: c651cb21a638a704d84365d414ee4994,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
