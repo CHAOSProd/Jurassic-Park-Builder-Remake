@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +18,8 @@ public class FeedButton : Singleton<FeedButton>
 
     private Image _buttonImage;
     private FoodType _currentType;
+
+    public Button.ButtonClickedEvent OnClickEvent => _onClickEvent;
 
     public void Awake()
     {
@@ -71,6 +71,7 @@ public class FeedButton : Singleton<FeedButton>
                 break;
         }
     }
+
     private void OnDisable()
     {
         switch (_currentType)
@@ -83,6 +84,7 @@ public class FeedButton : Singleton<FeedButton>
                 break;
         }
     }
+
     private void OnEnable()
     {
         switch (_currentType)

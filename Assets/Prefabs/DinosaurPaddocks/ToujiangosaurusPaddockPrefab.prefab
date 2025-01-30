@@ -2920,7 +2920,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 680085bfc0178ac4b8e05c36db568cea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 877aa619424b76347bbd83d39cca44e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4307,6 +4307,7 @@ GameObject:
   - component: {fileID: 3353800883510030950}
   - component: {fileID: 3399641557479624452}
   - component: {fileID: 8288538152985744141}
+  - component: {fileID: 2174820232832386465}
   - component: {fileID: 6561306628574779223}
   - component: {fileID: 5742767958773182280}
   - component: {fileID: 1910003470799255841}
@@ -4468,7 +4469,7 @@ MonoBehaviour:
   Sounds:
   - {fileID: 8300000, guid: a2227e8d27d54ec46ae93b7e7a9bcd5d, type: 3}
   - {fileID: 8300000, guid: ca0f9e50335196a47b55c3518e4154f2, type: 3}
-  - {fileID: 8300000, guid: a064d21be1a994a469f68c453f39cd6b, type: 3}
+  - {fileID: 8300000, guid: 7b566493264c43a4ea58e4fce23c33f1, type: 3}
   IsSelected: 0
   _objectsFadeInOut: {fileID: 3708635208963666018}
   _evolutionsChanger: {fileID: 7148360279365762116}
@@ -4531,6 +4532,20 @@ MonoBehaviour:
   - _maximumMoneyForTime: 1294
   - _maximumMoneyForTime: 1322
   - _maximumMoneyForTime: 1350
+--- !u!114 &2174820232832386465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949953740542757079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83816328c64d604f84dbdf80ce66f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dinosaurAnimator: {fileID: 4390143018294988927}
+  _selectedDinosaur: {fileID: 6186609632035316893}
 --- !u!114 &6561306628574779223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5294,7 +5309,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 680085bfc0178ac4b8e05c36db568cea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 877aa619424b76347bbd83d39cca44e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

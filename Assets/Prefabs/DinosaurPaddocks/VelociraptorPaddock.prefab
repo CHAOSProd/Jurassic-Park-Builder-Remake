@@ -561,6 +561,7 @@ GameObject:
   - component: {fileID: 5507452621011600562}
   - component: {fileID: 4774496743804241011}
   - component: {fileID: 4922702988812172581}
+  - component: {fileID: 9026215447776621319}
   - component: {fileID: 3976585046788256781}
   - component: {fileID: 4593923847787510190}
   - component: {fileID: 3038822715739638204}
@@ -1043,8 +1044,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelResources:
+  - _maximumMoneyForTime: 100
   - _maximumMoneyForTime: 440
-  - _maximumMoneyForTime: 110
   - _maximumMoneyForTime: 120
   - _maximumMoneyForTime: 130
   - _maximumMoneyForTime: 141
@@ -1083,6 +1084,19 @@ MonoBehaviour:
   - _maximumMoneyForTime: 479
   - _maximumMoneyForTime: 489
   - _maximumMoneyForTime: 500
+--- !u!114 &9026215447776621319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 524361654172936837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83816328c64d604f84dbdf80ce66f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dinosaurAnimator: {fileID: 2487001706141272503}
 --- !u!114 &3976585046788256781
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5856,6 +5856,7 @@ GameObject:
   - component: {fileID: 7014558417438676284}
   - component: {fileID: 8443815566639342024}
   - component: {fileID: 7111821246533221281}
+  - component: {fileID: 1887306886944878812}
   - component: {fileID: 7472853108722395280}
   - component: {fileID: 5498177297821217796}
   - component: {fileID: 7815530151903487157}
@@ -6092,6 +6093,20 @@ MonoBehaviour:
   - _maximumMoneyForTime: 479
   - _maximumMoneyForTime: 489
   - _maximumMoneyForTime: 500
+--- !u!114 &1887306886944878812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7903622861051776897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83816328c64d604f84dbdf80ce66f72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dinosaurAnimator: {fileID: 3359683993170594174}
+  _selectedDinosaur: {fileID: 8059953156304328569}
 --- !u!114 &7472853108722395280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6601,10 +6616,10 @@ MonoBehaviour:
   - {fileID: 6526938040719829821}
   - {fileID: 6489450443132359230}
   _editingStars:
-  - {fileID: 5208602537623086834}
-  - {fileID: 6035451313319533873}
-  - {fileID: 6526938040719829821}
-  - {fileID: 6489450443132359230}
+  - {fileID: 7937297136265418633}
+  - {fileID: 1227067506145727931}
+  - {fileID: 7516698991624035626}
+  - {fileID: 2625770025895272963}
 --- !u!114 &6127092916358645434
 MonoBehaviour:
   m_ObjectHideFlags: 0
