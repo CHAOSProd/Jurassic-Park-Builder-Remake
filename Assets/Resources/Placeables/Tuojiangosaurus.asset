@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 164e079544c75f041b98221539b961a3, type: 3}
   m_Name: Tuojiangosaurus
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 7114299692754577622, guid: b71601264c694954db4a9e49bc51473f, type: 3}
+  Prefab: {fileID: 7114299692754577622, guid: a0fcde6924664f240b5c082cf8019f2e, type: 3}
   PurchasableItem: {fileID: 0}

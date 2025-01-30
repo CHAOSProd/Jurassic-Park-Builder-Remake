@@ -1371,7 +1371,7 @@ GameObject:
   - component: {fileID: 2259764649408783443}
   - component: {fileID: 5172223813192046443}
   m_Layer: 0
-  m_Name: shadow
+  m_Name: Dinos_Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1385,9 +1385,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1684764297731867496}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15300767, y: -0.2918071, z: 0.43844837, w: 0.836182}
-  m_LocalPosition: {x: -0.0175, y: 0.0273, z: -0.0242}
-  m_LocalScale: {x: 0.1299955, y: 0.1299955, z: 0.1299955}
+  m_LocalRotation: {x: 0.15300778, y: -0.29180712, z: 0.43844828, w: 0.83618194}
+  m_LocalPosition: {x: -0.0175, y: 0.027300013, z: -0.024200018}
+  m_LocalScale: {x: 0.12999554, y: 0.12999552, z: 0.12999552}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1738865885610073437}
@@ -1432,8 +1432,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ae12bc85667185a489048be120413ee9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6111,7 +6111,7 @@ MonoBehaviour:
   _moneyPerSecond: 0.33
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
-  _animator: {fileID: 0}
+  _animator: {fileID: 3359683993170594174}
   MaximumMoney: 128.46
   MaximumMinutes: 5
 --- !u!114 &5498177297821217796
@@ -6622,7 +6622,7 @@ MonoBehaviour:
   shadowObject1: {fileID: 1684764297731867496}
   shadowObject2: {fileID: 0}
   offset: {x: 0, y: -0.05, z: 0}
-  shadowScale: {x: 0.2, y: 0.1, z: 0.2}
+  shadowScale: {x: 0.22, y: 0.11, z: 0.11}
 --- !u!1 &8302256679080895964
 GameObject:
   m_ObjectHideFlags: 0
