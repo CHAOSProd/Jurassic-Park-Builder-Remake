@@ -1325,7 +1325,7 @@ Transform:
   m_GameObject: {fileID: 1696430567399137092}
   serializedVersion: 2
   m_LocalRotation: {x: -0.22725983, y: 0.3825462, z: -0.08271582, w: 0.8917228}
-  m_LocalPosition: {x: -0.003000021, y: -0.04000002, z: 0}
+  m_LocalPosition: {x: -0.009, y: -0.048, z: -0.209}
   m_LocalScale: {x: 0.0031499998, y: 0.0031499998, z: 0.0031499998}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3211,10 +3211,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.91995823, y: 0.2670076}
-      - {x: -0.0013269484, y: 0.72638965}
-      - {x: -0.9199329, y: 0.26584634}
-      - {x: -0.0019124225, y: -0.19057876}
+    - - {x: 0.90667427, y: 0.14911488}
+      - {x: -0.009618431, y: 0.60595334}
+      - {x: -0.9301551, y: 0.1453625}
+      - {x: -0.0059691146, y: -0.31110632}
   m_UseDelaunayMesh: 0
 --- !u!1 &4319951093593840815
 GameObject:
@@ -6089,7 +6089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelResources:
-  - _maximumMoneyForTime: 100
+  - _maximumMoneyForTime: 4380
   - _maximumMoneyForTime: 110
   - _maximumMoneyForTime: 120
   - _maximumMoneyForTime: 130
@@ -6100,7 +6100,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 182
   - _maximumMoneyForTime: 192
   - _maximumMoneyForTime: 202
-  - _maximumMoneyForTime: 212
+  - _maximumMoneyForTime: 8860
   - _maximumMoneyForTime: 223
   - _maximumMoneyForTime: 233
   - _maximumMoneyForTime: 243
@@ -6110,7 +6110,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 284
   - _maximumMoneyForTime: 294
   - _maximumMoneyForTime: 305
-  - _maximumMoneyForTime: 315
+  - _maximumMoneyForTime: 13340
   - _maximumMoneyForTime: 325
   - _maximumMoneyForTime: 335
   - _maximumMoneyForTime: 346
@@ -6120,7 +6120,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 387
   - _maximumMoneyForTime: 397
   - _maximumMoneyForTime: 407
-  - _maximumMoneyForTime: 417
+  - _maximumMoneyForTime: 17840
   - _maximumMoneyForTime: 428
   - _maximumMoneyForTime: 438
   - _maximumMoneyForTime: 448
@@ -6150,7 +6150,7 @@ MonoBehaviour:
   _collectMoneyButton: {fileID: 0}
   _animator: {fileID: 6668123801385824404}
   MaximumMoney: 128.46
-  MaximumMinutes: 5
+  MaximumMinutes: 1200
 --- !u!114 &5498177297821217796
 MonoBehaviour:
   m_ObjectHideFlags: 0

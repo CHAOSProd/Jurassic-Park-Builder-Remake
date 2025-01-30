@@ -1043,7 +1043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelResources:
-  - _maximumMoneyForTime: 880
+  - _maximumMoneyForTime: 440
   - _maximumMoneyForTime: 110
   - _maximumMoneyForTime: 120
   - _maximumMoneyForTime: 130
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 182
   - _maximumMoneyForTime: 192
   - _maximumMoneyForTime: 202
-  - _maximumMoneyForTime: 1782
+  - _maximumMoneyForTime: 891
   - _maximumMoneyForTime: 223
   - _maximumMoneyForTime: 233
   - _maximumMoneyForTime: 243
@@ -1064,7 +1064,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 284
   - _maximumMoneyForTime: 294
   - _maximumMoneyForTime: 305
-  - _maximumMoneyForTime: 2684
+  - _maximumMoneyForTime: 1342
   - _maximumMoneyForTime: 325
   - _maximumMoneyForTime: 335
   - _maximumMoneyForTime: 346
@@ -1074,7 +1074,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 387
   - _maximumMoneyForTime: 397
   - _maximumMoneyForTime: 407
-  - _maximumMoneyForTime: 3588
+  - _maximumMoneyForTime: 1794
   - _maximumMoneyForTime: 428
   - _maximumMoneyForTime: 438
   - _maximumMoneyForTime: 448
@@ -1104,7 +1104,7 @@ MonoBehaviour:
   _collectMoneyButton: {fileID: 0}
   _animator: {fileID: 2487001706141272503}
   MaximumMoney: 100
-  MaximumMinutes: 60
+  MaximumMinutes: 30
 --- !u!114 &4593923847787510190
 MonoBehaviour:
   m_ObjectHideFlags: 0
