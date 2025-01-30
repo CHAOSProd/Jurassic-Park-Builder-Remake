@@ -3771,15 +3771,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5256209430337117908}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.061487127, y: 0.09380152, z: -0.22933957, w: 0.966863}
+  m_LocalPosition: {x: 0.19287337, y: -0.024852851, z: -0.012978203}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9068556306621656109}
   - {fileID: 275797282023457718}
   m_Father: {fileID: 849303443126503853}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -4.351, y: 12.134, z: -27.151}
 --- !u!95 &5554867784336514411
 Animator:
   serializedVersion: 7
@@ -7739,7 +7739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8327143533311540706
 Transform:
   m_ObjectHideFlags: 0
@@ -7781,7 +7781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e81fd244f8af84db0fee8accc729fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hatchDuration: 1620
+  _hatchDuration: 720
   HatchXP: 108
   _eggVisual: {fileID: 4728577277505295775}
   dino: {fileID: 5256209430337117908}
