@@ -175,6 +175,8 @@ public class PlaceableObject : MonoBehaviour
     private void OnConstructionFinished()
     {
         _xpNotification.SetActive(true);
+        data.ConstructionReady = true;
+
         if (_timerBarInstance != null)
         {
             Destroy(_timerBarInstance.gameObject);
@@ -296,7 +298,7 @@ public class PlaceableObject : MonoBehaviour
 
             int newElapsedTime = data.Progress.ElapsedTime;
 
-            if (newElapsedTime >= BuildTime)
+            if (newElapsedTime >= BuildTime || data.ConstructionReady)
             {
                 OnConstructionFinished();
             }
@@ -410,6 +412,20 @@ public class PlaceableObject : MonoBehaviour
 
     #region Construction Methods
 
+    private void OnMouseDrag()
+    {
+        Vector3 delta = Input.mousePosition - _lastPointerPosition;
+
+        if (delta.magnitude > 15f)
+        {
+            _isPointerMoving = true;
+        }
+        else
+        {
+            _isPointerMoving = false;
+        }
+    }
+
     private void OnMouseDown()
     {
         _lastPointerPosition = Input.mousePosition;
@@ -417,39 +433,38 @@ public class PlaceableObject : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (!PointerOverUIChecker.Instance.IsPointerOverUIObject() &&
-            !_isPointerMoving &&
-            !GridBuildingSystem.Instance.TempPlaceableObject)
+        if (PointerOverUIChecker.Instance.IsPointerOverUIObject() || _isPointerMoving || GridBuildingSystem.Instance.TempPlaceableObject) 
+            return;
+
+        Debug.Log("OnMouseUp triggered");
+
+        if (!ConstructionFinished)
         {
-            Debug.Log("OnMouseUp triggered");
+            Debug.Log("Object under construction");
 
-            if (!ConstructionFinished)
+            if (_xpNotification.activeSelf)
             {
-                Debug.Log("Object under construction");
-
-                if (_xpNotification.activeSelf)
-                {
-                    // Collect XP if the notification is active
-                    Debug.Log("Collecting XP during construction");
-                    InitializeConstructedBuilding();
-                    ConstructionFinished = true;
-                    data.ConstructionFinished = true;
-                    data.Progress = null;
-                }
-                else
-                {
-                    // Allow selection but do not collect XP
-                    _selectable.Select();
-                    Debug.Log("Selected object under construction");
-                    UIManager.Instance.ChangeTo("BuildingsSelectedUI");
-                }
+                // Collect XP if the notification is active
+                Debug.Log("Collecting XP during construction");
+                InitializeConstructedBuilding();
+                ConstructionFinished = true;
+                data.ConstructionFinished = true;
+                data.ConstructionReady = false;
+                data.Progress = null;
             }
             else
             {
-                Debug.Log("Object is already constructed");
-                GetComponentInChildren<MoneyObject>().GetMoneyIfAvaliable();
+                // Allow selection but do not collect XP
                 _selectable.Select();
+                Debug.Log("Selected object under construction");
+                UIManager.Instance.ChangeTo("BuildingsSelectedUI");
             }
+        }
+        else
+        {
+            Debug.Log("Object is already constructed");
+            GetComponentInChildren<MoneyObject>().GetMoneyIfAvaliable();
+            _selectable.Select();
         }
     }
 

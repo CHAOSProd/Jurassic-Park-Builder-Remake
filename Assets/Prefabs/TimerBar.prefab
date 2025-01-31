@@ -129,10 +129,10 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4734126276011340318}
   m_Enabled: 1
-  m_SortingLayerID: -1607866853
-  m_SortingLayer: 4
-  m_SortingOrder: 0
-  m_SortAtRoot: 0
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 2
+  m_SortingOrder: 4
+  m_SortAtRoot: 1
 --- !u!114 &3524076078750041441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +149,7 @@ MonoBehaviour:
   remainingTimeInSeconds: 0
   scoreText: {fileID: 0}
   resetButton: {fileID: 0}
+  endTimer: 0
 --- !u!1 &8352668658426035457
 GameObject:
   m_ObjectHideFlags: 0

@@ -755,6 +755,7 @@ MonoBehaviour:
   _timerBarPrefab: {fileID: 883946588406857642, guid: 58607b56b6e58bd47a039a1a4bc26fc9,
     type: 3}
   _xpCollectSound: {fileID: 0}
+  removing: 0
 --- !u!1 &5995480005056110772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1081,6 +1082,7 @@ MonoBehaviour:
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
+  removing: 0
 --- !u!114 &2505684701272480794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1273,8 +1275,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7415675984364559772}
   m_Enabled: 1
-  m_SortingLayerID: -1344713575
-  m_SortingLayer: 2
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_SortAtRoot: 0
 --- !u!1 &8069621270842515019

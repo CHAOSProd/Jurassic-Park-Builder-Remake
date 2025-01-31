@@ -41,8 +41,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69440839801316034}
   m_Enabled: 1
-  m_SortingLayerID: -1344713575
-  m_SortingLayer: 2
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_SortAtRoot: 0
 --- !u!1 &776633400741316733
@@ -695,6 +695,7 @@ MonoBehaviour:
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
+  removing: 0
 --- !u!1 &6049837064234758828
 GameObject:
   m_ObjectHideFlags: 0

@@ -389,8 +389,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301173621897557951}
   m_Enabled: 1
-  m_SortingLayerID: -1344713575
-  m_SortingLayer: 2
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_SortAtRoot: 0
 --- !u!1 &337182086025731827
@@ -2530,7 +2530,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 5112279036913101063, guid: 1901bbce8d0740544a32cc79aa16a4ae, type: 3}
+  m_Mesh: {fileID: 5112279036913101063, guid: 198ba9f6e6d5c7f4eb4b797f7eed775c, type: 3}
   m_Bones:
   - {fileID: 6936385442292238677}
   - {fileID: 2054083080406443486}
@@ -8645,7 +8645,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -2552561622406822397, guid: 1901bbce8d0740544a32cc79aa16a4ae, type: 3}
+  m_Mesh: {fileID: -2552561622406822397, guid: 198ba9f6e6d5c7f4eb4b797f7eed775c, type: 3}
   m_Bones:
   - {fileID: 1220657484363976308}
   - {fileID: 5422456872512397915}

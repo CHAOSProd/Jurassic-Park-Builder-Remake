@@ -11,6 +11,7 @@ public class PlaceableObjectData : Data
     public (float x, float y, float z) Position { get; set; }
     public ProgressData Progress { get; set; }
     public bool ConstructionFinished { get; set; }
+    public bool ConstructionReady { get; set; }
     public int SellRefund { get; set; }
     public int? AnimalIndex { get; set; }
 }
