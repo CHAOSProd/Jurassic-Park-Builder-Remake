@@ -5979,7 +5979,6 @@ GameObject:
   - component: {fileID: 7014558417438676284}
   - component: {fileID: 8443815566639342024}
   - component: {fileID: 7111821246533221281}
-  - component: {fileID: 3870385551891483670}
   - component: {fileID: 7472853108722395280}
   - component: {fileID: 5498177297821217796}
   - component: {fileID: 7815530151903487157}
@@ -6160,6 +6159,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a2227e8d27d54ec46ae93b7e7a9bcd5d, type: 3}
   - {fileID: 8300000, guid: ca0f9e50335196a47b55c3518e4154f2, type: 3}
   - {fileID: 8300000, guid: 84b8afe23fdc4eb4f93a1f182f850c28, type: 3}
+  - {fileID: 8300000, guid: 7c6cfdb1f9608a643ba9aed69f3fc4d0, type: 3}
   IsSelected: 0
   _objectsFadeInOut: {fileID: 3411297017016814323}
   _evolutionsChanger: {fileID: 3566031748829286184}
@@ -6222,20 +6222,6 @@ MonoBehaviour:
   - _maximumMoneyForTime: 479
   - _maximumMoneyForTime: 489
   - _maximumMoneyForTime: 500
---- !u!114 &3870385551891483670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7903622861051776897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d83816328c64d604f84dbdf80ce66f72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _dinosaurAnimator: {fileID: 6668123801385824404}
-  _selectedDinosaur: {fileID: 1696430567399137092}
 --- !u!114 &7472853108722395280
 MonoBehaviour:
   m_ObjectHideFlags: 0

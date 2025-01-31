@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Paddock : Selectable
@@ -12,6 +13,9 @@ public class Paddock : Selectable
     private MoneyObject _moneyObject;
     private Animator _dinosaurAnimator;
 
+    private FeedButton _feedButton;
+    private static Paddock _selectedPaddock = null;
+
     [HideInInspector] public bool is_hatching = false;
     [HideInInspector] public bool hatching_completed = false;
 
@@ -19,12 +23,41 @@ public class Paddock : Selectable
     {
         _moneyObject = GetComponent<MoneyObject>();
         _moneyObject.enabled = false;
+        StartCoroutine(FindFeedButtonWhenActive());
+    }
+
+    private IEnumerator FindFeedButtonWhenActive()
+    {
+        while (_feedButton == null)
+        {
+            _feedButton = FindObjectOfType<FeedButton>();
+            yield return null;
+        }
+
+        if (_feedButton == null)
+        {
+            Debug.LogError("FeedButton not found even after waiting.");
+        }
+        else
+        {
+            Debug.Log("FeedButton found!");
+            _feedButton.OnClickEvent.AddListener(OnFeedButtonClick);
+        }
+    }
+
+    private void OnFeedButtonClick()
+    {
+        if (_dinosaurAnimator != null && _selectedPaddock == this)
+        {
+            // there its needed a way to stop the sound 2 if it was playing
+            _dinosaurAnimator.SetTrigger("Eat");
+            PlaySound(Sounds[3], 0.5f);
+        }
     }
 
     private void Start()
     {
         _evolutionsChanger.SetActive(IsSelected);
-
         _dinosaurAnimator = _dinosaurAnimationEventsListener.GetComponent<Animator>();
     }
 
@@ -37,7 +70,7 @@ public class Paddock : Selectable
         else if (hatching_completed)
         {
             PlaySound(Sounds[1], 0.5f);
-            hatchingScript.OnPaddockClicked(); 
+            hatchingScript.OnPaddockClicked();
             hatching_completed = false;
         }
         else
@@ -47,22 +80,25 @@ public class Paddock : Selectable
             _evolutionsChanger.SetActive(IsSelected);
             FeedButton.Instance.UpdateButton(_foodType);
 
-            Debug.Log(_dinosaurAnimationEventsListener.IsAnimationEnded);
-
-            if (_dinosaurAnimationEventsListener.IsAnimationEnded && _moneyObject.CurrentMoneyInteger != 0)
+            if (_dinosaurAnimationEventsListener.IsAnimationEnded && _moneyObject.CurrentMoneyInteger != 0) // there it need a condition that doesn't make those 3 lines start if the feeding anim is in progress
             {
                 _dinosaurAnimator.SetTrigger("Fun");
                 _dinosaurAnimationEventsListener.OnAnimationStarted();
                 PlaySound(Sounds[2], 0.5f);
             }
+            _selectedPaddock = this;
         }
     }
 
     public override void Unselect()
     {
         base.Unselect();
-
         _evolutionsChanger.SetActive(IsSelected);
+
+        if (_selectedPaddock == this)
+        {
+            _selectedPaddock = null;
+        }
     }
 }
 
