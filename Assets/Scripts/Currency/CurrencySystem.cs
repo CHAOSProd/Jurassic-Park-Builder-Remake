@@ -46,7 +46,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
             // For testing purposes
             if((CurrencyType)i == CurrencyType.Coins)
             {
-                _currencyAmounts[(CurrencyType)i] = 100000;
+                _currencyAmounts[(CurrencyType)i] = 1000000;
             }
 
             // Initial UI Update
