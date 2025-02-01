@@ -88,6 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationToListen: Nasutoceratops_Baby_Roar
+  _animationToListen2: Nasutoceratops_Baby_Feeding
 --- !u!1102 &-2181510472262569706
 AnimatorState:
   serializedVersion: 6

@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationToListen: Suchomimus Baby Roar
+  _animationToListen2: Suchomimus Baby Feeding
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0

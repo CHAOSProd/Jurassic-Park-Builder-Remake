@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animationToListen: Velociraptor_Baby_Roar
+  _animationToListen2: Velociraptor_Baby_Feeding
 --- !u!1102 &-2181510472262569706
 AnimatorState:
   serializedVersion: 6

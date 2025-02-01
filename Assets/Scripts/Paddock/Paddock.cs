@@ -47,10 +47,11 @@ public class Paddock : Selectable
 
     private void OnFeedButtonClick()
     {
-        if (_dinosaurAnimator != null && _selectedPaddock == this) // there its needed a condition that make the feeding animation and sounds not play again until the feeding anim is finished ( something like this that was used for the roar: _dinosaurAnimationEventsListener.IsAnimationEnded)
+        if (_dinosaurAnimationEventsListener.IsEatAnimationEnded && _dinosaurAnimator != null && _selectedPaddock == this)
         {
             StopSound(Sounds[2]);
             _dinosaurAnimator.SetTrigger("Eat");
+            _dinosaurAnimationEventsListener.OnEatAnimationStarted();
             PlaySound(Sounds[3], 0.5f);
         }
     }
