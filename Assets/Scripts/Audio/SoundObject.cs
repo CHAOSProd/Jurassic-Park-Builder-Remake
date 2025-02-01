@@ -13,4 +13,8 @@ public class SoundObject : MonoBehaviour
     {
         _audioSource.PlayOneShot(sound, volume);
     }
+    public void StopSound(AudioClip sound, float volume = 1f)
+    {
+        _audioSource.Stop();
+    }
 }

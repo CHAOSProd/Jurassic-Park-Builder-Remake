@@ -49,7 +49,7 @@ public class Paddock : Selectable
     {
         if (_dinosaurAnimator != null && _selectedPaddock == this) // there its needed a condition that make the feeding animation and sounds not play again until the feeding anim is finished ( something like this that was used for the roar: _dinosaurAnimationEventsListener.IsAnimationEnded)
         {
-            // there its needed a way to stop the sound 2 ( roaring one ) if it was playing
+            StopSound(Sounds[2]);
             _dinosaurAnimator.SetTrigger("Eat");
             PlaySound(Sounds[3], 0.5f);
         }
@@ -82,7 +82,7 @@ public class Paddock : Selectable
 
             if (_dinosaurAnimationEventsListener.IsAnimationEnded && _moneyObject.CurrentMoneyInteger != 0)
             {
-                // there its needed a way to stop the sound 3 ( eating one ) if it was playing
+                StopSound(Sounds[3]);
                 _dinosaurAnimator.SetTrigger("Fun");
                 _dinosaurAnimationEventsListener.OnAnimationStarted();
                 PlaySound(Sounds[2], 0.5f);
