@@ -47,7 +47,7 @@ public class Paddock : Selectable
 
     private void OnFeedButtonClick()
     {
-        if (_dinosaurAnimationEventsListener.IsEatAnimationEnded && _dinosaurAnimator != null && _selectedPaddock == this)
+        if (_dinosaurAnimationEventsListener.IsEatAnimationEnded && _dinosaurAnimator != null && _selectedPaddock == this && _moneyObject._maxMoneyReached == false)
         {
             StopSound(Sounds[2]);
             _dinosaurAnimator.SetTrigger("Eat");

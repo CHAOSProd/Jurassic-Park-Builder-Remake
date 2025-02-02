@@ -32,7 +32,7 @@ public class MoneyObject : MonoBehaviour
     private float _timeFromLastMoneyAdding;
     private bool _isPointerMoving;
     private Vector3 _lastPointerPosition;
-    private bool _maxMoneyReached;
+    public bool _maxMoneyReached;
 
     private MoneyObjectData _data;
 
