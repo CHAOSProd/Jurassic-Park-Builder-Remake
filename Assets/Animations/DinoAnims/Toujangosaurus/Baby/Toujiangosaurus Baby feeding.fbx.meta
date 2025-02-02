@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a780754c010b5974aaad3ddb4fbee129
+guid: 7dab94b958d70f14798653c1d6fb9447
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,10 +31,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Toujangosaurus Baby Feeding
+      name: Toujiangosaurus Baby Feeding
       takeName: Armature|ArmatureAction
       internalID: 4781951162920444690
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 105
       wrapMode: 0
       orientationOffsetY: 0
