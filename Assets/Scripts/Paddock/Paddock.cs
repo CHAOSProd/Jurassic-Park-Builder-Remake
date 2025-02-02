@@ -30,7 +30,7 @@ public class Paddock : Selectable
     {
         while (_feedButton == null)
         {
-            _feedButton = FindObjectOfType<FeedButton>();
+            _feedButton = FindAnyObjectByType<FeedButton>();
             yield return null;
         }
 
