@@ -4478,6 +4478,7 @@ MonoBehaviour:
   _dinoNumber: 0
   hatchingScript: {fileID: 4851479198322135418}
   is_hatching: 0
+  should_earn_money: 0
   hatching_completed: 0
 --- !u!114 &8288538152985744141
 MonoBehaviour:
@@ -7280,7 +7281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e81fd244f8af84db0fee8accc729fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hatchDuration: 43200
+  _hatchDuration: 720
   HatchXP: 108
   _eggVisual: {fileID: 4728577277505295775}
   dino: {fileID: 6186609632035316893}

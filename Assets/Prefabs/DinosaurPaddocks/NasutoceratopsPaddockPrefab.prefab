@@ -2387,7 +2387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37e81fd244f8af84db0fee8accc729fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hatchDuration: 43200
+  _hatchDuration: 720
   HatchXP: 34
   _eggVisual: {fileID: 4319951093593840815}
   dino: {fileID: 1696430567399137092}
