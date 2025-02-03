@@ -17,6 +17,7 @@ public class Paddock : Selectable
     private static Paddock _selectedPaddock = null;
 
     [HideInInspector] public bool is_hatching = false;
+    [HideInInspector] public bool should_earn_money = false;
     [HideInInspector] public bool hatching_completed = false;
 
     private void Awake()
@@ -60,6 +61,18 @@ public class Paddock : Selectable
     {
         _evolutionsChanger.SetActive(IsSelected);
         _dinosaurAnimator = _dinosaurAnimationEventsListener.GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if(!is_hatching && _dinosaurAnimator.gameObject.activeSelf)
+        {
+            _moneyObject.enabled = true;
+        }
+        else
+        {
+            _moneyObject.enabled = false;
+        }
     }
 
     public override void Select()
