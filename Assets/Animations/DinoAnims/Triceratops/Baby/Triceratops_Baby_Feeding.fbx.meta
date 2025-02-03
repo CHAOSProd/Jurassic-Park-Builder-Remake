@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e71df52ee2b576a42bf60508098da860
+guid: 330ceb180fc111447bc3ba4bc197cf3a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Triceratops_Baby_Feeding
-      takeName: Object|ArmatureAction
-      internalID: -1612731757092731156
-      firstFrame: 1
-      lastFrame: 160
+      name: Triceratops Baby Feeding
+      takeName: Armature|ArmatureAction
+      internalID: 4781951162920444690
+      firstFrame: 0
+      lastFrame: 150
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ef013edffc9eb484fb087bd28ac835d6
+guid: 4f9cc7661c765f640b2c140925331767
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -32,10 +32,10 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: Nasutoceratops_Baby_Feeding
-      takeName: Object|ArmatureAction
-      internalID: -1612731757092731156
-      firstFrame: 1
-      lastFrame: 160
+      takeName: Armature|ArmatureAction
+      internalID: 4781951162920444690
+      firstFrame: 0
+      lastFrame: 150
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
