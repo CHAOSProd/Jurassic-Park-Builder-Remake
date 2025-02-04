@@ -4534,6 +4534,7 @@ MonoBehaviour:
   _dinoNumber: 0
   hatchingScript: {fileID: 4851479198322135418}
   is_hatching: 0
+  should_earn_money: 0
   hatching_completed: 0
 --- !u!114 &8288538152985744141
 MonoBehaviour:
@@ -4626,6 +4627,7 @@ MonoBehaviour:
   _animator: {fileID: 9008793938918187504}
   MaximumMoney: 100
   MaximumMinutes: 15
+  _maxMoneyReached: 0
 --- !u!114 &1910003470799255841
 MonoBehaviour:
   m_ObjectHideFlags: 0

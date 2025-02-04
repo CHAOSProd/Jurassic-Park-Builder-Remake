@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 164e079544c75f041b98221539b961a3, type: 3}
-  m_Name: Suchomimus
+  m_Name: Carnotaurus
   m_EditorClassIdentifier: 
   Prefab: {fileID: 4039173826091507982, guid: 9ea7923b47c1f294fb3567f85dea7973, type: 3}
   PurchasableItem: {fileID: 0}

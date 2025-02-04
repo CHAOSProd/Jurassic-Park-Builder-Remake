@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Suchomimus Baby Sleeping
+  m_Name: Carnotaurus Baby Sleeping
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -119,15 +119,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0865418227380748b3d82e7f8ba65c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationToListen: Suchomimus Baby Roar
-  _animationToListen2: Suchomimus Baby Feeding
+  _animationToListen: Carnotaurus Baby Roar
+  _animationToListen2: Carnotaurus Baby Feeding
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Suchomimus_Baby
+  m_Name: Carnotaurus_Baby
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Fun
@@ -243,7 +243,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Suchomimus Baby Roar
+  m_Name: Carnotaurus Baby Roar
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -258,7 +258,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -623603649343465320, guid: defbaf0edadb74c4cafa6ba2b86289c2,
+  m_Motion: {fileID: 4781951162920444690, guid: 3df76d5bdc7c2f74e8ad0509ffeb0e78,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -272,7 +272,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Suchomimus Baby Idle
+  m_Name: Carnotaurus Baby Idle
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -302,7 +302,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Suchomimus Baby Feeding
+  m_Name: Carnotaurus Baby Feeding
   m_Speed: 1.55
   m_CycleOffset: 0
   m_Transitions:
