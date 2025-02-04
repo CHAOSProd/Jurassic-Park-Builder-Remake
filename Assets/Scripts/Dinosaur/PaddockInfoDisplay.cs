@@ -14,7 +14,17 @@ public class PaddockInfoDisplay : Singleton<PaddockInfoDisplay>
     public void Display(string dinosaurName, int currentLevel, int maximumMinutes, float maximumMoney)
     {
         _levelText.text = "LVL " + currentLevel;
-        _moneyPerTimeText.text = "<sprite=0>" + maximumMoney + " / " + maximumMinutes + " min";
+
+        string timeUnit = "mn";
+        int displayTime = maximumMinutes;
+
+        if (maximumMinutes >= 60)
+        {
+            displayTime = maximumMinutes / 60;
+            timeUnit = "hr";
+        }
+
+        _moneyPerTimeText.text = $"<sprite=0>{maximumMoney} / {displayTime} {timeUnit}";
         _nameText.text = dinosaurName;
     }
 }
