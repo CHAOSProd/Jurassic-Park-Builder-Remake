@@ -1030,6 +1030,7 @@ MonoBehaviour:
   _dinoNumber: 1
   hatchingScript: {fileID: 6755914077120888101}
   is_hatching: 0
+  should_earn_money: 0
   hatching_completed: 0
 --- !u!114 &4922702988812172581
 MonoBehaviour:
@@ -1106,6 +1107,7 @@ MonoBehaviour:
   _animator: {fileID: 2487001706141272503}
   MaximumMoney: 100
   MaximumMinutes: 30
+  _maxMoneyReached: 0
 --- !u!114 &4593923847787510190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3992,7 +3994,7 @@ MonoBehaviour:
   targetBone2: {fileID: 5422456872512397915}
   shadowObject1: {fileID: 5570508334876214887}
   shadowObject2: {fileID: 3239740561673265501}
-  offset: {x: 0, y: -0.05, z: 0}
+  offset: {x: 0, y: -0.05, z: 1}
   shadowScale: {x: 18, y: 12, z: 12}
 --- !u!210 &5600429240914063564
 SortingGroup:
