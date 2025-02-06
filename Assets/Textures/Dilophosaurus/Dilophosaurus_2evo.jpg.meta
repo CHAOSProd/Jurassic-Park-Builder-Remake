@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e5f1bae67f6955c43bd0ee8e81ce20b2
+guid: b57e3e4a3939e0d4c976f1f1abc62960
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 520126441311265021
-    second: ExpansionSpriteSheet (3) (1)_0
+      213: -251683221761374620
+    second: evo2 g_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ExpansionSpriteSheet (3) (1)_0
+      name: evo2 g_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 63
-        height: 64
+        width: 68
+        height: 68
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: df065ac1e3cd73700800000000000000
-      internalID: 520126441311265021
+      spriteID: 466ccfa7177d18cf0800000000000000
+      internalID: -251683221761374620
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ExpansionSpriteSheet (3) (1)_0: 520126441311265021
+      evo2 g_0: -251683221761374620
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
