@@ -18,8 +18,8 @@ public class CurrencySystem : Singleton<CurrencySystem>
     // Define default values in code, if we want to, we can make a serialized dictionary (would require new classes)
     private static readonly Dictionary<CurrencyType, int> _defaultValues = new() 
     {
-        { CurrencyType.Coins, 100},
-        { CurrencyType.Bucks, 50}, 
+        { CurrencyType.Coins, 500000},
+        { CurrencyType.Bucks, 10}, 
         { CurrencyType.Crystals, 0}
     };
 
@@ -44,10 +44,10 @@ public class CurrencySystem : Singleton<CurrencySystem>
             _currencyAmounts[(CurrencyType)i] = Attributes.GetInt(((CurrencyType)i).ToString(), _defaultValues[(CurrencyType)i]);
 
             // For testing purposes
-            if((CurrencyType)i == CurrencyType.Coins)
-            {
-                _currencyAmounts[(CurrencyType)i] = 1000000;
-            }
+            //if((CurrencyType)i == CurrencyType.Coins)
+            //{
+            //    _currencyAmounts[(CurrencyType)i] = 1000000;
+            //}
 
             // Initial UI Update
             _currencyTexts[(CurrencyType)i].text = _currencyAmounts[(CurrencyType)i].ToString("N0", CultureInfo.InvariantCulture);

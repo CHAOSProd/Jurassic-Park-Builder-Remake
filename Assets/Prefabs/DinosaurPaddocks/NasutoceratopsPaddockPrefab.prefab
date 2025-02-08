@@ -1515,7 +1515,7 @@ MonoBehaviour:
   targetBone2: {fileID: 0}
   shadowObject1: {fileID: 5588305064713886778}
   shadowObject2: {fileID: 0}
-  offset: {x: 0, y: -0.05, z: 0}
+  offset: {x: 0, y: -0.06, z: 0}
   shadowScale: {x: 0.22, y: 0.11, z: 0.11}
 --- !u!1 &1703012554310460648
 GameObject:

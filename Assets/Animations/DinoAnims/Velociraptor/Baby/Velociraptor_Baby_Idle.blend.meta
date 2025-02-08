@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0a665d7c43180954f88bf563d7e6cd41
+guid: bf0fbc893c10fc744ae51c095060e4f0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Scene
+      name: Velociraptor_Baby_Idle
       takeName: Scene
       internalID: -623603649343465320
       firstFrame: 1

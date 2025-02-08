@@ -7982,7 +7982,7 @@ MonoBehaviour:
   shadowObject1: {fileID: 9168303213671530548}
   shadowObject2: {fileID: 0}
   offset: {x: 0, y: -0.06, z: 1}
-  shadowScale: {x: 4, y: 2.5, z: 0}
+  shadowScale: {x: 6, y: 3, z: 3}
 --- !u!1 &8755581355669062614
 GameObject:
   m_ObjectHideFlags: 0

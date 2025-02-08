@@ -4494,7 +4494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelResources:
   - _maximumMoneyForTime: 270
-  - _maximumMoneyForTime: 2555
+  - _maximumMoneyForTime: 1227
   - _maximumMoneyForTime: 325
   - _maximumMoneyForTime: 353
   - _maximumMoneyForTime: 380
@@ -4504,7 +4504,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 491
   - _maximumMoneyForTime: 519
   - _maximumMoneyForTime: 547
-  - _maximumMoneyForTime: 5176
+  - _maximumMoneyForTime: 2088
   - _maximumMoneyForTime: 602
   - _maximumMoneyForTime: 630
   - _maximumMoneyForTime: 657
@@ -4514,7 +4514,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 768
   - _maximumMoneyForTime: 796
   - _maximumMoneyForTime: 823
-  - _maximumMoneyForTime: 7795
+  - _maximumMoneyForTime: 3897
   - _maximumMoneyForTime: 879
   - _maximumMoneyForTime: 907
   - _maximumMoneyForTime: 934
@@ -4524,7 +4524,7 @@ MonoBehaviour:
   - _maximumMoneyForTime: 1045
   - _maximumMoneyForTime: 1073
   - _maximumMoneyForTime: 1100
-  - _maximumMoneyForTime: 10417
+  - _maximumMoneyForTime: 5209
   - _maximumMoneyForTime: 1156
   - _maximumMoneyForTime: 1183
   - _maximumMoneyForTime: 1211
@@ -5183,7 +5183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a6d83d93fbefc439dfa727c3e6eaa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetBone1: {fileID: 8656404812683756528}
+  targetBone1: {fileID: 4726883048179357398}
   targetBone2: {fileID: 0}
   shadowObject1: {fileID: 1423909140015080370}
   shadowObject2: {fileID: 0}
