@@ -350,6 +350,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 00000006_7
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 32
+        width: 61
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c6add5d484fe004e983370346351a6e
+      internalID: -1325376969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -368,6 +389,7 @@ TextureImporter:
       00000006_4: 1378002533
       00000006_5: -780680610
       00000006_6: 111761290
+      00000006_7: -1325376969
       Speed Up: -1381453170
       Speed Up Selected: 1423257809
   mipmapLimitGroupName: 

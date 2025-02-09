@@ -1085,6 +1085,21 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
+  - m_Index: 107
+    m_Metrics:
+      m_Width: 27.09375
+      m_Height: 82.078125
+      m_HorizontalBearingX: 1.796875
+      m_HorizontalBearingY: 70.109375
+      m_HorizontalAdvance: 29.25
+    m_GlyphRect:
+      m_X: 224
+      m_Y: 864
+      m_Width: 28
+      m_Height: 83
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
   - m_Index: 108
     m_Metrics:
       m_Width: 48.328125
@@ -1295,18 +1310,33 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-  - m_Index: 107
+  - m_Index: 41
     m_Metrics:
-      m_Width: 27.09375
-      m_Height: 82.078125
-      m_HorizontalBearingX: 1.796875
-      m_HorizontalBearingY: 70.109375
-      m_HorizontalAdvance: 29.25
+      m_Width: 0
+      m_Height: 0
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 0
+      m_HorizontalAdvance: 1.796875
     m_GlyphRect:
-      m_X: 224
-      m_Y: 864
-      m_Width: 28
-      m_Height: 83
+      m_X: 0
+      m_Y: 0
+      m_Width: 0
+      m_Height: 0
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+  - m_Index: 42
+    m_Metrics:
+      m_Width: 0
+      m_Height: 0
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 0
+      m_HorizontalAdvance: 1.796875
+    m_GlyphRect:
+      m_X: 0
+      m_Y: 0
+      m_Width: 0
+      m_Height: 0
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
@@ -1556,6 +1586,10 @@ MonoBehaviour:
     m_GlyphIndex: 106
     m_Scale: 1
   - m_ElementType: 1
+    m_Unicode: 106
+    m_GlyphIndex: 107
+    m_Scale: 1
+  - m_ElementType: 1
     m_Unicode: 107
     m_GlyphIndex: 108
     m_Scale: 1
@@ -1612,8 +1646,12 @@ MonoBehaviour:
     m_GlyphIndex: 122
     m_Scale: 1
   - m_ElementType: 1
-    m_Unicode: 106
-    m_GlyphIndex: 107
+    m_Unicode: 40
+    m_GlyphIndex: 41
+    m_Scale: 1
+  - m_ElementType: 1
+    m_Unicode: 41
+    m_GlyphIndex: 42
     m_Scale: 1
   m_AtlasTextures:
   - {fileID: 5066829792368729976}
