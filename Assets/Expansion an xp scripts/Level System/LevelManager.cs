@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<GameObject> ToggledUI;
     [SerializeField] private GameObject appearVFXPrefab;
 
+    [SerializeField] private float xpBarPadding = 0.05f; // Adjustable padding so the XP bar shows a little even at 0 XP
 
     private float level; // Current player level
     private float XP; // Current player XP
@@ -49,6 +50,7 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     // Initializes XP and UI, and subscribes to events
     private void Start()
     {
@@ -82,6 +84,7 @@ public class LevelManager : MonoBehaviour
         UpdateUnlockItems();
         UpdateUI();
     }
+
     // Handles logic for leveling up
     private void OnLevelUp()
     {
@@ -123,7 +126,6 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-
     private void UpdateLevelImages()
     {
         for (int i = 0; i < levelImages.Length; i++)
@@ -134,6 +136,7 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
+
     // Updates the level and UI when XP changes
     private void UpdateXP()
     {
@@ -142,6 +145,7 @@ public class LevelManager : MonoBehaviour
         UpdateUI(); // Update the UI to reflect new XP
         Save(); // Save progress
     }
+
     // Adds XP and triggers the XP changed event
     public bool GiveXP(XPAddedGameEvent xpEvent)
     {
@@ -149,7 +153,9 @@ public class LevelManager : MonoBehaviour
         UpdateXP();
         return true;
     }
-    // Calculates if the player should level up based on current XP
+
+    // Calculates if the player should level up based on current XP.
+    // Excess XP over the level requirement overflows to the next level.
     private void CalculateLevel()
     {
         levelsGained = 0;
@@ -162,23 +168,29 @@ public class LevelManager : MonoBehaviour
         bucksToAdd = levelsGained * 2;
         BuckAmountText.text = $"{bucksToAdd}";
     }
-    // Updates the UI elements for level and XP bar
+
+    // Updates the UI elements for level and XP bar.
+    // The XP bar always shows at least xpBarPadding fill even at 0 XP.
     private void UpdateUI()
     {
         levelText.text = $"{level}";
         if (level <= xpPerLevel.Length)
         {
-            XPFillImage.fillAmount = Mathf.Clamp01(XP / xpPerLevel[(int)level - 1]);
+            float xpFill = XP / xpPerLevel[(int)level - 1];
+            xpFill = Mathf.Clamp01(xpFill);
+            // Ensure the XP bar shows a minimum fill based on xpBarPadding.
+            XPFillImage.fillAmount = Mathf.Max(xpFill, xpBarPadding);
         }
         else
         {
             XPFillImage.fillAmount = 1f;
         }
     }
+
     // Shows the level up panel
     private void ShowLevelUpPanel()
     {
-        foreach(GameObject ui in ToggledUI)
+        foreach (GameObject ui in ToggledUI)
         {
             ui.SetActive(false);
         }
@@ -239,6 +251,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    // Plays the appear VFX on each active item in the scroll rect.
     private IEnumerator PlayAppearVFX()
     {
         foreach (Transform item in ScrollRect.transform.GetChild(0).transform.GetChild(0).transform)
@@ -270,8 +283,7 @@ public class LevelManager : MonoBehaviour
 
                     yield return WaitForAnimation("ImageAppear", itemAnimator);
 
-                    itemAnimator.enabled = false; 
-
+                    itemAnimator.enabled = false;
                 }
             }
         }
@@ -292,6 +304,7 @@ public class LevelManager : MonoBehaviour
         panelTransform.gameObject.SetActive(false);
         levelUpPanel.SetActive(false);
     }
+
     // Update the UI and add bucks
     private void OnCollectButtonClicked()
     {
@@ -353,6 +366,7 @@ public class LevelManager : MonoBehaviour
         BuckAmountText.gameObject.SetActive(true);
         ScrollRect.gameObject.SetActive(false);
     }
+
     // Handles saving
     private void Save()
     {
@@ -360,3 +374,4 @@ public class LevelManager : MonoBehaviour
         Attributes.SetInt("level", (int)level);
     }
 }
+
