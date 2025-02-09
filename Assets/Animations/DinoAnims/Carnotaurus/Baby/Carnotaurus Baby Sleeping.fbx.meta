@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a96cd1a97fb248444a4eeb89ad42ae32
+guid: bb42dc8c2cf38a04692d238d91c17d68
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,18 +31,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Carnotaurus Baby Feeding
-      takeName: Armature|Armature|Armature|ArmatureAction.001
-      internalID: 8003312214571475973
+      name: Carnotaurus Baby Sleeping
+      takeName: Armature|ArmatureAction
+      internalID: 4781951162920444690
       firstFrame: 0
-      lastFrame: 124
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
