@@ -396,6 +396,7 @@ MonoBehaviour:
   _animator: {fileID: 0}
   MaximumMoney: 105
   MaximumMinutes: 15
+  _maxMoneyReached: 0
 --- !u!114 &9181914270627094662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1004,7 +1005,7 @@ Transform:
   m_GameObject: {fileID: 2408887922894585009}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.046599984, y: 0.42400002, z: -1.5544885}
+  m_LocalPosition: {x: 0, y: 0.38, z: -1.5544885}
   m_LocalScale: {x: 1.03633, y: 1.03633, z: 1.03633}
   m_ConstrainProportionsScale: 0
   m_Children:

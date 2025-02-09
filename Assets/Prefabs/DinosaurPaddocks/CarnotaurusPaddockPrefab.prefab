@@ -2280,7 +2280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hatchDuration: 720
-  HatchXP: 34
+  HatchXP: 64
   _eggVisual: {fileID: 4319951093593840815}
   dino: {fileID: 8713231636988965963}
   _xpNotification: {fileID: 6318112668675774338}
@@ -3018,7 +3018,7 @@ MonoBehaviour:
   GridBuildingID: 0
   ConstructionFinished: 0
   BuildTime: 0
-  BuildXp: 2
+  BuildXp: 32
   _xpNotification: {fileID: 6318112668675774338}
   _tapVFX: {fileID: 4973798307961578025}
   _xpCounter: {fileID: 2181888926613114353}
@@ -3643,7 +3643,7 @@ Transform:
   m_GameObject: {fileID: 4973798307961578025}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.013999939, y: 0.35, z: 0}
+  m_LocalPosition: {x: -0.013999939, y: 0.4, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4534,7 +4534,7 @@ Transform:
   m_GameObject: {fileID: 6318112668675774338}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.014, y: 0.908, z: -1.5544885}
+  m_LocalPosition: {x: -0.014, y: 0.6, z: -1.5544885}
   m_LocalScale: {x: 1.03633, y: 1.03633, z: 1.03633}
   m_ConstrainProportionsScale: 0
   m_Children:
