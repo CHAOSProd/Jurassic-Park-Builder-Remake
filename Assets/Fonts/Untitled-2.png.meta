@@ -837,7 +837,7 @@ TextureImporter:
         width: 13
         height: 7
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -858,7 +858,7 @@ TextureImporter:
         width: 15
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -866,6 +866,69 @@ TextureImporter:
       bones: []
       spriteID: 60a43a6be9b878a4d9d0d36e78673f13
       internalID: -1042570834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Untitled-2_35
+      rect:
+        serializedVersion: 2
+        x: 1102
+        y: 1244
+        width: 37
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b0ed1f9214bf3f44b7154cea1e19b58
+      internalID: 240598278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Untitled-2_36
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 1177
+        width: 37
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e40d56c5740e30047a3fdc32af5c4d74
+      internalID: -637394200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Untitled-2_37
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 1180
+        width: 35
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5b5a7e729c7f0f4387284bd9aa0b993
+      internalID: -1471964344
       vertices: []
       indices: 
       edges: []
@@ -910,6 +973,9 @@ TextureImporter:
       Untitled-2_32: 741184065
       Untitled-2_33: -957540255
       Untitled-2_34: -1042570834
+      Untitled-2_35: 240598278
+      Untitled-2_36: -637394200
+      Untitled-2_37: -1471964344
       Untitled-2_4: -1331131241
       Untitled-2_5: -520332022
       Untitled-2_6: -1086116017

@@ -3,8 +3,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using UnityEngine.Rendering;
-using static UnityEngine.GraphicsBuffer;
+
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class PlaceableObject : MonoBehaviour
 {
@@ -495,6 +498,7 @@ public class PlaceableObject : MonoBehaviour
 }
 
 // This just makes it so that the Hatching and Dino variables appear when _isPaddock is true
+#if UNITY_EDITOR
 [CustomEditor(typeof(PlaceableObject))]
 public class PlaceableObjectEditor : Editor
 {
@@ -529,3 +533,4 @@ public class PlaceableObjectEditor : Editor
 
 
 
+#endif

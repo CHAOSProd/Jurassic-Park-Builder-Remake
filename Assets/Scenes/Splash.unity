@@ -722,7 +722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &346985252
 RectTransform:
   m_ObjectHideFlags: 0
@@ -735,11 +735,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 849839094}
+  m_Father: {fileID: 2029925268}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -160.39978, y: 162.16776}
+  m_AnchoredPosition: {x: 106.93, y: -424}
   m_SizeDelta: {x: 106.9254, y: 106.92}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &346985253
@@ -1408,7 +1408,6 @@ RectTransform:
   - {fileID: 316787778}
   - {fileID: 822351734}
   - {fileID: 157516191}
-  - {fileID: 346985252}
   - {fileID: 1048893095}
   m_Father: {fileID: 1341564613}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1474,11 +1473,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 849839093}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72f5b99630e8ebc4b8d59ca1b8f4b848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSceneName: 
+  splashDelay: 3
 --- !u!1 &960304254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,6 +1491,7 @@ GameObject:
   - component: {fileID: 960304257}
   - component: {fileID: 960304256}
   - component: {fileID: 960304258}
+  - component: {fileID: 960304259}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1568,6 +1570,20 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &960304259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 960304254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f5b99630e8ebc4b8d59ca1b8f4b848, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainSceneName: Game
+  splashDelay: 20
 --- !u!1 &1048893094
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,7 +2287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 195.68, y: -418.03}
+  m_AnchoredPosition: {x: 225, y: -418.03}
   m_SizeDelta: {x: 106.9204, y: 106.9204}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1400265992
@@ -2794,7 +2810,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: https://www.youtube.com/@last_thylacine/
+          m_StringArgument: https://www.youtube.com/@JurassicParkBuilderRemake
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1753510903
@@ -2867,6 +2883,7 @@ RectTransform:
   - {fileID: 1279373527}
   - {fileID: 1400265991}
   - {fileID: 1753510901}
+  - {fileID: 346985252}
   - {fileID: 1092124774}
   m_Father: {fileID: 1341564613}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2882,11 +2899,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029925267}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72f5b99630e8ebc4b8d59ca1b8f4b848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSceneName: 
+  splashDelay: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
