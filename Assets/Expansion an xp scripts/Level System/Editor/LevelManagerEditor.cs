@@ -7,6 +7,7 @@ public class LevelManagerEditor : Editor {
 
     public override void OnInspectorGUI() {
         DrawDefaultInspector(); // Draw the default inspector UI
+        
 
         // Adds a button to give 10000 XP for testing purposes
         if (GUILayout.Button("Give 10000 XP (PLAY MODE ONLY)")) {
@@ -33,6 +34,18 @@ public class LevelManagerEditor : Editor {
         if (GUILayout.Button("Remove 10 bucks (PLAY MODE ONLY)")) {
             // Remove 10 bucks from the player
             EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-10, CurrencyType.Bucks)); 
+        }
+
+        // Adds a button to Add 200000 coins for testing purposes
+        if (GUILayout.Button("Add 200000 coins (PLAY MODE ONLY)")) {
+            // Add 200000 bucks from the player
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(200000, CurrencyType.Coins)); 
+        }
+
+        // Adds a button to Remove 200000 coins for testing purposes
+        if (GUILayout.Button("Remove 200000 coins (PLAY MODE ONLY)")) {
+            // Remove 200000 bucks from the player
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-200000, CurrencyType.Coins)); 
         }
     }
 
