@@ -161,7 +161,7 @@ public class MoneyObject : MonoBehaviour
 
         InitMoneyPerSecond();
         PlaceableObject placeableObject = GetComponentInParent<PlaceableObject>();
-        if (_paddock != null && _paddock.is_hatching || placeableObject != null && !placeableObject.ConstructionFinished)
+        if (_paddock != null && _paddock.is_hatching || _paddock != null && _paddock.hatching_completed || placeableObject != null && !placeableObject.ConstructionFinished)
         {
             _data.Money=0;
             return;
@@ -175,7 +175,7 @@ public class MoneyObject : MonoBehaviour
 
         if (_data.Money > MaximumMoney)
         {
-            if (_paddock.is_hatching || _paddock.hatching_completed)
+            if (_paddock != null && _paddock.is_hatching || _paddock != null && _paddock.hatching_completed)
             {
                 _data.Money=0;
                 return;
@@ -187,7 +187,7 @@ public class MoneyObject : MonoBehaviour
 
         if (_data.Money >= MaximumMoney)
         {
-            if (_paddock.is_hatching || _paddock.hatching_completed)
+            if (_paddock != null && _paddock.is_hatching || _paddock != null && _paddock.hatching_completed)
             {
                 _data.Money=0;
                 return;
