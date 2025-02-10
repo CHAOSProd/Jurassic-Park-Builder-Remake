@@ -45,11 +45,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: MainCenter
-    uniqueID: 1373527937
-    locked: 0
   - name: GridBuilding
     uniqueID: 2950253721
+    locked: 0
+  - name: MainCenter
+    uniqueID: 1373527937
     locked: 0
   - name: VFX
     uniqueID: 645792657
