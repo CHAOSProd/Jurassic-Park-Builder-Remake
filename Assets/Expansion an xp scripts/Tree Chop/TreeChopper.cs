@@ -58,16 +58,36 @@ public class TreeChopper : Selectable
         }
     }
 
+    // Removed Start() default initialization so that saved state (such as debris active)
+    // is not overwritten when the scene is loaded.
+    // If needed, you can uncomment the following code and add a check for _treeData.
+    /*
     private void Start()
     {
-        _trees.SetActive(true);
-        _debris.SetActive(false);
+        if (_treeData == null)
+        {
+            _trees.SetActive(true);
+            _debris.SetActive(false);
+        }
+        else
+        {
+            if (_treeData.HasDebris)
+            {
+                _trees.SetActive(false);
+                _debris.SetActive(true);
+            }
+            else
+            {
+                _trees.SetActive(true);
+                _debris.SetActive(false);
+            }
+        }
     }
+    */
 
     private void OnMouseDrag()
     {
         Vector3 delta = Input.mousePosition - _lastPointerPosition;
-
         _isPointerMoving = delta.magnitude > 15f;
     }
 
@@ -269,3 +289,4 @@ public class TreeChopper : Selectable
         MappedPosition = (x, y);
     }
 }
+
