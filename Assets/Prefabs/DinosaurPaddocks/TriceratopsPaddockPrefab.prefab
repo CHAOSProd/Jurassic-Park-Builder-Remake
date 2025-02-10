@@ -2120,7 +2120,7 @@ Transform:
   m_GameObject: {fileID: 2643819738091942103}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.55, z: -3}
+  m_LocalPosition: {x: 0, y: 0.55, z: -0.284}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6269,7 +6269,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: -1344713575
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_SortAtRoot: 0
 --- !u!114 &3411297017016814323
 MonoBehaviour:
@@ -6418,6 +6418,7 @@ GameObject:
   - component: {fileID: 2329362746161262926}
   - component: {fileID: 4658182912314991353}
   - component: {fileID: 6127092916358645434}
+  - component: {fileID: 5190229458405481940}
   m_Layer: 0
   m_Name: Triceratops
   m_TagString: Untagged
@@ -6433,15 +6434,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8059953156304328569}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.19965723, y: 0.2865915, z: -0.0734556, w: 0.9341342}
-  m_LocalPosition: {x: 0.026732206, y: -0.065228045, z: -0.9128606}
+  m_LocalRotation: {x: -0.24580027, y: 0.295969, z: -0.06062566, w: 0.921037}
+  m_LocalPosition: {x: 0.026914358, y: -0.06958574, z: -0.90891147}
   m_LocalScale: {x: 0.004137024, y: 0.004137024, z: 0.004137024}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1738865885610073437}
   - {fileID: 2654143388564537658}
   m_Father: {fileID: 6352632041645811912}
-  m_LocalEulerAnglesHint: {x: -19.324, y: 36.761, z: -15.468}
+  m_LocalEulerAnglesHint: {x: -24.639, y: 39.242, z: -16.435}
 --- !u!95 &3359683993170594174
 Animator:
   serializedVersion: 7
@@ -6626,6 +6627,18 @@ MonoBehaviour:
   shadowObject2: {fileID: 0}
   offset: {x: 0, y: -0.06, z: 1}
   shadowScale: {x: 0.22, y: 0.13, z: 0.13}
+--- !u!210 &5190229458405481940
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8059953156304328569}
+  m_Enabled: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 2
+  m_SortingOrder: 2
+  m_SortAtRoot: 0
 --- !u!1 &8302256679080895964
 GameObject:
   m_ObjectHideFlags: 0
