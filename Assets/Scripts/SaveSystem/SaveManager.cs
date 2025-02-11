@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class SaveManager : Singleton<SaveManager>
 {
@@ -12,8 +13,26 @@ public class SaveManager : Singleton<SaveManager>
     private void Awake()
     {
         SaveSystem.Initialize();
-        SaveData = SaveSystem.Load();
 
+        if (PlayerPrefs.GetInt("DeleteSaveOnStart", 0) == 1)
+        {
+            Debug.Log("Deleting save file on startup...");
+            
+            if (File.Exists(SaveSystem.FilePath))
+            {
+                File.Delete(SaveSystem.FilePath);
+                Debug.Log("File deleted successfully");
+            }
+            else
+            {
+                Debug.LogWarning("No save file found.");
+            }
+
+            PlayerPrefs.SetInt("DeleteSaveOnStart", 0);
+            PlayerPrefs.Save();
+        }
+
+        SaveData = SaveSystem.Load();
         Attributes.SetAttributes(SaveData.Attributes);
     }
     private void Start()
