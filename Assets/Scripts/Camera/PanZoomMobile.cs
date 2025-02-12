@@ -5,6 +5,7 @@ public class PanZoomMobile : MonoBehaviour
 {
     [SerializeField] private float _zoomMinimum;
     [SerializeField] private float _zoomMaximum;
+    [SerializeField] private GameObject[] _uiElements; // Array of UI elements
 
     private Camera _camera;
     private CameraWorldBounds _cameraWorldBounds;
@@ -20,9 +21,21 @@ public class PanZoomMobile : MonoBehaviour
         _cameraObjectFollowing = GetComponent<CameraObjectFollowing>();
     }
 
+    private bool IsUIActive()
+    {
+        foreach (var uiElement in _uiElements)
+        {
+            if (uiElement.activeInHierarchy)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void Update()
     {
-        if (_cameraObjectFollowing.Target)
+        if (_cameraObjectFollowing.Target || IsUIActive())
             return;
 
         if (Input.touchCount > 0)
@@ -50,7 +63,6 @@ public class PanZoomMobile : MonoBehaviour
 
                 Zoom(difference * 0.001f);
             }
-
             else
             {
                 Touch touch = Input.GetTouch(0);
@@ -69,6 +81,7 @@ public class PanZoomMobile : MonoBehaviour
 
                         _touchPosition = _camera.ScreenToWorldPoint(touch.position);
                         break;
+
                     case TouchPhase.Moved:
                         if (_moveAllowed)
                         {
@@ -88,3 +101,4 @@ public class PanZoomMobile : MonoBehaviour
         _cameraWorldBounds.RecalculateBounds();
     }
 }
+

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PanZoomPC : MonoBehaviour
 {
-    [SerializeField] private float _timeToZoom = 0.5f;
+    [SerializeField] private float _zoomSmoothTime = 0.2f; // How quickly zoom converges to the target
     [SerializeField] private float _moveSpeed = 1f;
     [SerializeField] private float _moveLerpRate = 10f;
     [SerializeField] private float _minZoom = 5f;
@@ -19,7 +19,8 @@ public class PanZoomPC : MonoBehaviour
     private Vector2 _startPoint;
     private Vector3 _startCameraPosition;
     private float _zoomDelta;
-    private bool _isZooming = false;
+    private float _targetZoom;
+    private float _zoomVelocity = 0f;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class PanZoomPC : MonoBehaviour
 
     private void Start()
     {
+        _targetZoom = _camera.orthographicSize;
         _zoomDelta = (_maxZoom - _minZoom) / 2f;
 
         _controls.Enable();
@@ -42,27 +44,27 @@ public class PanZoomPC : MonoBehaviour
         foreach (var uiElement in _uiElements)
         {
             if (uiElement.activeInHierarchy)
-            {
                 return true;
-            }
         }
         return false;
     }
 
     private void OnZoom(InputAction.CallbackContext context)
     {
-        if (IsUIActive() || _startPoint != Vector2.zero || _isZooming) return;
+        if (IsUIActive() || _startPoint != Vector2.zero)
+            return;
 
         float scrollDelta = context.ReadValue<float>();
         if (Mathf.Abs(scrollDelta) > 0.01f)
         {
-            StartCoroutine(Zoom(_timeToZoom, scrollDelta));
+            _targetZoom = Mathf.Clamp(_targetZoom - scrollDelta * _zoomDelta, _minZoom, _maxZoom);
         }
     }
 
     private void OnScrollButtonClick(InputAction.CallbackContext context)
     {
-        if (IsUIActive()) return;
+        if (IsUIActive())
+            return;
 
         Vector2 point = _camera.ScreenToViewportPoint(Input.mousePosition);
         _startPoint = point;
@@ -77,7 +79,15 @@ public class PanZoomPC : MonoBehaviour
 
     private void Update()
     {
-        if (IsUIActive() || _startPoint == Vector2.zero) return;
+        // Smoothly update the camera's zoom level
+        if (!IsUIActive())
+        {
+            _camera.orthographicSize = Mathf.SmoothDamp(_camera.orthographicSize, _targetZoom, ref _zoomVelocity, _zoomSmoothTime);
+        }
+
+        // Handle panning
+        if (IsUIActive() || _startPoint == Vector2.zero)
+            return;
 
         Vector2 point = _camera.ScreenToViewportPoint(Input.mousePosition);
         Vector2 offset = point - _startPoint;
@@ -89,26 +99,8 @@ public class PanZoomPC : MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, newPosition, _moveLerpRate * Time.deltaTime);
         transform.position = new Vector3(transform.position.x, transform.position.y, -10f);
     }
-
-    private IEnumerator Zoom(float time, float scrollDelta)
-    {
-        _isZooming = true;
-
-        float elapsedTime = 0f;
-        float startZoom = _camera.orthographicSize;
-        float endZoom = Mathf.Clamp(startZoom - scrollDelta * _zoomDelta, _minZoom, _maxZoom);
-
-        while (elapsedTime < time)
-        {
-            elapsedTime += Time.deltaTime;
-            _camera.orthographicSize = Mathf.Lerp(startZoom, endZoom, elapsedTime / time);
-            yield return null;
-        }
-
-        _camera.orthographicSize = endZoom;
-        _isZooming = false;
-    }
 }
+
 
 
 
