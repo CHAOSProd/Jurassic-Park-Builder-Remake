@@ -204,7 +204,19 @@ public class SaveManager : Singleton<SaveManager>
             DebrisManager.Instance.LoadDebris(dd);
         }
     }
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            SaveGameData();
+        }
+    }
     private void OnApplicationQuit()
+    {
+        SaveGameData();
+    }
+
+    private void SaveGameData()
     {
         Attributes.SetAttribute("LastSaveTime", DateTime.Now);
         SaveData.Attributes = Attributes.Export();
