@@ -569,6 +569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256294791582867030}
+  - component: {fileID: 1029909620676002922}
   m_Layer: 0
   m_Name: Notification
   m_TagString: Untagged
@@ -592,6 +593,18 @@ Transform:
   - {fileID: 6150500135061480794}
   m_Father: {fileID: 1854412203729794811}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &1029909620676002922
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293854756199877227}
+  m_Enabled: 1
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
+  m_SortingOrder: 1
+  m_SortAtRoot: 1
 --- !u!1 &1361772994591056041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3363,7 +3376,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1344713575
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c94fba85a9a78834f8a946e19d255d97, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3398,7 +3411,7 @@ SortingGroup:
   m_GameObject: {fileID: 4349622108027107102}
   m_Enabled: 1
   m_SortingLayerID: -1344713575
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!60 &7507625344123628068
@@ -4694,7 +4707,7 @@ SortingGroup:
   m_GameObject: {fileID: 5949953740542757079}
   m_Enabled: 1
   m_SortingLayerID: -1344713575
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!114 &3708635208963666018
@@ -6194,7 +6207,7 @@ SortingGroup:
   m_GameObject: {fileID: 7819796553852588921}
   m_Enabled: 1
   m_SortingLayerID: -1344713575
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!60 &2199074064835050289
@@ -7266,7 +7279,7 @@ SortingGroup:
   m_GameObject: {fileID: 8317435165583424928}
   m_Enabled: 1
   m_SortingLayerID: -1344713575
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_SortAtRoot: 0
 --- !u!114 &4851479198322135418

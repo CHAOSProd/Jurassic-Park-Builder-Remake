@@ -4024,6 +4024,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4962147345523247486}
+  - component: {fileID: 663544540748015486}
   m_Layer: 0
   m_Name: Notification
   m_TagString: Untagged
@@ -4047,6 +4048,18 @@ Transform:
   - {fileID: 4281508234731176804}
   m_Father: {fileID: 6352632041645811912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &663544540748015486
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5828858728501730597}
+  m_Enabled: 1
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
+  m_SortingOrder: 1
+  m_SortAtRoot: 1
 --- !u!1 &5970994063599242516
 GameObject:
   m_ObjectHideFlags: 0

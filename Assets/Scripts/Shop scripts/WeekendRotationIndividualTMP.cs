@@ -8,8 +8,10 @@ public class WeekendRotationIndividualTMP : MonoBehaviour
     [Tooltip("Drag the objects to rotate here. Each should have an AnimalToggle component and at least one TextMeshProUGUI child named with 'Countdown' in its name.")]
     [SerializeField] private GameObject[] rotatingObjects;
 
-    // Baseline date for week rotation calculations (adjust as needed)
-    private DateTime baselineDate = new DateTime(2022, 1, 1);
+    // Set a baseline weekend start date that is a Friday.
+    // This date determines the cycle for the weekend rotation.
+    // For example, January 7, 2022 is a Friday.
+    private DateTime baselineWeekend = new DateTime(2022, 1, 7);
 
     private void Start()
     {
@@ -17,8 +19,9 @@ public class WeekendRotationIndividualTMP : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks the day of the week, determines which object should be available (unless purchased),
-    /// and updates each object's designated TextMeshProUGUI field(s) with the proper countdown message.
+    /// Updates the active status and countdown text of each rotating object.
+    /// During the weekend (Friday–Sunday) only one (or any purchased) object is active.
+    /// The active object is determined based on the current weekend (which starts on Friday).
     /// </summary>
     public void UpdateAvailability()
     {
@@ -30,45 +33,60 @@ public class WeekendRotationIndividualTMP : MonoBehaviour
                           currentDay == DayOfWeek.Saturday ||
                           currentDay == DayOfWeek.Sunday);
 
-        // Determine the countdown message (only relevant on weekend days)
+        // Prepare the countdown message for weekend days.
         string countdownMessage = "";
         if (isWeekend)
         {
-            if (currentDay == DayOfWeek.Friday)
+            switch (currentDay)
             {
-                countdownMessage = "3 day(s) left";
-            }
-            else if (currentDay == DayOfWeek.Saturday)
-            {
-                countdownMessage = "2 day(s) left";
-            }
-            else if (currentDay == DayOfWeek.Sunday)
-            {
-                countdownMessage = "last day";
+                case DayOfWeek.Friday:
+                    countdownMessage = "3 day(s) left";
+                    break;
+                case DayOfWeek.Saturday:
+                    countdownMessage = "2 day(s) left";
+                    break;
+                case DayOfWeek.Sunday:
+                    countdownMessage = "last day";
+                    break;
             }
         }
 
-        // Determine which object should be available for this week (if any)
-        int selectedIndex = 0;
-        if (rotatingObjects != null && rotatingObjects.Length > 0)
+        // Only calculate a selected index if today is a weekend day.
+        int selectedIndex = -1;
+        if (rotatingObjects != null && rotatingObjects.Length > 0 && isWeekend)
         {
-            TimeSpan span = now.Date - baselineDate.Date;
-            int weekNumber = span.Days / 7; // integer division for full weeks passed
-            selectedIndex = weekNumber % rotatingObjects.Length;
+            // Determine the start of this weekend (i.e. the most recent Friday).
+            // If today is Friday, it is the weekend start.
+            int daysSinceFriday = (int)currentDay - (int)DayOfWeek.Friday;
+            if (daysSinceFriday < 0)
+            {
+                daysSinceFriday += 7;
+            }
+            DateTime thisWeekendStart = now.Date.AddDays(-daysSinceFriday);
+
+            // Calculate how many whole weeks have passed since our baseline Friday.
+            int weekendIndex = (int)((thisWeekendStart - baselineWeekend).TotalDays / 7);
+
+            // Use modulo to cycle through the array of objects.
+            selectedIndex = weekendIndex % rotatingObjects.Length;
+            if (selectedIndex < 0)
+            {
+                selectedIndex += rotatingObjects.Length;
+            }
         }
 
-        // Loop through each rotating object
+        // Loop through each rotating object.
         for (int i = 0; i < rotatingObjects.Length; i++)
         {
             GameObject obj = rotatingObjects[i];
 
-            // Check if the object was purchased using the AnimalToggle component.
+            // Check if this object has been purchased.
             AnimalToggle toggle = obj.GetComponent<AnimalToggle>();
             bool purchased = (toggle != null && toggle.Purchased);
 
-            // Decide whether the object should be active:
+            // Determine if the object should be active:
             // - Purchased objects remain active at all times.
-            // - Otherwise, only the selected object is active during the weekend.
+            // - Otherwise, only the object matching the weekend index is active during the weekend.
             bool shouldBeActive = purchased || (isWeekend && i == selectedIndex);
             obj.SetActive(shouldBeActive);
 
@@ -77,18 +95,17 @@ public class WeekendRotationIndividualTMP : MonoBehaviour
 
             foreach (TextMeshProUGUI tmpText in tmpTexts)
             {
-                // Only update TMP fields that have "Countdown" in their GameObject name.
+                // Only update text components whose GameObject name contains "Countdown".
                 if (tmpText.gameObject.name.Contains("Countdown"))
                 {
-                    // If the object is purchased, leave the text empty.
-                    // Otherwise, if the object is active, show the countdown message.
-                    // Otherwise, clear the text.
                     if (purchased)
                     {
+                        // Purchased objects show no countdown.
                         tmpText.text = "";
                     }
                     else if (shouldBeActive)
                     {
+                        // Active objects show the appropriate countdown message.
                         tmpText.text = countdownMessage;
                     }
                     else
@@ -100,4 +117,5 @@ public class WeekendRotationIndividualTMP : MonoBehaviour
         }
     }
 }
+
 
