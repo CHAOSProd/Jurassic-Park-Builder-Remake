@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects:
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 6d6507b67210b0440be4c9d59331f81d,
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 453e010adc7d7164a908760f3e000adb,
       type: 2}
   m_UseUCBPForAssetBundles: 0

@@ -1744,6 +1744,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1764515344738756741}
+  - component: {fileID: 7285630930171542751}
   m_Layer: 0
   m_Name: TapVFX
   m_TagString: Untagged
@@ -1767,6 +1768,18 @@ Transform:
   - {fileID: 4050555858804393364}
   m_Father: {fileID: 7807139849414895890}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &7285630930171542751
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3795067992194171937}
+  m_Enabled: 1
+  m_SortingLayerID: 645792657
+  m_SortingLayer: 3
+  m_SortingOrder: 1
+  m_SortAtRoot: 1
 --- !u!1 &3941426959915265139
 GameObject:
   m_ObjectHideFlags: 0
