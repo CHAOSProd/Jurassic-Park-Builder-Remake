@@ -4407,7 +4407,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 1307551173923218001, guid: fcb8f46de1d0e1e44958f0584cfde7cf, type: 3}
+  m_Mesh: {fileID: 1307551173923218001, guid: f9c0249f8ecd73340baa7b242bf50a77, type: 3}
   m_Bones:
   - {fileID: 4054862050456796721}
   - {fileID: 4937827485467366074}
@@ -6651,7 +6651,7 @@ MonoBehaviour:
   targetBone2: {fileID: 0}
   shadowObject1: {fileID: 1684764297731867496}
   shadowObject2: {fileID: 0}
-  offset: {x: 0, y: -0.06, z: 1}
+  offset: {x: 0, y: -0.053, z: 1}
   shadowScale: {x: 0.22, y: 0.13, z: 0.13}
 --- !u!210 &5190229458405481940
 SortingGroup:

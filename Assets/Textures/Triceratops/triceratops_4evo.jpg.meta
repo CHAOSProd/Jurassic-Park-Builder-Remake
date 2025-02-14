@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c60c3491be5cae4418746d1d36fde25f
+guid: b024ea5939b34e748b13448103553304
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1616593439937413230
-    second: Trike evo 4 fxed_0
+      213: 8628042867419748743
+    second: image - 2025-02-14T110329.999_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Trike evo 4 fxed_0
+      name: image - 2025-02-14T110329.999_0
       rect:
         serializedVersion: 2
         x: 0
@@ -114,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 29fbd4ad4d4b099e0800000000000000
-      internalID: -1616593439937413230
+      spriteID: 789956b4647fcb770800000000000000
+      internalID: 8628042867419748743
       vertices: []
       indices: 
       edges: []
@@ -131,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Trike evo 4 fxed_0: -1616593439937413230
+      image - 2025-02-14T110329.999_0: 8628042867419748743
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
