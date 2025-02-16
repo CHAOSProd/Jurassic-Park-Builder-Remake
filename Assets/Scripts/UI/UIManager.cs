@@ -38,6 +38,7 @@ public class UIManager : Singleton<UIManager>
 
     public void ChangeCameraPanningStatus(bool enabled)
     {
+        Debug.Log("omg: " + zoomType);
         // Enable the selected zoom script and disable the other one.
         if (zoomType == ZoomType.Mobile)
         {
@@ -50,8 +51,10 @@ public class UIManager : Singleton<UIManager>
 
             // Disable the PC script if it exists.
             var pc = cam.GetComponent<PanZoomPC>();
+            Debug.Log("best num: " + pc);
             if (pc != null)
             {
+                Debug.Log("Disabled");
                 pc.enabled = false;
             }
         }
@@ -59,8 +62,10 @@ public class UIManager : Singleton<UIManager>
         {
             // Enable PC zoom/pan script if attached.
             var pc = cam.GetComponent<PanZoomPC>();
+            Debug.Log("best num: " + pc);
             if (pc != null)
             {
+                Debug.Log("Enabled");
                 pc.enabled = enabled;
             }
 
@@ -71,6 +76,11 @@ public class UIManager : Singleton<UIManager>
                 mobile.enabled = false;
             }
         }
+    }
+
+    private void Start()
+    {
+        ChangeCameraPanningStatus(true);
     }
 
     private void Awake()
@@ -86,7 +96,6 @@ public class UIManager : Singleton<UIManager>
             _fixedUIElements.Add(field.key, field.objects);
         }
         _fixedKey = fixedGroups[0].key;
-        ChangeCameraPanningStatus(true);
     }
 
     /// <summary>

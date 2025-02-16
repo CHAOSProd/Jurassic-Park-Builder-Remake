@@ -64,7 +64,7 @@ public class PanZoomPC : MonoBehaviour
     private void OnScrollButtonClick(InputAction.CallbackContext context)
     {
         if (IsUIActive())
-            return;
+           return;
 
         Vector2 point = _camera.ScreenToViewportPoint(Input.mousePosition);
         _startPoint = point;

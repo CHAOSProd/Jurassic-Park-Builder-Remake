@@ -8,11 +8,11 @@ public class PlaceableObjectMovementListener : MonoBehaviour
     public bool IsMoving;
 
     private PlaceableObject _placeableObject;
-    private bool _isCanMove;
+    private bool _isCanMove = true;
 
     private void Start()
     {
-        UIManager.Instance.ChangeCameraPanningStatus(false);
+        UIManager.Instance.ChangeCameraPanningStatus(true);
         _placeableObject = GetComponentInParent<PlaceableObject>();
     }
 
