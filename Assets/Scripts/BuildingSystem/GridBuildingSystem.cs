@@ -106,7 +106,6 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
         TempPlaceableObject = Instantiate(building, Vector3.zero, Quaternion.identity).GetComponent<PlaceableObject>();
         TempPlaceableObject.InitializeDisplayObjects(true);
 
-        TempPlaceableObject.SortAtTop();
         TempTilemap.GetComponent<TilemapRenderer>().sortingOrder = 1;
 
         ReloadUI();
