@@ -674,9 +674,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8982025354440642934}
-  - {fileID: 8514528300418061057}
-  - {fileID: 4121978400937409142}
-  - {fileID: 354793331282176958}
   - {fileID: 4480510555942113027}
   - {fileID: 7080522582216973604}
   - {fileID: 4170376186425687749}
@@ -5960,7 +5957,7 @@ GameObject:
   - component: {fileID: 354793331282176958}
   - component: {fileID: 4834299223780424284}
   m_Layer: 0
-  m_Name: TapVFX
+  m_Name: TapVFXMoney
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5974,15 +5971,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6094791451163577669}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.003, y: -0.04, z: -1}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0073396917, y: 0.5985292, z: -3.7776692}
+  m_LocalScale: {x: 0.62073845, y: 0.62073845, z: 0.62073845}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4341478139221837552}
   - {fileID: 7784035355961949488}
   - {fileID: 6028999337589469451}
-  m_Father: {fileID: 4108349488091385288}
+  m_Father: {fileID: 2167585492645461678}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &4834299223780424284
 SortingGroup:
@@ -6144,7 +6141,7 @@ GameObject:
   - component: {fileID: 8514528300418061057}
   - component: {fileID: 2931685148770271036}
   m_Layer: 0
-  m_Name: Notification
+  m_Name: MoneyNotification
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6158,13 +6155,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6166346771281165289}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.27, z: -1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 0.8734277, z: -4.2210536}
+  m_LocalScale: {x: 0.88676924, y: 0.88676924, z: 0.88676924}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1548381899955620183}
-  m_Father: {fileID: 4108349488091385288}
+  m_Father: {fileID: 2167585492645461678}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &2931685148770271036
 SortingGroup:
@@ -6638,6 +6635,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8514528300418061057}
+  - {fileID: 4121978400937409142}
+  - {fileID: 354793331282176958}
   - {fileID: 6281263675091171508}
   - {fileID: 2433200893786421854}
   - {fileID: 7773687027651018591}
@@ -8368,13 +8368,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8271330030635148348}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.108, z: -1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.01, y: 0.7297711, z: -4.2210536}
+  m_LocalScale: {x: 0.88676924, y: 0.88676924, z: 0.88676924}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4891274352690358619}
-  m_Father: {fileID: 4108349488091385288}
+  m_Father: {fileID: 2167585492645461678}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8369108262537016402
 GameObject:
