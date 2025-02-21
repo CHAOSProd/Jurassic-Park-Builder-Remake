@@ -840,9 +840,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2977049956062800408}
-  - {fileID: 8939404554237231298}
-  - {fileID: 4542256054327999446}
-  - {fileID: 1639308100007012571}
   m_Father: {fileID: 8234524808854993707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8443820039309395465
@@ -2019,7 +2016,7 @@ GameObject:
   - component: {fileID: 4542256054327999446}
   - component: {fileID: 306944240132249159}
   m_Layer: 0
-  m_Name: TapVFX
+  m_Name: TapVFXMoney
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2034,12 +2031,12 @@ Transform:
   m_GameObject: {fileID: 5720542536271374080}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.031514972, y: -0.08985627, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: -0.03850901, y: 0.17573881, z: 0}
+  m_LocalScale: {x: 0.53999996, y: 0.53999996, z: 0.53999996}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2115847071031557893}
-  m_Father: {fileID: 7748477161493813985}
+  m_Father: {fileID: 8234524808854993707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &306944240132249159
 SortingGroup:
@@ -2078,12 +2075,12 @@ Transform:
   m_GameObject: {fileID: 5790834875254267532}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02000019, y: 0.47820365, z: -5.7573657}
-  m_LocalScale: {x: 3.8382437, y: 3.8382437, z: 3.8382437}
+  m_LocalPosition: {x: -0.035400033, y: 0.32911497, z: -1.5544887}
+  m_LocalScale: {x: 1.0363257, y: 1.0363257, z: 1.0363257}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4968312352421549559}
-  m_Father: {fileID: 7748477161493813985}
+  m_Father: {fileID: 8234524808854993707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6317686169822017423
 GameObject:
@@ -2276,6 +2273,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8939404554237231298}
+  - {fileID: 4542256054327999446}
+  - {fileID: 1639308100007012571}
   - {fileID: 6875391400723526245}
   - {fileID: 8051263317392074128}
   - {fileID: 3422073243634209774}
@@ -2885,7 +2885,7 @@ GameObject:
   - component: {fileID: 8939404554237231298}
   - component: {fileID: 4730730854763996922}
   m_Layer: 0
-  m_Name: Notification
+  m_Name: MoneyNotification
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2900,12 +2900,12 @@ Transform:
   m_GameObject: {fileID: 8294314117586755204}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 1.1, z: -5.7573657}
-  m_LocalScale: {x: 3.8382437, y: 3.8382437, z: 3.8382437}
+  m_LocalPosition: {x: -0.035399973, y: 0.49699998, z: -1.5544887}
+  m_LocalScale: {x: 1.0363257, y: 1.0363257, z: 1.0363257}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1796609046359954023}
-  m_Father: {fileID: 7748477161493813985}
+  m_Father: {fileID: 8234524808854993707}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!210 &4730730854763996922
 SortingGroup:
