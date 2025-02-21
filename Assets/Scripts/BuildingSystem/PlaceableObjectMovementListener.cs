@@ -12,7 +12,7 @@ public class PlaceableObjectMovementListener : MonoBehaviour
 
     private void Start()
     {
-        //UIManager.Instance.ChangeCameraPanningStatus(true);
+        UIManager.Instance.ChangeCameraPanningStatus(true);
         _placeableObject = GetComponentInParent<PlaceableObject>();
     }
 
