@@ -606,7 +606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   splashItems:
   - splashObject: {fileID: 2029925267}
-    displayTime: 5
+    displayTime: 7
   - splashObject: {fileID: 257299716}
     displayTime: 10
   - splashObject: {fileID: 849839093}
