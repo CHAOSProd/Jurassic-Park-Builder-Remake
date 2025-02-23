@@ -132,6 +132,7 @@ public class PlaceableObject : MonoBehaviour
         transform.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
         GridBuildingSystem.Instance.TakeArea(areaTemp);
         _origin = transform.position;
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y * 0.01f);
         data.Position = (transform.position.x, transform.position.y, transform.position.z);
         CameraObjectFollowing.Instance.SetTarget(null);
 
@@ -283,6 +284,14 @@ public class PlaceableObject : MonoBehaviour
         data = placeableObjectData;
         transform.position = new Vector3(data.Position.x, data.Position.y, data.Position.z);
         this.ConstructionFinished = placeableObjectData.ConstructionFinished;
+
+        // Convert world position to grid position
+        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(new Vector3(transform.position.x, transform.position.y, 0f));
+        BoundsInt areaTemp = Area;
+        areaTemp.position = positionInt;
+
+        // Mark this area as occupied in the grid
+        GridBuildingSystem.Instance.TakeArea(areaTemp);
 
         if (ConstructionFinished)
         {
