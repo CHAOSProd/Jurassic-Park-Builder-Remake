@@ -162,7 +162,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.LastThylacine.JurassicParkBuilderRemake
+    Android: com.JurassicParkBuilderRemakeTeam.JurassicParkBuilderRemake
     Standalone: com.Jurassic-Park-Builder-Remake-Team.Jurassic-Park-Builder-Remake
   buildNumber:
     Bratwurst: 0

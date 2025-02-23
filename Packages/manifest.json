@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.discord.game-sdk": "3.1.0",
     "com.unity.2d.animation": "10.1.1",
     "com.unity.2d.pixel-perfect": "5.0.3",
     "com.unity.2d.psdimporter": "9.0.3",
@@ -50,5 +51,14 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0"
-  }
+  },
+  "scopedRegistries": [
+    {
+      "name": "Hourai Teahouse",
+      "url": "https://upm.houraiteahouse.net",
+      "scopes": [
+        "com.discord"
+      ]
+    }
+  ]
 }

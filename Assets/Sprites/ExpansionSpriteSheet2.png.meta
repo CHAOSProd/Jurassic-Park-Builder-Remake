@@ -1,0 +1,3476 @@
+fileFormatVersion: 2
+guid: cceeca0f4cc9bdb4ebf0e54a84c1d1e8
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -656528966693388044
+    second: ExpansionSpriteSheet2_0
+  - first:
+      213: 7199547852647468738
+    second: ExpansionSpriteSheet2_1
+  - first:
+      213: 61109299921995922
+    second: ExpansionSpriteSheet2_2
+  - first:
+      213: 2361286687674844360
+    second: ExpansionSpriteSheet2_3
+  - first:
+      213: 1874335506346816894
+    second: ExpansionSpriteSheet2_4
+  - first:
+      213: 975743144939078049
+    second: ExpansionSpriteSheet2_5
+  - first:
+      213: -7435512039686862507
+    second: ExpansionSpriteSheet2_6
+  - first:
+      213: 6475745888365111933
+    second: ExpansionSpriteSheet2_7
+  - first:
+      213: -2321890673138311523
+    second: ExpansionSpriteSheet2_8
+  - first:
+      213: 4774027673761640362
+    second: ExpansionSpriteSheet2_9
+  - first:
+      213: 4205923087470281020
+    second: ExpansionSpriteSheet2_10
+  - first:
+      213: 4872290517714378591
+    second: ExpansionSpriteSheet2_11
+  - first:
+      213: 3387119070571835834
+    second: ExpansionSpriteSheet2_12
+  - first:
+      213: 5196123957607615622
+    second: ExpansionSpriteSheet2_13
+  - first:
+      213: 3133330451458439478
+    second: ExpansionSpriteSheet2_14
+  - first:
+      213: 4670837439378779938
+    second: ExpansionSpriteSheet2_15
+  - first:
+      213: 2936286050891865190
+    second: ExpansionSpriteSheet2_16
+  - first:
+      213: -2224782585693520940
+    second: ExpansionSpriteSheet2_17
+  - first:
+      213: 7611303234601718813
+    second: ExpansionSpriteSheet2_18
+  - first:
+      213: 9144294380640427445
+    second: ExpansionSpriteSheet2_19
+  - first:
+      213: -1176354832544740607
+    second: ExpansionSpriteSheet2_20
+  - first:
+      213: -6202256959638689887
+    second: ExpansionSpriteSheet2_21
+  - first:
+      213: -6577420203572693283
+    second: ExpansionSpriteSheet2_22
+  - first:
+      213: 3623645561030231155
+    second: ExpansionSpriteSheet2_23
+  - first:
+      213: -8821360041548268809
+    second: ExpansionSpriteSheet2_24
+  - first:
+      213: -5307993837532368490
+    second: ExpansionSpriteSheet2_25
+  - first:
+      213: -8009741113875908542
+    second: ExpansionSpriteSheet2_26
+  - first:
+      213: 6636168352854882708
+    second: ExpansionSpriteSheet2_27
+  - first:
+      213: 7555972252330266009
+    second: ExpansionSpriteSheet2_28
+  - first:
+      213: -3649345957069186362
+    second: ExpansionSpriteSheet2_29
+  - first:
+      213: 6925238529312679382
+    second: ExpansionSpriteSheet2_30
+  - first:
+      213: 7629956315195553328
+    second: ExpansionSpriteSheet2_31
+  - first:
+      213: 150762221135452421
+    second: ExpansionSpriteSheet2_32
+  - first:
+      213: 8865260204341282734
+    second: ExpansionSpriteSheet2_33
+  - first:
+      213: 5717459428875580547
+    second: ExpansionSpriteSheet2_34
+  - first:
+      213: -5668387320519847565
+    second: ExpansionSpriteSheet2_35
+  - first:
+      213: 680215383238021738
+    second: ExpansionSpriteSheet2_36
+  - first:
+      213: -5771787129437599104
+    second: ExpansionSpriteSheet2_37
+  - first:
+      213: -105475317684473035
+    second: ExpansionSpriteSheet2_38
+  - first:
+      213: 7672097910740959911
+    second: ExpansionSpriteSheet2_39
+  - first:
+      213: 8404973514075334173
+    second: ExpansionSpriteSheet2_40
+  - first:
+      213: 8920978156390143060
+    second: ExpansionSpriteSheet2_41
+  - first:
+      213: 5719347414400730827
+    second: ExpansionSpriteSheet2_42
+  - first:
+      213: -2452696684963637367
+    second: ExpansionSpriteSheet2_43
+  - first:
+      213: 5425451311157588417
+    second: ExpansionSpriteSheet2_44
+  - first:
+      213: 3447490133186433996
+    second: ExpansionSpriteSheet2_45
+  - first:
+      213: 5738537742050148777
+    second: ExpansionSpriteSheet2_46
+  - first:
+      213: -8573287154693112538
+    second: ExpansionSpriteSheet2_47
+  - first:
+      213: -6195136863161457130
+    second: ExpansionSpriteSheet2_48
+  - first:
+      213: -322015186555870417
+    second: ExpansionSpriteSheet2_49
+  - first:
+      213: -3845917750837762032
+    second: ExpansionSpriteSheet2_50
+  - first:
+      213: -2445482844096283320
+    second: ExpansionSpriteSheet2_51
+  - first:
+      213: 3552768844903509942
+    second: ExpansionSpriteSheet2_52
+  - first:
+      213: 259878673456704150
+    second: ExpansionSpriteSheet2_53
+  - first:
+      213: 261953303504202570
+    second: ExpansionSpriteSheet2_54
+  - first:
+      213: -3559358452405720222
+    second: ExpansionSpriteSheet2_55
+  - first:
+      213: -8841978003961272500
+    second: ExpansionSpriteSheet2_56
+  - first:
+      213: 8993518730763699831
+    second: ExpansionSpriteSheet2_57
+  - first:
+      213: -1765928437172560042
+    second: ExpansionSpriteSheet2_58
+  - first:
+      213: 7517835935240551482
+    second: ExpansionSpriteSheet2_59
+  - first:
+      213: -1743579917803160054
+    second: ExpansionSpriteSheet2_60
+  - first:
+      213: -3610095801191077667
+    second: ExpansionSpriteSheet2_61
+  - first:
+      213: 1958674877019433044
+    second: ExpansionSpriteSheet2_62
+  - first:
+      213: 6150791719166952169
+    second: ExpansionSpriteSheet2_63
+  - first:
+      213: 2279015442921568592
+    second: ExpansionSpriteSheet2_64
+  - first:
+      213: -5757863941354230169
+    second: ExpansionSpriteSheet2_65
+  - first:
+      213: 8388850944446096979
+    second: ExpansionSpriteSheet2_66
+  - first:
+      213: -1888893707926481355
+    second: ExpansionSpriteSheet2_67
+  - first:
+      213: -7941847034494411277
+    second: ExpansionSpriteSheet2_68
+  - first:
+      213: -7168668665165954347
+    second: ExpansionSpriteSheet2_69
+  - first:
+      213: -4411066535321892621
+    second: ExpansionSpriteSheet2_70
+  - first:
+      213: -3324509286567534274
+    second: ExpansionSpriteSheet2_71
+  - first:
+      213: -7977145434838698295
+    second: ExpansionSpriteSheet2_72
+  - first:
+      213: -3980457237267577191
+    second: ExpansionSpriteSheet2_73
+  - first:
+      213: -1052727541351548385
+    second: ExpansionSpriteSheet2_74
+  - first:
+      213: 2404790573104743909
+    second: ExpansionSpriteSheet2_75
+  - first:
+      213: 59866852245177555
+    second: ExpansionSpriteSheet2_76
+  - first:
+      213: -1830710532244002742
+    second: ExpansionSpriteSheet2_77
+  - first:
+      213: -3685320243174628320
+    second: ExpansionSpriteSheet2_78
+  - first:
+      213: -4749760513753178216
+    second: ExpansionSpriteSheet2_79
+  - first:
+      213: -4874445272631854555
+    second: ExpansionSpriteSheet2_80
+  - first:
+      213: 961899118416775516
+    second: ExpansionSpriteSheet2_81
+  - first:
+      213: -2312712204984582274
+    second: ExpansionSpriteSheet2_82
+  - first:
+      213: 2352846644403352995
+    second: ExpansionSpriteSheet2_83
+  - first:
+      213: 1544854919200738429
+    second: ExpansionSpriteSheet2_84
+  - first:
+      213: 5970342686702073801
+    second: ExpansionSpriteSheet2_85
+  - first:
+      213: 9007703380966151667
+    second: ExpansionSpriteSheet2_86
+  - first:
+      213: 7874234985955561088
+    second: ExpansionSpriteSheet2_87
+  - first:
+      213: -2139715691757297025
+    second: ExpansionSpriteSheet2_88
+  - first:
+      213: 2699651535218571183
+    second: ExpansionSpriteSheet2_89
+  - first:
+      213: 7348299353210344748
+    second: ExpansionSpriteSheet2_90
+  - first:
+      213: -1312785287896838719
+    second: ExpansionSpriteSheet2_91
+  - first:
+      213: 3266017758533326484
+    second: ExpansionSpriteSheet2_92
+  - first:
+      213: -1131882909652989028
+    second: ExpansionSpriteSheet2_93
+  - first:
+      213: -2193186385583872109
+    second: ExpansionSpriteSheet2_94
+  - first:
+      213: -8827898834425258191
+    second: ExpansionSpriteSheet2_95
+  - first:
+      213: 4931389347542289354
+    second: ExpansionSpriteSheet2_96
+  - first:
+      213: 1015158071074993287
+    second: ExpansionSpriteSheet2_97
+  - first:
+      213: -2323123982415917473
+    second: ExpansionSpriteSheet2_98
+  - first:
+      213: -6714231251505163679
+    second: ExpansionSpriteSheet2_99
+  - first:
+      213: -3379338749917280588
+    second: ExpansionSpriteSheet2_100
+  - first:
+      213: -8195302449911427589
+    second: ExpansionSpriteSheet2_101
+  - first:
+      213: 2360462065027211735
+    second: ExpansionSpriteSheet2_102
+  - first:
+      213: -5449298998970731670
+    second: ExpansionSpriteSheet2_103
+  - first:
+      213: 7706515380714876715
+    second: ExpansionSpriteSheet2_104
+  - first:
+      213: 7172758138154890030
+    second: ExpansionSpriteSheet2_105
+  - first:
+      213: 5522503214870533136
+    second: ExpansionSpriteSheet2_106
+  - first:
+      213: 5319939897149262669
+    second: ExpansionSpriteSheet2_107
+  - first:
+      213: 5817597477473846319
+    second: ExpansionSpriteSheet2_108
+  - first:
+      213: -1601485805081053893
+    second: ExpansionSpriteSheet2_109
+  - first:
+      213: -3182787067808292565
+    second: ExpansionSpriteSheet2_110
+  - first:
+      213: -3334998375911353265
+    second: ExpansionSpriteSheet2_111
+  - first:
+      213: 3533253640371974170
+    second: ExpansionSpriteSheet2_112
+  - first:
+      213: 4727354430990002861
+    second: ExpansionSpriteSheet2_113
+  - first:
+      213: -1969367242625467446
+    second: ExpansionSpriteSheet2_114
+  - first:
+      213: -1918134330860378545
+    second: ExpansionSpriteSheet2_115
+  - first:
+      213: 8005077392967803319
+    second: ExpansionSpriteSheet2_116
+  - first:
+      213: -3057877593268493483
+    second: ExpansionSpriteSheet2_117
+  - first:
+      213: -2227283800985769447
+    second: ExpansionSpriteSheet2_118
+  - first:
+      213: 348415298574548936
+    second: ExpansionSpriteSheet2_119
+  - first:
+      213: 1145732731986974254
+    second: ExpansionSpriteSheet2_120
+  - first:
+      213: 8282701980081157067
+    second: ExpansionSpriteSheet2_121
+  - first:
+      213: -3593687630908448462
+    second: ExpansionSpriteSheet2_122
+  - first:
+      213: 951110904546393210
+    second: ExpansionSpriteSheet2_123
+  - first:
+      213: -5861913421593187166
+    second: ExpansionSpriteSheet2_124
+  - first:
+      213: -8048713950302539990
+    second: ExpansionSpriteSheet2_125
+  - first:
+      213: -7534760971357070088
+    second: ExpansionSpriteSheet2_126
+  - first:
+      213: 7938418276089503421
+    second: ExpansionSpriteSheet2_127
+  - first:
+      213: -9179057690825172525
+    second: ExpansionSpriteSheet2_128
+  - first:
+      213: -5895682203283939602
+    second: ExpansionSpriteSheet2_129
+  - first:
+      213: -4480830623065375276
+    second: ExpansionSpriteSheet2_130
+  - first:
+      213: -6531935074825296288
+    second: ExpansionSpriteSheet2_131
+  - first:
+      213: -6151415130412769307
+    second: ExpansionSpriteSheet2_132
+  - first:
+      213: 1678072619853011373
+    second: ExpansionSpriteSheet2_133
+  - first:
+      213: -263206613244668235
+    second: ExpansionSpriteSheet2_134
+  - first:
+      213: 3646059877934964950
+    second: ExpansionSpriteSheet2_135
+  - first:
+      213: -3732265288441797362
+    second: ExpansionSpriteSheet2_136
+  - first:
+      213: 2956007976405405369
+    second: ExpansionSpriteSheet2_137
+  - first:
+      213: 8156812957161212908
+    second: ExpansionSpriteSheet2_138
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1958
+        width: 51
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f08c7b126a83e6f0800000000000000
+      internalID: -656528966693388044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1894
+        width: 55
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ce8a7c80aee9e360800000000000000
+      internalID: 7199547852647468738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 1950
+        width: 43
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 298c252a59a19d000800000000000000
+      internalID: 61109299921995922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_3
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 1738
+        width: 181
+        height: 310
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c4c7b75bb9f4c020800000000000000
+      internalID: 2361286687674844360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_4
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 1942
+        width: 54
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7534bd563af20a10800000000000000
+      internalID: 1874335506346816894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_5
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 1839
+        width: 100
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a1cd1a78398a8d00800000000000000
+      internalID: 975743144939078049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_6
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 1850
+        width: 96
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5590357e131cfc890800000000000000
+      internalID: -7435512039686862507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_7
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 1742
+        width: 121
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7ae2b353987ed950800000000000000
+      internalID: 6475745888365111933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_8
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 1950
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9e5c441cbcf6cfd0800000000000000
+      internalID: -2321890673138311523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_9
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 876
+        width: 1384
+        height: 1172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaf627a10e0c04240800000000000000
+      internalID: 4774027673761640362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1802
+        width: 55
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c31c74d93c07e5a30800000000000000
+      internalID: 4205923087470281020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_11
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 1838
+        width: 58
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5f9ede496add9340800000000000000
+      internalID: 4872290517714378591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_12
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 1778
+        width: 45
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab1b26559d6710f20800000000000000
+      internalID: 3387119070571835834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_13
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 1742
+        width: 104
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c491e85375c1840800000000000000
+      internalID: 5196123957607615622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_14
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 1740
+        width: 101
+        height: 157
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 639381bc173db7b20800000000000000
+      internalID: 3133330451458439478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1742
+        width: 51
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22f64c967e522d040800000000000000
+      internalID: 4670837439378779938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_16
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 1746
+        width: 15
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c185e2b98cfb820800000000000000
+      internalID: 2936286050891865190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_17
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 1742
+        width: 57
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4db3345960cff11e0800000000000000
+      internalID: -2224782585693520940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1221
+        width: 519
+        height: 522
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d14973827f7c0a960800000000000000
+      internalID: 7611303234601718813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_19
+      rect:
+        serializedVersion: 2
+        x: 530
+        y: 1525
+        width: 97
+        height: 190
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bd5ca76a4f07ee70800000000000000
+      internalID: 9144294380640427445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_20
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 1708
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10b4b5c238fbcafe0800000000000000
+      internalID: -1176354832544740607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_21
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 1462
+        width: 139
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a7aa0bf7282de9a0800000000000000
+      internalID: -6202256959638689887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_22
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 1652
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd6729b6c2f48b4a0800000000000000
+      internalID: -6577420203572693283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_23
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 1642
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 374c0295076c94230800000000000000
+      internalID: 3623645561030231155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_24
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 1634
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fab0bf97cb349580800000000000000
+      internalID: -8821360041548268809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_25
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 1642
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 691bbeb4ab73656b0800000000000000
+      internalID: -5307993837532368490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_26
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 1630
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 248b594f4eea7d090800000000000000
+      internalID: -8009741113875908542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_27
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 1618
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 499ba9df4f7681c50800000000000000
+      internalID: 6636168352854882708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_28
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 1574
+        width: 9
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99d8ad0fab43cd860800000000000000
+      internalID: 7555972252330266009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_29
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 1226
+        width: 365
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ca1266ef2bea5dc0800000000000000
+      internalID: -3649345957069186362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1034
+        width: 260
+        height: 153
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d5e78c30c36b1060800000000000000
+      internalID: 6925238529312679382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_31
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 1034
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 036bafae7dc03e960800000000000000
+      internalID: 7629956315195553328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_32
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 1030
+        width: 130
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 509d35cf07d971200800000000000000
+      internalID: 150762221135452421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_33
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 1029
+        width: 259
+        height: 158
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea74b298f2bb70b70800000000000000
+      internalID: 8865260204341282734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_34
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 1033
+        width: 85
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38436d3ee0f785f40800000000000000
+      internalID: 5717459428875580547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_35
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 770
+        width: 89
+        height: 196
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 371161fa3c7d551b0800000000000000
+      internalID: -5668387320519847565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_36
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 790
+        width: 101
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6298a0894c907900800000000000000
+      internalID: 680215383238021738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_37
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 950
+        width: 61
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08a43be9f2e76efa0800000000000000
+      internalID: -5771787129437599104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_38
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 930
+        width: 65
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53378d4e1c6498ef0800000000000000
+      internalID: -105475317684473035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_39
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 418
+        width: 293
+        height: 557
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a24bbbb664c87a60800000000000000
+      internalID: 7672097910740959911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_40
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 386
+        width: 253
+        height: 633
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d16e60d21e674a470800000000000000
+      internalID: 8404973514075334173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_41
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 750
+        width: 171
+        height: 225
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45457ac2e5eadcb70800000000000000
+      internalID: 8920978156390143060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_42
+      rect:
+        serializedVersion: 2
+        x: 970
+        y: 746
+        width: 181
+        height: 281
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc68766cb243f5f40800000000000000
+      internalID: 5719347414400730827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_43
+      rect:
+        serializedVersion: 2
+        x: 1122
+        y: 778
+        width: 142
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 987d6f62c5546fdd0800000000000000
+      internalID: -2452696684963637367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_44
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 518
+        width: 223
+        height: 497
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c1b9b3e8331b4b40800000000000000
+      internalID: 5425451311157588417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_45
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 809
+        width: 237
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc3dd33b202f7df20800000000000000
+      internalID: 3447490133186433996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_46
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 850
+        width: 149
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a1421d1ca163af40800000000000000
+      internalID: 5738537742050148777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_47
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 850
+        width: 65
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62df81b81c0950980800000000000000
+      internalID: -8573287154693112538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_48
+      rect:
+        serializedVersion: 2
+        x: 1474
+        y: 756
+        width: 93
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6166550a8d3760aa0800000000000000
+      internalID: -6195136863161457130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_49
+      rect:
+        serializedVersion: 2
+        x: 1801
+        y: 606
+        width: 172
+        height: 275
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f236e09d4e8f78bf0800000000000000
+      internalID: -322015186555870417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_50
+      rect:
+        serializedVersion: 2
+        x: 1978
+        y: 830
+        width: 61
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01822f1ae2e80aac0800000000000000
+      internalID: -3845917750837762032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_51
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 738
+        width: 49
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84d345d5f46ef0ed0800000000000000
+      internalID: -2445482844096283320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_52
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 766
+        width: 61
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bf6c89e078fd4130800000000000000
+      internalID: 3552768844903509942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_53
+      rect:
+        serializedVersion: 2
+        x: 1146
+        y: 514
+        width: 129
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69a2610d6464b9300800000000000000
+      internalID: 259878673456704150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_54
+      rect:
+        serializedVersion: 2
+        x: 1186
+        y: 774
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4bab134425a2a300800000000000000
+      internalID: 261953303504202570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_55
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 774
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26ba218885e9a9ec0800000000000000
+      internalID: -3559358452405720222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_56
+      rect:
+        serializedVersion: 2
+        x: 1502
+        y: 518
+        width: 156
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c47221a2adbfa4580800000000000000
+      internalID: -8841978003961272500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_57
+      rect:
+        serializedVersion: 2
+        x: 1982
+        y: 764
+        width: 57
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7760efbc2a56fcc70800000000000000
+      internalID: 8993518730763699831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_58
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 639
+        width: 213
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65f919351792e77e0800000000000000
+      internalID: -1765928437172560042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_59
+      rect:
+        serializedVersion: 2
+        x: 394
+        y: 766
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3cfdafa3f7b45860800000000000000
+      internalID: 7517835935240551482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_60
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 638
+        width: 119
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0e76d97d4f8dc7e0800000000000000
+      internalID: -1743579917803160054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_61
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 642
+        width: 65
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd860e4fefc56edc0800000000000000
+      internalID: -3610095801191077667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_62
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 670
+        width: 65
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 458a9335c6c9e2b10800000000000000
+      internalID: 1958674877019433044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_63
+      rect:
+        serializedVersion: 2
+        x: 906
+        y: 610
+        width: 169
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e24c54fa700c5550800000000000000
+      internalID: 6150791719166952169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_64
+      rect:
+        serializedVersion: 2
+        x: 1678
+        y: 533
+        width: 113
+        height: 198
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05938f87870b0af10800000000000000
+      internalID: 2279015442921568592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_65
+      rect:
+        serializedVersion: 2
+        x: 1986
+        y: 694
+        width: 53
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76eec867045f710b0800000000000000
+      internalID: -5757863941354230169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_66
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 566
+        width: 131
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 356e869ec7f2b6470800000000000000
+      internalID: 8388850944446096979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_67
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 573
+        width: 87
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53652903e2d49c5e0800000000000000
+      internalID: -1888893707926481355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_68
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 554
+        width: 77
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fd98782334e8c190800000000000000
+      internalID: -7941847034494411277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_69
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 538
+        width: 65
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d24f4c84d5c38c90800000000000000
+      internalID: -7168668665165954347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_70
+      rect:
+        serializedVersion: 2
+        x: 1656
+        y: 522
+        width: 19
+        height: 129
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f886816b5eb8c2c0800000000000000
+      internalID: -4411066535321892621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_71
+      rect:
+        serializedVersion: 2
+        x: 1974
+        y: 606
+        width: 73
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e31a7a9fa68fcd1d0800000000000000
+      internalID: -3324509286567534274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 484
+        width: 159
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c67fc2ed7c7b4190800000000000000
+      internalID: -7977145434838698295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_73
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 570
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99688096b3392c8c0800000000000000
+      internalID: -3980457237267577191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_74
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 510
+        width: 93
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1a7874f0e5f361f0800000000000000
+      internalID: -1052727541351548385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_75
+      rect:
+        serializedVersion: 2
+        x: 1802
+        y: 455
+        width: 185
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e5cd1df8488f5120800000000000000
+      internalID: 2404790573104743909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_76
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 306
+        width: 125
+        height: 241
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d405edb590b4d000800000000000000
+      internalID: 59866852245177555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_77
+      rect:
+        serializedVersion: 2
+        x: 302
+        y: 542
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a48a70f68720896e0800000000000000
+      internalID: -1830710532244002742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_78
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 530
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0242506b3cc1bdcc0800000000000000
+      internalID: -3685320243174628320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_79
+      rect:
+        serializedVersion: 2
+        x: 1734
+        y: 526
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89f90916af5751eb0800000000000000
+      internalID: -4749760513753178216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_80
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 490
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52a32b7b9dd7a5cb0800000000000000
+      internalID: -4874445272631854555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_81
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 485
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c594efed62a595d00800000000000000
+      internalID: 961899118416775516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_82
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 442
+        width: 51
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7ffe2ab08897efd0800000000000000
+      internalID: -2312712204984582274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_83
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 410
+        width: 60
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a5b1a2ae8df6a020800000000000000
+      internalID: 2352846644403352995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_84
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 438
+        width: 49
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7c89703d5d607510800000000000000
+      internalID: 1544854919200738429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_85
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 402
+        width: 81
+        height: 121
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c77a349a0bead250800000000000000
+      internalID: 5970342686702073801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_86
+      rect:
+        serializedVersion: 2
+        x: 902
+        y: 238
+        width: 249
+        height: 265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f59298008ac10d70800000000000000
+      internalID: 9007703380966151667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_87
+      rect:
+        serializedVersion: 2
+        x: 1134
+        y: 250
+        width: 141
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08e85df0007e64d60800000000000000
+      internalID: 7874234985955561088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_88
+      rect:
+        serializedVersion: 2
+        x: 1282
+        y: 322
+        width: 105
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f722a704ae33e42e0800000000000000
+      internalID: -2139715691757297025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_89
+      rect:
+        serializedVersion: 2
+        x: 1390
+        y: 242
+        width: 153
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa77a0694c6177520800000000000000
+      internalID: 2699651535218571183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_90
+      rect:
+        serializedVersion: 2
+        x: 1553
+        y: 250
+        width: 182
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c25d55b24576af560800000000000000
+      internalID: 7348299353210344748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_91
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 322
+        width: 137
+        height: 117
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cdcc807cbc08cde0800000000000000
+      internalID: -1312785287896838719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_92
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 436
+        width: 57
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4961f77e8d9335d20800000000000000
+      internalID: 3266017758533326484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_93
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 434
+        width: 46
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9b4cca9d7eba40f0800000000000000
+      internalID: -1131882909652989028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_94
+      rect:
+        serializedVersion: 2
+        x: 1814
+        y: 338
+        width: 177
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 397ec013a9c3091e0800000000000000
+      internalID: -2193186385583872109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_95
+      rect:
+        serializedVersion: 2
+        x: 346
+        y: 226
+        width: 121
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13f5ff448c00d7580800000000000000
+      internalID: -8827898834425258191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_96
+      rect:
+        serializedVersion: 2
+        x: 376
+        y: 418
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acb4765eb70df6440800000000000000
+      internalID: 4931389347542289354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_97
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 238
+        width: 113
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 784bb4913e0961e00800000000000000
+      internalID: 1015158071074993287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_98
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 230
+        width: 171
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5e88e2eb0b92cfd0800000000000000
+      internalID: -2323123982415917473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_99
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 338
+        width: 120
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1625532104242d2a0800000000000000
+      internalID: -6714231251505163679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_100
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 250
+        width: 53
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6c77bbf4d2a11d0800000000000000
+      internalID: -3379338749917280588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_101
+      rect:
+        serializedVersion: 2
+        x: 618
+        y: 14
+        width: 149
+        height: 357
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfd0426a7df644e80800000000000000
+      internalID: -8195302449911427589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_102
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 286
+        width: 86
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d16bbbedbb02c020800000000000000
+      internalID: 2360462065027211735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_103
+      rect:
+        serializedVersion: 2
+        x: 1994
+        y: 326
+        width: 45
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a63357b9e633064b0800000000000000
+      internalID: -5449298998970731670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_104
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 112
+        width: 127
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2f289b68ea03fa60800000000000000
+      internalID: 7706515380714876715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_105
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 82
+        width: 141
+        height: 173
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e23b3841681ca8360800000000000000
+      internalID: 7172758138154890030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_106
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 236
+        width: 69
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0149f491a6fd3ac40800000000000000
+      internalID: 5522503214870533136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_107
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 226
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4b8204762934d940800000000000000
+      internalID: 5319939897149262669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_108
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 190
+        width: 33
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f24890335124cb050800000000000000
+      internalID: 5817597477473846319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_109
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 230
+        width: 53
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b353053352166c9e0800000000000000
+      internalID: -1601485805081053893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_110
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 34
+        width: 110
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b216493660874d3d0800000000000000
+      internalID: -3182787067808292565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_111
+      rect:
+        serializedVersion: 2
+        x: 766
+        y: 2
+        width: 217
+        height: 261
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f449c4d85a4b7b1d0800000000000000
+      internalID: -3334998375911353265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_112
+      rect:
+        serializedVersion: 2
+        x: 975
+        y: 3
+        width: 297
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a103ab74773a80130800000000000000
+      internalID: 3533253640371974170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_113
+      rect:
+        serializedVersion: 2
+        x: 1306
+        y: 190
+        width: 85
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daa2782fecfea9140800000000000000
+      internalID: 4727354430990002861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_114
+      rect:
+        serializedVersion: 2
+        x: 1398
+        y: 116
+        width: 101
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acbb40f4de66ba4e0800000000000000
+      internalID: -1969367242625467446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_115
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 140
+        width: 101
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f46e5912dfa6165e0800000000000000
+      internalID: -1918134330860378545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_116
+      rect:
+        serializedVersion: 2
+        x: 1690
+        y: 139
+        width: 81
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b12b57e97fb71f60800000000000000
+      internalID: 8005077392967803319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_117
+      rect:
+        serializedVersion: 2
+        x: 1810
+        y: 18
+        width: 193
+        height: 305
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 553ea9eb78c3095d0800000000000000
+      internalID: -3057877593268493483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_118
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 170
+        width: 6
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91ae2440f291711e0800000000000000
+      internalID: -2227283800985769447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_119
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 6
+        width: 129
+        height: 221
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cff8d93ed1d5d400800000000000000
+      internalID: 348415298574548936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_120
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 2
+        width: 133
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e261f9179d576ef00800000000000000
+      internalID: 1145732731986974254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_121
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 2
+        width: 108
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc37927319112f270800000000000000
+      internalID: 8282701980081157067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_122
+      rect:
+        serializedVersion: 2
+        x: 1538
+        y: 2
+        width: 125
+        height: 193
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 231acfdc328a02ec0800000000000000
+      internalID: -3593687630908448462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_123
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 158
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7cfc771456033d00800000000000000
+      internalID: 951110904546393210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_124
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ace7d10dcc46aea0800000000000000
+      internalID: -5861913421593187166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_125
+      rect:
+        serializedVersion: 2
+        x: 1198
+        y: 6
+        width: 81
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2f6c7d5e493d4090800000000000000
+      internalID: -8048713950302539990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_126
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 122
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fcd8c241d62f6790800000000000000
+      internalID: -7534760971357070088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_127
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 114
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbe98c0dc5dea2e60800000000000000
+      internalID: 7938418276089503421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_128
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 0
+        width: 109
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d95c85b9af6d9080800000000000000
+      internalID: -9179057690825172525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_129
+      rect:
+        serializedVersion: 2
+        x: 1686
+        y: 6
+        width: 89
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eee1ba4d5445e2ea0800000000000000
+      internalID: -5895682203283939602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_130
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 137
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ddfe7de944e0d1c0800000000000000
+      internalID: -4480830623065375276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_131
+      rect:
+        serializedVersion: 2
+        x: 1534
+        y: 106
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 066af1938a7e955a0800000000000000
+      internalID: -6531935074825296288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_132
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 1
+        width: 125
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ef98cdc788c1aaa0800000000000000
+      internalID: -6151415130412769307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_133
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 86
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da9d5ad2826b94710800000000000000
+      internalID: 1678072619853011373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_134
+      rect:
+        serializedVersion: 2
+        x: 1537
+        y: 81
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b69403daf6e85cf0800000000000000
+      internalID: -263206613244668235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_135
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 63
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d02e1e2428699230800000000000000
+      internalID: 3646059877934964950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_136
+      rect:
+        serializedVersion: 2
+        x: 1387
+        y: 58
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e05e7ea9e74543cc0800000000000000
+      internalID: -3732265288441797362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_137
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 18
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9be8ddac799d50920800000000000000
+      internalID: 2956007976405405369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExpansionSpriteSheet2_138
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 0
+        width: 11
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cebc5eafa22d23170800000000000000
+      internalID: 8156812957161212908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

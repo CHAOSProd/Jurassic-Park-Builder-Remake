@@ -1583,7 +1583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainSceneName: Game
-  splashDelay: 22.1
+  splashDelay: 24
 --- !u!1 &1048893094
 GameObject:
   m_ObjectHideFlags: 0
