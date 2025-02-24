@@ -32,7 +32,7 @@ public class HatchingTimer : MonoBehaviour
 
     private void Start()
     {
-        if (!paddockScript.is_hatching && !paddockScript.hatching_completed || !data.HatchingCompleted)
+        if (!paddockScript.is_hatching && !paddockScript.hatching_completed)
         {
             data = new HatchingData();
             StartHatchingTimer();
@@ -71,7 +71,7 @@ public class HatchingTimer : MonoBehaviour
             int elapsed = (int)Math.Floor((DateTime.Now - hatchingData.HatchingProgress.LastTick).TotalSeconds);
             int newElapsedTime = elapsed + hatchingData.HatchingProgress.ElapsedTime;
 
-            if (newElapsedTime >= _hatchDuration || data.HatchingCompleted)
+            if (newElapsedTime >= _hatchDuration)
             {
                 paddockScript.is_hatching = false;
                 paddockScript.hatching_completed = true;

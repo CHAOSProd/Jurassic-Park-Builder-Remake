@@ -175,6 +175,11 @@ public class MoneyObject : MonoBehaviour
 
         if (_data.Money > MaximumMoney)
         {
+            if (_paddock.is_hatching || _paddock.hatching_completed)
+            {
+                _data.Money=0;
+                return;
+            }
             _data.Money = Mathf.FloorToInt(MaximumMoney);
         }
 
@@ -182,6 +187,11 @@ public class MoneyObject : MonoBehaviour
 
         if (_data.Money >= MaximumMoney)
         {
+            if (_paddock.is_hatching || _paddock.hatching_completed)
+            {
+                _data.Money=0;
+                return;
+            }
             _maxMoneyReached = true;
             _notification.SetActive(true);
 

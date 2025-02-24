@@ -118,7 +118,10 @@ public class TreeChopper : Selectable
         hasTreeDebris = true;
         _treeData.HasDebris = true;
         canSpeedUp = true;
-        SelectablesManager.Instance.UnselectAll();
+        if (SelectablesManager.Instance.CurrentSelectable == this)
+        {
+            SelectablesManager.Instance.UnselectAll();
+        }
 
         if (_timerBarInstance != null)
             Destroy(_timerBarInstance.gameObject);
