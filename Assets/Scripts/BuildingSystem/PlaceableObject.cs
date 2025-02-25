@@ -120,19 +120,33 @@ public class PlaceableObject : MonoBehaviour
         {
             DinoCheck = false;
         }
-        else if (!isEditing)
+        else
         {
             DinoCheck = true;
         }
-        isPlacing=false;
-        isEditing=false;
-        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
+        isPlacing = false;
+        isEditing = false;
+
+        // Use a temporary position with z = 0 for grid calculations
+        Vector3 gridCalculationPos = new Vector3(transform.position.x, transform.position.y, 0f);
+        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(gridCalculationPos);
         BoundsInt areaTemp = Area;
         areaTemp.position = positionInt;
-        transform.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
+
+        // Snap to grid position (z will be 0)
+        Vector3 snappedPos = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
+        transform.position = snappedPos;
+
         GridBuildingSystem.Instance.TakeArea(areaTemp);
         _origin = transform.position;
-        data.Position = (transform.position.x, transform.position.y, transform.position.z);
+
+        // Now update ONLY the visual z offset for sorting purposes
+        Vector3 visualPos = transform.position;
+        visualPos.z = transform.position.y * 0.01f;
+        transform.position = visualPos;
+
+        // Save only the grid-based x,y position and let z be recalculated on load
+        data.Position = (transform.position.x, transform.position.y, 0f);
         CameraObjectFollowing.Instance.SetTarget(null);
 
         if (Placed)
@@ -142,7 +156,6 @@ public class PlaceableObject : MonoBehaviour
 
         _selectable.PlayPlacementSound();
         Placed = true;
-
         SaveManager.Instance.SaveData.PlaceableObjects.Add(data);
 
         GetComponentInChildren<MoneyObject>(true).InitData(SaveManager.Instance.SaveData.PlaceableObjects.Count - 1);
@@ -153,9 +166,9 @@ public class PlaceableObject : MonoBehaviour
         _timerBarInstance.transform.position = _construction.transform.position;
         _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
 
-        // Update Progress every second and display XP icon when construction is finished
         _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished);
     }
+
 
     public void PlaceWithoutSave()
     {
@@ -281,7 +294,22 @@ public class PlaceableObject : MonoBehaviour
     {
         _placeableObjectItem = placeableObjectItem;
         data = placeableObjectData;
-        transform.position = new Vector3(data.Position.x, data.Position.y, data.Position.z);
+
+        // Use only the x and y from saved data and set z = 0 for grid snapping
+        Vector3 gridPosition = new Vector3(data.Position.x, data.Position.y, 0f);
+        transform.position = gridPosition;
+
+        // Now snap to grid 
+        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
+        BoundsInt areaTemp = Area;
+        areaTemp.position = positionInt;
+        transform.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
+
+        // After snapping, update visual z offset for sorting
+        Vector3 visualPos = transform.position;
+        visualPos.z = transform.position.y * 0.01f;
+        transform.position = visualPos;
+
         this.ConstructionFinished = placeableObjectData.ConstructionFinished;
 
         if (ConstructionFinished)
@@ -307,18 +335,20 @@ public class PlaceableObject : MonoBehaviour
             }
             else
             {
-
                 _timerBarInstance = Instantiate(_timerBarPrefab, transform).GetComponent<TimerBar>();
                 _timerBarInstance.transform.position = _construction.transform.position;
                 _timerBarInstance.transform.localScale = new Vector3(1f / transform.localScale.x, 1f / transform.localScale.y);
 
-                // Update Progress every second and display XP icon when construction is finished
                 _timerBarInstance.FillOverInterval(BuildTime, 1, UpdateProgress, OnConstructionFinished, newElapsedTime);
             }
             Debug.Log($"Elapsed seconds since last session: {elapsedSeconds}");
             Debug.Log($"Updated ElapsedTime: {data.Progress.ElapsedTime}");
         }
+
+        // Finally, re-register the area in the grid:
+        GridBuildingSystem.Instance.TakeArea(areaTemp);
     }
+
 
     #endregion
 
