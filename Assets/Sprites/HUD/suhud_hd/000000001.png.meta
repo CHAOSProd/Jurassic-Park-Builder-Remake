@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -254,7 +254,7 @@ TextureImporter:
         width: 475
         height: 89
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -262,6 +262,27 @@ TextureImporter:
       bones: []
       spriteID: 493afa63b745b47479b9f01d9f7225c3
       internalID: -1793679763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 000000001_3
+      rect:
+        serializedVersion: 2
+        x: 1635
+        y: 1131
+        width: 48
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7853cb7c343c7d4cb39e342ab48cb9a
+      internalID: 1163422437
       vertices: []
       indices: 
       edges: []
@@ -280,6 +301,7 @@ TextureImporter:
       000000001_0: 37259180
       000000001_1: -123271499
       000000001_2: -1793679763
+      000000001_3: 1163422437
       Triceratops: 783819337
       Velociraptor: 1337958333
   mipmapLimitGroupName: 

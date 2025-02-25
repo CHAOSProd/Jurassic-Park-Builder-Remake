@@ -5,13 +5,22 @@ using TMPro;
 public class WeekendRotationIndividualTMP : MonoBehaviour
 {
     [Header("Rotating Objects")]
-    [Tooltip("Drag the objects to rotate here. Each should have an AnimalToggle component and at least one TextMeshProUGUI child named with 'Countdown' in its name.")]
+    [Tooltip("Drag the objects here. Each should have an AnimalToggle component and at least one TextMeshProUGUI child whose name contains 'Countdown'.")]
     [SerializeField] private GameObject[] rotatingObjects;
 
-    // Set a baseline weekend start date that is a Friday.
-    // This date determines the cycle for the weekend rotation.
-    // For example, January 7, 2022 is a Friday.
+    [Header("Paired Panels")]
+    [Tooltip("Drag the panels paired with each rotating object.")]
+    [SerializeField] private GameObject[] pairedPanels;
+
+    [Header("Parent Panel")]
+    [Tooltip("The parent panel that holds the paired panels. It will be active if any child panel is active.")]
+    [SerializeField] private GameObject parentPanel;
+
+    // A baseline Friday used for weekend rotation calculations.
     private DateTime baselineWeekend = new DateTime(2022, 1, 7);
+
+    // Key used to record that the panel has been shown this weekend.
+    private const string weekendShownKey = "LastWeekendShown";
 
     private void Start()
     {
@@ -19,9 +28,10 @@ public class WeekendRotationIndividualTMP : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the active status and countdown text of each rotating object.
-    /// During the weekend (Friday�Sunday) only one (or any purchased) object is active.
-    /// The active object is determined based on the current weekend (which starts on Friday).
+    /// Updates each rotating object and its paired panel.
+    /// During the weekend (Friday–Sunday), one (non-purchased) object is chosen
+    /// to show its panel—but only on the first entry that weekend.
+    /// Purchased objects always remain active.
     /// </summary>
     public void UpdateAvailability()
     {
@@ -51,29 +61,46 @@ public class WeekendRotationIndividualTMP : MonoBehaviour
             }
         }
 
-        // Only calculate a selected index if today is a weekend day.
-        int selectedIndex = -1;
-        if (rotatingObjects != null && rotatingObjects.Length > 0 && isWeekend)
+        // Determine if this is the first time this weekend that the panel is shown.
+        bool firstTimeThisWeekend = true;
+        string thisWeekendStr = "";
+        DateTime thisWeekendStart = now;
+        if (isWeekend)
         {
-            // Determine the start of this weekend (i.e. the most recent Friday).
-            // If today is Friday, it is the weekend start.
+            // Determine the most recent Friday (start of the weekend).
             int daysSinceFriday = (int)currentDay - (int)DayOfWeek.Friday;
             if (daysSinceFriday < 0)
             {
                 daysSinceFriday += 7;
             }
-            DateTime thisWeekendStart = now.Date.AddDays(-daysSinceFriday);
+            thisWeekendStart = now.Date.AddDays(-daysSinceFriday);
+            thisWeekendStr = thisWeekendStart.ToString("yyyyMMdd");
 
-            // Calculate how many whole weeks have passed since our baseline Friday.
+            // Check PlayerPrefs to see if we've already shown the panel this weekend.
+            if (PlayerPrefs.HasKey(weekendShownKey))
+            {
+                string lastShownWeekend = PlayerPrefs.GetString(weekendShownKey);
+                if (lastShownWeekend == thisWeekendStr)
+                {
+                    firstTimeThisWeekend = false;
+                }
+            }
+        }
+
+        // Calculate which rotating object should be active this weekend.
+        int selectedIndex = -1;
+        if (rotatingObjects != null && rotatingObjects.Length > 0 && isWeekend)
+        {
             int weekendIndex = (int)((thisWeekendStart - baselineWeekend).TotalDays / 7);
-
-            // Use modulo to cycle through the array of objects.
             selectedIndex = weekendIndex % rotatingObjects.Length;
             if (selectedIndex < 0)
             {
                 selectedIndex += rotatingObjects.Length;
             }
         }
+
+        // Flag to track if any paired panel is activated (to drive the parent panel).
+        bool anyPanelActivated = false;
 
         // Loop through each rotating object.
         for (int i = 0; i < rotatingObjects.Length; i++)
@@ -84,28 +111,47 @@ public class WeekendRotationIndividualTMP : MonoBehaviour
             AnimalToggle toggle = obj.GetComponent<AnimalToggle>();
             bool purchased = (toggle != null && toggle.Purchased);
 
-            // Determine if the object should be active:
-            // - Purchased objects remain active at all times.
-            // - Otherwise, only the object matching the weekend index is active during the weekend.
-            bool shouldBeActive = purchased || (isWeekend && i == selectedIndex);
+            bool shouldBeActive = false;
+            if (purchased)
+            {
+                // Purchased objects remain active regardless.
+                shouldBeActive = true;
+            }
+            else if (isWeekend && i == selectedIndex && firstTimeThisWeekend)
+            {
+                // Only the designated object is active on the weekend—and only the first time.
+                shouldBeActive = true;
+            }
+            else
+            {
+                shouldBeActive = false;
+            }
+
+            // Set the active state for the rotating object.
             obj.SetActive(shouldBeActive);
 
-            // Find all TextMeshProUGUI components in the object's children.
-            TextMeshProUGUI[] tmpTexts = obj.GetComponentsInChildren<TextMeshProUGUI>();
+            // Toggle the corresponding panel if it exists.
+            if (pairedPanels != null && i < pairedPanels.Length)
+            {
+                pairedPanels[i].SetActive(shouldBeActive);
+                if (shouldBeActive)
+                {
+                    anyPanelActivated = true;
+                }
+            }
 
+            // Update any child TextMeshProUGUI components whose name contains "Countdown".
+            TextMeshProUGUI[] tmpTexts = obj.GetComponentsInChildren<TextMeshProUGUI>();
             foreach (TextMeshProUGUI tmpText in tmpTexts)
             {
-                // Only update text components whose GameObject name contains "Countdown".
                 if (tmpText.gameObject.name.Contains("Countdown"))
                 {
                     if (purchased)
                     {
-                        // Purchased objects show no countdown.
                         tmpText.text = "";
                     }
                     else if (shouldBeActive)
                     {
-                        // Active objects show the appropriate countdown message.
                         tmpText.text = countdownMessage;
                     }
                     else
@@ -114,6 +160,20 @@ public class WeekendRotationIndividualTMP : MonoBehaviour
                     }
                 }
             }
+        }
+
+        // If it's the weekend, and this is the first time panels are being activated,
+        // record that they've been shown so subsequent entries this weekend won't re-show them.
+        if (isWeekend && firstTimeThisWeekend && anyPanelActivated)
+        {
+            PlayerPrefs.SetString(weekendShownKey, thisWeekendStr);
+            PlayerPrefs.Save();
+        }
+
+        // Activate the parent panel if any child panel is active.
+        if (parentPanel != null)
+        {
+            parentPanel.SetActive(anyPanelActivated);
         }
     }
 }

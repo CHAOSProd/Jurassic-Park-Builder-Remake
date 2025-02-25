@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -933,6 +933,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Untitled-2_38
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 1195
+        width: 40
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e1b3c55df67af040856f6828e76edc3
+      internalID: -967741824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Untitled-2_39
+      rect:
+        serializedVersion: 2
+        x: 428
+        y: 1132
+        width: 39
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc90b81dd46f989478fc8438306eed56
+      internalID: -180919791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Untitled-2_40
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 1194
+        width: 40
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 458b94105d3652a42983385aa34155f6
+      internalID: 726190009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -976,7 +1039,10 @@ TextureImporter:
       Untitled-2_35: 240598278
       Untitled-2_36: -637394200
       Untitled-2_37: -1471964344
+      Untitled-2_38: -967741824
+      Untitled-2_39: -180919791
       Untitled-2_4: -1331131241
+      Untitled-2_40: 726190009
       Untitled-2_5: -520332022
       Untitled-2_6: -1086116017
       Untitled-2_7: 828806252

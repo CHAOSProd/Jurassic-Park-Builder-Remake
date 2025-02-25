@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -165,10 +165,10 @@ TextureImporter:
       name: 00000006_0
       rect:
         serializedVersion: 2
-        x: 1661
-        y: 1656
-        width: 122
-        height: 122
+        x: 1662
+        y: 1651
+        width: 129
+        height: 129
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,9 +187,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 798
-        y: 1262
-        width: 121
-        height: 120
+        y: 1255
+        width: 129
+        height: 129
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,10 +207,10 @@ TextureImporter:
       name: 00000006_2
       rect:
         serializedVersion: 2
-        x: 793
-        y: 728
-        width: 131
-        height: 131
+        x: 801
+        y: 727
+        width: 125
+        height: 125
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -249,10 +249,10 @@ TextureImporter:
       name: 00000006_5
       rect:
         serializedVersion: 2
-        x: 1263
-        y: 1784
-        width: 130
-        height: 129
+        x: 1269
+        y: 1783
+        width: 125
+        height: 125
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -291,9 +291,9 @@ TextureImporter:
       name: Speed Up
       rect:
         serializedVersion: 2
-        x: 134
-        y: 429
-        width: 126
+        x: 139
+        y: 427
+        width: 125
         height: 125
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -312,9 +312,9 @@ TextureImporter:
       name: Speed Up Selected
       rect:
         serializedVersion: 2
-        x: 343
-        y: 34
-        width: 124
+        x: 345
+        y: 31
+        width: 125
         height: 125
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -359,7 +359,7 @@ TextureImporter:
         width: 61
         height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

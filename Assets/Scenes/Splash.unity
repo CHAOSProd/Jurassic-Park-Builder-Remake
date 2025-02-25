@@ -570,6 +570,7 @@ GameObject:
   - component: {fileID: 299279088}
   - component: {fileID: 299279089}
   - component: {fileID: 299279090}
+  - component: {fileID: 299279091}
   m_Layer: 0
   m_Name: SplashManager
   m_TagString: Untagged
@@ -628,6 +629,19 @@ MonoBehaviour:
   loadingTextTMP: {fileID: 599424878}
   loadingCircle: {fileID: 316787779}
   rotationSpeed: 150
+--- !u!114 &299279091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299279087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e934c5c4aa418042a9909287453e2fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetFrameRate: 360
 --- !u!1 &316787777
 GameObject:
   m_ObjectHideFlags: 0
