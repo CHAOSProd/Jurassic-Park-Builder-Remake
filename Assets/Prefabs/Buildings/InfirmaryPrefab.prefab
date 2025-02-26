@@ -2499,11 +2499,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2499082357902879460}
   - component: {fileID: 943923809241600295}
-  - component: {fileID: 4278760113239675130}
   - component: {fileID: 355022921727448132}
   - component: {fileID: 8487229557576334532}
-  - component: {fileID: 2535589637797675072}
-  - component: {fileID: 894067050949773145}
+  - component: {fileID: 3076225018075771586}
+  - component: {fileID: 4187151751858403529}
   m_Layer: 0
   m_Name: InfirmaryPrefab
   m_TagString: Untagged
@@ -2580,62 +2579,6 @@ MonoBehaviour:
   DinoCheck: 0
   greenIndicator: {fileID: 3765344592987584133}
   redIndicator: {fileID: 7603932554151149511}
---- !u!60 &4278760113239675130
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7721718822093494014}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.10710412, y: 0.23014307}
-      - {x: 0.004149854, y: 0.24977422}
-      - {x: -0.13358277, y: 0.21455437}
-      - {x: -0.13613117, y: 0.15113404}
-      - {x: -0.1339001, y: 0.03078866}
-      - {x: -0.041352093, y: 0.0123353}
-      - {x: 0.077397466, y: 0.01688075}
-      - {x: 0.12572902, y: 0.030273914}
-      - {x: 0.14454362, y: 0.16180557}
-  m_UseDelaunayMesh: 0
 --- !u!82 &355022921727448132
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2751,7 +2694,7 @@ MonoBehaviour:
   IsSelected: 0
   _objectsFadeInOut: {fileID: 309234641051247261}
   _selectedAnimator: {fileID: 5965467648907492461}
---- !u!1839735485 &2535589637797675072
+--- !u!1839735485 &3076225018075771586
 Tilemap:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2789,7 +2732,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!19719996 &894067050949773145
+--- !u!19719996 &4187151751858403529
 TilemapCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2821,7 +2764,7 @@ TilemapCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_CompositeOperation: 1
+  m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
