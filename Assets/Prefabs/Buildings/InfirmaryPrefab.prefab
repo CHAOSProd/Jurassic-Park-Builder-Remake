@@ -1406,31 +1406,33 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.7412762, y: -0.32536972}
-      - {x: 0.8252841, y: -0.3205282}
-      - {x: 0.854588, y: -0.20178205}
-      - {x: 0.80750996, y: -0.03713504}
-      - {x: 0.7158112, y: -0.04751624}
+      - {x: 0.7597136, y: -0.33565986}
+      - {x: 0.7671393, y: -0.22691141}
+      - {x: 0.7486663, y: -0.08072854}
+      - {x: 0.67636913, y: -0.08757381}
+      - {x: 0.66703594, y: 0.085235894}
+      - {x: 0.66537225, y: 0.07858069}
       - {x: 0.7171892, y: 0.12937798}
-      - {x: 0.81245387, y: 0.17435175}
-      - {x: 0.54686767, y: 0.5783167}
-      - {x: 0.29864523, y: 0.4668516}
-      - {x: 0.0070171542, y: 0.61528325}
+      - {x: 0.7115761, y: 0.16930787}
+      - {x: 0.48655128, y: 0.53286904}
+      - {x: 0.22377694, y: 0.41860297}
+      - {x: -0.08282471, y: 0.57202595}
       - {x: -0.23247576, y: 0.56408066}
       - {x: -0.32022968, y: 0.6178112}
-      - {x: -0.43667135, y: 0.559887}
-      - {x: -0.4574884, y: 0.45749274}
+      - {x: -0.45996374, y: 0.553232}
+      - {x: -0.5157195, y: 0.5057411}
       - {x: -0.52885574, y: 0.4316204}
-      - {x: -0.5684482, y: 0.48950925}
+      - {x: -0.5967319, y: 0.41464096}
       - {x: -0.668072, y: 0.43814558}
       - {x: -0.7713521, y: 0.40771425}
-      - {x: -0.7706583, y: 0.25275767}
-      - {x: -0.74917215, y: 0.15585326}
-      - {x: -0.69495356, y: 0.12221026}
+      - {x: -0.8372078, y: 0.18454434}
+      - {x: -0.7624821, y: 0.13422473}
+      - {x: -0.6999447, y: 0.10390942}
       - {x: -0.70507103, y: 0.025822919}
       - {x: -0.8243574, y: -0.020631474}
-      - {x: -0.87150735, y: -0.08779949}
-      - {x: -0.84600693, y: -0.24496882}
-      - {x: -0.795136, y: -0.37845007}
+      - {x: -0.7655857, y: -0.04240459}
+      - {x: -0.7653049, y: -0.2500127}
+      - {x: -0.7194774, y: -0.33809903}
       - {x: -0.6493701, y: -0.34667215}
       - {x: -0.5146819, y: -0.4985924}
       - {x: -0.29218063, y: -0.6369715}
@@ -2502,8 +2504,7 @@ GameObject:
   - component: {fileID: 355022921727448132}
   - component: {fileID: 8487229557576334532}
   - component: {fileID: 3076225018075771586}
-  - component: {fileID: 4187151751858403529}
-  - component: {fileID: 5964839414835494696}
+  - component: {fileID: 4874755819528150291}
   m_Layer: 0
   m_Name: InfirmaryPrefab
   m_TagString: Untagged
@@ -2733,45 +2734,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!19719996 &4187151751858403529
-TilemapCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7721718822093494014}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_MaximumTileChangeCount: 1000
-  m_ExtrusionFactor: 0
-  m_UseDelaunayMesh: 0
---- !u!60 &5964839414835494696
+--- !u!60 &4874755819528150291
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2817,11 +2780,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.0054675937, y: 0.26167202}
-      - {x: -0.19652104, y: 0.15592268}
-      - {x: -0.03425187, y: 0.029189944}
-      - {x: 0.05533892, y: 0.06082058}
-      - {x: 0.25666547, y: 0.1285848}
+    - - {x: 0, y: 1}
+      - {x: -0.95105654, y: 0.30901697}
+      - {x: -0.5877852, y: -0.80901706}
+      - {x: 0.58778536, y: -0.80901694}
+      - {x: 0.9510565, y: 0.30901712}
   m_UseDelaunayMesh: 0
 --- !u!1 &7752735392946628484
 GameObject:
