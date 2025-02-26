@@ -106,8 +106,6 @@ public class GridBuildingSystem : Singleton<GridBuildingSystem>
         TempPlaceableObject = Instantiate(building, Vector3.zero, Quaternion.identity).GetComponent<PlaceableObject>();
         TempPlaceableObject.InitializeDisplayObjects(true);
 
-        TempTilemap.GetComponent<TilemapRenderer>().sortingOrder = 1;
-
         ReloadUI();
 
         Vector3 screenMiddlePoint = _camera.ScreenToWorldPoint(new Vector3(Screen.width >> 1, Screen.height >> 1));

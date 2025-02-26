@@ -321,7 +321,6 @@ public class PlaceableObject : MonoBehaviour
         }
     }
 
-
     #endregion
 
     #region Editing Mode
