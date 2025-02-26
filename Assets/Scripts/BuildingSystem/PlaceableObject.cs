@@ -124,29 +124,17 @@ public class PlaceableObject : MonoBehaviour
         {
             DinoCheck = true;
         }
-        isPlacing = false;
-        isEditing = false;
-
-        // Use a temporary position with z = 0 for grid calculations
-        Vector3 gridCalculationPos = new Vector3(transform.position.x, transform.position.y, 0f);
-        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(gridCalculationPos);
+        isPlacing=false;
+        isEditing=false;
+        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
         BoundsInt areaTemp = Area;
         areaTemp.position = positionInt;
 
-        // Snap to grid position (z will be 0)
-        Vector3 snappedPos = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
-        transform.position = snappedPos;
+        transform.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
 
         GridBuildingSystem.Instance.TakeArea(areaTemp);
         _origin = transform.position;
-
-        // Now update ONLY the visual z offset for sorting purposes
-        Vector3 visualPos = transform.position;
-        visualPos.z = transform.position.y * 0.01f;
-        transform.position = visualPos;
-
-        // Save only the grid-based x,y position and let z be recalculated on load
-        data.Position = (transform.position.x, transform.position.y, 0f);
+        data.Position = (transform.position.x, transform.position.y, transform.position.z);
         CameraObjectFollowing.Instance.SetTarget(null);
 
         if (Placed)
@@ -295,20 +283,7 @@ public class PlaceableObject : MonoBehaviour
         _placeableObjectItem = placeableObjectItem;
         data = placeableObjectData;
 
-        // Use only the x and y from saved data and set z = 0 for grid snapping
-        Vector3 gridPosition = new Vector3(data.Position.x, data.Position.y, 0f);
-        transform.position = gridPosition;
-
-        // Now snap to grid 
-        Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(transform.position);
-        BoundsInt areaTemp = Area;
-        areaTemp.position = positionInt;
-        transform.position = GridBuildingSystem.Instance.GridLayout.CellToLocalInterpolated(positionInt);
-
-        // After snapping, update visual z offset for sorting
-        Vector3 visualPos = transform.position;
-        visualPos.z = transform.position.y * 0.01f;
-        transform.position = visualPos;
+        transform.position = new Vector3(data.Position.x, data.Position.y, data.Position.z);
 
         this.ConstructionFinished = placeableObjectData.ConstructionFinished;
 
@@ -344,9 +319,6 @@ public class PlaceableObject : MonoBehaviour
             Debug.Log($"Elapsed seconds since last session: {elapsedSeconds}");
             Debug.Log($"Updated ElapsedTime: {data.Progress.ElapsedTime}");
         }
-
-        // Finally, re-register the area in the grid:
-        GridBuildingSystem.Instance.TakeArea(areaTemp);
     }
 
 
