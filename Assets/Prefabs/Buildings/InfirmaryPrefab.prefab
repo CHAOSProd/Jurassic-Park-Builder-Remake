@@ -1410,8 +1410,9 @@ PolygonCollider2D:
       - {x: 0.7671393, y: -0.22691141}
       - {x: 0.7486663, y: -0.08072854}
       - {x: 0.67636913, y: -0.08757381}
+      - {x: 0.7571256, y: 0.022320759}
       - {x: 0.66703594, y: 0.085235894}
-      - {x: 0.66537225, y: 0.07858069}
+      - {x: 0.76224613, y: 0.08934441}
       - {x: 0.7171892, y: 0.12937798}
       - {x: 0.7115761, y: 0.16930787}
       - {x: 0.48655128, y: 0.53286904}
@@ -2503,7 +2504,6 @@ GameObject:
   - component: {fileID: 943923809241600295}
   - component: {fileID: 355022921727448132}
   - component: {fileID: 8487229557576334532}
-  - component: {fileID: 3076225018075771586}
   - component: {fileID: 4874755819528150291}
   m_Layer: 0
   m_Name: InfirmaryPrefab
@@ -2696,44 +2696,6 @@ MonoBehaviour:
   IsSelected: 0
   _objectsFadeInOut: {fileID: 309234641051247261}
   _selectedAnimator: {fileID: 5965467648907492461}
---- !u!1839735485 &3076225018075771586
-Tilemap:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7721718822093494014}
-  m_Enabled: 1
-  m_Tiles: {}
-  m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
-  m_TileObjectToInstantiateArray: []
-  m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
-  m_TileOrientation: 0
-  m_TileOrientationMatrix:
-    e00: 1
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 1
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 1
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 1
 --- !u!60 &4874755819528150291
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2780,10 +2742,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.24651694}
-      - {x: -0.18980604, y: 0.14589158}
-      - {x: 0.14239413, y: -0.07106984}
-      - {x: 0.2555939, y: 0.10183084}
+    - - {x: 0, y: 0.2600776}
+      - {x: -0.25218517, y: 0.1296188}
+      - {x: -0.0013495386, y: -0.00055396557}
+      - {x: 0.2555939, y: 0.12895226}
   m_UseDelaunayMesh: 0
 --- !u!1 &7752735392946628484
 GameObject:
