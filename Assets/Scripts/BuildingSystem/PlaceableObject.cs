@@ -475,7 +475,6 @@ public class PlaceableObject : MonoBehaviour
                 _selectable.Select();
                 Debug.Log("Selected object under construction");
                 UIManager.Instance.ChangeTo("BuildingsSelectedUI");
-                DisplayFadeInOut = _display.GetComponent<FadeInOut>();
             }
         }
         else
