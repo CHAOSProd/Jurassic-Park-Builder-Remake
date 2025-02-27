@@ -2506,6 +2506,7 @@ GameObject:
   - component: {fileID: 355022921727448132}
   - component: {fileID: 8487229557576334532}
   - component: {fileID: 4874755819528150291}
+  - component: {fileID: 1678539052836254199}
   m_Layer: 0
   m_Name: InfirmaryPrefab
   m_TagString: Untagged
@@ -2748,6 +2749,18 @@ PolygonCollider2D:
       - {x: -0.0013495386, y: -0.00055396557}
       - {x: 0.2555939, y: 0.12895226}
   m_UseDelaunayMesh: 0
+--- !u!210 &1678539052836254199
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7721718822093494014}
+  m_Enabled: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &7752735392946628484
 GameObject:
   m_ObjectHideFlags: 0

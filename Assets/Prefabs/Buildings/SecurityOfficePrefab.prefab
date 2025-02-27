@@ -2253,6 +2253,7 @@ GameObject:
   - component: {fileID: 5405705909088910238}
   - component: {fileID: 7608855621484917840}
   - component: {fileID: -1056996830153763177}
+  - component: {fileID: -8568768701611024912}
   m_Layer: 0
   m_Name: SecurityOfficePrefab
   m_TagString: Untagged
@@ -2500,6 +2501,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!210 &-8568768701611024912
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613613811045656493}
+  m_Enabled: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &7700465389646018784
 GameObject:
   m_ObjectHideFlags: 0

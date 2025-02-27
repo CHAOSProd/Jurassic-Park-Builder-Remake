@@ -827,6 +827,7 @@ GameObject:
   - component: {fileID: 7307284745621323206}
   - component: {fileID: 5772097349248712711}
   - component: {fileID: 1902470655462221704}
+  - component: {fileID: 4384624671197779301}
   m_Layer: 0
   m_Name: WaterPumpStationPrefab
   m_TagString: Untagged
@@ -1074,6 +1075,18 @@ MonoBehaviour:
   IsSelected: 0
   _objectsFadeInOut: {fileID: 2723227592481107334}
   _selectedAnimator: {fileID: 8483166750013473734}
+--- !u!210 &4384624671197779301
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767751471661403557}
+  m_Enabled: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &2348401141364981798
 GameObject:
   m_ObjectHideFlags: 0

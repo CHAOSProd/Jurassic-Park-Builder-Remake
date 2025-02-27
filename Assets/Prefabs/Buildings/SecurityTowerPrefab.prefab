@@ -1216,6 +1216,7 @@ GameObject:
   - component: {fileID: 7781577779913143244}
   - component: {fileID: 8366415940449587912}
   - component: {fileID: 8032065180384785206}
+  - component: {fileID: -5745615201269166340}
   m_Layer: 0
   m_Name: SecurityTowerPrefab
   m_TagString: Untagged
@@ -1477,6 +1478,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!210 &-5745615201269166340
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451266486492135696}
+  m_Enabled: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &4492888884954326183
 GameObject:
   m_ObjectHideFlags: 0

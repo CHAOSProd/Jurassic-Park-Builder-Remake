@@ -1266,6 +1266,7 @@ GameObject:
   - component: {fileID: 8366415940449587912}
   - component: {fileID: 8032065180384785206}
   - component: {fileID: 6866602969964193252}
+  - component: {fileID: 3609761264762014468}
   m_Layer: 0
   m_Name: Museum prefab
   m_TagString: Untagged
@@ -1508,6 +1509,18 @@ PolygonCollider2D:
       - {x: -0.048793733, y: 0.058269024}
       - {x: 0.3109398, y: 0.23711634}
   m_UseDelaunayMesh: 0
+--- !u!210 &3609761264762014468
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451266486492135696}
+  m_Enabled: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &4492888884954326183
 GameObject:
   m_ObjectHideFlags: 0

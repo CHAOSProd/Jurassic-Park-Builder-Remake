@@ -1073,6 +1073,7 @@ GameObject:
   - component: {fileID: -765408071290784298}
   - component: {fileID: 375386483306485465}
   - component: {fileID: 3444607481236068901}
+  - component: {fileID: 3973806772009306306}
   m_Layer: 0
   m_Name: EmergencyResponseHQPrefab
   m_TagString: Untagged
@@ -1320,6 +1321,18 @@ PolygonCollider2D:
       - {x: 0.12572902, y: 0.030273914}
       - {x: 0.14454362, y: 0.16180557}
   m_UseDelaunayMesh: 0
+--- !u!210 &3973806772009306306
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4884103935600486979}
+  m_Enabled: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &4961764539837746477
 GameObject:
   m_ObjectHideFlags: 0

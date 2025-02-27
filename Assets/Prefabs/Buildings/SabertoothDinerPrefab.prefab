@@ -1051,6 +1051,7 @@ GameObject:
   - component: {fileID: 172341857545030221}
   - component: {fileID: 2765607893702481797}
   - component: {fileID: 7428123493962814247}
+  - component: {fileID: 414864859691816498}
   m_Layer: 0
   m_Name: SabertoothDinerPrefab
   m_TagString: Untagged
@@ -1312,6 +1313,18 @@ MonoBehaviour:
   IsSelected: 0
   _objectsFadeInOut: {fileID: 9130719734702444728}
   _selectedAnimator: {fileID: 9152798736672510568}
+--- !u!210 &414864859691816498
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4027252535754380947}
+  m_Enabled: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &4087138586390975380
 GameObject:
   m_ObjectHideFlags: 0

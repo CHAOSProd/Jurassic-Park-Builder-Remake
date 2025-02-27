@@ -3105,6 +3105,7 @@ GameObject:
   - component: {fileID: 8430213818656843052}
   - component: {fileID: 4710427275361968274}
   - component: {fileID: 1012719781780329009}
+  - component: {fileID: 3297551673568091527}
   m_Layer: 0
   m_Name: NasutoceratopsPaddockPrefab
   m_TagString: Untagged
@@ -3232,6 +3233,18 @@ PolygonCollider2D:
       - {x: -0.9301551, y: 0.1453625}
       - {x: -0.0059691146, y: -0.31110632}
   m_UseDelaunayMesh: 0
+--- !u!210 &3297551673568091527
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4039173826091507982}
+  m_Enabled: 1
+  m_SortingLayerID: -1344713575
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &4319951093593840815
 GameObject:
   m_ObjectHideFlags: 0
