@@ -560,8 +560,8 @@ Transform:
   m_GameObject: {fileID: 3536975922598021305}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.005400002, y: 0.49699998, z: -1.5544887}
-  m_LocalScale: {x: 1.0363257, y: 1.0363257, z: 1.0363257}
+  m_LocalPosition: {x: 0, y: 0.4, z: -1.5544887}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1546757955200575204}
@@ -2690,7 +2690,6 @@ MonoBehaviour:
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   _constructionFinishedSound: {fileID: 8300000, guid: 78ed6552ef8970f4b82cf45c45b2e219,
     type: 3}
-  selectingSound: {fileID: 8300000, guid: 93ad3df578ff619468e0171f2ce58db4, type: 3}
   DisplayFadeInOut: {fileID: 0}
   _display: {fileID: 3855255491578056021}
   _construction: {fileID: 4580012024192969828}
@@ -2720,7 +2719,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.75
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0

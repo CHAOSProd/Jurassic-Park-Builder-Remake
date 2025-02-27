@@ -1242,7 +1242,6 @@ MonoBehaviour:
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   _constructionFinishedSound: {fileID: 8300000, guid: 78ed6552ef8970f4b82cf45c45b2e219,
     type: 3}
-  selectingSound: {fileID: 8300000, guid: 93ad3df578ff619468e0171f2ce58db4, type: 3}
   DisplayFadeInOut: {fileID: 0}
   _display: {fileID: 8325204637480980859}
   _construction: {fileID: 8936940771829713731}
@@ -1272,7 +1271,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.75
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1371,6 +1370,7 @@ MonoBehaviour:
   Sounds:
   - {fileID: 8300000, guid: 5766d537cc38fca4797866446978af2c, type: 3}
   - {fileID: 8300000, guid: 63de90a5ea5149e4094c3bfbbe5a402a, type: 3}
+  - {fileID: 8300000, guid: 93ad3df578ff619468e0171f2ce58db4, type: 3}
   IsSelected: 0
   _objectsFadeInOut: {fileID: 4345159560947427662}
   _selectedAnimator: {fileID: 8351231106647502862}
@@ -1639,8 +1639,8 @@ Transform:
   m_GameObject: {fileID: 5463138082187966751}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.025399983, y: 0.477, z: -1.5544887}
-  m_LocalScale: {x: 1.0363257, y: 1.0363257, z: 1.0363257}
+  m_LocalPosition: {x: 0, y: 0.4, z: -1.5544887}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 239979537957278381}
@@ -2465,7 +2465,7 @@ Transform:
   m_GameObject: {fileID: 7631793126486988260}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.025399983, y: 0.35, z: -1.5544885}
+  m_LocalPosition: {x: 0, y: 0.35, z: -1.5544885}
   m_LocalScale: {x: 1.03633, y: 1.03633, z: 1.03633}
   m_ConstrainProportionsScale: 0
   m_Children:

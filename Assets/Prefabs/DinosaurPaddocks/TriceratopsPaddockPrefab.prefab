@@ -2405,7 +2405,7 @@ MonoBehaviour:
   _xpCountDisplayer: {fileID: 3712928207114605880}
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
-  _xpCollectSound: {fileID: 0}
+  _xpCollectSound: {fileID: 8991169160231071968}
 --- !u!1 &3261044864289916245
 GameObject:
   m_ObjectHideFlags: 0
@@ -4057,7 +4057,7 @@ Transform:
   m_GameObject: {fileID: 5828858728501730597}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.82000005, z: -1.5}
+  m_LocalPosition: {x: 0, y: 0.72, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6189,7 +6189,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.75
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
