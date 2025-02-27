@@ -7,14 +7,30 @@ public class Building : Selectable
 {
     [SerializeField] private Animator _selectedAnimator;
     [SerializeField] private Animator _selectedConstructionAnimator;
+    private static Building _selectedBuilding = null; 
 
     public override void Select()
     {
+        bool isAlreadySelected = (_selectedBuilding == this);
         base.Select();
-
         _selectedAnimator.SetBool("FadeInOut", true);
         _selectedConstructionAnimator.SetBool("FadeInOut", true);
-        PlaySound(Sounds[2]);
+        MoneyObject moneyObject = GetComponentInChildren<MoneyObject>();
+        if (moneyObject != null && moneyObject.CurrentMoneyInteger == 0)
+        {
+            if (!isAlreadySelected)
+            {
+                PlaySound(Sounds[2]);
+            }
+        }
+        else if (moneyObject == null)
+        {
+            if (!isAlreadySelected)
+            {
+                PlaySound(Sounds[2]);
+            }
+        }
+        _selectedBuilding = this;
     }
 
     public override void Unselect()
@@ -23,5 +39,10 @@ public class Building : Selectable
 
         _selectedAnimator.SetBool("FadeInOut", false);
         _selectedConstructionAnimator.SetBool("FadeInOut", false);
+
+        if (_selectedBuilding == this)
+        {
+            _selectedBuilding = null;
+        }
     }
 }

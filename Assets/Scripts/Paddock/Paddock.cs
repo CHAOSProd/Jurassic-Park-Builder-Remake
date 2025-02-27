@@ -77,10 +77,14 @@ public class Paddock : Selectable
 
     public override void Select()
     {
+        bool isAlreadySelected = (_selectedPaddock == this);
         if (is_hatching)
         {
             base.Select();
-            PlaySound(Sounds[4]);
+            if (!isAlreadySelected)
+            {
+                PlaySound(Sounds[4]);
+            }
         }
         else if (hatching_completed)
         {
@@ -104,10 +108,13 @@ public class Paddock : Selectable
             }
             else if (_moneyObject.CurrentMoneyInteger == 0)
             {
-                PlaySound(Sounds[4]);
+                if (!isAlreadySelected)
+                {
+                    PlaySound(Sounds[4]);
+                }
             }
-            _selectedPaddock = this;
         }
+        _selectedPaddock = this;
     }
 
     public override void Unselect()
