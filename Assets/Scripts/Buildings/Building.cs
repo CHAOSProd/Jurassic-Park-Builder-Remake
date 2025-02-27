@@ -14,6 +14,7 @@ public class Building : Selectable
 
         _selectedAnimator.SetBool("FadeInOut", true);
         _selectedConstructionAnimator.SetBool("FadeInOut", true);
+        PlaySound(Sounds[2]);
     }
 
     public override void Unselect()

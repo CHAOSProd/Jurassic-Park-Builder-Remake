@@ -2819,6 +2819,7 @@ MonoBehaviour:
   Sounds:
   - {fileID: 8300000, guid: 5766d537cc38fca4797866446978af2c, type: 3}
   - {fileID: 8300000, guid: 63de90a5ea5149e4094c3bfbbe5a402a, type: 3}
+  - {fileID: 8300000, guid: 93ad3df578ff619468e0171f2ce58db4, type: 3}
   IsSelected: 0
   _objectsFadeInOut: {fileID: 309234641051247261}
   _selectedAnimator: {fileID: 5965467648907492461}
