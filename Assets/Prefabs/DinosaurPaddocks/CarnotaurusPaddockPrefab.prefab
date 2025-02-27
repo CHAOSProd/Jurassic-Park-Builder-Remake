@@ -3989,7 +3989,6 @@ GameObject:
   - component: {fileID: 8430213818656843052}
   - component: {fileID: 4710427275361968274}
   - component: {fileID: 1012719781780329009}
-  - component: {fileID: -5976272978817776717}
   m_Layer: 0
   m_Name: CarnotaurusPaddockPrefab
   m_TagString: Untagged
@@ -4117,18 +4116,6 @@ PolygonCollider2D:
       - {x: -0.9199329, y: 0.26584634}
       - {x: -0.0019124225, y: -0.19057876}
   m_UseDelaunayMesh: 0
---- !u!210 &-5976272978817776717
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4039173826091507982}
-  m_Enabled: 1
-  m_SortingLayerID: -1344713575
-  m_SortingLayer: 1
-  m_SortingOrder: 1
-  m_SortAtRoot: 0
 --- !u!1 &4301343872381999751
 GameObject:
   m_ObjectHideFlags: 0

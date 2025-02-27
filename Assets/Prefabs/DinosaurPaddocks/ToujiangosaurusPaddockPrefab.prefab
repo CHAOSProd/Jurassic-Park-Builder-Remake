@@ -5755,7 +5755,6 @@ GameObject:
   - component: {fileID: 2773208732892473370}
   - component: {fileID: 9124017318999755380}
   - component: {fileID: 8991230666399025830}
-  - component: {fileID: -4701783978894932034}
   m_Layer: 0
   m_Name: ToujiangosaurusPaddockPrefab
   m_TagString: Untagged
@@ -5883,18 +5882,6 @@ PolygonCollider2D:
       - {x: -0.79420114, y: 0.39053094}
       - {x: 0.0046683177, y: -0.012899399}
   m_UseDelaunayMesh: 0
---- !u!210 &-4701783978894932034
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7114299692754577622}
-  m_Enabled: 1
-  m_SortingLayerID: -1344713575
-  m_SortingLayer: 1
-  m_SortingOrder: 1
-  m_SortAtRoot: 0
 --- !u!1 &7148360279365762116
 GameObject:
   m_ObjectHideFlags: 0
