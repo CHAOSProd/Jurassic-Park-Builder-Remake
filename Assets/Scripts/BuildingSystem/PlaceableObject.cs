@@ -230,6 +230,7 @@ public class PlaceableObject : MonoBehaviour
             {
                 collider.enabled = isBuildingEnabled; // Enable collider only if editing is allowed
             }
+            DisplayFadeInOut = _display.GetComponent<FadeInOut>();
         }
         else
         {
@@ -474,6 +475,7 @@ public class PlaceableObject : MonoBehaviour
                 _selectable.Select();
                 Debug.Log("Selected object under construction");
                 UIManager.Instance.ChangeTo("BuildingsSelectedUI");
+                DisplayFadeInOut = _display.GetComponent<FadeInOut>();
             }
         }
         else

@@ -6,12 +6,14 @@ using UnityEngine.EventSystems;
 public class Building : Selectable
 {
     [SerializeField] private Animator _selectedAnimator;
+    [SerializeField] private Animator _selectedConstructionAnimator;
 
     public override void Select()
     {
         base.Select();
 
         _selectedAnimator.SetBool("FadeInOut", true);
+        _selectedConstructionAnimator.SetBool("FadeInOut", true);
     }
 
     public override void Unselect()
@@ -19,5 +21,6 @@ public class Building : Selectable
         base.Unselect();
 
         _selectedAnimator.SetBool("FadeInOut", false);
+        _selectedConstructionAnimator.SetBool("FadeInOut", false);
     }
 }
