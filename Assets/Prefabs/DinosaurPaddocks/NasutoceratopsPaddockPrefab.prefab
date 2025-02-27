@@ -6186,6 +6186,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ca0f9e50335196a47b55c3518e4154f2, type: 3}
   - {fileID: 8300000, guid: 84b8afe23fdc4eb4f93a1f182f850c28, type: 3}
   - {fileID: 8300000, guid: 7c6cfdb1f9608a643ba9aed69f3fc4d0, type: 3}
+  - {fileID: 8300000, guid: 93ad3df578ff619468e0171f2ce58db4, type: 3}
   IsSelected: 0
   _objectsFadeInOut: {fileID: 3411297017016814323}
   _evolutionsChanger: {fileID: 3566031748829286184}

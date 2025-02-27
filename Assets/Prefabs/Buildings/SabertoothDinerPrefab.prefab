@@ -1111,6 +1111,7 @@ MonoBehaviour:
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   _constructionFinishedSound: {fileID: 8300000, guid: 78ed6552ef8970f4b82cf45c45b2e219,
     type: 3}
+  selectingSound: {fileID: 8300000, guid: 93ad3df578ff619468e0171f2ce58db4, type: 3}
   DisplayFadeInOut: {fileID: 0}
   _display: {fileID: 7482792473835618704}
   _construction: {fileID: 4168418753918362626}

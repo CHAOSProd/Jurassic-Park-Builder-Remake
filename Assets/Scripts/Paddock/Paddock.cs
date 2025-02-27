@@ -101,6 +101,10 @@ public class Paddock : Selectable
                 _dinosaurAnimationEventsListener.OnAnimationStarted();
                 PlaySound(Sounds[2], 0.5f);
             }
+            else if (_moneyObject.CurrentMoneyInteger == 0)
+            {
+                PlaySound(Sounds[4]);
+            }
             _selectedPaddock = this;
         }
     }

@@ -25,6 +25,7 @@ public class PlaceableObject : MonoBehaviour
     [SerializeField] private MoneyCountDisplayer _xpCountDisplayer;
     [SerializeField] private AudioClip _xpCollectSound;
     [SerializeField] private AudioClip _constructionFinishedSound;
+    [SerializeField] private AudioClip selectingSound;
 
     private AudioSource _audioSource;
 
@@ -442,6 +443,7 @@ public class PlaceableObject : MonoBehaviour
             return;
 
         Debug.Log("OnMouseUp triggered");
+        _audioSource.PlayOneShot(selectingSound);
 
         if (!ConstructionFinished)
         {
