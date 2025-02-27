@@ -80,6 +80,7 @@ public class Paddock : Selectable
         if (is_hatching)
         {
             base.Select();
+            PlaySound(Sounds[4]);
         }
         else if (hatching_completed)
         {
