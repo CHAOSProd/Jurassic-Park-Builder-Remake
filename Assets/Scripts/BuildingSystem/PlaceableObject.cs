@@ -66,8 +66,6 @@ public class PlaceableObject : MonoBehaviour
 
     public bool DinoCheck = false;
 
-    private SortingGroup sortingGroup;
-
     [Header("Indicators")]
     [SerializeField] private GameObject greenIndicator;
     [SerializeField] private GameObject redIndicator;
@@ -78,11 +76,6 @@ public class PlaceableObject : MonoBehaviour
     {
         DisplayFadeInOut = _construction.GetComponent<FadeInOut>();
         _audioSource = gameObject.AddComponent<AudioSource>();
-         sortingGroup = GetComponent<SortingGroup>();
-         if (sortingGroup != null)
-         {
-            sortingGroup.sortingLayerName = "Default"; 
-         }
     }
 
     private void Start()
@@ -463,11 +456,6 @@ public class PlaceableObject : MonoBehaviour
                 data.ConstructionFinished = true;
                 data.ConstructionReady = false;
                 data.Progress = null;
-                PolygonCollider2D polyCollider = GetComponent<PolygonCollider2D>();
-                if (polyCollider != null)
-                {
-                    Destroy(polyCollider);
-                }
             }
             else
             {
@@ -497,8 +485,6 @@ public class PlaceableObject : MonoBehaviour
             // Ensure indicators are off when not placing or editing
             SetIndicatorState(false, false);
         }
-
-        UpdateSortingOrder();
     }
 
     private void SetIndicatorState(bool greenActive, bool redActive)
@@ -508,16 +494,6 @@ public class PlaceableObject : MonoBehaviour
 
         if (redIndicator != null)
             redIndicator.SetActive(redActive);
-    }
-
-    private void UpdateSortingOrder()
-    {
-        SortingGroup sortingGroup = GetComponent<SortingGroup>();
-        if (sortingGroup != null)
-        {
-            // Invert Y position for sorting (lower Y should be in front)
-            sortingGroup.sortingOrder = Mathf.RoundToInt(-transform.position.y * 1000);
-        }
     }
     #endregion
 }
