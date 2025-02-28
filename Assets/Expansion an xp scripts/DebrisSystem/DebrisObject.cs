@@ -39,6 +39,7 @@ public class DebrisObject : Selectable
     private bool _xpCollected = false;
     private bool isProgressUpdated = false;
     private bool _isPointerMoving;
+    public bool HasAmber { get; set; }
 
     private void Awake()
     {
@@ -147,6 +148,11 @@ public class DebrisObject : Selectable
         _xpCountDisplayer.DisplayCount(_xp);
         EventManager.Instance.TriggerEvent(new XPAddedGameEvent(_xp));
 
+        if (HasAmber)
+        {
+            Debug.Log($"Amber collected");
+        }
+
         // Play XP collect sound
         if (_xpCollectSound != null)
         {
@@ -192,7 +198,7 @@ public class DebrisObject : Selectable
     //    return Mathf.Max(0, _removeTime - elapsedTime);
     //}
 
-    public void Initialize(int size, DebrisType type)
+    public void Initialize(int size, DebrisType type, bool hasAmber)
     {
         Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.WorldToCell(transform.position);
         _size = new BoundsInt(positionInt - new Vector3Int(size >> 1, size >> 1), new Vector3Int(size, size, 1));

@@ -42,6 +42,7 @@ public class DebrisManager : Singleton<DebrisManager>
 
     private BoundsInt _totalArea;
     private List<Vector2> _availablePositions;
+    private DebrisType _amberDebrisType;
 
     private void Awake()
     {
@@ -58,6 +59,7 @@ public class DebrisManager : Singleton<DebrisManager>
 
         int prevSize = -1;
         bool amberFound = false;
+        bool isAmberAssigned = false;
 
         List<DebrisAmountField> debrisAmounts = _debrisExpansionAmounts[_currentExpansion].DebrisAmounts;
 
@@ -83,7 +85,6 @@ public class DebrisManager : Singleton<DebrisManager>
             // 2nd highest level found
             Debug.Log($"Second highest debris level found: {secondHighestDebrisLevel}");
 
-            bool foundAmberInSecondLevel = false;
             bool searchSecondLevelFirst = true;
 
             // Check if the difference between the highest level and the 2nd highest level isn't higher than 1
@@ -114,7 +115,7 @@ public class DebrisManager : Singleton<DebrisManager>
                 {
                     DebrisAmountField selectedDebris = secondLevelDebris[UnityEngine.Random.Range(0, secondLevelDebris.Count)];
                     amberFound = true;
-                    foundAmberInSecondLevel = true;
+                    _amberDebrisType = selectedDebris.DebrisType;
                     Debug.Log($"Amber found in 2nd highest debris: {selectedDebris.DebrisType}, Level: {secondHighestDebrisLevel}");
                 }
                 else
@@ -142,6 +143,7 @@ public class DebrisManager : Singleton<DebrisManager>
                 {
                     DebrisAmountField selectedDebris = highestLevelDebris[UnityEngine.Random.Range(0, highestLevelDebris.Count)];
                     amberFound = true;
+                    _amberDebrisType = selectedDebris.DebrisType;
                     Debug.Log($"Amber found in highest debris: {selectedDebris.DebrisType}, Level: {highestDebrisLevel}");
                 }
             }
@@ -161,10 +163,20 @@ public class DebrisManager : Singleton<DebrisManager>
                 {
                     int index = UnityEngine.Random.Range(0, _availablePositions.Count);
                     GameObject debris = Instantiate(_debrisTypes[daf.DebrisType].Prefab, _availablePositions[index], Quaternion.identity, _debrisParent);
-
                     if (debris.TryGetComponent(out DebrisObject debrisObject))
                     {
-                        debrisObject.Initialize(size, daf.DebrisType);
+                        bool assignAmber = false;
+                        if (amberFound && !isAmberAssigned && daf.DebrisType == _amberDebrisType)
+                        {
+                            assignAmber = true;
+                            isAmberAssigned = true;
+                        }
+                        debrisObject.Initialize(size, daf.DebrisType, assignAmber);
+                        if (assignAmber)
+                        {   
+                            debrisObject.HasAmber = true;
+                        }
+                        Debug.Log($"Have amber? {debrisObject.HasAmber} | Debris Type: {daf.DebrisType}");
                     }
                     _availablePositions.RemoveAt(index);
                 }
