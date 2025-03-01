@@ -6,15 +6,10 @@ public class AmberManager : Singleton<AmberManager>
 {
     [Header("UI")]
     [SerializeField] private GameObject AmberPanel;
-    [SerializeField] private GameObject AmberDisplay; // Object to show amber details
 
     [Header("Sound")]
     [SerializeField] private GameObject PanelOpeningSound;
 
-    private void ShowAmberInfo()
-    {
-        AmberDisplay.SetActive(true);
-    }
 
     public void OpenPanel()
     {
@@ -22,8 +17,6 @@ public class AmberManager : Singleton<AmberManager>
 
         AmberPanel.SetActive(true);
         AmberPanel.GetComponent<Animator>().Play("openAnimation");
-
-        ShowAmberInfo();
 
         UIManager.Instance.ChangeFixedTo("PanelUI");
         UIManager.Instance.DisableCurrent();
@@ -37,7 +30,6 @@ public class AmberManager : Singleton<AmberManager>
         UIManager.Instance.ChangeFixedTo("DefaultUI");
         UIManager.Instance.EnableCurrent();
 
-        AmberDisplay.SetActive(false);
         UIManager.Instance.ChangeCameraPanningStatus(true);
     }
 }
