@@ -9,7 +9,7 @@ public class AmberManager : Singleton<AmberManager>
 
     [Header("Sound")]
     [SerializeField] private GameObject PanelOpeningSound;
-
+    private List<AmberData> _amberList = new List<AmberData>();
 
     public void OpenPanel()
     {
@@ -31,5 +31,27 @@ public class AmberManager : Singleton<AmberManager>
         UIManager.Instance.EnableCurrent();
 
         UIManager.Instance.ChangeCameraPanningStatus(true);
+    }
+    public void AddAmber()
+    {
+        int index = _amberList.Count;
+        AmberData newAmber = new AmberData(index);
+        _amberList.Add(newAmber);
+        SaveAmberData();
+        
+        Debug.Log($"New amber put on index: {index}");
+    }
+    private void SaveAmberData()
+    {
+        SaveManager.Instance.SaveData.AmberData = _amberList;
+    }
+    public void Load()
+    {
+        _amberList = SaveManager.Instance.SaveData.AmberData;
+    }
+
+    public List<AmberData> GetAmberList()
+    {
+        return _amberList;
     }
 }

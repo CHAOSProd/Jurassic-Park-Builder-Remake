@@ -166,7 +166,10 @@ public class DebrisObject : Selectable
 
         removing = true;
 
-        PlaySound(1);
+        if (!HasAmber)
+        {
+            PlaySound(1);         
+        }
 
         _debrisVisual.SetActive(false);
         SaveManager.Instance.SaveData.DebrisData.Remove(_data);

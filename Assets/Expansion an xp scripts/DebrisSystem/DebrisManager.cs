@@ -94,10 +94,10 @@ public class DebrisManager : Singleton<DebrisManager>
                 Debug.Log("There's too much difference between highest and 2nd highest, search on second highest skipped");
             }
 
-            // Search on the 2nd highest level debris with a 20% chance of finding amber
+            // Search on the 2nd highest level debris with a 25% chance of finding amber
             if (searchSecondLevelFirst)
             {
-                Debug.Log("Since there's just 1 level of difference between highest and 2nd highest, searching in second highest debris level first with 20% chance.");
+                Debug.Log("Since there's just 1 level of difference between highest and 2nd highest, searching in second highest debris level first with 25% chance.");
 
                 List<DebrisAmountField> secondLevelDebris = new List<DebrisAmountField>();
 
@@ -175,6 +175,7 @@ public class DebrisManager : Singleton<DebrisManager>
                         if (assignAmber)
                         {   
                             debrisObject.HasAmber = true;
+                            AmberManager.Instance.AddAmber();
                         }
                         Debug.Log($"Have amber? {debrisObject.HasAmber} | Debris Type: {daf.DebrisType}");
                     }
