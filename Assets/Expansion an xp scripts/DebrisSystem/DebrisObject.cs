@@ -151,6 +151,7 @@ public class DebrisObject : Selectable
         if (HasAmber)
         {
             Debug.Log($"Amber collected");
+            AmberManager.Instance.OpenPanel();
         }
 
         // Play XP collect sound

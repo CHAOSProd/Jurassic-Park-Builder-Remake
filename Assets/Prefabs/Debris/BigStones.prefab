@@ -662,7 +662,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1344713575
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dca1609fda3059044aab333ff9580828, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1087,6 +1087,8 @@ MonoBehaviour:
   _debrisVisual: {fileID: 7768655753199764984}
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
+  NewAmberPanel: {fileID: 4140251156734865095, guid: 07320cab263657648bc9ded1d2844c90,
+    type: 3}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   removing: 0
 --- !u!1 &7768655753199764984
@@ -1163,7 +1165,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1344713575
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1883524970, guid: 222664e80f001dd4681602bd5fe3755d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
