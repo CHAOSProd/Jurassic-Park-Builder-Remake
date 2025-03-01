@@ -203,14 +203,16 @@ public class DebrisObject : Selectable
         Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.WorldToCell(transform.position);
         _size = new BoundsInt(positionInt - new Vector3Int(size >> 1, size >> 1), new Vector3Int(size, size, 1));
         GridBuildingSystem.Instance.TakeArea(_size);
+        HasAmber = hasAmber;
 
-        _data = new DebrisData(type, (transform.position.x, transform.position.y, transform.position.z));
+        _data = new DebrisData(type, (transform.position.x, transform.position.y, transform.position.z), HasAmber);
         SaveManager.Instance.SaveData.DebrisData.Add(_data);
     }
 
     public void Load(DebrisData d, int size)
     {
         _data = d;
+        HasAmber = d.HasAmber;
         if (_data.Progress != null)
         {
             int newTime = (int)Math.Floor((DateTime.Now - _data.Progress.LastTick).TotalSeconds) + _data.Progress.ElapsedTime;

@@ -111,7 +111,7 @@ public class DebrisManager : Singleton<DebrisManager>
                     }
                 }
 
-                if (secondLevelDebris.Count > 0 && UnityEngine.Random.Range(0f, 1f) <= 0.2f)
+                if (secondLevelDebris.Count > 0 && UnityEngine.Random.Range(0f, 1f) <= 0.25f)
                 {
                     DebrisAmountField selectedDebris = secondLevelDebris[UnityEngine.Random.Range(0, secondLevelDebris.Count)];
                     amberFound = true;
@@ -242,6 +242,7 @@ public class DebrisManager : Singleton<DebrisManager>
         DebrisObject debris = Instantiate(_debrisTypes[d.DebrisType].Prefab, _debrisParent).GetComponent<DebrisObject>();
         debris.transform.position = new Vector3(d.Position.x, d.Position.y, d.Position.z);
         debris.Load(d, _debrisTypes[d.DebrisType].AreaLength);
+        debris.HasAmber = d.HasAmber;
     }
 
     public void Load()
