@@ -215,8 +215,9 @@ public class DebrisObject : Selectable
 
         if (HasAmber)
         {
-            AmberManager.Instance.AddAmber();
-            _amberIndex = AmberManager.Instance.GetAmberList().Count - 1;
+            _amberIndex = AmberManager.Instance.GetAmberList().Count;
+            AmberManager.Instance.AddAmber(_amberIndex);
+            _data.AmberIndex = _amberIndex;
         }
     }
 
@@ -224,6 +225,11 @@ public class DebrisObject : Selectable
     {
         _data = d;
         HasAmber = d.HasAmber;
+        if (HasAmber)
+        {
+            _amberIndex = d.AmberIndex;
+            Debug.Log($"Amber loaded -> Index: {_amberIndex}, Position: {_data.Position}");
+        }
         if (_data.Progress != null)
         {
             int newTime = (int)Math.Floor((DateTime.Now - _data.Progress.LastTick).TotalSeconds) + _data.Progress.ElapsedTime;

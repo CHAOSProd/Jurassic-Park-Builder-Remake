@@ -32,14 +32,14 @@ public class AmberManager : Singleton<AmberManager>
 
         UIManager.Instance.ChangeCameraPanningStatus(true);
     }
-    public void AddAmber()
+    public void AddAmber(int amberIndex)
     {
         int index = _amberList.Count;
         AmberData newAmber = new AmberData(index);
         _amberList.Add(newAmber);
         SaveAmberData();
         
-        Debug.Log($"New amber put on index: {index}");
+        Debug.Log($"New amber put on index: {amberIndex}");
     }
     private void SaveAmberData()
     {
@@ -47,11 +47,22 @@ public class AmberManager : Singleton<AmberManager>
     }
     public void Load()
     {
-        _amberList = SaveManager.Instance.SaveData.AmberData;
+        if (SaveManager.Instance.SaveData.AmberData != null)
+        {
+            _amberList = SaveManager.Instance.SaveData.AmberData;
+        }
+        else
+        {
+            _amberList = new List<AmberData>();
+        }
     }
 
     public List<AmberData> GetAmberList()
     {
         return _amberList;
+    }
+    public int GetAmberIndex(int index)
+    {
+        return index >= 0 && index < _amberList.Count ? _amberList[index].Index : -1;
     }
 }
