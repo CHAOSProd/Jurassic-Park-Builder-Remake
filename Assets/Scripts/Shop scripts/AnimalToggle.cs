@@ -6,15 +6,16 @@ public class AnimalToggle : MonoBehaviour
 {
     [SerializeField] private GameObject _availablePanel;
     [SerializeField] private GameObject _boughtPanel;
-    [SerializeField] private DinoAmber _amberCheck;
+
+    [Header("Put UnknownSpeciesText there")]
+    [SerializeField] private GameObject _amber_researchCheck;
 
     public bool Purchased { get; private set; }
 
     public void SetPurchased(bool purchased)
     {
+        if (_amber_researchCheck != null && _amber_researchCheck.activeSelf) return;
         Purchased = purchased;
-        if (_amberCheck == null || !_amberCheck.gameObject.activeSelf)
-        {
             if(purchased)
             {
                 _availablePanel.SetActive(false);
@@ -25,6 +26,5 @@ public class AnimalToggle : MonoBehaviour
                 _availablePanel.SetActive(true);
                 _boughtPanel.SetActive(false);
             }
-        }
     }
 }
