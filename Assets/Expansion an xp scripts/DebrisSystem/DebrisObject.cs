@@ -40,6 +40,7 @@ public class DebrisObject : Selectable
     private bool isProgressUpdated = false;
     private bool _isPointerMoving;
     public bool HasAmber { get; set; }
+    private int _amberIndex;
 
     private void Awake()
     {
@@ -150,7 +151,7 @@ public class DebrisObject : Selectable
 
         if (HasAmber)
         {
-            Debug.Log($"Amber collected");
+            Debug.Log($"Amber collected with index: {_amberIndex}");
             AmberManager.Instance.OpenPanel();
         }
 
@@ -211,6 +212,12 @@ public class DebrisObject : Selectable
 
         _data = new DebrisData(type, (transform.position.x, transform.position.y, transform.position.z), HasAmber);
         SaveManager.Instance.SaveData.DebrisData.Add(_data);
+
+        if (HasAmber)
+        {
+            AmberManager.Instance.AddAmber();
+            _amberIndex = AmberManager.Instance.GetAmberList().Count - 1;
+        }
     }
 
     public void Load(DebrisData d, int size)
