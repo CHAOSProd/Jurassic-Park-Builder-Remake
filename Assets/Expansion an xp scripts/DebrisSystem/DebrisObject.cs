@@ -152,6 +152,7 @@ public class DebrisObject : Selectable
         if (HasAmber)
         {
             Debug.Log($"Amber collected with index: {_amberIndex}");
+            DinoAmber.AddCollectedAmber(_amberIndex);
             AmberManager.Instance.OpenPanel();
         }
 
@@ -185,6 +186,10 @@ public class DebrisObject : Selectable
             _data.Progress.LastTick = DateTime.Now;
             isProgressUpdated = true;
         }
+    }
+    public int GetAmberIndex()
+    {
+        return _amberIndex;
     }
 
     /// <summary>
@@ -228,7 +233,7 @@ public class DebrisObject : Selectable
         if (HasAmber)
         {
             _amberIndex = d.AmberIndex;
-            Debug.Log($"Amber loaded -> Index: {_amberIndex}, Position: {_data.Position}");
+            Debug.Log($"Uncollected amber loaded -> Index: {_amberIndex}, Position: {_data.Position}");
         }
         if (_data.Progress != null)
         {

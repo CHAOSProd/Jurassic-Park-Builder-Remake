@@ -10,6 +10,7 @@ public class AmberManager : Singleton<AmberManager>
     [Header("Sound")]
     [SerializeField] private GameObject PanelOpeningSound;
     private List<AmberData> _amberList = new List<AmberData>();
+    private HashSet<int> _activatedAmberIndices = new HashSet<int>();
 
     public void OpenPanel()
     {
@@ -41,6 +42,15 @@ public class AmberManager : Singleton<AmberManager>
         
         Debug.Log($"New amber put on index: {amberIndex}");
     }
+    public void ActivateAmber(int amberIndex)
+    {
+        AmberData amber = _amberList.Find(a => a.Index == amberIndex);
+        if (amber != null && !amber.IsActivated)
+        {
+            amber.Activate();
+            SaveAmberData();
+        }
+    }
     private void SaveAmberData()
     {
         SaveManager.Instance.SaveData.AmberData = _amberList;
@@ -55,6 +65,18 @@ public class AmberManager : Singleton<AmberManager>
         {
             _amberList = new List<AmberData>();
         }
+        CheckAndEnableDinoAmbers();
+    }
+    public void CheckAndEnableDinoAmbers()
+    {
+        DinoAmber[] allDinoAmbers = FindObjectsOfType<DinoAmber>(true);
+        foreach (var dinoAmber in allDinoAmbers)
+        {
+            if (IsAmberActivated(dinoAmber.DinoAmberIndex))
+            {
+                dinoAmber.ActivateAmber();
+            }
+        }
     }
 
     public List<AmberData> GetAmberList()
@@ -64,5 +86,10 @@ public class AmberManager : Singleton<AmberManager>
     public int GetAmberIndex(int index)
     {
         return index >= 0 && index < _amberList.Count ? _amberList[index].Index : -1;
+    }
+    public bool IsAmberActivated(int index)
+    {
+        AmberData amber = _amberList.Find(a => a.Index == index);
+        return amber != null && amber.IsActivated;
     }
 }

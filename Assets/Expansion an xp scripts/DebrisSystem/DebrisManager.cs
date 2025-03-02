@@ -108,7 +108,6 @@ public class DebrisManager : Singleton<DebrisManager>
                     DebrisAmountField selectedDebris = secondLevelDebris[UnityEngine.Random.Range(0, secondLevelDebris.Count)];
                     amberFound = true;
                     _amberDebrisType = selectedDebris.DebrisType;
-                    Debug.Log($"Amber found in 2nd highest debris: {selectedDebris.DebrisType}, Level: {secondHighestDebrisLevel}");
                 }
             }
 
@@ -132,7 +131,6 @@ public class DebrisManager : Singleton<DebrisManager>
                     DebrisAmountField selectedDebris = highestLevelDebris[UnityEngine.Random.Range(0, highestLevelDebris.Count)];
                     amberFound = true;
                     _amberDebrisType = selectedDebris.DebrisType;
-                    Debug.Log($"Amber found in highest debris: {selectedDebris.DebrisType}, Level: {highestDebrisLevel}");
                 }
             }
 
@@ -154,7 +152,7 @@ public class DebrisManager : Singleton<DebrisManager>
                     if (debris.TryGetComponent(out DebrisObject debrisObject))
                     {
                         bool assignAmber = false;
-                        if (amberFound && !isAmberAssigned && daf.DebrisType == _amberDebrisType && AmberManager.Instance.GetAmberList().Count < 24) 
+                        if (amberFound && !isAmberAssigned && daf.DebrisType == _amberDebrisType && AmberManager.Instance.GetAmberList().Count < 4) 
                         {
                             assignAmber = true;
                             isAmberAssigned = true;
