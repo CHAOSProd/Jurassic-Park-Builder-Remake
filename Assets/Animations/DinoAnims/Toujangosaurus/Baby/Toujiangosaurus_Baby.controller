@@ -32,7 +32,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Toujiangosaurus Baby Sleeping
+  m_Name: Tuojiangosaurus Baby Sleeping
   m_Speed: 1.25
   m_CycleOffset: 0
   m_Transitions:
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0865418227380748b3d82e7f8ba65c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationToListen: Toujiangosaurus Baby Roar
+  _animationToListen: Tuojiangosaurus Baby Roar
   _animationToListen2: Toujangosaurus Baby Feeding
 --- !u!91 &9100000
 AnimatorController:
@@ -127,7 +127,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Toujiangosaurus_Baby
+  m_Name: Tuojiangosaurus_Baby
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Fun
@@ -243,7 +243,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Toujiangosaurus Baby Roar
+  m_Name: Tuojiangosaurus Baby Roar
   m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
@@ -272,7 +272,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Toujiangosaurus Baby Idle
+  m_Name: Tuojiangosaurus Baby Idle
   m_Speed: 1.1
   m_CycleOffset: 0
   m_Transitions:
