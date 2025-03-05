@@ -3,6 +3,7 @@ using UnityEngine;
 public class DinoAmber : MonoBehaviour
 {
     [SerializeField] public int DinoAmberIndex;
+    [SerializeField] private bool IsUniversalAmber;
     [SerializeField] private GameObject AmberNotFound;
     [SerializeField] private GameObject UnknownDinoImage;
     [SerializeField] private GameObject AmberDecodingImage;
@@ -33,5 +34,10 @@ public class DinoAmber : MonoBehaviour
         {
             DecodeButton.SetActive(true);
         }
+    }
+
+    public bool ShouldActivate()
+    {
+        return IsUniversalAmber ? AmberManager.Instance.HasAnyAmberActivated() : AmberManager.Instance.IsAmberActivated(DinoAmberIndex);
     }
 }
