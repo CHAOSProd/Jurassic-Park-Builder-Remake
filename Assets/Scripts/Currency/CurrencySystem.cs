@@ -7,10 +7,9 @@ using UnityEngine;
 public class CurrencySystem : Singleton<CurrencySystem>
 {
     [SerializeField] private List<GameObject> _texts;
-    [SerializeField] public PurchasePanel _notEnoughGrassPanel;
+    [SerializeField] public PurchasePanel _notEnoughCropsPanel;
     [SerializeField] public PurchasePanel _notEnoughMeatPanel;
     [SerializeField] public PurchasePanel _notEnoughCoinsPanel;
-
     [SerializeField] public PurchasePanel _notEnoughBucksPanel;
 
     private static Dictionary<CurrencyType, int> _currencyAmounts = new Dictionary<CurrencyType, int>();
@@ -20,7 +19,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
     // Define default values in code, if we want to, we can make a serialized dictionary (would require new classes)
     private static readonly Dictionary<CurrencyType, int> _defaultValues = new() 
     {
-        { CurrencyType.Grass, 0},
+        { CurrencyType.Crops, 0},
         { CurrencyType.Meat, 0},
         { CurrencyType.Coins, 2000},
         { CurrencyType.Bucks, 10}
@@ -72,8 +71,8 @@ public class CurrencySystem : Singleton<CurrencySystem>
             {
                 switch (currencyType)
                 {
-                    case CurrencyType.Grass:
-                        _notEnoughGrassPanel.ShowNotEnoughCoinsPanel(-amount);
+                    case CurrencyType.Crops:
+                        _notEnoughCropsPanel.ShowNotEnoughCoinsPanel(-amount);
                         break;
                     case CurrencyType.Meat:
                         _notEnoughMeatPanel.ShowNotEnoughCoinsPanel(-amount);
@@ -105,7 +104,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
 
 public enum CurrencyType
 {
-    Grass,
+    Crops,
     Meat,
     Coins,
     Bucks

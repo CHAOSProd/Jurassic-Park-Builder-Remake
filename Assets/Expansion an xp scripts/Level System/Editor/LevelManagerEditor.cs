@@ -48,14 +48,14 @@ public class LevelManagerEditor : Editor {
             EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-200000, CurrencyType.Coins)); 
         }
 
-        if (GUILayout.Button("Add 2000 grass (PLAY MODE ONLY)")) {
-            // Add 2000 grass from the player
-            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(2000, CurrencyType.Grass)); 
+        if (GUILayout.Button("Add 2000 crops (PLAY MODE ONLY)")) {
+            // Add 2000 crops from the player
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(2000, CurrencyType.Crops)); 
         }
         
-        if (GUILayout.Button("Remove 2000 grass (PLAY MODE ONLY)")) {
-            // Remove 2000 grass from the player
-            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-2000, CurrencyType.Grass)); 
+        if (GUILayout.Button("Remove 2000 crops (PLAY MODE ONLY)")) {
+            // Remove 2000 crops from the player
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-2000, CurrencyType.Crops)); 
         }
 
         if (GUILayout.Button("Add 2000 meat (PLAY MODE ONLY)")) {

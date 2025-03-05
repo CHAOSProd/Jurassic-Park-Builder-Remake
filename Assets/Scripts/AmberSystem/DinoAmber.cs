@@ -17,7 +17,14 @@ public class DinoAmber : MonoBehaviour
 
     public void ActivateAmber()
     {
-        Debug.Log($"DinoAmber with index {DinoAmberIndex} activated.");
+        if (IsUniversalAmber)
+        {
+            Debug.Log("DinoAmber activated on the visitor center");
+        }
+        else
+        {
+            Debug.Log($"DinoAmber with index {DinoAmberIndex} activated.");
+        }
         if (AmberNotFound != null)
         {
             AmberNotFound.SetActive(false);
