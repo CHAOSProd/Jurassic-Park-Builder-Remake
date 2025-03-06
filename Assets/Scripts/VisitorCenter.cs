@@ -7,6 +7,7 @@ public class VisitorCenter : Selectable
     [Header("Selection")]
     [SerializeField] private bool _selectableFromBeginning;
     [SerializeField] private GameObject _selected;
+    [SerializeField] public GameObject ResearchButton;
 
     [Header("Audio")]
     [SerializeField] private AudioClip _selectSound;
@@ -42,6 +43,7 @@ public class VisitorCenter : Selectable
         if (!AllowSelection) return;
 
         _selected.SetActive(true);
+        ResearchButton.SetActive(true);
 
         if (_selectSound != null)
         {
@@ -55,6 +57,7 @@ public class VisitorCenter : Selectable
     {
         _selected.SetActive(false);
         base.Unselect();
+        ResearchButton.SetActive(false);
     }
 
     public void Unlock()

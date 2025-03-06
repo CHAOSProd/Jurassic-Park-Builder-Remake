@@ -371,6 +371,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: 00000006_8
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 1255
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef3698905e296f040819516a1d5dcad5
+      internalID: -1195529558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000006_9
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 727
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59d64e2baf5983843816638a5762376d
+      internalID: 1359925129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000006_10
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 992
+        width: 131
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347ca05608374e041a182f28dcb664b8
+      internalID: -112063841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -384,12 +447,15 @@ TextureImporter:
     nameFileIdTable:
       00000006_0: 2104843236
       00000006_1: 769563340
+      00000006_10: -112063841
       00000006_2: -1859222054
       00000006_3: 1106198331
       00000006_4: 1378002533
       00000006_5: -780680610
       00000006_6: 111761290
       00000006_7: -1325376969
+      00000006_8: -1195529558
+      00000006_9: 1359925129
       Speed Up: -1381453170
       Speed Up Selected: 1423257809
   mipmapLimitGroupName: 
