@@ -2632,7 +2632,7 @@ GameObject:
   - component: {fileID: 4874755819528150291}
   m_Layer: 0
   m_Name: InfirmaryPrefab
-  m_TagString: Untagged
+  m_TagString: InteractivePrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
