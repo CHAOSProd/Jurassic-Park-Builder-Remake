@@ -60,6 +60,8 @@ public class TimerTooltip : MonoBehaviour
 
     public void SkipButton()
     {
+        CurrencyChangeGameEvent info = new CurrencyChangeGameEvent(-timer.skipAmount, CurrencyType.Crystals);
+        EventManager.Instance.TriggerEvent(info);
     }
     public void HideTimer()
     {

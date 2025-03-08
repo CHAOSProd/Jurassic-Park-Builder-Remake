@@ -53,7 +53,6 @@ public class SaveManager : Singleton<SaveManager>
         LoadPlaceableObjects();
         LoadChoppedTrees();
         LoadDebris();
-        AmberManager.Instance.Load();
         CurrencySystem.Instance.Load();
         TreeChopManager.Instance.Load();
         DebrisManager.Instance.Load();

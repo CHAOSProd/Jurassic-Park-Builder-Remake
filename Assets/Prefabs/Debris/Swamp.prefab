@@ -1146,8 +1146,6 @@ MonoBehaviour:
   _debrisVisual: {fileID: 2533824692842807122}
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
-  NewAmberPanel: {fileID: 4140251156734865095, guid: 07320cab263657648bc9ded1d2844c90,
-    type: 3}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   removing: 0
 --- !u!114 &381900100356051496
