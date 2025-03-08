@@ -275,7 +275,7 @@ TextureImporter:
         width: 48
         height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -283,6 +283,48 @@ TextureImporter:
       bones: []
       spriteID: b7853cb7c343c7d4cb39e342ab48cb9a
       internalID: 1163422437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 000000001_4
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 1552
+        width: 94
+        height: 372
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc4cad44be097e14a8487de6fbb4e450
+      internalID: -1279992718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 000000001_5
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 1550
+        width: 91
+        height: 374
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 458baf95c280ffb4a8233653789ef060
+      internalID: 486684765
       vertices: []
       indices: 
       edges: []
@@ -302,6 +344,8 @@ TextureImporter:
       000000001_1: -123271499
       000000001_2: -1793679763
       000000001_3: 1163422437
+      000000001_4: -1279992718
+      000000001_5: 486684765
       Triceratops: 783819337
       Velociraptor: 1337958333
   mipmapLimitGroupName: 
