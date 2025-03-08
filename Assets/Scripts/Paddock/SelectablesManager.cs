@@ -13,8 +13,18 @@ public class SelectablesManager : Singleton<SelectablesManager>
 
     public void SetSelected(Selectable selectable)
     {
+        if (CurrentSelectable is VisitorCenter previousVisitorCenter)
+        {
+            previousVisitorCenter.ResearchButton.SetActive(false);
+        }
+
         CurrentSelectable = selectable;
         InitializeUI();
+
+        if (CurrentSelectable is VisitorCenter visitorCenter)
+        {
+            visitorCenter.ResearchButton.SetActive(true);
+        }
     }
 
     public void UnselectAll()
@@ -25,11 +35,16 @@ public class SelectablesManager : Singleton<SelectablesManager>
             return;
         }
 
+        if (CurrentSelectable is VisitorCenter visitorCenter)
+        {
+            visitorCenter.ResearchButton.SetActive(false);
+        }
 
         CurrentSelectable.Unselect();
         CurrentSelectable = null;
         InitializeUI();
     }
+
     public void InitializeUI()
     {
         if (GridBuildingSystem.Instance.TempPlaceableObject)
@@ -70,6 +85,10 @@ public class SelectablesManager : Singleton<SelectablesManager>
                 {
                     UIManager.Instance.ChangeTo("DebrisUI");
                 }
+            }
+            else if (CurrentSelectable is VisitorCenter)
+            {
+                UIManager.Instance.ChangeTo("VisitorCenterUI");
             }
             else
             {

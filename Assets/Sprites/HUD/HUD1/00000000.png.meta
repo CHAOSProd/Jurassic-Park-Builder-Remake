@@ -3,7 +3,7 @@ guid: ec94fcbd4ca2b5e4e953141d2288befc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -144,7 +144,7 @@ TextureImporter:
         width: 74
         height: 98
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,6 +152,27 @@ TextureImporter:
       bones: []
       spriteID: 257d55fd40f69474a950a4d028f59f84
       internalID: -330581282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AmberNotifier
+      rect:
+        serializedVersion: 2
+        x: 1567
+        y: 4
+        width: 66
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 589418e3bc5070240ba0c4d56fa55317
+      internalID: 686502140
       vertices: []
       indices: 
       edges: []
@@ -167,6 +188,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      AmberNotifier: 686502140
       XpNotification: -330581282
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
