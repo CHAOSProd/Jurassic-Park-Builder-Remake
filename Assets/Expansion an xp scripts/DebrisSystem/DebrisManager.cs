@@ -72,9 +72,6 @@ public class DebrisManager : Singleton<DebrisManager>
                 .DefaultIfEmpty(-1)
                 .Max();
 
-            // Highest level found
-            Debug.Log($"Highest debris level found: {highestDebrisLevel}");
-
             // Find the 2nd highest level among the debris
             int secondHighestDebrisLevel = debrisAmounts
                 .Where(d => _debrisTypes[d.DebrisType].DebrisLevel < highestDebrisLevel)
@@ -82,22 +79,17 @@ public class DebrisManager : Singleton<DebrisManager>
                 .DefaultIfEmpty(-1)
                 .Max();
 
-            // 2nd highest level found
-            Debug.Log($"Second highest debris level found: {secondHighestDebrisLevel}");
-
             bool searchSecondLevelFirst = true;
 
             // Check if the difference between the highest level and the 2nd highest level isn't higher than 1
             if (highestDebrisLevel - secondHighestDebrisLevel > 1)
             {
                 searchSecondLevelFirst = false;
-                Debug.Log("There's too much difference between highest and 2nd highest, search on second highest skipped");
             }
 
-            // Search on the 2nd highest level debris with a 20% chance of finding amber
+            // Search on the 2nd highest level debris with a 25% chance of finding amber
             if (searchSecondLevelFirst)
             {
-                Debug.Log("Since there's just 1 level of difference between highest and 2nd highest, searching in second highest debris level first with 20% chance.");
 
                 List<DebrisAmountField> secondLevelDebris = new List<DebrisAmountField>();
 
@@ -116,11 +108,6 @@ public class DebrisManager : Singleton<DebrisManager>
                     DebrisAmountField selectedDebris = secondLevelDebris[UnityEngine.Random.Range(0, secondLevelDebris.Count)];
                     amberFound = true;
                     _amberDebrisType = selectedDebris.DebrisType;
-                    Debug.Log($"Amber found in 2nd highest debris: {selectedDebris.DebrisType}, Level: {secondHighestDebrisLevel}");
-                }
-                else
-                {
-                    Debug.Log("Amber not found in 2nd highest debris");
                 }
             }
 
@@ -144,7 +131,6 @@ public class DebrisManager : Singleton<DebrisManager>
                     DebrisAmountField selectedDebris = highestLevelDebris[UnityEngine.Random.Range(0, highestLevelDebris.Count)];
                     amberFound = true;
                     _amberDebrisType = selectedDebris.DebrisType;
-                    Debug.Log($"Amber found in highest debris: {selectedDebris.DebrisType}, Level: {highestDebrisLevel}");
                 }
             }
 
@@ -166,7 +152,7 @@ public class DebrisManager : Singleton<DebrisManager>
                     if (debris.TryGetComponent(out DebrisObject debrisObject))
                     {
                         bool assignAmber = false;
-                        if (amberFound && !isAmberAssigned && daf.DebrisType == _amberDebrisType)
+                        if (amberFound && !isAmberAssigned && daf.DebrisType == _amberDebrisType && AmberManager.Instance.GetAmberList().Count < 6) 
                         {
                             assignAmber = true;
                             isAmberAssigned = true;
@@ -176,7 +162,6 @@ public class DebrisManager : Singleton<DebrisManager>
                         {   
                             debrisObject.HasAmber = true;
                         }
-                        Debug.Log($"Have amber? {debrisObject.HasAmber} | Debris Type: {daf.DebrisType}");
                     }
                     _availablePositions.RemoveAt(index);
                 }

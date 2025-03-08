@@ -754,6 +754,7 @@ MonoBehaviour:
   _debrisVisual: {fileID: 5512537367667384408}
   _timerBarPrefab: {fileID: 883946588406857642, guid: 58607b56b6e58bd47a039a1a4bc26fc9,
     type: 3}
+  NewAmberPanel: {fileID: 0}
   _xpCollectSound: {fileID: 0}
   removing: 0
 --- !u!1 &5995480005056110772
@@ -1080,6 +1081,8 @@ MonoBehaviour:
   _selectableObject: {fileID: 1032266502791996181}
   _debrisVisual: {fileID: 5512537367667384408}
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
+    type: 3}
+  NewAmberPanel: {fileID: 4140251156734865095, guid: 07320cab263657648bc9ded1d2844c90,
     type: 3}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   removing: 0

@@ -47,6 +47,26 @@ public class LevelManagerEditor : Editor {
             // Remove 200000 bucks from the player
             EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-200000, CurrencyType.Coins)); 
         }
+
+        if (GUILayout.Button("Add 2000 crops (PLAY MODE ONLY)")) {
+            // Add 2000 crops from the player
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(2000, CurrencyType.Crops)); 
+        }
+        
+        if (GUILayout.Button("Remove 2000 crops (PLAY MODE ONLY)")) {
+            // Remove 2000 crops from the player
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-2000, CurrencyType.Crops)); 
+        }
+
+        if (GUILayout.Button("Add 2000 meat (PLAY MODE ONLY)")) {
+            // Add 2000 meat from the player
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(2000, CurrencyType.Meat)); 
+        }
+
+        if (GUILayout.Button("Remove 2000 meat (PLAY MODE ONLY)")) {
+            // Remove 2000 meat from the player
+            EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-2000, CurrencyType.Meat)); 
+        }
     }
 
 }

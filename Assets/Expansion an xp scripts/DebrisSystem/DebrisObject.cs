@@ -12,6 +12,7 @@ public class DebrisObject : Selectable
     [SerializeField] private int _cost;
     [SerializeField] public int _removeTime; // In seconds
     [SerializeField] private int _xp;
+    [SerializeField] private bool forceAmber;
 
     [Header("XP Objects")]
     [SerializeField] private GameObject _xpNotification;
@@ -40,6 +41,7 @@ public class DebrisObject : Selectable
     private bool isProgressUpdated = false;
     private bool _isPointerMoving;
     public bool HasAmber { get; set; }
+    private int _amberIndex;
 
     private void Awake()
     {
@@ -150,7 +152,9 @@ public class DebrisObject : Selectable
 
         if (HasAmber)
         {
-            Debug.Log($"Amber collected");
+            Debug.Log($"Amber collected with index: {_amberIndex}");
+            DinoAmber.AddCollectedAmber(_amberIndex);
+            AmberManager.Instance.OpenPanel();
         }
 
         // Play XP collect sound
@@ -165,7 +169,10 @@ public class DebrisObject : Selectable
 
         removing = true;
 
-        PlaySound(1);
+        if (!HasAmber)
+        {
+            PlaySound(1);         
+        }
 
         _debrisVisual.SetActive(false);
         SaveManager.Instance.SaveData.DebrisData.Remove(_data);
@@ -180,6 +187,10 @@ public class DebrisObject : Selectable
             _data.Progress.LastTick = DateTime.Now;
             isProgressUpdated = true;
         }
+    }
+    public int GetAmberIndex()
+    {
+        return _amberIndex;
     }
 
     /// <summary>
@@ -200,19 +211,31 @@ public class DebrisObject : Selectable
 
     public void Initialize(int size, DebrisType type, bool hasAmber)
     {
+        HasAmber = forceAmber || hasAmber;
         Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.WorldToCell(transform.position);
         _size = new BoundsInt(positionInt - new Vector3Int(size >> 1, size >> 1), new Vector3Int(size, size, 1));
         GridBuildingSystem.Instance.TakeArea(_size);
-        HasAmber = hasAmber;
 
         _data = new DebrisData(type, (transform.position.x, transform.position.y, transform.position.z), HasAmber);
         SaveManager.Instance.SaveData.DebrisData.Add(_data);
+
+        if (HasAmber)
+        {
+            _amberIndex = AmberManager.Instance.GetAmberList().Count;
+            AmberManager.Instance.AddAmber(_amberIndex);
+            _data.AmberIndex = _amberIndex;
+        }
     }
 
     public void Load(DebrisData d, int size)
     {
         _data = d;
-        HasAmber = d.HasAmber;
+        HasAmber = forceAmber || d.HasAmber;
+        if (HasAmber)
+        {
+            _amberIndex = d.AmberIndex;
+            Debug.Log($"Uncollected amber loaded -> Index: {_amberIndex}, Position: {_data.Position}");
+        }
         if (_data.Progress != null)
         {
             int newTime = (int)Math.Floor((DateTime.Now - _data.Progress.LastTick).TotalSeconds) + _data.Progress.ElapsedTime;

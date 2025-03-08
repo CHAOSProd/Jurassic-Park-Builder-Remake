@@ -312,7 +312,7 @@ TextureImporter:
         width: 276
         height: 202
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -320,6 +320,69 @@ TextureImporter:
       bones: []
       spriteID: 939ca469e3ca2f94fb777136a8145899
       internalID: -93577046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000003_9
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 844
+        width: 90
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96a6ec85a29d3c741b20026699fd0333
+      internalID: -1137875645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000003_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 844
+        width: 88
+        height: 181
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ac738ea057cb1d409d97dc5dac217ac
+      internalID: -1714445933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000003_11
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 1038
+        width: 260
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d750209abac4f4741b8b5a29323895a0
+      internalID: -1683470436
       vertices: []
       indices: 
       edges: []
@@ -337,6 +400,8 @@ TextureImporter:
     nameFileIdTable:
       00000003_0: 202455682
       00000003_1: 413041658
+      00000003_10: -1714445933
+      00000003_11: -1683470436
       00000003_2: 1309383607
       00000003_3: 197835078
       00000003_4: 2121382059
@@ -344,6 +409,7 @@ TextureImporter:
       00000003_6: -249140212
       00000003_7: 1564478952
       00000003_8: -93577046
+      00000003_9: -1137875645
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
