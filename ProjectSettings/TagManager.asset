@@ -5,12 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - LevelUpVFX
-  - InteractivePrefab
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - RoadCantBePlaced
+  - 
   - Water
   - UI
   - 

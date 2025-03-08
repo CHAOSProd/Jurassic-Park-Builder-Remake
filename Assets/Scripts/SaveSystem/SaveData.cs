@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,5 @@ public class SaveData
     public List<DebrisData> DebrisData { get; set; } = new List<DebrisData>();
     public List<AnimalShopData> AnimalShopData { get; set; } = new List<AnimalShopData>();
     public List<MoneyObjectData> MoneyData { get; set; } = new List<MoneyObjectData>();
-    public List<RoadData> RoadData { get; set; } = new List<RoadData>();
-
     public Dictionary<string, object> Attributes { get; set; }
 }
