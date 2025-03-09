@@ -380,7 +380,7 @@ TextureImporter:
         width: 127
         height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -401,7 +401,7 @@ TextureImporter:
         width: 127
         height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -443,7 +443,7 @@ TextureImporter:
         width: 127
         height: 124
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -451,6 +451,48 @@ TextureImporter:
       bones: []
       spriteID: 5040038509401ea4cb0e3ba22e37270d
       internalID: 689615055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000006_12
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 728
+        width: 129
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a97794ee27c7a684aa7483bb3e85a244
+      internalID: -166402847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 00000006_13
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 1256
+        width: 123
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff1416add6613b7498e7bc6d2261be9b
+      internalID: 1092534113
       vertices: []
       indices: 
       edges: []
@@ -470,6 +512,8 @@ TextureImporter:
       00000006_1: 769563340
       00000006_10: -1934438529
       00000006_11: 689615055
+      00000006_12: -166402847
+      00000006_13: 1092534113
       00000006_2: -1859222054
       00000006_3: 1106198331
       00000006_4: 1378002533
