@@ -5,7 +5,6 @@ using System.IO;
 
 public class SaveManager : Singleton<SaveManager>
 {
-
     public SaveData SaveData;
     [SerializeField] private string placeablesPath = "Placeables";
     [SerializeField] private GameObject treesObject;
@@ -17,7 +16,7 @@ public class SaveManager : Singleton<SaveManager>
         if (PlayerPrefs.GetInt("DeleteSaveOnStart", 0) == 1)
         {
             Debug.Log("Deleting save file on startup...");
-            
+
             if (File.Exists(SaveSystem.FilePath))
             {
                 File.Delete(SaveSystem.FilePath);
@@ -34,16 +33,30 @@ public class SaveManager : Singleton<SaveManager>
 
         SaveData = SaveSystem.Load();
         Attributes.SetAttributes(SaveData.Attributes);
+
+        // Removed clearing of RoadData on startup:
+        // if (SaveData.RoadData != null)
+        // {
+        //     SaveData.RoadData.Clear();
+        //     Debug.Log("Cleared RoadData on startup.");
+        // }
+        // else
+        // {
+        //     SaveData.RoadData = new List<RoadData>();
+        // }
+        if (SaveData.RoadData == null)
+            SaveData.RoadData = new List<RoadData>();
     }
+
     private void Start()
     {
         LoadPlaceableObjects();
         LoadChoppedTrees();
         LoadDebris();
-        AmberManager.Instance.Load();
         CurrencySystem.Instance.Load();
         TreeChopManager.Instance.Load();
         DebrisManager.Instance.Load();
+        AmberManager.Instance.Load();
         ShopManager.Instance.InitalizeAnimals(SaveData.AnimalShopData);
     }
 
@@ -86,7 +99,6 @@ public class SaveManager : Singleton<SaveManager>
             moneyIndex++;
         }
 
-
         for (; placableIndex < SaveData.PlaceableObjects.Count; placableIndex++)
         {
             PlaceableObjectData placeableObjectData = SaveData.PlaceableObjects[placableIndex];
@@ -127,6 +139,7 @@ public class SaveManager : Singleton<SaveManager>
             }
         }
     }
+
     private void LoadChoppedTrees()
     {
         if (SaveData.TreeData.Count == 0)
@@ -134,11 +147,10 @@ public class SaveManager : Singleton<SaveManager>
             for (int i = 0; i < treesObject.transform.childCount; i++)
             {
                 Transform tree = treesObject.transform.GetChild(i);
-
-            TreeData td = new TreeData(i)
-            {
-                ChopTime = tree.GetComponent<TreeChopper>().chopTime
-            };
+                TreeData td = new TreeData(i)
+                {
+                    ChopTime = tree.GetComponent<TreeChopper>().chopTime
+                };
                 SaveData.TreeData.Add(td);
                 tree.GetComponent<TreeChopper>().SetData(td);
             }
@@ -166,35 +178,26 @@ public class SaveManager : Singleton<SaveManager>
                     treesObject.transform.GetChild(td.InstanceIndex).GetComponent<TreeChopper>().SetData(td);
                 }
             }
-
             foreach (GameObject go in choppedTrees)
             {
                 DestroyImmediate(go);
             }
         }
 
-        Dictionary<(int x, int y), TreeChopper> mappedTrees = new();
+        Dictionary<(int x, int y), TreeChopper> mappedTrees = new Dictionary<(int, int), TreeChopper>();
         for (int i = 0; i < treesObject.transform.childCount; i++)
         {
             Transform tree = treesObject.transform.GetChild(i);
             TreeChopper chopper = tree.GetComponent<TreeChopper>();
-
-            //Take area of expansion
             BoundsInt treeArea = tree.GetComponent<TreeChopper>().Area;
             Vector3Int positionInt = GridBuildingSystem.Instance.GridLayout.LocalToCell(tree.position);
             treeArea.position = new Vector3Int(treeArea.position.x + positionInt.x, treeArea.position.y + positionInt.y, 0);
-
             GridBuildingSystem.Instance.TakeArea(treeArea);
-
-
             int mappedXPos = int.Parse((2f * tree.localPosition.x / TreeChopManager.Instance.CellSize.width).ToString());
             int mappedYPos = int.Parse((2f * tree.localPosition.y / TreeChopManager.Instance.CellSize.height).ToString());
-
             chopper.SetMappedPosition(mappedXPos, mappedYPos);
-
             mappedTrees.Add((mappedXPos, mappedYPos), chopper);
         }
-
         TreeChopManager.Instance.SetTreeMap(mappedTrees);
     }
 
@@ -205,6 +208,7 @@ public class SaveManager : Singleton<SaveManager>
             DebrisManager.Instance.LoadDebris(dd);
         }
     }
+
     private void OnApplicationPause(bool pause)
     {
         if (pause)
@@ -212,6 +216,7 @@ public class SaveManager : Singleton<SaveManager>
             SaveGameData();
         }
     }
+
     private void OnApplicationQuit()
     {
         SaveGameData();

@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 3447227281327908222}
   m_Layer: 0
   m_Name: BigGrassWithTree
-  m_TagString: Untagged
+  m_TagString: InteractivePrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -551,6 +551,7 @@ MonoBehaviour:
   _cost: 20000
   _removeTime: 54000
   _xp: 10000
+  forceAmber: 0
   _xpNotification: {fileID: 4235334296578146016}
   _tapVFX: {fileID: 1886766157088426118}
   _xpCounter: {fileID: 3549492396131784259}
@@ -559,10 +560,10 @@ MonoBehaviour:
   _debrisVisual: {fileID: 154303183993798168}
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
-  NewAmberPanel: {fileID: 4140251156734865095, guid: 07320cab263657648bc9ded1d2844c90,
-    type: 3}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   removing: 0
+  _data:
+    AmberIndex: 0
 --- !u!1 &940930794693025897
 GameObject:
   m_ObjectHideFlags: 0

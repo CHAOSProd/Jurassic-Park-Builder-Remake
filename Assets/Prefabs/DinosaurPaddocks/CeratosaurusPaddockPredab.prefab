@@ -2696,7 +2696,7 @@ SpriteRenderer:
   m_Size: {x: 1.4026667, y: 1.1013334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &8317952398250305876
@@ -4161,7 +4161,7 @@ SpriteRenderer:
   m_Size: {x: 1.4026667, y: 1.1013334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!60 &3353800883510030950
@@ -4788,7 +4788,7 @@ SpriteRenderer:
   m_Size: {x: 1.816, y: 0.97866666}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &5664508145664794481
@@ -5598,7 +5598,7 @@ GameObject:
   - component: {fileID: 2368322928437077268}
   m_Layer: 0
   m_Name: CeratosaurusPaddockPredab
-  m_TagString: Untagged
+  m_TagString: InteractivePrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6098,7 +6098,7 @@ SpriteRenderer:
   m_Size: {x: 1.4026667, y: 1.1013334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2250854866504040522

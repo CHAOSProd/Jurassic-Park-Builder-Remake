@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 1189576641446233304}
   m_Layer: 0
   m_Name: MediumStones
-  m_TagString: Untagged
+  m_TagString: InteractivePrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -703,6 +703,7 @@ MonoBehaviour:
   _cost: 500
   _removeTime: 3600
   _xp: 500
+  forceAmber: 0
   _xpNotification: {fileID: 7305268830669398748}
   _tapVFX: {fileID: 2922281706547853126}
   _xpCounter: {fileID: 7161605787579992455}
@@ -711,10 +712,10 @@ MonoBehaviour:
   _debrisVisual: {fileID: 417215955928361862}
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
-  NewAmberPanel: {fileID: 4140251156734865095, guid: 07320cab263657648bc9ded1d2844c90,
-    type: 3}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   removing: 0
+  _data:
+    AmberIndex: 0
 --- !u!114 &1189576641446233304
 MonoBehaviour:
   m_ObjectHideFlags: 0

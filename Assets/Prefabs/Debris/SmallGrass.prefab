@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 1307230462330939917}
   m_Layer: 0
   m_Name: SmallGrass
-  m_TagString: Untagged
+  m_TagString: InteractivePrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -387,6 +387,7 @@ MonoBehaviour:
   _cost: 25
   _removeTime: 60
   _xp: 50
+  forceAmber: 0
   _xpNotification: {fileID: 1131206475677844892}
   _tapVFX: {fileID: 5688730345882234592}
   _xpCounter: {fileID: 424848804922455095}
@@ -395,10 +396,10 @@ MonoBehaviour:
   _debrisVisual: {fileID: 56320775587166711}
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
-  NewAmberPanel: {fileID: 4140251156734865095, guid: 07320cab263657648bc9ded1d2844c90,
-    type: 3}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   removing: 0
+  _data:
+    AmberIndex: 0
 --- !u!114 &1307230462330939917
 MonoBehaviour:
   m_ObjectHideFlags: 0

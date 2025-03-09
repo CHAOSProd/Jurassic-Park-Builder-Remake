@@ -11,6 +11,7 @@ public class SaveData
     public List<TreeData> TreeData { get; set; } = new List<TreeData>();
     public List<DebrisData> DebrisData { get; set; } = new List<DebrisData>();
     public List<AmberData> AmberData { get; set; } = new List<AmberData>();
+    public List<RoadData> RoadData { get; set; } = new List<RoadData>();
     public List<AnimalShopData> AnimalShopData { get; set; } = new List<AnimalShopData>();
     public List<MoneyObjectData> MoneyData { get; set; } = new List<MoneyObjectData>();
     public Dictionary<string, object> Attributes { get; set; }

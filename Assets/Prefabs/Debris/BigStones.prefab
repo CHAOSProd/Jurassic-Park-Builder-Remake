@@ -872,7 +872,7 @@ GameObject:
   - component: {fileID: 9122443602170123375}
   m_Layer: 0
   m_Name: BigStones
-  m_TagString: Untagged
+  m_TagString: InteractivePrefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1079,6 +1079,7 @@ MonoBehaviour:
   _cost: 15000
   _removeTime: 43200
   _xp: 5000
+  forceAmber: 0
   _xpNotification: {fileID: 6133466448222386783}
   _tapVFX: {fileID: 3923663685072062210}
   _xpCounter: {fileID: 2298515659784687466}
@@ -1087,10 +1088,10 @@ MonoBehaviour:
   _debrisVisual: {fileID: 7768655753199764984}
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
-  NewAmberPanel: {fileID: 4140251156734865095, guid: 07320cab263657648bc9ded1d2844c90,
-    type: 3}
   _xpCollectSound: {fileID: 8300000, guid: 8b25cf82310ae9a4bbe7ae61d6dc0057, type: 3}
   removing: 0
+  _data:
+    AmberIndex: 0
 --- !u!1 &7768655753199764984
 GameObject:
   m_ObjectHideFlags: 0
