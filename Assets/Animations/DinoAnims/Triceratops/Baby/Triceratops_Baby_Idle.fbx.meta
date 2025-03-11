@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e6c70168bc24c394588d3ea92bf584ee
+guid: a03212f9b688d8942b3da9554e2573b8
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Triceratops_Baby_Idle
+      name: Triceratops Baby Idle
       takeName: Armature|ArmatureAction
       internalID: 4781951162920444690
       firstFrame: 0

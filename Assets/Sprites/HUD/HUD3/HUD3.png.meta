@@ -24,7 +24,7 @@ TextureImporter:
       213: 1904797597647765984
     second: HorizontalButton_2
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -71,7 +71,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -350,6 +350,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: HUD3_1
+      rect:
+        serializedVersion: 2
+        x: 1833
+        y: 795
+        width: 203
+        height: 164
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30782d76c9545be43adda4ce90c4a940
+      internalID: -1679210203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -363,6 +384,7 @@ TextureImporter:
     nameFileIdTable:
       CarnivoreFood_1: -9073407148675805729
       HUD3_0: 1466005561
+      HUD3_1: -1679210203
       HorizontalButton_1: -8388547856979514056
       HorizontalButton_2: 1904797597647765984
       RedCode: 6257700037283321819

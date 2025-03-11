@@ -4608,7 +4608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2cb2b54186ad0c48a6e006e43d1bc6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dinosaurName: Toujiangosaurus
+  _dinosaurName: Tuojiangosaurus
   _currentLevel: 0
   _maximumMinutes: 0
   _maximumMoney: 0

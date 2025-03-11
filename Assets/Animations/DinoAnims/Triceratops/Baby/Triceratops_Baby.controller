@@ -98,7 +98,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Triceratops_Baby_Idle
-  m_Speed: 1.25
+  m_Speed: 1.3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1434127267796810884}
@@ -113,7 +113,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 4781951162920444690, guid: e6c70168bc24c394588d3ea92bf584ee,
+  m_Motion: {fileID: 4781951162920444690, guid: a03212f9b688d8942b3da9554e2573b8,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
