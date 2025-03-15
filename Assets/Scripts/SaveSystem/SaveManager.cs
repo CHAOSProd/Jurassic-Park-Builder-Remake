@@ -11,8 +11,10 @@ public class SaveManager : Singleton<SaveManager>
 
     private void Awake()
     {
+        // Initialize the save system
         SaveSystem.Initialize();
 
+        // Check for reset flag and delete the save file and RoadData if needed
         if (PlayerPrefs.GetInt("DeleteSaveOnStart", 0) == 1)
         {
             Debug.Log("Deleting save file on startup...");
@@ -27,25 +29,26 @@ public class SaveManager : Singleton<SaveManager>
                 Debug.LogWarning("No save file found.");
             }
 
+            // Clear RoadData if it already exists (if not, it will be initialized later)
+            if (SaveData != null && SaveData.RoadData != null)
+            {
+                SaveData.RoadData.Clear();
+                Debug.Log("Cleared RoadData on startup.");
+            }
+
             PlayerPrefs.SetInt("DeleteSaveOnStart", 0);
             PlayerPrefs.Save();
         }
 
+        // Load saved data (or create new data if no file exists)
         SaveData = SaveSystem.Load();
         Attributes.SetAttributes(SaveData.Attributes);
 
-        // Removed clearing of RoadData on startup:
-        // if (SaveData.RoadData != null)
-        // {
-        //     SaveData.RoadData.Clear();
-        //     Debug.Log("Cleared RoadData on startup.");
-        // }
-        // else
-        // {
-        //     SaveData.RoadData = new List<RoadData>();
-        // }
+        // Ensure that RoadData is initialized so it works with the RoadData class
         if (SaveData.RoadData == null)
+        {
             SaveData.RoadData = new List<RoadData>();
+        }
     }
 
     private void Start()
@@ -230,3 +233,4 @@ public class SaveManager : Singleton<SaveManager>
         SaveSystem.Save(SaveData);
     }
 }
+

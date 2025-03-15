@@ -375,7 +375,7 @@ TextureImporter:
       name: 00000006_8
       rect:
         serializedVersion: 2
-        x: 270
+        x: 269
         y: 165
         width: 127
         height: 124
@@ -396,7 +396,7 @@ TextureImporter:
       name: 00000006_9
       rect:
         serializedVersion: 2
-        x: 270
+        x: 269
         y: 297
         width: 127
         height: 124
@@ -485,7 +485,7 @@ TextureImporter:
         width: 123
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

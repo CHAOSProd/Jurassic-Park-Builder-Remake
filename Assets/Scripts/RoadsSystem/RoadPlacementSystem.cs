@@ -20,23 +20,23 @@ public class RoadPlacementSystem : MonoBehaviour
     public GameObject prefabStraightHorizontal;
 
     // Curve pieces
-    public GameObject prefabCurveUpRight;   // connectivity mask 3 (Up + Right)
-    public GameObject prefabCurveRightDown; // connectivity mask 6 (Right + Down)
-    public GameObject prefabCurveDownLeft;  // connectivity mask 12 (Down + Left)
-    public GameObject prefabCurveLeftUp;    // connectivity mask 9 (Left + Up)
+    public GameObject prefabCurveUpRight;   // connectivity mask: UP + RIGHT
+    public GameObject prefabCurveRightDown; // connectivity mask: RIGHT + DOWN
+    public GameObject prefabCurveDownLeft;  // connectivity mask: DOWN + LEFT
+    public GameObject prefabCurveLeftUp;    // connectivity mask: LEFT + UP
 
     // T-junctions (each missing one direction)
-    public GameObject prefabTJunctionMissingUp;    // missing Up => connectivity 14
-    public GameObject prefabTJunctionMissingRight; // missing Right => connectivity 13
-    public GameObject prefabTJunctionMissingDown;  // missing Down => connectivity 11
-    public GameObject prefabTJunctionMissingLeft;  // missing Left => connectivity 7
+    public GameObject prefabTJunctionMissingUp;    // missing Up => connectivity: RIGHT+DOWN+LEFT
+    public GameObject prefabTJunctionMissingRight; // missing Right => connectivity: UP+DOWN+LEFT
+    public GameObject prefabTJunctionMissingDown;  // missing Down => connectivity: UP+RIGHT+LEFT
+    public GameObject prefabTJunctionMissingLeft;  // missing Left => connectivity: UP+RIGHT+DOWN
 
     // 4-way intersection
-    public GameObject prefabFourWay; // connectivity mask 15
+    public GameObject prefabFourWay; // connectivity mask: UP+RIGHT+DOWN+LEFT
 
     [Header("Preview Settings")]
     public GameObject previewObject;
-    public Sprite straightPreviewSprite; // if needed
+    public Sprite straightPreviewSprite;
 
     [Header("UI Buttons for Mode Switching")]
     public Button addRoadButton;
@@ -67,7 +67,7 @@ public class RoadPlacementSystem : MonoBehaviour
     [Header("Sound Settings")]
     public AudioSource audioSource;
     public AudioClip placementSound;
-    public AudioClip removalSound; // Sound played on removal
+    public AudioClip removalSound;
 
     [Header("Placement Blocking")]
     public LayerMask placementBlockingLayers;
@@ -83,6 +83,12 @@ public class RoadPlacementSystem : MonoBehaviour
     // Use an enum for the two modes.
     private enum PlacementMode { Add, Remove }
     private PlacementMode currentMode = PlacementMode.Add;
+
+    // Define directional bitmask constants.
+    private const int UP = 1;
+    private const int RIGHT = 2;
+    private const int DOWN = 4;
+    private const int LEFT = 8;
 
     void Start()
     {
@@ -253,7 +259,7 @@ public class RoadPlacementSystem : MonoBehaviour
         Debug.Log("Exited placement mode and saved road layout.");
     }
 
-    // Switches the current mode and updates the button visuals to appear "pressed"
+    // Switches the current mode and updates the button visuals.
     void SetPlacementMode(PlacementMode mode)
     {
         currentMode = mode;
@@ -273,6 +279,65 @@ public class RoadPlacementSystem : MonoBehaviour
         }
     }
 
+    // Helper: Calculate connectivity based on adjacent tiles.
+    private int CalculateConnectivity(Vector3Int pos)
+    {
+        int connectivity = 0;
+        if (placedPositions.Contains(pos + new Vector3Int(0, 1, 0))) connectivity |= UP;
+        if (placedPositions.Contains(pos + new Vector3Int(1, 0, 0))) connectivity |= RIGHT;
+        if (placedPositions.Contains(pos + new Vector3Int(0, -1, 0))) connectivity |= DOWN;
+        if (placedPositions.Contains(pos + new Vector3Int(-1, 0, 0))) connectivity |= LEFT;
+        return connectivity;
+    }
+
+    // Update a road tile at a given position.
+    private void UpdateRoadAt(Vector3Int pos)
+    {
+        if (!placedPositions.Contains(pos))
+            return;
+
+        // Calculate connectivity using the helper.
+        int connectivity = CalculateConnectivity(pos);
+        tileConnectivity[pos] = connectivity;
+
+        GameObject prefabToUse = GetPrefabFromConnectivity(connectivity);
+        if (prefabToUse == null)
+        {
+            Debug.LogWarning("No prefab assigned for connectivity mask: " + connectivity);
+            return;
+        }
+
+        // Remove any existing instance before instantiating the updated one.
+        if (placedRoadObjects.ContainsKey(pos))
+        {
+            Destroy(placedRoadObjects[pos]);
+            placedRoadObjects.Remove(pos);
+        }
+
+        Vector3 worldPos = roadTilemap.GetCellCenterWorld(pos);
+        GameObject newTile = Instantiate(prefabToUse, worldPos, Quaternion.identity, roadTilemap.transform);
+        newTile.SetActive(true);
+        placedRoadObjects[pos] = newTile;
+    }
+
+    // Update the tile and its immediate neighbors.
+    private void UpdateAdjacentRoads(Vector3Int centerPos)
+    {
+        List<Vector3Int> positionsToUpdate = new List<Vector3Int>()
+        {
+            centerPos,
+            centerPos + new Vector3Int(0, 1, 0),
+            centerPos + new Vector3Int(1, 0, 0),
+            centerPos + new Vector3Int(0, -1, 0),
+            centerPos + new Vector3Int(-1, 0, 0)
+        };
+
+        foreach (var pos in positionsToUpdate)
+        {
+            UpdateRoadAt(pos);
+        }
+    }
+
     void PlaceRoadTile(Vector3Int gridPos)
     {
         placedPositions.Add(gridPos);
@@ -280,13 +345,7 @@ public class RoadPlacementSystem : MonoBehaviour
         if (audioSource != null && placementSound != null)
             audioSource.PlayOneShot(placementSound);
 
-        // Update the placed road tile and its neighbors.
-        UpdateRoadAt(gridPos);
-        UpdateRoadAt(gridPos + new Vector3Int(0, 1, 0));
-        UpdateRoadAt(gridPos + new Vector3Int(1, 0, 0));
-        UpdateRoadAt(gridPos + new Vector3Int(0, -1, 0));
-        UpdateRoadAt(gridPos + new Vector3Int(-1, 0, 0));
-
+        UpdateAdjacentRoads(gridPos);
         SaveRoads();
     }
 
@@ -307,77 +366,55 @@ public class RoadPlacementSystem : MonoBehaviour
         if (audioSource != null && removalSound != null)
             audioSource.PlayOneShot(removalSound);
 
-        // Update neighboring road tiles.
-        UpdateRoadAt(gridPos + new Vector3Int(0, 1, 0));
-        UpdateRoadAt(gridPos + new Vector3Int(1, 0, 0));
-        UpdateRoadAt(gridPos + new Vector3Int(0, -1, 0));
-        UpdateRoadAt(gridPos + new Vector3Int(-1, 0, 0));
-
+        UpdateAdjacentRoads(gridPos);
         SaveRoads();
-    }
-
-    // Recalculate connectivity for a tile, update its stored connectivity, and instantiate the correct prefab.
-    void UpdateRoadAt(Vector3Int pos)
-    {
-        if (!placedPositions.Contains(pos))
-            return;
-
-        // Calculate connectivity using bitmask: Up=1, Right=2, Down=4, Left=8.
-        int connectivity = 0;
-        Vector3Int up = pos + new Vector3Int(0, 1, 0);
-        Vector3Int right = pos + new Vector3Int(1, 0, 0);
-        Vector3Int down = pos + new Vector3Int(0, -1, 0);
-        Vector3Int left = pos + new Vector3Int(-1, 0, 0);
-
-        if (placedPositions.Contains(up))    connectivity |= 1;
-        if (placedPositions.Contains(right)) connectivity |= 2;
-        if (placedPositions.Contains(down))  connectivity |= 4;
-        if (placedPositions.Contains(left))  connectivity |= 8;
-
-        // Store the connectivity so it can be saved.
-        tileConnectivity[pos] = connectivity;
-
-        GameObject prefabToUse = GetPrefabFromConnectivity(connectivity);
-        if (prefabToUse == null)
-        {
-            Debug.LogWarning("No prefab assigned for connectivity mask: " + connectivity);
-            return;
-        }
-
-        // Destroy any existing instance before instantiating the updated one.
-        if (placedRoadObjects.ContainsKey(pos))
-        {
-            Destroy(placedRoadObjects[pos]);
-            placedRoadObjects.Remove(pos);
-        }
-
-        Vector3 worldPos = roadTilemap.GetCellCenterWorld(pos);
-        GameObject newTile = Instantiate(prefabToUse, worldPos, Quaternion.identity, roadTilemap.transform);
-        newTile.SetActive(true); // Ensure the tile is active
-        placedRoadObjects[pos] = newTile;
     }
 
     // Returns the prefab corresponding to the connectivity mask.
     GameObject GetPrefabFromConnectivity(int connectivity)
     {
+        // For isolated tiles, choose a default.
+        if (connectivity == 0)
+            return prefabEndUp;
+
+        // For single-connection tiles, use an identity mapping:
+        // • Only neighbor ABOVE → return End Up.
+        // • Only neighbor BELOW → return End Down.
+        // • Only neighbor RIGHT → return End Right.
+        // • Only neighbor LEFT → return End Left.
+        if (connectivity == UP)    return prefabEndUp;
+        if (connectivity == DOWN)  return prefabEndDown;
+        if (connectivity == RIGHT) return prefabEndRight;
+        if (connectivity == LEFT)  return prefabEndLeft;
+
+        // For multiple connections, use explicit mappings.
         switch (connectivity)
         {
-            case 1:  return prefabEndUp;
-            case 2:  return prefabEndRight;
-            case 4:  return prefabEndDown;
-            case 8:  return prefabEndLeft;
-            case 3:  return prefabCurveUpRight;
-            case 5:  return prefabStraightVertical;
-            case 9:  return prefabCurveLeftUp;
-            case 6:  return prefabCurveRightDown;
-            case 10: return prefabStraightHorizontal;
-            case 12: return prefabCurveDownLeft;
-            case 7:  return prefabTJunctionMissingLeft;
-            case 11: return prefabTJunctionMissingDown;
-            case 13: return prefabTJunctionMissingRight;
-            case 14: return prefabTJunctionMissingUp;
-            case 15: return prefabFourWay;
-            default: return prefabEndUp;
+            case UP | DOWN:
+                return prefabStraightVertical;
+            case LEFT | RIGHT:
+                return prefabStraightHorizontal;
+            case UP | RIGHT:
+                return prefabCurveUpRight;
+            case RIGHT | DOWN:
+                return prefabCurveRightDown;
+            case DOWN | LEFT:
+                return prefabCurveDownLeft;
+            case LEFT | UP:
+                return prefabCurveLeftUp;
+            case UP | RIGHT | DOWN:
+                return prefabTJunctionMissingLeft; // missing LEFT
+            case RIGHT | DOWN | LEFT:
+                return prefabTJunctionMissingUp;   // missing UP
+            case DOWN | LEFT | UP:
+                return prefabTJunctionMissingRight; // missing RIGHT
+            case LEFT | UP | RIGHT:
+                return prefabTJunctionMissingDown;  // missing DOWN
+            case UP | RIGHT | DOWN | LEFT:
+                return prefabFourWay;
+            default:
+                Debug.LogWarning("Unexpected connectivity: " + connectivity);
+                return prefabEndUp;
         }
     }
 
@@ -414,7 +451,7 @@ public class RoadPlacementSystem : MonoBehaviour
                 {
                     Vector3 worldPos = roadTilemap.GetCellCenterWorld(gridPos);
                     GameObject newTile = Instantiate(prefabToUse, worldPos, Quaternion.identity, roadTilemap.transform);
-                    newTile.SetActive(true); // Ensure the tile is active
+                    newTile.SetActive(true);
                     placedRoadObjects[gridPos] = newTile;
                 }
             }

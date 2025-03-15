@@ -304,6 +304,7 @@ MonoBehaviour:
     m_Size: {x: 12, y: 12, z: 0}
   _selectableFromBeginning: 1
   _selected: {fileID: 6187210174021621795}
+  ResearchButton: {fileID: 0}
   _selectSound: {fileID: 8300000, guid: 93ad3df578ff619468e0171f2ce58db4, type: 3}
 --- !u!114 &2528748575467815670
 MonoBehaviour:
