@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using System.Globalization;
 using System.Runtime.CompilerServices;
 using TMPro;
@@ -38,6 +39,12 @@ public class CurrencySystem : Singleton<CurrencySystem>
     private void Start()
     {
         EventManager.Instance.AddListener<CurrencyChangeGameEvent>(AddCurrency);
+        StartCoroutine(DelayedDailyReward());
+    }
+    private IEnumerator DelayedDailyReward()
+    {
+        yield return new WaitForSeconds(0.01f);
+        DailyRewardSystem.CheckAndGrantDailyBuck();
     }
     public void Load()
     {

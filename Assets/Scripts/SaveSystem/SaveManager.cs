@@ -43,6 +43,41 @@ public class SaveManager : Singleton<SaveManager>
         // Load saved data (or create new data if no file exists)
         SaveData = SaveSystem.Load();
         Attributes.SetAttributes(SaveData.Attributes);
+        int futureSaveCount = PlayerPrefs.GetInt("FutureSaveCount", 0);
+        if (Attributes.HaveKey("LastSaveTime"))
+        {
+            DateTime lastSaveTime = Attributes.GetAttribute("LastSaveTime", DateTime.MinValue);
+            DateTime now = DateTime.Now;
+            Debug.Log("Last Save Time: " + lastSaveTime);
+            Debug.Log("Current Date Time: " + now);
+            if (lastSaveTime > now)
+            {
+                futureSaveCount++;
+                if (futureSaveCount >= 2) 
+                {
+                    Debug.LogWarning("Cheated after the warning, deleting data...");
+                    PlayerPrefs.SetInt("DeleteSaveOnStart", 1);
+                    PlayerPrefs.Save();
+                    #if UNITY_EDITOR
+                    Debug.Log("Closing the game in the Unity Editor.");
+                    UnityEditor.EditorApplication.isPlaying = false;
+                    #else
+                    Debug.Log("Closing the game in build.");
+                    Application.Quit();
+                    #endif
+                }
+                else
+                {
+                    Debug.LogWarning("Last save time is in the future! Next times cheating, the data will be deleted");
+                    PlayerPrefs.SetInt("FutureSaveCount", futureSaveCount);
+                    PlayerPrefs.Save();
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("No previous save time found.");
+        }
 
         // Ensure that RoadData is initialized so it works with the RoadData class
         if (SaveData.RoadData == null)
