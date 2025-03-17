@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class RoadPlacementSystem : MonoBehaviour
 {
+
     [Header("Tilemap")]
     public Tilemap roadTilemap;
 
@@ -71,6 +73,9 @@ public class RoadPlacementSystem : MonoBehaviour
 
     [Header("Placement Blocking")]
     public LayerMask placementBlockingLayers;
+    private bool isDragging = false;
+    private Vector3 lastMousePosition;
+    public BoundsInt Area;
 
     // Internal data for road placement.
     private bool isPlacing = false;
@@ -141,56 +146,73 @@ public class RoadPlacementSystem : MonoBehaviour
         Vector3 cellCenter = roadTilemap.GetCellCenterWorld(roadGridPos);
         if (previewObject != null)
             previewObject.transform.position = cellCenter;
-
+        
         if (Input.GetMouseButtonDown(0))
         {
-            if (currentMode == PlacementMode.Add)
+            isDragging = false;
+            lastMousePosition = Input.mousePosition;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            // If the mouse moves beyond a certain threshold, consider it a drag
+            if (Vector3.Distance(lastMousePosition, Input.mousePosition) > 10f)
             {
-                // In add mode, check if tile is already occupied.
-                if (placedPositions.Contains(roadGridPos))
-                {
-                    Debug.Log("Tile already occupied at: " + roadGridPos);
-                    return;
-                }
+                isDragging = true;
+            }
+        }
 
-                // Check for blocking objects.
-                Collider2D hit = Physics2D.OverlapPoint(cellCenter, placementBlockingLayers);
-                if (hit != null)
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (!isDragging && !EventSystem.current.IsPointerOverGameObject()) // Execute action only if there was no dragging and no UI over the pointer
+            {
+                if (currentMode == PlacementMode.Add)
                 {
-                    Debug.Log("Cannot place road at " + roadGridPos + " because of blocking object: " + hit.gameObject.name);
-                    return;
-                }
-
-                // Optional: Use GridBuildingSystem to check the tile.
-                if (GridBuildingSystem.Instance != null &&
-                    GridBuildingSystem.Instance.GridLayout != null &&
-                    GridBuildingSystem.Instance.MainTilemap != null)
-                {
-                    Vector3Int mainCellPos = GridBuildingSystem.Instance.GridLayout.WorldToCell(cellCenter);
-                    var area = new BoundsInt(mainCellPos, new Vector3Int(1, 1, 1));
-                    if (!GridBuildingSystem.Instance.CanTakeArea(area))
+                    // In add mode, check if tile is already occupied.
+                    if (placedPositions.Contains(roadGridPos))
                     {
-                        Debug.Log("Cannot place road at " + mainCellPos + " because the tile is not white.");
+                        Debug.Log("Tile already occupied at: " + roadGridPos);
                         return;
                     }
-                }
-                else
-                {
-                    Debug.LogWarning("GridBuildingSystem or its required components are missing!");
-                }
 
-                PlaceRoadTile(roadGridPos);
-            }
-            else if (currentMode == PlacementMode.Remove)
-            {
-                // In remove mode, if there is a road tile at the clicked cell, remove it.
-                if (placedPositions.Contains(roadGridPos))
-                {
-                    RemoveRoadTile(roadGridPos);
+                    // Check for blocking objects.
+                    Collider2D hit = Physics2D.OverlapPoint(cellCenter, placementBlockingLayers);
+                    if (hit != null)
+                    {
+                        Debug.Log("Cannot place road at " + roadGridPos + " because of blocking object: " + hit.gameObject.name);
+                        return;
+                    }
+
+                    // Optional: Use GridBuildingSystem to check the tile.
+                    if (GridBuildingSystem.Instance != null &&
+                        GridBuildingSystem.Instance.GridLayout != null &&
+                        GridBuildingSystem.Instance.MainTilemap != null)
+                    {
+                        Vector3Int mainCellPos = GridBuildingSystem.Instance.GridLayout.WorldToCell(cellCenter);
+                        var area = new BoundsInt(mainCellPos, new Vector3Int(1, 1, 1));
+                        if (!GridBuildingSystem.Instance.CanTakeArea(area))
+                        {
+                            Debug.Log("Cannot place road at " + mainCellPos + " because the tile is not white.");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("GridBuildingSystem or its required components are missing!");
+                    }
+                    PlaceRoadTile(roadGridPos);
                 }
-                else
+                else if (currentMode == PlacementMode.Remove)
                 {
-                    Debug.Log("No road tile to remove at: " + roadGridPos);
+                    // In remove mode, if there is a road tile at the clicked cell, remove it.
+                    if (placedPositions.Contains(roadGridPos))
+                    {
+                        RemoveRoadTile(roadGridPos);
+                    }
+                    else
+                    {
+                        Debug.Log("No road tile to remove at: " + roadGridPos);
+                    }
                 }
             }
         }
