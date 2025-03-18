@@ -122,10 +122,15 @@ public class SaveManager : Singleton<SaveManager>
             });
 
             HatchingTimer hatchingTimer = placeableTriceratops.GetComponentInChildren<HatchingTimer>(true);
+            MoneyObject moneyObject = placeableTriceratops.GetComponentInChildren<MoneyObject>(true);
 
             if (placeableTriceratops._isPaddock)
             {
                 hatchingTimer.InitializeTriceratops();
+                if (moneyObject != null)
+                {
+                    moneyObject.Initialise(new MoneyObjectData(0, 0) { Money = (int)moneyObject.MaximumMoney });
+                }
             }
 
             placeableTriceratops.PlaceWithoutSave();

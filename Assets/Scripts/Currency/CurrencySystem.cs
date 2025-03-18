@@ -16,6 +16,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
     private static Dictionary<CurrencyType, int> _currencyAmounts = new Dictionary<CurrencyType, int>();
 
     private static Dictionary<CurrencyType, TextMeshProUGUI> _currencyTexts = new Dictionary<CurrencyType, TextMeshProUGUI>();
+    private Dictionary<CurrencyType, Coroutine> _activeCoroutines = new Dictionary<CurrencyType, Coroutine>();
 
     // Define default values in code, if we want to, we can make a serialized dictionary (would require new classes)
     private static readonly Dictionary<CurrencyType, int> _defaultValues = new() 
@@ -96,10 +97,42 @@ public class CurrencySystem : Singleton<CurrencySystem>
 
             _currencyAmounts[currencyType] += amount;
             Attributes.SetInt(currencyType.ToString(), _currencyAmounts[currencyType]);
-            _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("N0", new CultureInfo("en-US"));
+            if (_activeCoroutines.ContainsKey(currencyType))
+            {
+                StopCoroutine(_activeCoroutines[currencyType]);
+                _activeCoroutines.Remove(currencyType);
+            }
+            if (amount > 0)
+            {
+                Coroutine coroutine = StartCoroutine(UpdateCurrencyTextDelayed(currencyType));
+                _activeCoroutines[currencyType] = coroutine;
+            }
+            else
+            {
+                _currencyTexts[currencyType].text = _currencyAmounts[currencyType].ToString("N0", new CultureInfo("en-US"));
+            }
             return true;
         }
         return false;
+    }
+    private IEnumerator UpdateCurrencyTextDelayed(CurrencyType currencyType)
+    {
+        yield return new WaitForSeconds(0.9f);
+
+        int startValue = int.Parse(_currencyTexts[currencyType].text, NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
+        int endValue = _currencyAmounts[currencyType];
+        float duration = 0.4f;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            int currentValue = Mathf.RoundToInt(Mathf.Lerp(startValue, endValue, elapsed / duration));
+            _currencyTexts[currencyType].text = currentValue.ToString("N0", new CultureInfo("en-US"));
+            yield return null;
+        }
+
+        _currencyTexts[currencyType].text = endValue.ToString("N0", new CultureInfo("en-US"));
     }
 
     public int GetCurrencyAmount(CurrencyType currencyType)

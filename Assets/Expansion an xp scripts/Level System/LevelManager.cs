@@ -141,8 +141,8 @@ public class LevelManager : MonoBehaviour
     private void UpdateXP()
     {
         Debug.Log($"XP: {XP}"); // Log the current XP
-        CalculateLevel(); // Check if the player should level up
-        UpdateUI(); // Update the UI to reflect new XP
+        StartCoroutine(DelayedCalculateLevel()); // Check if the player should level up
+        StartCoroutine(DelayedUpdateUI()); // Update the UI to reflect new XP
         Save(); // Save progress
     }
 
@@ -168,6 +168,11 @@ public class LevelManager : MonoBehaviour
         bucksToAdd = levelsGained * 2;
         BuckAmountText.text = $"{bucksToAdd}";
     }
+    private IEnumerator DelayedCalculateLevel()
+    {
+        yield return new WaitForSeconds(1f);
+        CalculateLevel();
+    }
 
     // Updates the UI elements for level and XP bar.
     // The XP bar always shows at least xpBarPadding fill even at 0 XP.
@@ -179,12 +184,17 @@ public class LevelManager : MonoBehaviour
             float xpFill = XP / xpPerLevel[(int)level - 1];
             xpFill = Mathf.Clamp01(xpFill);
             // Ensure the XP bar shows a minimum fill based on xpBarPadding.
-            XPFillImage.fillAmount = Mathf.Max(xpFill, xpBarPadding);
+            XPFillImage.fillAmount = (xpFill * (1 - xpBarPadding)) + xpBarPadding;
         }
         else
         {
             XPFillImage.fillAmount = 1f;
         }
+    }
+    private IEnumerator DelayedUpdateUI()
+    {
+        yield return new WaitForSeconds(1f);
+        UpdateUI();
     }
 
     // Shows the level up panel
