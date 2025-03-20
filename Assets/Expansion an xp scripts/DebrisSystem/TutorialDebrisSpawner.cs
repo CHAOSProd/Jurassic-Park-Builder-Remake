@@ -16,7 +16,8 @@ public class TutorialDebrisSpawner : MonoBehaviour
         new Vector2(0.13f, -0.32f),
         new Vector2(0.39f, -0.06f),
         new Vector2(0.79f, 0.01f),
-        new Vector2(1.05f, 0.14f)
+        new Vector2(1.05f, 0.14f),
+        new Vector2(-0.13f, -0.19f)
     };
 
     private void Start()
@@ -50,10 +51,7 @@ public class TutorialDebrisSpawner : MonoBehaviour
         if (debrisObject.TryGetComponent(out DebrisObject debris))
         {
             debris.Initialize(size, DebrisType.SmallGrass, true);
-        }
-
-        Destroy(gameObject);
-        
+        }  
 
         Debug.Log($"Debris spawned at position: {chosenPosition}");
     }
