@@ -7,14 +7,20 @@ public class AmberData
 {
     public int Index { get; private set; }
     public bool IsActivated { get; private set; }
+    public int LastDecodedIndex { get; private set; }
 
-    public AmberData(int index, bool isActivated = false)
+    public AmberData(int index, bool isActivated = false, int lastDecodedIndex = -1)
     {
         Index = index;
         IsActivated = isActivated;
+        LastDecodedIndex = lastDecodedIndex;
     }
     public void Activate()
     {
         IsActivated = true;
+    }
+    public void SetLastDecodedIndex(int index)
+    {
+        LastDecodedIndex = index;
     }
 }

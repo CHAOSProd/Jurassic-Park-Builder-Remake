@@ -6,6 +6,9 @@ public class AmberManager : Singleton<AmberManager>
 {
     [Header("UI")]
     [SerializeField] private GameObject AmberPanel;
+    [SerializeField] private GameObject objectToDisable1;
+    [SerializeField] private GameObject objectToDisable2;
+    [SerializeField] private GameObject objectToEnable;
 
     [Header("Sound")]
     [SerializeField] private GameObject PanelOpeningSound;
@@ -16,6 +19,23 @@ public class AmberManager : Singleton<AmberManager>
     {
         PanelOpeningSound.GetComponent<AudioSource>().Play();
         AmberPanel.SetActive(true);
+        if (DinoAmber.lastDecodedAmberIndex != -1)
+        {
+            if (objectToDisable1 != null)
+            {
+                objectToDisable1.SetActive(false);
+            }
+
+            if (objectToDisable2 != null)
+            {
+                objectToDisable2.SetActive(false);
+            }
+
+            if (objectToEnable != null)
+            {
+                objectToEnable.SetActive(true);
+            }
+        }
         AmberPanel.GetComponent<Animator>().Play("openAnimation");
         UIManager.Instance.ChangeFixedTo("PanelUI");
         UIManager.Instance.DisableCurrent();
@@ -59,6 +79,8 @@ public class AmberManager : Singleton<AmberManager>
         if (SaveManager.Instance.SaveData.AmberData != null)
         {
             _amberList = SaveManager.Instance.SaveData.AmberData;
+            int lastIndex = _amberList.FindLast(a => a.LastDecodedIndex != -1)?.LastDecodedIndex ?? -1;
+            DinoAmber.lastDecodedAmberIndex = lastIndex;
         }
         else
         {
@@ -98,5 +120,31 @@ public class AmberManager : Singleton<AmberManager>
     public bool HasAnyAmberActivated()
     {
         return _amberList.Exists(a => a.IsActivated);
+    }
+    public void SetLastDecodedAmber(int index)
+    {
+        foreach (AmberData amber in _amberList)
+        {
+            if (amber.Index == index)
+            {
+                amber.SetLastDecodedIndex(index);
+                SaveAmberData();
+                break;
+            }
+        }
+    }
+    public int GetLastCollectedAmberIndex()
+    {
+        int maxIndex = -1;
+
+        foreach (AmberData amber in _amberList)
+        {
+            if (amber.IsActivated && amber.Index > maxIndex)
+            {
+                maxIndex = amber.Index;
+            }
+        }
+
+        return maxIndex;
     }
 }

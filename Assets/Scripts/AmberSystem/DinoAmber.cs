@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DinoAmber : MonoBehaviour
 {
@@ -8,23 +9,27 @@ public class DinoAmber : MonoBehaviour
     [SerializeField] private GameObject UnknownDinoImage;
     [SerializeField] private GameObject AmberDecodingImage;
     [SerializeField] private GameObject DecodeButton;
+    [SerializeField] private GameObject ResearchInProgressText;
+    public static int lastDecodedAmberIndex = -1;
 
     public static void AddCollectedAmber(int index)
     {
         AmberManager.Instance.ActivateAmber(index);
         AmberManager.Instance.CheckAndEnableDinoAmbers();
+        StartDecodingHandler startDecodingHandler = FindObjectOfType<StartDecodingHandler>(true);
+        if (startDecodingHandler != null)
+        {
+            startDecodingHandler.SetAmberIndex(index);
+        }
+        ResearchButtonHandler researchButtonHandler = FindObjectOfType<ResearchButtonHandler>(true);
+        if (researchButtonHandler != null)
+        {
+            researchButtonHandler.SetAmberIndex(index);
+        }
     }
 
     public void ActivateAmber()
     {
-        if (IsUniversalAmber)
-        {
-            Debug.Log("DinoAmber activated on the visitor center");
-        }
-        else
-        {
-            Debug.Log($"DinoAmber with index {DinoAmberIndex} activated.");
-        }
         if (AmberNotFound != null)
         {
             AmberNotFound.SetActive(false);
@@ -39,7 +44,42 @@ public class DinoAmber : MonoBehaviour
         }
         if (DecodeButton != null)
         {
-            DecodeButton.SetActive(true);
+            if (lastDecodedAmberIndex == -1 || lastDecodedAmberIndex == DinoAmberIndex)
+            {
+                DecodeButton.SetActive(true);
+            }
+            else
+            {
+                ResearchInProgressText.SetActive(true);
+            }
+            DecodeButton.GetComponent<Button>().onClick.RemoveAllListeners();
+            DecodeButton.GetComponent<Button>().onClick.AddListener(() => 
+            {
+                ResearchManager.Instance.SetAmberIndex(DinoAmberIndex);
+                ResearchManager.Instance.OpenPanel();
+                DisableOtherDecodeButtons(DinoAmberIndex);
+            });
+        }
+    }
+
+    public static void DisableOtherDecodeButtons(int activeIndex)
+    {
+        lastDecodedAmberIndex = activeIndex;
+        AmberManager.Instance.SetLastDecodedAmber(activeIndex); 
+        DinoAmber[] allDinoAmbers = FindObjectsOfType<DinoAmber>(true);
+        foreach (var dinoAmber in allDinoAmbers)
+        {
+            if (dinoAmber.DinoAmberIndex != activeIndex && dinoAmber.DecodeButton != null)
+            {
+                if (dinoAmber.DecodeButton.activeSelf)
+                {
+                    dinoAmber.DecodeButton.SetActive(false);
+                    if (dinoAmber.ResearchInProgressText != null)
+                    {
+                        dinoAmber.ResearchInProgressText.SetActive(true);
+                    }
+                }
+            }
         }
     }
 
