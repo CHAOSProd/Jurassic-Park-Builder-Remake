@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 7691754784962021736}
   - component: {fileID: 6675374764008372797}
   - component: {fileID: 8910759126127388544}
+  - component: {fileID: 2987194577566303833}
   m_Layer: 0
   m_Name: TJunctionMissingLeft
   m_TagString: Untagged
@@ -300,3 +301,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2987194577566303833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4890578464988405645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa96583115608e4aadabcf309b4ea40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

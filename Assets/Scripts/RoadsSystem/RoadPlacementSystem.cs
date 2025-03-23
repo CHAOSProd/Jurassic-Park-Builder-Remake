@@ -6,35 +6,29 @@ using UnityEngine.UI;
 
 public class RoadPlacementSystem : MonoBehaviour
 {
-
     [Header("Tilemap")]
     public Tilemap roadTilemap;
 
     [Header("Road Prefab Variants")]
-    // End pieces – assign a separate prefab for each facing direction
     public GameObject prefabEndUp;
     public GameObject prefabEndRight;
     public GameObject prefabEndDown;
     public GameObject prefabEndLeft;
 
-    // Straight pieces
     public GameObject prefabStraightVertical;
     public GameObject prefabStraightHorizontal;
 
-    // Curve pieces
-    public GameObject prefabCurveUpRight;   // connectivity mask: UP + RIGHT
-    public GameObject prefabCurveRightDown; // connectivity mask: RIGHT + DOWN
-    public GameObject prefabCurveDownLeft;  // connectivity mask: DOWN + LEFT
-    public GameObject prefabCurveLeftUp;    // connectivity mask: LEFT + UP
+    public GameObject prefabCurveUpRight;
+    public GameObject prefabCurveRightDown;
+    public GameObject prefabCurveDownLeft;
+    public GameObject prefabCurveLeftUp;
 
-    // T-junctions (each missing one direction)
-    public GameObject prefabTJunctionMissingUp;    // missing Up => connectivity: RIGHT+DOWN+LEFT
-    public GameObject prefabTJunctionMissingRight; // missing Right => connectivity: UP+DOWN+LEFT
-    public GameObject prefabTJunctionMissingDown;  // missing Down => connectivity: UP+RIGHT+LEFT
-    public GameObject prefabTJunctionMissingLeft;  // missing Left => connectivity: UP+RIGHT+DOWN
+    public GameObject prefabTJunctionMissingUp;
+    public GameObject prefabTJunctionMissingRight;
+    public GameObject prefabTJunctionMissingDown;
+    public GameObject prefabTJunctionMissingLeft;
 
-    // 4-way intersection
-    public GameObject prefabFourWay; // connectivity mask: UP+RIGHT+DOWN+LEFT
+    public GameObject prefabFourWay;
 
     [Header("Preview Settings")]
     public GameObject previewObject;
@@ -54,11 +48,11 @@ public class RoadPlacementSystem : MonoBehaviour
     public Sprite removeButtonNormalSprite;
 
     [Header("Additional UI Objects to Deactivate")]
-    public GameObject[] uiObjectsToDeactivate; // Ensure these DO NOT include the add/remove buttons
+    public GameObject[] uiObjectsToDeactivate;
 
     [Header("Interactive Prefabs to Disable During Placement")]
     public GameObject[] interactivePrefabs;
-    
+
     [Header("Interactive Prefab Tag for Clones")]
     [Tooltip("Any cloned interactive prefab should be tagged with this tag.")]
     public string interactivePrefabTag = "InteractivePrefab";
@@ -81,15 +75,12 @@ public class RoadPlacementSystem : MonoBehaviour
     private bool isPlacing = false;
     private List<Vector3Int> placedPositions = new List<Vector3Int>();
     private Dictionary<Vector3Int, GameObject> placedRoadObjects = new Dictionary<Vector3Int, GameObject>();
-
-    // Dictionary to store each tile’s connectivity (used for saving road type)
     private Dictionary<Vector3Int, int> tileConnectivity = new Dictionary<Vector3Int, int>();
 
-    // Use an enum for the two modes.
     private enum PlacementMode { Add, Remove }
     private PlacementMode currentMode = PlacementMode.Add;
 
-    // Define directional bitmask constants.
+    // Directional bitmask constants.
     private const int UP = 1;
     private const int RIGHT = 2;
     private const int DOWN = 4;
@@ -97,7 +88,6 @@ public class RoadPlacementSystem : MonoBehaviour
 
     void Start()
     {
-        // Set up mode buttons.
         if (addRoadButton != null)
             addRoadButton.onClick.AddListener(() => SetPlacementMode(PlacementMode.Add));
         else
@@ -124,7 +114,6 @@ public class RoadPlacementSystem : MonoBehaviour
             mainCamera = Camera.main;
         }
 
-        // Attempt to load saved road placements.
         LoadRoads();
     }
 
@@ -140,13 +129,12 @@ public class RoadPlacementSystem : MonoBehaviour
                 uiObj.SetActive(false);
         }
 
-        // Update preview position.
         Vector3 mouseWorldPos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int roadGridPos = roadTilemap.WorldToCell(mouseWorldPos);
         Vector3 cellCenter = roadTilemap.GetCellCenterWorld(roadGridPos);
         if (previewObject != null)
             previewObject.transform.position = cellCenter;
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             isDragging = false;
@@ -155,7 +143,6 @@ public class RoadPlacementSystem : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            // If the mouse moves beyond a certain threshold, consider it a drag
             if (Vector3.Distance(lastMousePosition, Input.mousePosition) > 10f)
             {
                 isDragging = true;
@@ -164,18 +151,16 @@ public class RoadPlacementSystem : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (!isDragging && !EventSystem.current.IsPointerOverGameObject()) // Execute action only if there was no dragging and no UI over the pointer
+            if (!isDragging && !EventSystem.current.IsPointerOverGameObject())
             {
                 if (currentMode == PlacementMode.Add)
                 {
-                    // In add mode, check if tile is already occupied.
                     if (placedPositions.Contains(roadGridPos))
                     {
                         Debug.Log("Tile already occupied at: " + roadGridPos);
                         return;
                     }
 
-                    // Check for blocking objects.
                     Collider2D hit = Physics2D.OverlapPoint(cellCenter, placementBlockingLayers);
                     if (hit != null)
                     {
@@ -183,13 +168,14 @@ public class RoadPlacementSystem : MonoBehaviour
                         return;
                     }
 
-                    // Optional: Use GridBuildingSystem to check the tile.
+                    // Check with grid system if the area can be taken.
                     if (GridBuildingSystem.Instance != null &&
                         GridBuildingSystem.Instance.GridLayout != null &&
                         GridBuildingSystem.Instance.MainTilemap != null)
                     {
                         Vector3Int mainCellPos = GridBuildingSystem.Instance.GridLayout.WorldToCell(cellCenter);
                         var area = new BoundsInt(mainCellPos, new Vector3Int(1, 1, 1));
+                        // Directly check if tile is white. (Assuming white means free.)
                         if (!GridBuildingSystem.Instance.CanTakeArea(area))
                         {
                             Debug.Log("Cannot place road at " + mainCellPos + " because the tile is not white.");
@@ -200,11 +186,11 @@ public class RoadPlacementSystem : MonoBehaviour
                     {
                         Debug.LogWarning("GridBuildingSystem or its required components are missing!");
                     }
+
                     PlaceRoadTile(roadGridPos);
                 }
                 else if (currentMode == PlacementMode.Remove)
                 {
-                    // In remove mode, if there is a road tile at the clicked cell, remove it.
                     if (placedPositions.Contains(roadGridPos))
                     {
                         RemoveRoadTile(roadGridPos);
@@ -221,7 +207,6 @@ public class RoadPlacementSystem : MonoBehaviour
     public void EnterPlacementMode()
     {
         isPlacing = true;
-        // Default mode when entering is Add mode.
         SetPlacementMode(PlacementMode.Add);
 
         if (previewObject != null)
@@ -233,7 +218,6 @@ public class RoadPlacementSystem : MonoBehaviour
                 uiObj.SetActive(false);
         }
 
-        // Disable colliders on interactive prefabs.
         if (interactivePrefabs != null)
         {
             foreach (GameObject obj in interactivePrefabs)
@@ -242,7 +226,6 @@ public class RoadPlacementSystem : MonoBehaviour
                     DisableColliders(obj);
             }
         }
-        // Also disable colliders on any clones in the scene.
         GameObject[] clones = GameObject.FindGameObjectsWithTag(interactivePrefabTag);
         foreach (GameObject clone in clones)
         {
@@ -263,7 +246,6 @@ public class RoadPlacementSystem : MonoBehaviour
                 uiObj.SetActive(true);
         }
 
-        // Re-enable colliders on interactive prefabs.
         if (interactivePrefabs != null)
         {
             foreach (GameObject obj in interactivePrefabs)
@@ -281,7 +263,6 @@ public class RoadPlacementSystem : MonoBehaviour
         Debug.Log("Exited placement mode and saved road layout.");
     }
 
-    // Switches the current mode and updates the button visuals.
     void SetPlacementMode(PlacementMode mode)
     {
         currentMode = mode;
@@ -301,7 +282,6 @@ public class RoadPlacementSystem : MonoBehaviour
         }
     }
 
-    // Helper: Calculate connectivity based on adjacent tiles.
     private int CalculateConnectivity(Vector3Int pos)
     {
         int connectivity = 0;
@@ -312,13 +292,11 @@ public class RoadPlacementSystem : MonoBehaviour
         return connectivity;
     }
 
-    // Update a road tile at a given position.
     private void UpdateRoadAt(Vector3Int pos)
     {
         if (!placedPositions.Contains(pos))
             return;
 
-        // Calculate connectivity using the helper.
         int connectivity = CalculateConnectivity(pos);
         tileConnectivity[pos] = connectivity;
 
@@ -329,7 +307,6 @@ public class RoadPlacementSystem : MonoBehaviour
             return;
         }
 
-        // Remove any existing instance before instantiating the updated one.
         if (placedRoadObjects.ContainsKey(pos))
         {
             Destroy(placedRoadObjects[pos]);
@@ -342,7 +319,6 @@ public class RoadPlacementSystem : MonoBehaviour
         placedRoadObjects[pos] = newTile;
     }
 
-    // Update the tile and its immediate neighbors.
     private void UpdateAdjacentRoads(Vector3Int centerPos)
     {
         List<Vector3Int> positionsToUpdate = new List<Vector3Int>()
@@ -368,6 +344,34 @@ public class RoadPlacementSystem : MonoBehaviour
             audioSource.PlayOneShot(placementSound);
 
         UpdateAdjacentRoads(gridPos);
+
+        // Update grid occupancy by directly updating the MainTilemap to GREEN.
+        if (GridBuildingSystem.Instance != null &&
+            GridBuildingSystem.Instance.GridLayout != null &&
+            GridBuildingSystem.Instance.MainTilemap != null)
+        {
+            Vector3 cellCenter = roadTilemap.GetCellCenterWorld(gridPos);
+            Vector3Int gridBuildingPos = GridBuildingSystem.Instance.GridLayout.WorldToCell(cellCenter);
+            BoundsInt area = new BoundsInt(gridBuildingPos, new Vector3Int(1, 1, 1));
+
+            // Load the green tile directly from Resources.
+            TileBase greenTile = Resources.Load<TileBase>("Tiles/green");
+            if (greenTile != null)
+            {
+                GridBuildingSystem.Instance.MainTilemap.SetTile(gridBuildingPos, greenTile);
+                GridBuildingSystem.Instance.MainTilemap.RefreshTile(gridBuildingPos);
+                Debug.Log("Directly updated MainTilemap: Cell " + gridBuildingPos + " set to GREEN for road at grid position: " + gridPos);
+            }
+            else
+            {
+                Debug.LogError("Green tile not found in Resources/Tiles/green");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("GridBuildingSystem or its required components are missing!");
+        }
+
         SaveRoads();
     }
 
@@ -388,28 +392,46 @@ public class RoadPlacementSystem : MonoBehaviour
         if (audioSource != null && removalSound != null)
             audioSource.PlayOneShot(removalSound);
 
+        // Free grid occupancy by directly updating the MainTilemap to WHITE.
+        if (GridBuildingSystem.Instance != null &&
+            GridBuildingSystem.Instance.GridLayout != null &&
+            GridBuildingSystem.Instance.MainTilemap != null)
+        {
+            Vector3 cellCenter = roadTilemap.GetCellCenterWorld(gridPos);
+            Vector3Int gridBuildingPos = GridBuildingSystem.Instance.GridLayout.WorldToCell(cellCenter);
+            BoundsInt area = new BoundsInt(gridBuildingPos, new Vector3Int(1, 1, 1));
+
+            // Load the white tile directly from Resources.
+            TileBase whiteTile = Resources.Load<TileBase>("Tiles/white");
+            if (whiteTile != null)
+            {
+                GridBuildingSystem.Instance.MainTilemap.SetTile(gridBuildingPos, whiteTile);
+                GridBuildingSystem.Instance.MainTilemap.RefreshTile(gridBuildingPos);
+                Debug.Log("Directly updated MainTilemap: Cell " + gridBuildingPos + " set to WHITE for road at grid position: " + gridPos);
+            }
+            else
+            {
+                Debug.LogError("White tile not found in Resources/Tiles/white");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("GridBuildingSystem or its required components are missing!");
+        }
+
         UpdateAdjacentRoads(gridPos);
         SaveRoads();
     }
 
-    // Returns the prefab corresponding to the connectivity mask.
     GameObject GetPrefabFromConnectivity(int connectivity)
     {
-        // For isolated tiles, choose a default.
         if (connectivity == 0)
             return prefabEndUp;
-
-        // For single-connection tiles, use an identity mapping:
-        // • Only neighbor ABOVE → return End Up.
-        // • Only neighbor BELOW → return End Down.
-        // • Only neighbor RIGHT → return End Right.
-        // • Only neighbor LEFT → return End Left.
         if (connectivity == UP)    return prefabEndUp;
         if (connectivity == DOWN)  return prefabEndDown;
         if (connectivity == RIGHT) return prefabEndRight;
         if (connectivity == LEFT)  return prefabEndLeft;
 
-        // For multiple connections, use explicit mappings.
         switch (connectivity)
         {
             case UP | DOWN:
@@ -425,13 +447,13 @@ public class RoadPlacementSystem : MonoBehaviour
             case LEFT | UP:
                 return prefabCurveLeftUp;
             case UP | RIGHT | DOWN:
-                return prefabTJunctionMissingLeft; // missing LEFT
+                return prefabTJunctionMissingLeft;
             case RIGHT | DOWN | LEFT:
-                return prefabTJunctionMissingUp;   // missing UP
+                return prefabTJunctionMissingUp;
             case DOWN | LEFT | UP:
-                return prefabTJunctionMissingRight; // missing RIGHT
+                return prefabTJunctionMissingRight;
             case LEFT | UP | RIGHT:
-                return prefabTJunctionMissingDown;  // missing DOWN
+                return prefabTJunctionMissingDown;
             case UP | RIGHT | DOWN | LEFT:
                 return prefabFourWay;
             default:
@@ -440,7 +462,6 @@ public class RoadPlacementSystem : MonoBehaviour
         }
     }
 
-    // Save the road layout using grid positions and stored connectivity.
     void SaveRoads()
     {
         SaveManager.Instance.SaveData.RoadData.Clear();
@@ -455,7 +476,6 @@ public class RoadPlacementSystem : MonoBehaviour
         Debug.Log("Saved road layout. Total roads: " + placedPositions.Count);
     }
 
-    // Load the road layout using saved grid positions and connectivity values.
     void LoadRoads()
     {
         if (SaveManager.Instance.SaveData.RoadData == null)
