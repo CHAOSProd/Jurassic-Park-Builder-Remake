@@ -69,7 +69,7 @@ public class AmberManager : Singleton<AmberManager>
         }
     }
     
-    private void SaveAmberData()
+    public void SaveAmberData()
     {
         SaveManager.Instance.SaveData.AmberData = _amberList;
     }
@@ -86,6 +86,13 @@ public class AmberManager : Singleton<AmberManager>
         {
             _amberList = new List<AmberData>();
         }
+        if (DinoAmber.lastDecodedAmberIndex != -1 && PlayerPrefs.GetInt("ForceLastDecodedToMinusOne", 0) == 1)
+        {
+            DinoAmber.lastDecodedAmberIndex = -1;
+        }
+        Debug.Log($"lastDecodedAmberIndex: {DinoAmber.lastDecodedAmberIndex}");
+        ResearchManager.Instance.ActivateAmberNotification();
+        ResearchManager.Instance.DeactivateAmberNotification();
         CheckAndEnableDinoAmbers();
     }
     

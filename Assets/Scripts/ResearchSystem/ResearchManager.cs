@@ -7,6 +7,7 @@ public class ResearchManager : Singleton<ResearchManager>
     [Header("UI")]
     [SerializeField] private GameObject ResearchPanel;
     [SerializeField] private GameObject NoAmberPanel;
+    [SerializeField] private GameObject AmberNotification;
 
     [Header("Sound")]
     [SerializeField] private GameObject PanelOpeningSound;
@@ -17,6 +18,10 @@ public class ResearchManager : Singleton<ResearchManager>
     {
         currentAmberIndex = index;
     }
+    public int GetCurrentAmberIndex()
+    {
+        return currentAmberIndex;
+    }
 
     public void OpenPanel()
     {
@@ -25,7 +30,7 @@ public class ResearchManager : Singleton<ResearchManager>
             PanelOpeningSound.GetComponent<AudioSource>().Play();
         }
 
-        Debug.Log($"Opening Research Panel for Amber Index: {currentAmberIndex}");
+        Debug.Log($"Currently researching dino amber index: {currentAmberIndex}");
         
         ResearchPanel.SetActive(true);
         UIManager.Instance.ChangeFixedTo("PanelUI");
@@ -46,6 +51,24 @@ public class ResearchManager : Singleton<ResearchManager>
         UIManager.Instance.DisableCurrent();
         UIManager.Instance.ChangeCameraPanningStatus(false);
     }
+
+    public void ActivateAmberNotification()
+    {
+        bool allAmbersDecoded = AmberManager.Instance.GetAmberList().TrueForAll(a => a.IsDecoded);
+        if (AmberManager.Instance.HasAnyAmberActivated() && !allAmbersDecoded)
+        {
+            AmberNotification.SetActive(true);
+        }
+    }
+    public void DeactivateAmberNotification()
+    {
+        bool allAmbersDecoded = AmberManager.Instance.GetAmberList().TrueForAll(a => a.IsDecoded);
+        if (AmberManager.Instance.HasAnyAmberActivated() && allAmbersDecoded)
+        {
+            AmberNotification.SetActive(false);
+        }
+    }
+
 
     public void ClosePanel()
     {

@@ -6,9 +6,13 @@ public class DinoAmber : MonoBehaviour
     [SerializeField] public int DinoAmberIndex;
     [SerializeField] private bool IsUniversalAmber;
     [SerializeField] private GameObject AmberNotFound;
+    [SerializeField] private GameObject BuyButton;
+    [SerializeField] private GameObject UnKnownSpeciesText;
+    [SerializeField] private GameObject KnownSpeciesText;
     [SerializeField] private GameObject UnknownDinoImage;
+    [SerializeField] private GameObject KnownDinoImage;
     [SerializeField] private GameObject AmberDecodingImage;
-    [SerializeField] private GameObject DecodeButton;
+    [SerializeField] public GameObject DecodeButton;
     [SerializeField] private GameObject ResearchInProgressText;
     public static int lastDecodedAmberIndex = -1;
 
@@ -30,35 +34,74 @@ public class DinoAmber : MonoBehaviour
 
     public void ActivateAmber()
     {
-        if (AmberNotFound != null)
+        ResearchManager.Instance.ActivateAmberNotification();
+        ResearchManager.Instance.DeactivateAmberNotification();
+        AmberData amber = AmberManager.Instance.GetAmberList().Find(a => a.Index == DinoAmberIndex);
+        AnimalToggle animalToggle = GetComponent<AnimalToggle>();
+        if (amber != null && (amber.IsDecoded && amber.IsActivated))
         {
-            AmberNotFound.SetActive(false);
-        }
-        if (UnknownDinoImage != null)
-        {
-            UnknownDinoImage.SetActive(false);
-        }
-        if (AmberDecodingImage != null)
-        {
-            AmberDecodingImage.SetActive(true);
-        }
-        if (DecodeButton != null)
-        {
-            if (lastDecodedAmberIndex == -1 || lastDecodedAmberIndex == DinoAmberIndex)
+            if (AmberNotFound != null)
             {
-                DecodeButton.SetActive(true);
+                AmberNotFound.SetActive(false);
             }
-            else
+            if (BuyButton != null && (animalToggle == null || !animalToggle.Purchased))
             {
-                ResearchInProgressText.SetActive(true);
+                BuyButton.SetActive(true);
             }
-            DecodeButton.GetComponent<Button>().onClick.RemoveAllListeners();
-            DecodeButton.GetComponent<Button>().onClick.AddListener(() => 
+            if (UnKnownSpeciesText != null)
             {
-                ResearchManager.Instance.SetAmberIndex(DinoAmberIndex);
-                ResearchManager.Instance.OpenPanel();
-                DisableOtherDecodeButtons(DinoAmberIndex);
-            });
+                UnKnownSpeciesText.SetActive(false);
+            }
+            if (KnownSpeciesText != null)
+            {
+                KnownSpeciesText.SetActive(true);
+            }
+            if (UnknownDinoImage != null)
+            {
+                UnknownDinoImage.SetActive(false);
+            }
+            if (KnownDinoImage != null)
+            {
+                KnownDinoImage.SetActive(true);
+            }
+            if (ResearchInProgressText != null)
+            {
+                ResearchInProgressText.SetActive(false);
+            }
+        }
+        else
+        {
+            if (AmberNotFound != null)
+            {
+                AmberNotFound.SetActive(false);
+            }
+            if (UnknownDinoImage != null)
+            {
+                UnknownDinoImage.SetActive(false);
+            }
+            if (AmberDecodingImage != null)
+            {
+                AmberDecodingImage.SetActive(true);
+            }
+            if (DecodeButton != null)
+            {
+                if (lastDecodedAmberIndex == -1 || lastDecodedAmberIndex == DinoAmberIndex)
+                {
+                    DecodeButton.SetActive(true);
+                    ResearchInProgressText.SetActive(false);
+                }
+                else
+                {
+                    ResearchInProgressText.SetActive(true);
+                }
+                DecodeButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                DecodeButton.GetComponent<Button>().onClick.AddListener(() => 
+                {
+                    ResearchManager.Instance.SetAmberIndex(DinoAmberIndex);
+                    ResearchManager.Instance.OpenPanel();
+                    DisableOtherDecodeButtons(DinoAmberIndex);
+                });
+            }
         }
     }
 
@@ -81,6 +124,70 @@ public class DinoAmber : MonoBehaviour
                 }
             }
         }
+        PlayerPrefs.SetInt("ForceLastDecodedToMinusOne", 0);
+        PlayerPrefs.Save();
+    }
+    public static void EnableDinoAndEnableOtherDecodeButtons(int activeIndex)
+    {
+        Debug.Log($"Enabling dinosaur {activeIndex}");
+        Debug.Log($"lastDecodedAmberIndex before setting it to -1: {lastDecodedAmberIndex}");
+        AmberData amber = AmberManager.Instance.GetAmberList().Find(a => a.Index == activeIndex);
+        if (amber != null)
+        {
+            amber.SetDecoded(true);
+            AmberManager.Instance.SaveAmberData();
+            ResearchManager.Instance.ActivateAmberNotification();
+            ResearchManager.Instance.DeactivateAmberNotification();
+        }
+        DinoAmber[] allDinoAmbers = FindObjectsOfType<DinoAmber>(true);
+        
+        foreach (var dinoAmber in allDinoAmbers)
+        {
+            if (dinoAmber.DinoAmberIndex == activeIndex && dinoAmber.DecodeButton != null)
+            {
+                if (dinoAmber.DecodeButton.activeSelf)
+                {
+                    dinoAmber.DecodeButton.SetActive(false);
+                    if (dinoAmber.BuyButton != null)
+                    {
+                        dinoAmber.BuyButton.SetActive(true);
+                    }
+                    if (dinoAmber.KnownSpeciesText != null)
+                    {
+                        dinoAmber.KnownSpeciesText.SetActive(true);
+                    }
+                    if (dinoAmber.KnownDinoImage != null)
+                    {
+                        dinoAmber.KnownDinoImage.SetActive(true);
+                    }
+                    if (dinoAmber.AmberDecodingImage != null)
+                    {
+                        dinoAmber.AmberDecodingImage.SetActive(false);
+                    }
+                    if (dinoAmber.UnKnownSpeciesText != null)
+                    {
+                        dinoAmber.UnKnownSpeciesText.SetActive(false);
+                    }
+                }
+            }
+            if (dinoAmber.DinoAmberIndex != activeIndex && dinoAmber.DecodeButton != null)
+            {
+                if (dinoAmber.ResearchInProgressText.activeSelf)
+                {
+                    dinoAmber.ResearchInProgressText.SetActive(false);
+                    if (dinoAmber.DecodeButton != null)
+                    {
+                        dinoAmber.DecodeButton.SetActive(true);
+                    }
+                }
+            }
+        }
+        lastDecodedAmberIndex = -1;
+        AmberManager.Instance.SetLastDecodedAmber(-1);
+        AmberManager.Instance.SaveAmberData();
+        PlayerPrefs.SetInt("ForceLastDecodedToMinusOne", 1);
+        PlayerPrefs.Save();
+        Debug.Log($"lastDecodedAmberIndex after setting it to -1: {lastDecodedAmberIndex}");
     }
 
     public bool ShouldActivate()
