@@ -36,6 +36,23 @@ public class AmberManager : Singleton<AmberManager>
                 objectToEnable.SetActive(true);
             }
         }
+        else
+        {
+            if (objectToDisable1 != null)
+            {
+                objectToDisable1.SetActive(true);
+            }
+
+            if (objectToDisable2 != null)
+            {
+                objectToDisable2.SetActive(true);
+            }
+
+            if (objectToEnable != null)
+            {
+                objectToEnable.SetActive(false);
+            }
+        }
         AmberPanel.GetComponent<Animator>().Play("openAnimation");
         UIManager.Instance.ChangeFixedTo("PanelUI");
         UIManager.Instance.DisableCurrent();
@@ -127,6 +144,10 @@ public class AmberManager : Singleton<AmberManager>
     public bool HasAnyAmberActivated()
     {
         return _amberList.Exists(a => a.IsActivated);
+    }
+    public bool HasUndecodedActivatedAmber()
+    {
+        return _amberList.Exists(a => a.IsActivated && !a.IsDecoded);
     }
     public void SetLastDecodedAmber(int index)
     {

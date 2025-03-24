@@ -18,6 +18,8 @@ public class SaveManagerEditor : Editor
             {
                 File.Delete(SaveSystem.FilePath);
             }
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
         }
     }
 }

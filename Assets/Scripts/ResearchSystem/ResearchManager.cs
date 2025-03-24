@@ -11,8 +11,14 @@ public class ResearchManager : Singleton<ResearchManager>
 
     [Header("Sound")]
     [SerializeField] private GameObject PanelOpeningSound;
+        
+    [Header("Research Settings")]
+    [SerializeField] private float successRate = 50f;
+    [SerializeField] private int requiredAttempts = 3;
+    [SerializeField] private int attemptCost = 100;
 
     private int currentAmberIndex = -1;
+    private int currentAttempts = 0;
 
     public void SetAmberIndex(int index)
     {
@@ -54,21 +60,18 @@ public class ResearchManager : Singleton<ResearchManager>
 
     public void ActivateAmberNotification()
     {
-        bool allAmbersDecoded = AmberManager.Instance.GetAmberList().TrueForAll(a => a.IsDecoded);
-        if (AmberManager.Instance.HasAnyAmberActivated() && !allAmbersDecoded)
+        if (AmberManager.Instance.HasUndecodedActivatedAmber())
         {
             AmberNotification.SetActive(true);
         }
     }
     public void DeactivateAmberNotification()
     {
-        bool allAmbersDecoded = AmberManager.Instance.GetAmberList().TrueForAll(a => a.IsDecoded);
-        if (AmberManager.Instance.HasAnyAmberActivated() && allAmbersDecoded)
+        if (!AmberManager.Instance.HasUndecodedActivatedAmber())
         {
             AmberNotification.SetActive(false);
         }
     }
-
 
     public void ClosePanel()
     {
@@ -76,5 +79,44 @@ public class ResearchManager : Singleton<ResearchManager>
         UIManager.Instance.ChangeFixedTo("DefaultUI");
         UIManager.Instance.EnableCurrent();
         UIManager.Instance.ChangeCameraPanningStatus(true);
+    }
+    public void AttemptResearch()
+    {
+        EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-attemptCost, CurrencyType.Coins)); 
+        if (Random.Range(0f, 100f) <= successRate)
+        {
+            currentAttempts++;
+            SaveResearchProgress();
+            Debug.Log("Research attempt succeeded");
+        }
+        else
+        {
+            Debug.Log("Research attempt failed");
+        }
+        Debug.Log($"Progress: {currentAttempts}/{requiredAttempts}");
+
+        if (currentAttempts == requiredAttempts )
+        {
+            CompleteResearch();
+            ClosePanel();
+            SelectablesManager.Instance.UnselectAll();
+        }
+    }
+
+    private void CompleteResearch()
+    {
+        int index = GetCurrentAmberIndex();
+        DinoAmber.EnableDinoAndEnableOtherDecodeButtons(index);
+        currentAttempts = 0;
+        SaveResearchProgress();
+    }
+    private void SaveResearchProgress()
+    {
+        SaveManager.Instance.SaveData.ResearchData.CurrentAttempts = currentAttempts;
+    }
+    public void Load()
+    {
+        currentAttempts = SaveManager.Instance.SaveData.ResearchData.CurrentAttempts;
+        Debug.Log($"Loaded research progress, saved attempts: {currentAttempts}");
     }
 }

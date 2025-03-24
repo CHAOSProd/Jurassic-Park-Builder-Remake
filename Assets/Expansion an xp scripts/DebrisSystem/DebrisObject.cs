@@ -155,6 +155,16 @@ public class DebrisObject : Selectable
             Debug.Log($"Amber collected with index: {_amberIndex}");
             DinoAmber.AddCollectedAmber(_amberIndex);
             AmberManager.Instance.OpenPanel();
+            StartDecodingHandler decodingHandler = FindObjectOfType<StartDecodingHandler>();
+            if (decodingHandler != null)
+            {
+                decodingHandler.SetAmberIndex(_amberIndex);
+            }
+            ResearchButtonHandler researchHandler = FindObjectOfType<ResearchButtonHandler>();
+            if (researchHandler != null)
+            {
+                researchHandler.SetAmberIndex(_amberIndex);
+            }
         }
 
         // Play XP collect sound

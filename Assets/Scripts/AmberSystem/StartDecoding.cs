@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class StartDecodingHandler : MonoBehaviour
 {
-    private static int amberIndex = -1;
+    private int amberIndex = -1;
     private Button button;
 
     private void Awake()
@@ -24,9 +24,12 @@ public class StartDecodingHandler : MonoBehaviour
 
     private void OnStartDecodingClick()
     {
-        int lastCollectedAmberIndex = AmberManager.Instance.GetLastCollectedAmberIndex();
-        ResearchManager.Instance.SetAmberIndex(lastCollectedAmberIndex);
+        if (amberIndex == -1)
+        {
+            return;
+        }
+        ResearchManager.Instance.SetAmberIndex(amberIndex);
         ResearchManager.Instance.OpenPanel();
-        DinoAmber.DisableOtherDecodeButtons(lastCollectedAmberIndex);
+        DinoAmber.DisableOtherDecodeButtons(amberIndex);
     }
 }

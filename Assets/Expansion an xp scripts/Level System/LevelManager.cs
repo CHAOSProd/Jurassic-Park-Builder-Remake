@@ -140,7 +140,6 @@ public class LevelManager : MonoBehaviour
     // Updates the level and UI when XP changes
     private void UpdateXP()
     {
-        Debug.Log($"XP: {XP}"); // Log the current XP
         StartCoroutine(DelayedCalculateLevel()); // Check if the player should level up
         StartCoroutine(DelayedUpdateUI()); // Update the UI to reflect new XP
         Save(); // Save progress

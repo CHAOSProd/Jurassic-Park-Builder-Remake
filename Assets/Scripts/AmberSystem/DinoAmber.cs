@@ -35,7 +35,6 @@ public class DinoAmber : MonoBehaviour
     public void ActivateAmber()
     {
         ResearchManager.Instance.ActivateAmberNotification();
-        ResearchManager.Instance.DeactivateAmberNotification();
         AmberData amber = AmberManager.Instance.GetAmberList().Find(a => a.Index == DinoAmberIndex);
         AnimalToggle animalToggle = GetComponent<AnimalToggle>();
         if (amber != null && (amber.IsDecoded && amber.IsActivated))
@@ -136,7 +135,6 @@ public class DinoAmber : MonoBehaviour
         {
             amber.SetDecoded(true);
             AmberManager.Instance.SaveAmberData();
-            ResearchManager.Instance.ActivateAmberNotification();
             ResearchManager.Instance.DeactivateAmberNotification();
         }
         DinoAmber[] allDinoAmbers = FindObjectsOfType<DinoAmber>(true);

@@ -23,7 +23,6 @@ public class AttemptResearchButtonHandler : MonoBehaviour
 
     private void OnAttemptResearchButtonClick()
     {
-        int index = ResearchManager.Instance.GetCurrentAmberIndex();
-        DinoAmber.EnableDinoAndEnableOtherDecodeButtons(index);
+        ResearchManager.Instance.AttemptResearch();
     }
 }

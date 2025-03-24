@@ -23,6 +23,8 @@ public class SaveManager : Singleton<SaveManager>
             {
                 File.Delete(SaveSystem.FilePath);
                 Debug.Log("File deleted successfully");
+                PlayerPrefs.DeleteAll();
+                PlayerPrefs.Save();
             }
             else
             {
@@ -95,6 +97,7 @@ public class SaveManager : Singleton<SaveManager>
         TreeChopManager.Instance.Load();
         DebrisManager.Instance.Load();
         AmberManager.Instance.Load();
+        ResearchManager.Instance.Load();
         ShopManager.Instance.InitalizeAnimals(SaveData.AnimalShopData);
     }
 
