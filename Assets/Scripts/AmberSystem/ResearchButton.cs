@@ -31,7 +31,11 @@ public class ResearchButtonHandler : MonoBehaviour
             if (selectedAmber != null && selectedAmber.IsDecoded || amberIndex == -1)
             {
                 AmberData firstUndecodedAmber = AmberManager.Instance.GetAmberList().Find(a => !a.IsDecoded && a.IsActivated);
-                if (firstUndecodedAmber != null)
+                if (firstUndecodedAmber != null && firstUndecodedAmber.Index != DinoAmber.lastDecodedAmberIndex && DinoAmber.lastDecodedAmberIndex != -1)
+                {
+                    indexToUse = DinoAmber.lastDecodedAmberIndex;
+                }
+                else if (firstUndecodedAmber != null)
                 {
                     indexToUse = firstUndecodedAmber.Index;
                 }

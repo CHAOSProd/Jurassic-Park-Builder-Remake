@@ -24,10 +24,6 @@ public class StartDecodingHandler : MonoBehaviour
 
     private void OnStartDecodingClick()
     {
-        if (amberIndex == -1)
-        {
-            return;
-        }
         ResearchManager.Instance.SetAmberIndex(amberIndex);
         ResearchManager.Instance.OpenPanel();
         DinoAmber.DisableOtherDecodeButtons(amberIndex);

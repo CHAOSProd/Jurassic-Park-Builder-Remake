@@ -4,6 +4,9 @@ using UnityEngine.UI;
 public class DinoAmber : MonoBehaviour
 {
     [SerializeField] public int DinoAmberIndex;
+    [SerializeField] private float successRate;
+    [SerializeField] private int requiredAttempts;
+    [SerializeField] private int attemptCost;
     [SerializeField] private bool IsUniversalAmber;
     [SerializeField] private GameObject AmberNotFound;
     [SerializeField] private GameObject BuyButton;
@@ -15,6 +18,9 @@ public class DinoAmber : MonoBehaviour
     [SerializeField] public GameObject DecodeButton;
     [SerializeField] private GameObject ResearchInProgressText;
     public static int lastDecodedAmberIndex = -1;
+    public float GetSuccessRate() => successRate;
+    public int GetRequiredAttempts() => requiredAttempts;
+    public int GetAttemptCost() => attemptCost;
 
     public static void AddCollectedAmber(int index)
     {
@@ -107,7 +113,8 @@ public class DinoAmber : MonoBehaviour
     public static void DisableOtherDecodeButtons(int activeIndex)
     {
         lastDecodedAmberIndex = activeIndex;
-        AmberManager.Instance.SetLastDecodedAmber(activeIndex); 
+        AmberManager.Instance.SetLastDecodedAmber(activeIndex);
+        AmberManager.Instance.SaveAmberData(); 
         DinoAmber[] allDinoAmbers = FindObjectsOfType<DinoAmber>(true);
         foreach (var dinoAmber in allDinoAmbers)
         {
@@ -119,6 +126,7 @@ public class DinoAmber : MonoBehaviour
                     if (dinoAmber.ResearchInProgressText != null)
                     {
                         dinoAmber.ResearchInProgressText.SetActive(true);
+                        Debug.Log($"Disabled the decoding possibility to dinosaur {dinoAmber.DinoAmberIndex}");
                     }
                 }
             }
@@ -176,6 +184,7 @@ public class DinoAmber : MonoBehaviour
                     if (dinoAmber.DecodeButton != null)
                     {
                         dinoAmber.DecodeButton.SetActive(true);
+                        Debug.Log($"Enabled the decoding possibility to dinosaur {dinoAmber.DinoAmberIndex}");
                     }
                 }
             }

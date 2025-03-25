@@ -161,6 +161,7 @@ public class AmberManager : Singleton<AmberManager>
             }
         }
     }
+
     public int GetLastCollectedAmberIndex()
     {
         int maxIndex = -1;
