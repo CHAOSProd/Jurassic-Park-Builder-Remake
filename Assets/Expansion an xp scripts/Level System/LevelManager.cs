@@ -111,6 +111,7 @@ public class LevelManager : MonoBehaviour
 
         Save(); // Save progress
         ButtonUnlockHandler.Instance.UpdateUnlockItems();
+        ShopVisibility.UpdateShopVisibility();
         UpdateUnlockItems(); // Update the unlocked item filter
         UpdateUI(); // Update the UI to reflect new level
     }
@@ -157,6 +158,7 @@ public class LevelManager : MonoBehaviour
     // Excess XP over the level requirement overflows to the next level.
     private void CalculateLevel()
     {
+        int previousLevel = (int)level;
         levelsGained = 0;
         while (level < xpPerLevel.Length && XP >= xpPerLevel[(int)level - 1])
         {
@@ -164,13 +166,18 @@ public class LevelManager : MonoBehaviour
             OnLevelUp();
             levelsGained++;
         }
-        bucksToAdd = levelsGained * 2;
+        int newBucks = levelsGained * 2;
+        bucksToAdd += newBucks;
         BuckAmountText.text = $"{bucksToAdd}";
     }
     private IEnumerator DelayedCalculateLevel()
     {
         yield return new WaitForSeconds(1f);
         CalculateLevel();
+    }
+    public float GetCurrentLevel()
+    {
+        return level;
     }
 
     // Updates the UI elements for level and XP bar.
@@ -326,6 +333,7 @@ public class LevelManager : MonoBehaviour
                 CurrencyType = CurrencyType.Bucks,
                 Amount = bucksToAdd
             });
+            bucksToAdd = 0;
         }
         else
         {

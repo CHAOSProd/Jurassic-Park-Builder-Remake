@@ -36,6 +36,7 @@ public class DinoAmber : MonoBehaviour
         {
             researchButtonHandler.SetAmberIndex(index);
         }
+        ShopVisibility.UpdateShopVisibility();
     }
 
     public void ActivateAmber()
