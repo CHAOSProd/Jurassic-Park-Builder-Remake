@@ -6,4 +6,6 @@ using UnityEngine;
 public class ResearchData
 {
     public int CurrentAttempts { get; set; }
+    public int LastDecodedAmberIndex { get; set; } = -1;
+    public bool TutorialDebrisSpawned { get; set; } = false;
 }

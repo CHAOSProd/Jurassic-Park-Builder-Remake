@@ -83,7 +83,6 @@ public static class Attributes
 
     public static T GetAttribute<T>(string key, T defaultValue) where T : struct
     {
-        Debug.Log("Getting " + key + "...");
         if(_attributes.ContainsKey(key))
             return (T)_attributes[key];
 

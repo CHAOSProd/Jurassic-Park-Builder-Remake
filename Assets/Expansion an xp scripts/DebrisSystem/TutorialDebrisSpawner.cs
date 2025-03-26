@@ -8,6 +8,8 @@ public class TutorialDebrisSpawner : MonoBehaviour
     public Tilemap tilemap;
     [SerializeField] private GameObject smallGrassPrefab;
     [SerializeField] private Transform debrisParent;
+
+    public static bool tutorialDebrisSpawned;
     Vector2[] possiblePositions = new Vector2[]
     {
         new Vector2(0.92f, 0.07f),
@@ -22,15 +24,12 @@ public class TutorialDebrisSpawner : MonoBehaviour
 
     private void Start()
     {
-        if (!PlayerPrefs.HasKey("TutorialDebrisSpawned"))
+        if (!tutorialDebrisSpawned)
         {
             SpawnSmallGrassDebris();
-            PlayerPrefs.SetInt("TutorialDebrisSpawned", 1);
-            PlayerPrefs.Save();
-        }
-        else
-        {
-            Debug.Log("Debris already spawned");
+            tutorialDebrisSpawned = true;
+            Debug.Log($"Tutorial debris spawn set to: {tutorialDebrisSpawned}");
+            ResearchManager.Instance.SaveResearchProgress();
         }
     }
 
@@ -53,6 +52,6 @@ public class TutorialDebrisSpawner : MonoBehaviour
             debris.Initialize(size, DebrisType.SmallGrass, true);
         }  
 
-        Debug.Log($"Debris spawned at position: {chosenPosition}");
+        Debug.Log($"Tutorial debris spawned at position: {chosenPosition}");
     }
 }

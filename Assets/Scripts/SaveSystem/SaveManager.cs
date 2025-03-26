@@ -50,8 +50,6 @@ public class SaveManager : Singleton<SaveManager>
         {
             DateTime lastSaveTime = Attributes.GetAttribute("LastSaveTime", DateTime.MinValue);
             DateTime now = DateTime.Now;
-            Debug.Log("Last Save Time: " + lastSaveTime);
-            Debug.Log("Current Date Time: " + now);
             if (lastSaveTime > now)
             {
                 futureSaveCount++;

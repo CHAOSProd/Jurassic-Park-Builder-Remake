@@ -170,13 +170,26 @@ public class ResearchManager : Singleton<ResearchManager>
         Debug.Log($"Reserch completed, dinosaur {index} unlocked and research attempts resetted to: {currentAttempts}");
         SaveResearchProgress();
     }
-    private void SaveResearchProgress()
+    public void SaveResearchProgress()
     {
         SaveManager.Instance.SaveData.ResearchData.CurrentAttempts = currentAttempts;
+        SaveManager.Instance.SaveData.ResearchData.LastDecodedAmberIndex = DinoAmber.lastDecodedAmberIndex;
+        SaveManager.Instance.SaveData.ResearchData.TutorialDebrisSpawned = TutorialDebrisSpawner.tutorialDebrisSpawned;
     }
     public void Load()
     {
         currentAttempts = SaveManager.Instance.SaveData.ResearchData.CurrentAttempts;
+        DinoAmber.lastDecodedAmberIndex = SaveManager.Instance.SaveData.ResearchData.LastDecodedAmberIndex;
+        TutorialDebrisSpawner.tutorialDebrisSpawned = SaveManager.Instance.SaveData.ResearchData.TutorialDebrisSpawned;
         Debug.Log($"Loaded research progress, saved attempts: {currentAttempts}");
+        Debug.Log($"Loaded dino decoding index: {DinoAmber.lastDecodedAmberIndex}, (if -1 means theres no dino being decoded)");
+        if (TutorialDebrisSpawner.tutorialDebrisSpawned)
+        {
+            Debug.Log("Tutorial debris already spawned.");
+        }
+        else
+        {
+            Debug.Log("Spawning tutorial debris.");
+        }
     }
 }

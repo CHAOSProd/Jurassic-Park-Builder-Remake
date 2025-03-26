@@ -113,8 +113,7 @@ public class DinoAmber : MonoBehaviour
     public static void DisableOtherDecodeButtons(int activeIndex)
     {
         lastDecodedAmberIndex = activeIndex;
-        AmberManager.Instance.SetLastDecodedAmber(activeIndex);
-        AmberManager.Instance.SaveAmberData(); 
+        ResearchManager.Instance.SaveResearchProgress();
         DinoAmber[] allDinoAmbers = FindObjectsOfType<DinoAmber>(true);
         foreach (var dinoAmber in allDinoAmbers)
         {
@@ -131,8 +130,6 @@ public class DinoAmber : MonoBehaviour
                 }
             }
         }
-        PlayerPrefs.SetInt("ForceLastDecodedToMinusOne", 0);
-        PlayerPrefs.Save();
     }
     public static void EnableDinoAndEnableOtherDecodeButtons(int activeIndex)
     {
@@ -190,10 +187,7 @@ public class DinoAmber : MonoBehaviour
             }
         }
         lastDecodedAmberIndex = -1;
-        AmberManager.Instance.SetLastDecodedAmber(-1);
-        AmberManager.Instance.SaveAmberData();
-        PlayerPrefs.SetInt("ForceLastDecodedToMinusOne", 1);
-        PlayerPrefs.Save();
+        ResearchManager.Instance.SaveResearchProgress();
         Debug.Log($"lastDecodedAmberIndex after setting it to -1: {lastDecodedAmberIndex}");
     }
 

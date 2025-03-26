@@ -18,9 +18,5 @@ public static class DailyRewardSystem
             PlayerPrefs.Save();
             Debug.Log($"Daily buck granted, New total: {CurrencySystem.Instance.GetCurrencyAmount(CurrencyType.Bucks)}");
         }
-        else
-        {
-            Debug.Log("Daily buck already claimed today.");
-        }
     }
 }
