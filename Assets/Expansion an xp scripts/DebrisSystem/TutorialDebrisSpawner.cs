@@ -50,6 +50,7 @@ public class TutorialDebrisSpawner : MonoBehaviour
         if (debrisObject.TryGetComponent(out DebrisObject debris))
         {
             debris.Initialize(size, DebrisType.SmallGrass, true);
+            debris._removeTime = 5;
         }  
 
         Debug.Log($"Tutorial debris spawned at position: {chosenPosition}");

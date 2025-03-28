@@ -94,8 +94,8 @@ public class SaveManager : Singleton<SaveManager>
         CurrencySystem.Instance.Load();
         TreeChopManager.Instance.Load();
         DebrisManager.Instance.Load();
-        AmberManager.Instance.Load();
         ResearchManager.Instance.Load();
+        AmberManager.Instance.Load();
         ShopManager.Instance.InitalizeAnimals(SaveData.AnimalShopData);
     }
 
