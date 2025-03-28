@@ -595,53 +595,67 @@ public class RoadPlacementSystem : MonoBehaviour
     // Helper method to update visual changes for objects that need them.
     // In placement mode: overall opacity is set to 50%, "YellowOutline" is activated (with full opacity),
     // and "StarTable" is deactivated. When not in placement mode, the changes are reverted.
-  void SetPrefabPlacementVisuals(GameObject obj, bool isPlacement)
-{
-    float targetOpacity = isPlacement ? 0.5f : 1f;
-    // Set overall opacity for the entire prefab.
-    SetSpriteOpacity(obj, targetOpacity);
-
-    // YellowOutline: Always full opacity and active only in placement mode.
-    Transform yellowOutline = FindDeepChild(obj.transform, "YellowOutline");
-    if (yellowOutline != null)
+    void SetPrefabPlacementVisuals(GameObject obj, bool isPlacement)
     {
-        yellowOutline.gameObject.SetActive(isPlacement);
-        SpriteRenderer ySprite = yellowOutline.GetComponent<SpriteRenderer>();
-        if (ySprite != null)
+        float targetOpacity = isPlacement ? 0.5f : 1f;
+        // Set overall opacity for the entire prefab.
+        SetSpriteOpacity(obj, targetOpacity);
+
+        // YellowOutline: Always full opacity and active only in placement mode.
+        Transform yellowOutline = FindDeepChild(obj.transform, "YellowOutline");
+        if (yellowOutline != null)
         {
-            Color color = ySprite.color;
-            color.a = 1f; // Always 100%
-            ySprite.color = color;
+            yellowOutline.gameObject.SetActive(isPlacement);
+            SpriteRenderer ySprite = yellowOutline.GetComponent<SpriteRenderer>();
+            if (ySprite != null)
+            {
+                Color color = ySprite.color;
+                color.a = 1f; // Always 100%
+                ySprite.color = color;
+            }
+        }
+
+        // StarTable: Follows general opacity rules.
+        Transform starTable = FindDeepChild(obj.transform, "StarTable");
+        if (starTable != null)
+        {
+            SetSpriteOpacity(starTable.gameObject, targetOpacity);
+        }
+
+        // MoneyNotification: Always full opacity.
+        Transform moneyNotif = FindDeepChild(obj.transform, "MoneyNotification");
+        if (moneyNotif != null)
+        {
+            SetSpriteOpacity(moneyNotif.gameObject, 1f);
+        }
+
+        // XpNotification: Always full opacity.
+        Transform xpNotif = FindDeepChild(obj.transform, "XpNotification");
+        if (xpNotif != null)
+        {
+            SetSpriteOpacity(xpNotif.gameObject, 1f);
+        }
+        
+        // Dinos_Shadow: Always full opacity.
+        Transform dinosShadow = FindDeepChild(obj.transform, "Dinos_Shadow");
+        if (dinosShadow != null)
+        {
+            SetSpriteOpacity(dinosShadow.gameObject, 1f);
+        }
+
+        // Egg: always full opacity
+        Transform egg = FindDeepChild(obj.transform, "Egg");
+        if (egg != null)
+        {
+            SetSpriteOpacity(egg.gameObject, 1f);
+        }
+
+        // TimerBar: always full opacity
+        var all = GameObject.FindObjectsOfType<TimerBar>(true);
+        foreach (var tb in all)
+        {
+            SetSpriteOpacity(tb.gameObject, 1f);
         }
     }
-
-    // StarTable: Follows general opacity rules.
-    Transform starTable = FindDeepChild(obj.transform, "StarTable");
-    if (starTable != null)
-    {
-        SetSpriteOpacity(starTable.gameObject, targetOpacity);
-    }
-
-    // MoneyNotification: Always full opacity.
-    Transform moneyNotif = FindDeepChild(obj.transform, "MoneyNotification");
-    if (moneyNotif != null)
-    {
-        SetSpriteOpacity(moneyNotif.gameObject, 1f);
-    }
-
-    // XpNotification: Always full opacity.
-    Transform xpNotif = FindDeepChild(obj.transform, "XpNotification");
-    if (xpNotif != null)
-    {
-        SetSpriteOpacity(xpNotif.gameObject, 1f);
-    }
-    
-    // Dinos_Shadow: Always full opacity.
-    Transform dinosShadow = FindDeepChild(obj.transform, "Dinos_Shadow");
-    if (dinosShadow != null)
-    {
-        SetSpriteOpacity(dinosShadow.gameObject, 1f);
-    }
-}
 
 }

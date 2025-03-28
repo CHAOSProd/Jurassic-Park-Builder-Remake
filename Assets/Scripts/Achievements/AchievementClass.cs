@@ -6,7 +6,7 @@ public class AchievementClass
 {
     public enum Achievements
     {
-        Toujiangosaurus = 0
+        Toujiangosaurus,
         Yutyrannus,
         Amargasaurus,
         Taperjara,
@@ -15,11 +15,11 @@ public class AchievementClass
         Welcome_to_Jurassic_Park,
         Good_start,
         Fast_and_Furious,
-        Is_it_a_bird?,
+        Is_it_a_bird,
         Ceratosaurus,
         Pachycephalosaurus,
         Baryonyx,
-        Say_it_again?,
+        Say_it_again,
         Ankylosaurus,
         Parasaurolophus,
         Brontosaurus,
@@ -31,7 +31,7 @@ public class AchievementClass
         Allosaurus,
         Corythosaurus,
         Camarasaurus,
-        IS_it_a_plane?,
+        IS_it_a_plane,
         Hail_to_the_King,
         Acrocanthosaurus,
         Torosaurus,
