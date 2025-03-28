@@ -16,4 +16,5 @@ public class SaveData
     public List<AnimalShopData> AnimalShopData { get; set; } = new List<AnimalShopData>();
     public List<MoneyObjectData> MoneyData { get; set; } = new List<MoneyObjectData>();
     public Dictionary<string, object> Attributes { get; set; }
+    public static Dictionary<AchievementClass.Achievements,bool> AchievementData {get;set;}
 }

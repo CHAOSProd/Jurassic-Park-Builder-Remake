@@ -9,25 +9,21 @@ public class RoadPlacementSystem : MonoBehaviour
     [Header("Tilemap")]
     public Tilemap roadTilemap;
 
-    [Header("Road Prefab Variants")]
+    [Header("Road Prefab Variants (unchanged)")]
     public GameObject prefabEndUp;
     public GameObject prefabEndRight;
     public GameObject prefabEndDown;
     public GameObject prefabEndLeft;
-
     public GameObject prefabStraightVertical;
     public GameObject prefabStraightHorizontal;
-
     public GameObject prefabCurveUpRight;
     public GameObject prefabCurveRightDown;
     public GameObject prefabCurveDownLeft;
     public GameObject prefabCurveLeftUp;
-
     public GameObject prefabTJunctionMissingUp;
     public GameObject prefabTJunctionMissingRight;
     public GameObject prefabTJunctionMissingDown;
     public GameObject prefabTJunctionMissingLeft;
-
     public GameObject prefabFourWay;
 
     [Header("Preview Settings")]
@@ -50,11 +46,13 @@ public class RoadPlacementSystem : MonoBehaviour
     [Header("Additional UI Objects to Deactivate")]
     public GameObject[] uiObjectsToDeactivate;
 
-    [Header("Interactive Prefabs to Disable During Placement")]
-    public GameObject[] interactivePrefabs;
+    [Header("Interactive Objects for Collider-Only (e.g. some buildings/paddocks)")]
+    public GameObject[] colliderOnlyObjects;
+
+    [Header("Interactive Objects for Visual Changes (e.g. buildings, paddocks)")]
+    public GameObject[] visualChangeObjects;
 
     [Header("Interactive Prefab Tag for Clones")]
-    [Tooltip("Any cloned interactive prefab should be tagged with this tag.")]
     public string interactivePrefabTag = "InteractivePrefab";
 
     [Header("Camera")]
@@ -122,7 +120,6 @@ public class RoadPlacementSystem : MonoBehaviour
         if (!isPlacing)
             return;
 
-        // Deactivate extra UI objects during placement.
         foreach (GameObject uiObj in uiObjectsToDeactivate)
         {
             if (uiObj != null && uiObj.activeSelf)
@@ -144,9 +141,7 @@ public class RoadPlacementSystem : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             if (Vector3.Distance(lastMousePosition, Input.mousePosition) > 10f)
-            {
                 isDragging = true;
-            }
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -168,14 +163,12 @@ public class RoadPlacementSystem : MonoBehaviour
                         return;
                     }
 
-                    // Check with grid system if the area can be taken.
                     if (GridBuildingSystem.Instance != null &&
                         GridBuildingSystem.Instance.GridLayout != null &&
                         GridBuildingSystem.Instance.MainTilemap != null)
                     {
                         Vector3Int mainCellPos = GridBuildingSystem.Instance.GridLayout.WorldToCell(cellCenter);
                         var area = new BoundsInt(mainCellPos, new Vector3Int(1, 1, 1));
-                        // Directly check if tile is white. (Assuming white means free.)
                         if (!GridBuildingSystem.Instance.CanTakeArea(area))
                         {
                             Debug.Log("Cannot place road at " + mainCellPos + " because the tile is not white.");
@@ -192,16 +185,15 @@ public class RoadPlacementSystem : MonoBehaviour
                 else if (currentMode == PlacementMode.Remove)
                 {
                     if (placedPositions.Contains(roadGridPos))
-                    {
                         RemoveRoadTile(roadGridPos);
-                    }
                     else
-                    {
                         Debug.Log("No road tile to remove at: " + roadGridPos);
-                    }
                 }
             }
         }
+
+        // Update clones continuously in placement mode.
+        UpdateClonesVisuals(true);
     }
 
     public void EnterPlacementMode()
@@ -218,19 +210,30 @@ public class RoadPlacementSystem : MonoBehaviour
                 uiObj.SetActive(false);
         }
 
-        if (interactivePrefabs != null)
+        if (colliderOnlyObjects != null)
         {
-            foreach (GameObject obj in interactivePrefabs)
+            foreach (GameObject obj in colliderOnlyObjects)
             {
                 if (obj != null)
                     DisableColliders(obj);
             }
         }
-        GameObject[] clones = GameObject.FindGameObjectsWithTag(interactivePrefabTag);
-        foreach (GameObject clone in clones)
+
+        if (visualChangeObjects != null)
         {
-            DisableColliders(clone);
+            foreach (GameObject obj in visualChangeObjects)
+            {
+                if (obj != null)
+                {
+                    DisableColliders(obj);
+                    SetPrefabPlacementVisuals(obj, true);
+                }
+            }
         }
+
+        // Update clones initially.
+        UpdateClonesVisuals(true);
+
         Debug.Log("Entered placement mode.");
     }
 
@@ -246,21 +249,79 @@ public class RoadPlacementSystem : MonoBehaviour
                 uiObj.SetActive(true);
         }
 
-        if (interactivePrefabs != null)
+        if (colliderOnlyObjects != null)
         {
-            foreach (GameObject obj in interactivePrefabs)
+            foreach (GameObject obj in colliderOnlyObjects)
             {
                 if (obj != null)
                     EnableColliders(obj);
             }
         }
+
+        if (visualChangeObjects != null)
+        {
+            foreach (GameObject obj in visualChangeObjects)
+            {
+                if (obj != null)
+                {
+                    EnableColliders(obj);
+                    SetPrefabPlacementVisuals(obj, false);
+                }
+            }
+        }
+
+        UpdateClonesVisuals(false);
+
+        SaveRoads();
+        Debug.Log("Exited placement mode and saved road layout.");
+    }
+
+    // This method recursively searches for a child with the given name.
+    Transform FindDeepChild(Transform parent, string name)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child.name == name)
+                return child;
+            Transform result = FindDeepChild(child, name);
+            if (result != null)
+                return result;
+        }
+        return null;
+    }
+
+    // Update clones with the interactivePrefabTag.
+    void UpdateClonesVisuals(bool isPlacement)
+    {
         GameObject[] clones = GameObject.FindGameObjectsWithTag(interactivePrefabTag);
         foreach (GameObject clone in clones)
         {
-            EnableColliders(clone);
+            if (clone == null) continue;
+            // Use the recursive search to find the children.
+            Transform yellowOutline = FindDeepChild(clone.transform, "YellowOutline");
+            Transform starTable = FindDeepChild(clone.transform, "StarTable");
+
+            if (yellowOutline != null && starTable != null)
+            {
+                if (isPlacement)
+                {
+                    DisableColliders(clone);
+                    SetPrefabPlacementVisuals(clone, true);
+                }
+                else
+                {
+                    EnableColliders(clone);
+                    SetPrefabPlacementVisuals(clone, false);
+                }
+            }
+            else
+            {
+                if (isPlacement)
+                    DisableColliders(clone);
+                else
+                    EnableColliders(clone);
+            }
         }
-        SaveRoads();
-        Debug.Log("Exited placement mode and saved road layout.");
     }
 
     void SetPlacementMode(PlacementMode mode)
@@ -345,7 +406,6 @@ public class RoadPlacementSystem : MonoBehaviour
 
         UpdateAdjacentRoads(gridPos);
 
-        // Update grid occupancy by directly updating the MainTilemap to GREEN.
         if (GridBuildingSystem.Instance != null &&
             GridBuildingSystem.Instance.GridLayout != null &&
             GridBuildingSystem.Instance.MainTilemap != null)
@@ -354,13 +414,12 @@ public class RoadPlacementSystem : MonoBehaviour
             Vector3Int gridBuildingPos = GridBuildingSystem.Instance.GridLayout.WorldToCell(cellCenter);
             BoundsInt area = new BoundsInt(gridBuildingPos, new Vector3Int(1, 1, 1));
 
-            // Load the green tile directly from Resources.
             TileBase greenTile = Resources.Load<TileBase>("Tiles/green");
             if (greenTile != null)
             {
                 GridBuildingSystem.Instance.MainTilemap.SetTile(gridBuildingPos, greenTile);
                 GridBuildingSystem.Instance.MainTilemap.RefreshTile(gridBuildingPos);
-                Debug.Log("Directly updated MainTilemap: Cell " + gridBuildingPos + " set to GREEN for road at grid position: " + gridPos);
+                Debug.Log("Updated MainTilemap: Cell " + gridBuildingPos + " set to GREEN for road at grid position: " + gridPos);
             }
             else
             {
@@ -392,7 +451,6 @@ public class RoadPlacementSystem : MonoBehaviour
         if (audioSource != null && removalSound != null)
             audioSource.PlayOneShot(removalSound);
 
-        // Free grid occupancy by directly updating the MainTilemap to WHITE.
         if (GridBuildingSystem.Instance != null &&
             GridBuildingSystem.Instance.GridLayout != null &&
             GridBuildingSystem.Instance.MainTilemap != null)
@@ -401,13 +459,12 @@ public class RoadPlacementSystem : MonoBehaviour
             Vector3Int gridBuildingPos = GridBuildingSystem.Instance.GridLayout.WorldToCell(cellCenter);
             BoundsInt area = new BoundsInt(gridBuildingPos, new Vector3Int(1, 1, 1));
 
-            // Load the white tile directly from Resources.
             TileBase whiteTile = Resources.Load<TileBase>("Tiles/white");
             if (whiteTile != null)
             {
                 GridBuildingSystem.Instance.MainTilemap.SetTile(gridBuildingPos, whiteTile);
                 GridBuildingSystem.Instance.MainTilemap.RefreshTile(gridBuildingPos);
-                Debug.Log("Directly updated MainTilemap: Cell " + gridBuildingPos + " set to WHITE for road at grid position: " + gridPos);
+                Debug.Log("Updated MainTilemap: Cell " + gridBuildingPos + " set to WHITE for road at grid position: " + gridPos);
             }
             else
             {
@@ -522,4 +579,69 @@ public class RoadPlacementSystem : MonoBehaviour
         foreach (Collider col in colliders3D)
             col.enabled = true;
     }
+
+    // Helper method to set the opacity of all SpriteRenderer components within an object.
+    void SetSpriteOpacity(GameObject obj, float opacity)
+    {
+        SpriteRenderer[] sprites = obj.GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer sprite in sprites)
+        {
+            Color color = sprite.color;
+            color.a = opacity;
+            sprite.color = color;
+        }
+    }
+
+    // Helper method to update visual changes for objects that need them.
+    // In placement mode: overall opacity is set to 50%, "YellowOutline" is activated (with full opacity),
+    // and "StarTable" is deactivated. When not in placement mode, the changes are reverted.
+  void SetPrefabPlacementVisuals(GameObject obj, bool isPlacement)
+{
+    float targetOpacity = isPlacement ? 0.5f : 1f;
+    // Set overall opacity for the entire prefab.
+    SetSpriteOpacity(obj, targetOpacity);
+
+    // YellowOutline: Always full opacity and active only in placement mode.
+    Transform yellowOutline = FindDeepChild(obj.transform, "YellowOutline");
+    if (yellowOutline != null)
+    {
+        yellowOutline.gameObject.SetActive(isPlacement);
+        SpriteRenderer ySprite = yellowOutline.GetComponent<SpriteRenderer>();
+        if (ySprite != null)
+        {
+            Color color = ySprite.color;
+            color.a = 1f; // Always 100%
+            ySprite.color = color;
+        }
+    }
+
+    // StarTable: Follows general opacity rules.
+    Transform starTable = FindDeepChild(obj.transform, "StarTable");
+    if (starTable != null)
+    {
+        SetSpriteOpacity(starTable.gameObject, targetOpacity);
+    }
+
+    // MoneyNotification: Always full opacity.
+    Transform moneyNotif = FindDeepChild(obj.transform, "MoneyNotification");
+    if (moneyNotif != null)
+    {
+        SetSpriteOpacity(moneyNotif.gameObject, 1f);
+    }
+
+    // XpNotification: Always full opacity.
+    Transform xpNotif = FindDeepChild(obj.transform, "XpNotification");
+    if (xpNotif != null)
+    {
+        SetSpriteOpacity(xpNotif.gameObject, 1f);
+    }
+    
+    // Dinos_Shadow: Always full opacity.
+    Transform dinosShadow = FindDeepChild(obj.transform, "Dinos_Shadow");
+    if (dinosShadow != null)
+    {
+        SetSpriteOpacity(dinosShadow.gameObject, 1f);
+    }
+}
+
 }

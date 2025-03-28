@@ -319,11 +319,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DinoAmberIndex: 0
+  successRate: 0
+  requiredAttempts: 0
+  attemptCost: 0
   IsUniversalAmber: 1
   AmberNotFound: {fileID: 0}
+  BuyButton: {fileID: 0}
+  UnKnownSpeciesText: {fileID: 0}
+  KnownSpeciesText: {fileID: 0}
   UnknownDinoImage: {fileID: 0}
+  KnownDinoImage: {fileID: 0}
   AmberDecodingImage: {fileID: 7523314670755779805}
   DecodeButton: {fileID: 0}
+  ResearchInProgressText: {fileID: 0}
 --- !u!1 &6187210174021621795
 GameObject:
   m_ObjectHideFlags: 0
