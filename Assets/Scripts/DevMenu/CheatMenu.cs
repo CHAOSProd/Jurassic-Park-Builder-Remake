@@ -16,8 +16,16 @@ public class CheatMenu : MonoBehaviour
     {
         if (level != 0)
         {
-            var a = GameObject.FindGameObjectWithTag("CheatButton");
-            a.GetComponent<Button>().onClick.AddListener(clicked);
+            GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+            foreach (GameObject obj in allObjects)
+            {
+                if (obj.CompareTag("CheatButton"))//shitty hack cus this version of unity cant find disabled objects
+                {
+                    obj.SetActive(true);
+                    obj.GetComponent<Button>().onClick.AddListener(clicked);
+                    break;
+                }
+            }
         }else 
         {
             return;
