@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 1189576641446233304}
   m_Layer: 0
   m_Name: MediumStones
-  m_TagString: InteractivePrefab
+  m_TagString: InteractiveColliderOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

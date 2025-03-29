@@ -1053,7 +1053,7 @@ GameObject:
   - component: {fileID: 7428123493962814247}
   m_Layer: 0
   m_Name: SabertoothDinerPrefab
-  m_TagString: InteractivePrefab
+  m_TagString: InteractiveVisualChange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

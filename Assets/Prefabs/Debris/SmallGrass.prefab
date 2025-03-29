@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 1307230462330939917}
   m_Layer: 0
   m_Name: SmallGrass
-  m_TagString: InteractivePrefab
+  m_TagString: InteractiveColliderOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -5218,7 +5218,7 @@ GameObject:
   - component: {fileID: 2368322928437077268}
   m_Layer: 0
   m_Name: DilophosaurusPaddockPrefab
-  m_TagString: InteractivePrefab
+  m_TagString: InteractiveVisualChange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

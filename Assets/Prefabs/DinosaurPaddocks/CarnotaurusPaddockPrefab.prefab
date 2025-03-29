@@ -3991,7 +3991,7 @@ GameObject:
   - component: {fileID: 1012719781780329009}
   m_Layer: 0
   m_Name: CarnotaurusPaddockPrefab
-  m_TagString: InteractivePrefab
+  m_TagString: InteractiveVisualChange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

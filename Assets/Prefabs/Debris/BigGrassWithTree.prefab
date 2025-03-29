@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 3447227281327908222}
   m_Layer: 0
   m_Name: BigGrassWithTree
-  m_TagString: InteractivePrefab
+  m_TagString: InteractiveColliderOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

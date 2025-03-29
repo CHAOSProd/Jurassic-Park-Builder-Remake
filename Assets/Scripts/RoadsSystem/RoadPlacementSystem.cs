@@ -52,8 +52,9 @@ public class RoadPlacementSystem : MonoBehaviour
     [Header("Interactive Objects for Visual Changes (e.g. buildings, paddocks)")]
     public GameObject[] visualChangeObjects;
 
-    [Header("Interactive Prefab Tag for Clones")]
-    public string interactivePrefabTag = "InteractivePrefab";
+    [Header("Interactive Tags for Clones")]
+    public string colliderOnlyTag = "InteractiveColliderOnly";
+    public string visualChangeTag = "InteractiveVisualChange";
 
     [Header("Camera")]
     public Camera mainCamera;
@@ -192,8 +193,8 @@ public class RoadPlacementSystem : MonoBehaviour
             }
         }
 
-        // Update clones continuously in placement mode.
-        UpdateClonesVisuals(true);
+        // Update interactive objects continuously during placement mode.
+        UpdateInteractiveVisuals(true);
     }
 
     public void EnterPlacementMode()
@@ -210,6 +211,7 @@ public class RoadPlacementSystem : MonoBehaviour
                 uiObj.SetActive(false);
         }
 
+        // Process collider-only objects.
         if (colliderOnlyObjects != null)
         {
             foreach (GameObject obj in colliderOnlyObjects)
@@ -219,20 +221,8 @@ public class RoadPlacementSystem : MonoBehaviour
             }
         }
 
-        if (visualChangeObjects != null)
-        {
-            foreach (GameObject obj in visualChangeObjects)
-            {
-                if (obj != null)
-                {
-                    DisableColliders(obj);
-                    SetPrefabPlacementVisuals(obj, true);
-                }
-            }
-        }
-
-        // Update clones initially.
-        UpdateClonesVisuals(true);
+        // Process visual change objects.
+        UpdateInteractiveVisuals(true);
 
         Debug.Log("Entered placement mode.");
     }
@@ -258,25 +248,14 @@ public class RoadPlacementSystem : MonoBehaviour
             }
         }
 
-        if (visualChangeObjects != null)
-        {
-            foreach (GameObject obj in visualChangeObjects)
-            {
-                if (obj != null)
-                {
-                    EnableColliders(obj);
-                    SetPrefabPlacementVisuals(obj, false);
-                }
-            }
-        }
-
-        UpdateClonesVisuals(false);
+        // Revert visual changes.
+        UpdateInteractiveVisuals(false);
 
         SaveRoads();
         Debug.Log("Exited placement mode and saved road layout.");
     }
 
-    // This method recursively searches for a child with the given name.
+    // Recursively searches for a child with the given name.
     Transform FindDeepChild(Transform parent, string name)
     {
         foreach (Transform child in parent)
@@ -290,36 +269,99 @@ public class RoadPlacementSystem : MonoBehaviour
         return null;
     }
 
-    // Update clones with the interactivePrefabTag.
-    void UpdateClonesVisuals(bool isPlacement)
+    // Checks if a GameObject is already handled in our arrays.
+    bool IsAlreadyHandled(GameObject obj)
     {
-        GameObject[] clones = GameObject.FindGameObjectsWithTag(interactivePrefabTag);
-        foreach (GameObject clone in clones)
+        if (colliderOnlyObjects != null)
         {
-            if (clone == null) continue;
-            // Use the recursive search to find the children.
-            Transform yellowOutline = FindDeepChild(clone.transform, "YellowOutline");
-            Transform starTable = FindDeepChild(clone.transform, "StarTable");
-
-            if (yellowOutline != null && starTable != null)
+            foreach (GameObject handled in colliderOnlyObjects)
             {
+                if (handled != null && (obj == handled || obj.transform.IsChildOf(handled.transform)))
+                    return true;
+            }
+        }
+        if (visualChangeObjects != null)
+        {
+            foreach (GameObject handled in visualChangeObjects)
+            {
+                if (handled != null && (obj == handled || obj.transform.IsChildOf(handled.transform)))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    // This method updates interactive objects.
+    // - Collider-only objects: only disable/enable colliders.
+    // - Visual-change objects: disable/enable colliders and adjust visuals.
+    // Additionally, we search for clones by tag to handle any unassigned objects.
+    void UpdateInteractiveVisuals(bool isPlacement)
+    {
+        HashSet<int> updatedIDs = new HashSet<int>();
+
+        // Process collider-only objects.
+        if (colliderOnlyObjects != null)
+        {
+            foreach (GameObject obj in colliderOnlyObjects)
+            {
+                if (obj == null) continue;
+                updatedIDs.Add(obj.GetInstanceID());
+                if (isPlacement)
+                    DisableColliders(obj);
+                else
+                    EnableColliders(obj);
+            }
+        }
+
+        // Process visual change objects.
+        if (visualChangeObjects != null)
+        {
+            foreach (GameObject obj in visualChangeObjects)
+            {
+                if (obj == null) continue;
+                updatedIDs.Add(obj.GetInstanceID());
                 if (isPlacement)
                 {
-                    DisableColliders(clone);
-                    SetPrefabPlacementVisuals(clone, true);
+                    DisableColliders(obj);
+                    SetPrefabPlacementVisuals(obj, true);
                 }
                 else
                 {
-                    EnableColliders(clone);
-                    SetPrefabPlacementVisuals(clone, false);
+                    EnableColliders(obj);
+                    SetPrefabPlacementVisuals(obj, false);
                 }
+            }
+        }
+
+        // Process additional clones tagged as collider-only.
+        GameObject[] colliderOnlyClones = GameObject.FindGameObjectsWithTag(colliderOnlyTag);
+        foreach (GameObject clone in colliderOnlyClones)
+        {
+            if (clone == null || updatedIDs.Contains(clone.GetInstanceID()) || IsAlreadyHandled(clone))
+                continue;
+
+            if (isPlacement)
+                DisableColliders(clone);
+            else
+                EnableColliders(clone);
+        }
+
+        // Process additional clones tagged as visual-change.
+        GameObject[] visualChangeClones = GameObject.FindGameObjectsWithTag(visualChangeTag);
+        foreach (GameObject clone in visualChangeClones)
+        {
+            if (clone == null || updatedIDs.Contains(clone.GetInstanceID()) || IsAlreadyHandled(clone))
+                continue;
+
+            if (isPlacement)
+            {
+                DisableColliders(clone);
+                SetPrefabPlacementVisuals(clone, true);
             }
             else
             {
-                if (isPlacement)
-                    DisableColliders(clone);
-                else
-                    EnableColliders(clone);
+                EnableColliders(clone);
+                SetPrefabPlacementVisuals(clone, false);
             }
         }
     }
@@ -560,31 +602,24 @@ public class RoadPlacementSystem : MonoBehaviour
 
     void DisableColliders(GameObject obj)
     {
-        Collider2D[] colliders2D = obj.GetComponentsInChildren<Collider2D>();
-        foreach (Collider2D col in colliders2D)
+        foreach (Collider2D col in obj.GetComponentsInChildren<Collider2D>())
             col.enabled = false;
-
-        Collider[] colliders3D = obj.GetComponentsInChildren<Collider>();
-        foreach (Collider col in colliders3D)
+        foreach (Collider col in obj.GetComponentsInChildren<Collider>())
             col.enabled = false;
     }
 
     void EnableColliders(GameObject obj)
     {
-        Collider2D[] colliders2D = obj.GetComponentsInChildren<Collider2D>();
-        foreach (Collider2D col in colliders2D)
+        foreach (Collider2D col in obj.GetComponentsInChildren<Collider2D>())
             col.enabled = true;
-
-        Collider[] colliders3D = obj.GetComponentsInChildren<Collider>();
-        foreach (Collider col in colliders3D)
+        foreach (Collider col in obj.GetComponentsInChildren<Collider>())
             col.enabled = true;
     }
 
-    // Helper method to set the opacity of all SpriteRenderer components within an object.
+    // Sets opacity for all SpriteRenderers in the object.
     void SetSpriteOpacity(GameObject obj, float opacity)
     {
-        SpriteRenderer[] sprites = obj.GetComponentsInChildren<SpriteRenderer>();
-        foreach (SpriteRenderer sprite in sprites)
+        foreach (SpriteRenderer sprite in obj.GetComponentsInChildren<SpriteRenderer>())
         {
             Color color = sprite.color;
             color.a = opacity;
@@ -592,16 +627,12 @@ public class RoadPlacementSystem : MonoBehaviour
         }
     }
 
-    // Helper method to update visual changes for objects that need them.
-    // In placement mode: overall opacity is set to 50%, "YellowOutline" is activated (with full opacity),
-    // and "StarTable" is deactivated. When not in placement mode, the changes are reverted.
+    // Updates visual changes for objects that are treated as visual-change.
     void SetPrefabPlacementVisuals(GameObject obj, bool isPlacement)
     {
         float targetOpacity = isPlacement ? 0.6f : 1f;
-        // Set overall opacity for the entire prefab.
         SetSpriteOpacity(obj, targetOpacity);
 
-        // YellowOutline: Always full opacity and active only in placement mode.
         Transform yellowOutline = FindDeepChild(obj.transform, "YellowOutline");
         if (yellowOutline != null)
         {
@@ -610,52 +641,32 @@ public class RoadPlacementSystem : MonoBehaviour
             if (ySprite != null)
             {
                 Color color = ySprite.color;
-                color.a = 1f; // Always 100%
+                color.a = 1f;
                 ySprite.color = color;
             }
         }
 
-        // StarTable: Follows general opacity rules.
         Transform starTable = FindDeepChild(obj.transform, "StarTable");
         if (starTable != null)
-        {
             SetSpriteOpacity(starTable.gameObject, targetOpacity);
-        }
 
-        // MoneyNotification: Always full opacity.
         Transform moneyNotif = FindDeepChild(obj.transform, "MoneyNotification");
         if (moneyNotif != null)
-        {
             SetSpriteOpacity(moneyNotif.gameObject, 1f);
-        }
 
-        // XpNotification: Always full opacity.
         Transform xpNotif = FindDeepChild(obj.transform, "XpNotification");
         if (xpNotif != null)
-        {
             SetSpriteOpacity(xpNotif.gameObject, 1f);
-        }
-        
-        // Dinos_Shadow: Always full opacity.
+
         Transform dinosShadow = FindDeepChild(obj.transform, "Dinos_Shadow");
         if (dinosShadow != null)
-        {
             SetSpriteOpacity(dinosShadow.gameObject, 1f);
-        }
 
-        // Egg: always full opacity
         Transform egg = FindDeepChild(obj.transform, "Egg");
         if (egg != null)
-        {
             SetSpriteOpacity(egg.gameObject, 1f);
-        }
 
-        // TimerBar: always full opacity
-        var all = GameObject.FindObjectsOfType<TimerBar>(true);
-        foreach (var tb in all)
-        {
+        foreach (TimerBar tb in GameObject.FindObjectsOfType<TimerBar>(true))
             SetSpriteOpacity(tb.gameObject, 1f);
-        }
     }
-
 }

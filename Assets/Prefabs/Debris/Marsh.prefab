@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 2505684701272480794}
   m_Layer: 0
   m_Name: Marsh
-  m_TagString: InteractivePrefab
+  m_TagString: InteractiveColliderOnly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

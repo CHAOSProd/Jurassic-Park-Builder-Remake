@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7948998920951115713}
   - component: {fileID: 3373916279394779596}
   - component: {fileID: 2670708621029662274}
+  - component: {fileID: 5398317864283797673}
   m_Layer: 0
   m_Name: Isometric Diamond (1)
   m_TagString: Untagged
@@ -99,6 +100,80 @@ SortingGroup:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 1
+--- !u!60 &5398317864283797673
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630990899939170822}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.6, y: 1.54}
+    newSize: {x: 1, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.37, y: -0.14}
+      - {x: 0.48999998, y: -0.07}
+      - {x: 0.63, y: 0}
+      - {x: 0.77, y: 0.04}
+      - {x: 0.89, y: 0.13}
+      - {x: 0.91999996, y: 0.22}
+      - {x: 0.91999996, y: 0.26}
+      - {x: 0.85999995, y: 0.34}
+      - {x: 0.66999996, y: 0.42}
+      - {x: 0.56, y: 0.45999998}
+      - {x: 0.45999998, y: 0.44}
+      - {x: 0.38, y: 0.45999998}
+      - {x: 0.35, y: 0.45999998}
+      - {x: 0.08, y: 0.35}
+      - {x: 0, y: 0.26999998}
+      - {x: -0.29, y: 0.14}
+      - {x: -0.39, y: 0.08}
+      - {x: -0.52, y: 0.02}
+      - {x: -0.96999997, y: -0.21}
+      - {x: -0.96999997, y: -0.26}
+      - {x: -0.90999997, y: -0.31}
+      - {x: -0.47, y: -0.53}
+      - {x: -0.39, y: -0.53}
+      - {x: -0.34, y: -0.52}
+      - {x: -0.17, y: -0.39999998}
+      - {x: 0.04, y: -0.31}
+      - {x: 0.19, y: -0.22999999}
+  m_UseDelaunayMesh: 0
 --- !u!1 &2698579717959624315
 GameObject:
   m_ObjectHideFlags: 0
