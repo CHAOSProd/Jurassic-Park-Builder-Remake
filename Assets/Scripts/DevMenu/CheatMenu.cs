@@ -8,8 +8,15 @@ public class CheatMenu : MonoBehaviour
 {
     void clicked()
     {
-        var a = GameObject.FindGameObjectWithTag("CheatMenu");
-        a.SetActive(true);
+        GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
+        foreach (GameObject obj in allObjects) //copy n paste of the shitty hack
+        {
+            if (obj.CompareTag("CheatMenu"))
+            {
+                obj.SetActive(true);
+                break;
+            }
+        }
         return;
     }
     void OnLevelWasLoaded(int level)
