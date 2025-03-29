@@ -597,7 +597,7 @@ public class RoadPlacementSystem : MonoBehaviour
     // and "StarTable" is deactivated. When not in placement mode, the changes are reverted.
     void SetPrefabPlacementVisuals(GameObject obj, bool isPlacement)
     {
-        float targetOpacity = isPlacement ? 0.5f : 1f;
+        float targetOpacity = isPlacement ? 0.6f : 1f;
         // Set overall opacity for the entire prefab.
         SetSpriteOpacity(obj, targetOpacity);
 
