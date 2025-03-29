@@ -5,4 +5,5 @@ using UnityEngine;
 public static class Globals
 {
     public static Bounds WorldBounds;
+    public static Config.ProjectConfig SelectedReleaseType; 
 }

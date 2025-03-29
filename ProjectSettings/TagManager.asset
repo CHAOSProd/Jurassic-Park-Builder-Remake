@@ -6,6 +6,8 @@ TagManager:
   tags:
   - LevelUpVFX
   - InteractivePrefab
+  - CheatButton
+  - CheatMenu
   layers:
   - Default
   - TransparentFX
