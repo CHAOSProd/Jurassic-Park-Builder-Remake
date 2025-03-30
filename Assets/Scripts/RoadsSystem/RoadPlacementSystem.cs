@@ -641,7 +641,7 @@ public class RoadPlacementSystem : MonoBehaviour
             if (ySprite != null)
             {
                 Color color = ySprite.color;
-                color.a = 1f;
+                color.a = 0.9f;
                 ySprite.color = color;
             }
         }
