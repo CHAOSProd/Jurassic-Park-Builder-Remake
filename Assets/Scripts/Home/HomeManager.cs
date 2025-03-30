@@ -5,7 +5,8 @@ using UnityEngine.UI;
 public class HomeManager : Singleton<HomeManager>
 {
     [SerializeField] private GameObject DailyBuck;
-    [SerializeField] private GameObject Notification;
+    [SerializeField] private GameObject HomeNotification;
+    [SerializeField] private GameObject LetterNotification;
     [SerializeField] private Button dailyBuckCollectButton;
     private const string LastClaimKey = "LastDailyBuckClaim";
 
@@ -26,12 +27,14 @@ public class HomeManager : Singleton<HomeManager>
         if (lastClaimDate != todayDate)
         {
             DailyBuck.SetActive(true);
-            Notification.SetActive(true);
+            HomeNotification.SetActive(true);
+            LetterNotification.SetActive(true);
         }
         else
         {
             DailyBuck.SetActive(false);
-            Notification.SetActive(false);
+            HomeNotification.SetActive(false);
+            LetterNotification.SetActive(false);
         }
     }
 
@@ -43,7 +46,8 @@ public class HomeManager : Singleton<HomeManager>
         PlayerPrefs.Save();
         
         DailyBuck.SetActive(false);
-        Notification.SetActive(false);
+        HomeNotification.SetActive(false);
+        LetterNotification.SetActive(false);
         Debug.Log("Daily buck claimed and hidden.");
     }
 }
