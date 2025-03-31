@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Paddock : Selectable
 {
@@ -49,7 +50,7 @@ public class Paddock : Selectable
 
     private void OnFeedButtonClick()
     {
-        // Only process the feed click if this paddock is the selected one.
+        // Process feed click only if this paddock is selected.
         if (_dinosaurAnimationEventsListener.IsEatAnimationEnded &&
             _dinosaurAnimator != null &&
             _selectedPaddock == this &&
@@ -70,7 +71,7 @@ public class Paddock : Selectable
 
     private void Update()
     {
-        if(!is_hatching && _dinosaurAnimator.gameObject.activeSelf)
+        if (!is_hatching && _dinosaurAnimator.gameObject.activeSelf)
         {
             _moneyObject.enabled = true;
         }
@@ -120,6 +121,18 @@ public class Paddock : Selectable
             }
         }
         _selectedPaddock = this;
+        Debug.Log("Paddock selected: " + gameObject.name);
+
+        // Set the current dinosaur feeding system in the UI manager.
+        DinosaurFeedingSystem dinoFeedSys = GetComponentInChildren<DinosaurFeedingSystem>();
+        if (dinoFeedSys != null && DinosaurFeedingUIManager.Instance != null)
+        {
+            DinosaurFeedingUIManager.Instance.SetSelectedDinosaur(dinoFeedSys);
+        }
+        else
+        {
+            Debug.LogWarning("No DinosaurFeedingSystem found in this paddock or UI Manager not available.");
+        }
     }
 
     public override void Unselect()
@@ -145,3 +158,4 @@ public enum DinoNumber
     Single,
     Multiple
 }
+

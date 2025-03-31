@@ -7,8 +7,8 @@ public class DinosaurFeedingUIManager : MonoBehaviour
 
     [Header("UI Components")]
     public Image feedFillImage;    // Image with Image Type = Filled (Horizontal)
-    public FeedButton feedButton;  // Your custom feed button script
-    public Button evolveButton;    // Evolve button (standard Button)
+    public FeedButton feedButton;  // Your custom FeedButton script
+    public Button evolveButton;    // Standard evolve button
 
     // The currently selected dinosaur’s feeding system.
     private DinosaurFeedingSystem currentDinosaur;
@@ -20,24 +20,45 @@ public class DinosaurFeedingUIManager : MonoBehaviour
         else
             Destroy(gameObject);
 
+        // Attempt to assign the feed button from its singleton if not set.
         if (feedButton == null)
             feedButton = FeedButton.Instance;
+
         if (feedButton != null)
         {
-            // Subscribe to your custom button’s event.
             feedButton.OnClickEvent.AddListener(OnFeedButtonClicked);
         }
         else
         {
             Debug.LogWarning("FeedButton reference missing in DinosaurFeedingUIManager.");
         }
+
+        // If feedFillImage is not assigned via the Inspector, try to find it even if inactive.
+        if (feedFillImage == null)
+        {
+            Debug.LogWarning("FeedFillImage is not assigned in the Inspector. Attempting to locate it...");
+            Image[] allImages = Resources.FindObjectsOfTypeAll<Image>();
+            foreach (var img in allImages)
+            {
+                if (img.gameObject.CompareTag("FeedBar"))
+                {
+                    feedFillImage = img;
+                    Debug.Log("FeedFillImage found via Resources.");
+                    break;
+                }
+            }
+            if (feedFillImage == null)
+            {
+                Debug.LogError("FeedFillImage still not found!");
+            }
+        }
     }
 
-    // Called when a dinosaur’s paddock is selected.
-    // (Ensure your selection logic calls this with the dinosaur’s DinosaurFeedingSystem component.)
+    // Call this when a dinosaur’s paddock is selected.
     public void SetSelectedDinosaur(DinosaurFeedingSystem dinosaur)
     {
         currentDinosaur = dinosaur;
+        Debug.Log("Selected dinosaur set in UI Manager.");
         UpdateUI();
     }
 
@@ -46,7 +67,7 @@ public class DinosaurFeedingUIManager : MonoBehaviour
     {
         if (currentDinosaur != null)
         {
-            // Only feed if the dinosaur’s paddock is currently selected.
+            // Only feed if the dinosaur's paddock is currently selected.
             if (currentDinosaur.parentPaddock == Paddock.SelectedPaddock)
             {
                 currentDinosaur.FeedDinosaur();
@@ -59,20 +80,21 @@ public class DinosaurFeedingUIManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("No dinosaur is selected.");
+            Debug.LogWarning("No dinosaur is selected in the UI Manager.");
         }
     }
 
-    // Update the UI elements based on the current dinosaur’s feed progress and level.
+    // Updates the UI based on the current dinosaur's feed progress.
     public void UpdateUI()
     {
         if (currentDinosaur != null && feedFillImage != null)
         {
             float fill = (float)currentDinosaur.feedCount / (float)currentDinosaur.feedsPerLevel;
             feedFillImage.fillAmount = fill;
+            Debug.Log("FeedFillImage updated: " + fill);
         }
 
-        // At or above level 10, disable feeding and enable the evolve button.
+        // At or above level 10, disable feeding and enable evolution.
         if (currentDinosaur != null)
         {
             if (currentDinosaur.levelManager.CurrentLevel >= 10)

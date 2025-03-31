@@ -14,9 +14,9 @@ public class DinosaurFeedingSystem : MonoBehaviour
     public int feedCount = 0;
     public int feedsPerLevel = 5;
     
-    // Base feed cost (fallback if levelFeedCosts is not set up)
+    // Base feed cost (fallback if levelFeedCosts is not defined)
     public int baseFeedCost = 10;
-    // Custom feed cost per level (index 0 for level 1, etc.)
+    // Custom feed cost per level (index 0 = level 1, etc.)
     public int[] levelFeedCosts;
 
     [Header("Model References")]
@@ -36,6 +36,37 @@ public class DinosaurFeedingSystem : MonoBehaviour
             levelManager = GetComponent<DinosaurLevelManager>();
 
         parentPaddock = GetComponentInParent<Paddock>();
+        if (parentPaddock == null)
+        {
+            Debug.LogWarning("DinosaurFeedingSystem could not find a parent Paddock.");
+        }
+    }
+
+    private void Start()
+    {
+        // Restore the correct model state based on the saved level.
+        // If the level is 5 or above, the dinosaur should be adult.
+        if (levelManager != null)
+        {
+            if (levelManager.CurrentLevel >= 5)
+            {
+                if (babyModel != null && adultModel != null)
+                {
+                    babyModel.SetActive(false);
+                    adultModel.SetActive(true);
+                    Debug.Log("Model set to Adult based on level " + levelManager.CurrentLevel);
+                }
+            }
+            else
+            {
+                if (babyModel != null && adultModel != null)
+                {
+                    babyModel.SetActive(true);
+                    adultModel.SetActive(false);
+                    Debug.Log("Model set to Baby based on level " + levelManager.CurrentLevel);
+                }
+            }
+        }
     }
 
     // Called when the UI manager instructs this dinosaur to feed.
@@ -50,7 +81,7 @@ public class DinosaurFeedingSystem : MonoBehaviour
         int currentLevel = levelManager.CurrentLevel;
         int feedCost = GetFeedCostForLevel(currentLevel);
 
-        // Deduct resources via the CurrencySystem.
+        // Deduct resources via your CurrencySystem.
         if (dinosaurDiet == Diet.Herbivore)
         {
             if (!CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Crops, feedCost))
@@ -101,11 +132,11 @@ public class DinosaurFeedingSystem : MonoBehaviour
     private void LevelUp()
     {
         levelManager.LevelUp();
-        feedCount = 0;  // Reset feeding progress (the level itself is maintained)
+        feedCount = 0;  // Reset feeding progress (the level is preserved)
         Debug.Log("Dinosaur leveled up! New level: " + levelManager.CurrentLevel);
 
-        // When reaching level 5, swap the baby model for the adult model.
-        if (levelManager.CurrentLevel == 5)
+        // When reaching level 5, switch from baby to adult model.
+        if (levelManager.CurrentLevel >= 5)
         {
             if (babyModel != null && adultModel != null)
             {
