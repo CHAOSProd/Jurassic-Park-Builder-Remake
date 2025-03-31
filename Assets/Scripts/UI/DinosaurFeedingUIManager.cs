@@ -20,7 +20,7 @@ public class DinosaurFeedingUIManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        // Attempt to assign the feed button from its singleton if not set.
+        // If feedButton is not assigned, use its singleton.
         if (feedButton == null)
             feedButton = FeedButton.Instance;
 
@@ -33,10 +33,10 @@ public class DinosaurFeedingUIManager : MonoBehaviour
             Debug.LogWarning("FeedButton reference missing in DinosaurFeedingUIManager.");
         }
 
-        // If feedFillImage is not assigned via the Inspector, try to find it even if inactive.
+        // Try to assign the feedFillImage via Inspector or find it if necessary.
         if (feedFillImage == null)
         {
-            Debug.LogWarning("FeedFillImage is not assigned in the Inspector. Attempting to locate it...");
+            Debug.LogWarning("FeedFillImage not assigned in Inspector. Attempting to locate it...");
             Image[] allImages = Resources.FindObjectsOfTypeAll<Image>();
             foreach (var img in allImages)
             {
@@ -70,6 +70,23 @@ public class DinosaurFeedingUIManager : MonoBehaviour
             // Only feed if the dinosaur's paddock is currently selected.
             if (currentDinosaur.parentPaddock == Paddock.SelectedPaddock)
             {
+                // Access the PlaceableObject script from the main GameObject
+                PlaceableObject po = currentDinosaur.parentPaddock.GetComponentInParent<PlaceableObject>();
+                if (po != null)
+                {
+                    Debug.Log("PlaceableObject found on parent GameObject.");
+                    // Check if the hatching GameObject is active
+                    if (po.Hatching != null && po.Hatching.activeSelf)
+                    {
+                        Debug.LogWarning("Cannot feed: Dinosaur is still hatching.");
+                        return;
+                    }
+                }
+                else
+                {
+                    Debug.LogError("PlaceableObject not found on parent GameObject.");
+                }
+
                 currentDinosaur.FeedDinosaur();
                 UpdateUI();
             }
@@ -84,9 +101,34 @@ public class DinosaurFeedingUIManager : MonoBehaviour
         }
     }
 
-    // Updates the UI based on the current dinosaur's feed progress.
+    // Updates the UI based on the current dinosaur's feed progress and state.
     public void UpdateUI()
     {
+        if (currentDinosaur != null)
+        {
+            // Access the PlaceableObject script from the main GameObject
+            PlaceableObject po = currentDinosaur.parentPaddock.GetComponentInParent<PlaceableObject>();
+            if (po != null)
+            {
+                Debug.Log("PlaceableObject found on parent GameObject.");
+                // Check if the hatching GameObject is active
+                if (po.Hatching != null && po.Hatching.activeSelf)
+                {
+                    if (feedButton != null)
+                        feedButton.gameObject.SetActive(false);
+                    if (evolveButton != null)
+                        evolveButton.gameObject.SetActive(false);
+                    Debug.Log("Hatching is in progress, hiding feed and evolve buttons.");
+                    return;
+                }
+            }
+            else
+            {
+                Debug.LogError("PlaceableObject not found on parent GameObject.");
+            }
+        }
+
+        // Update the feed progress fill amount.
         if (currentDinosaur != null && feedFillImage != null)
         {
             float fill = (float)currentDinosaur.feedCount / (float)currentDinosaur.feedsPerLevel;
@@ -94,7 +136,7 @@ public class DinosaurFeedingUIManager : MonoBehaviour
             Debug.Log("FeedFillImage updated: " + fill);
         }
 
-        // At or above level 10, disable feeding and enable evolution.
+        // Enable/disable buttons based on the dinosaur's level.
         if (currentDinosaur != null)
         {
             if (currentDinosaur.levelManager.CurrentLevel >= 10)

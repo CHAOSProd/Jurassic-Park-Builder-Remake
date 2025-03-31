@@ -35,6 +35,7 @@ public class DinosaurFeedingSystem : MonoBehaviour
         if (levelManager == null)
             levelManager = GetComponent<DinosaurLevelManager>();
 
+        // Find the nearest parent with the Paddock script.
         parentPaddock = GetComponentInParent<Paddock>();
         if (parentPaddock == null)
         {
@@ -44,34 +45,70 @@ public class DinosaurFeedingSystem : MonoBehaviour
 
     private void Start()
     {
-        // Restore the correct model state based on the saved level.
-        // If the level is 5 or above, the dinosaur should be adult.
-        if (levelManager != null)
+        // If the dinosaur is hatching, ensure no model is visible.
+        if (IsHatching())
         {
-            if (levelManager.CurrentLevel >= 5)
+            if (babyModel != null)
+                babyModel.SetActive(false);
+            if (adultModel != null)
+                adultModel.SetActive(false);
+            Debug.Log("Dinosaur is hatching; models disabled.");
+        }
+        else
+        {
+            // Otherwise, set the model based on level.
+            if (levelManager != null)
             {
-                if (babyModel != null && adultModel != null)
+                if (levelManager.CurrentLevel >= 5)
                 {
-                    babyModel.SetActive(false);
-                    adultModel.SetActive(true);
-                    Debug.Log("Model set to Adult based on level " + levelManager.CurrentLevel);
+                    if (babyModel != null && adultModel != null)
+                    {
+                        babyModel.SetActive(false);
+                        adultModel.SetActive(true);
+                        Debug.Log("Model set to Adult based on level " + levelManager.CurrentLevel);
+                    }
                 }
-            }
-            else
-            {
-                if (babyModel != null && adultModel != null)
+                else
                 {
-                    babyModel.SetActive(true);
-                    adultModel.SetActive(false);
-                    Debug.Log("Model set to Baby based on level " + levelManager.CurrentLevel);
+                    if (babyModel != null && adultModel != null)
+                    {
+                        babyModel.SetActive(true);
+                        adultModel.SetActive(false);
+                        Debug.Log("Model set to Baby based on level " + levelManager.CurrentLevel);
+                    }
                 }
             }
         }
     }
 
+    /// <summary>
+    /// Checks if the dinosaur is currently hatching.
+    /// It does so by retrieving the PlaceableObject from the paddock's parent.
+    /// </summary>
+    private bool IsHatching()
+    {
+        if (parentPaddock != null)
+        {
+            // Instead of looking on the same GameObject as the paddock, search up the hierarchy.
+            PlaceableObject po = parentPaddock.GetComponentInParent<PlaceableObject>();
+            if (po != null && po._isPaddock && po.Hatching != null)
+            {
+                return po.Hatching.activeSelf;
+            }
+        }
+        return false;
+    }
+
     // Called when the UI manager instructs this dinosaur to feed.
     public void FeedDinosaur()
     {
+        // Do not allow feeding if the dinosaur is hatching.
+        if (IsHatching())
+        {
+            Debug.Log("Dinosaur is currently hatching; feeding is disabled.");
+            return;
+        }
+
         if (levelManager.CurrentLevel >= 10)
         {
             Debug.Log("Dinosaur is at level 10 and ready to evolve!");
@@ -90,7 +127,8 @@ public class DinosaurFeedingSystem : MonoBehaviour
                 Debug.Log("Not enough crops to feed dinosaur.");
                 return;
             }
-            CurrencyChangeGameEvent cropsDeduction = new CurrencyChangeGameEvent {
+            CurrencyChangeGameEvent cropsDeduction = new CurrencyChangeGameEvent
+            {
                 CurrencyType = CurrencyType.Crops,
                 Amount = -feedCost
             };
@@ -105,7 +143,8 @@ public class DinosaurFeedingSystem : MonoBehaviour
                 Debug.Log("Not enough meat to feed dinosaur.");
                 return;
             }
-            CurrencyChangeGameEvent meatDeduction = new CurrencyChangeGameEvent {
+            CurrencyChangeGameEvent meatDeduction = new CurrencyChangeGameEvent
+            {
                 CurrencyType = CurrencyType.Meat,
                 Amount = -feedCost
             };
@@ -135,14 +174,26 @@ public class DinosaurFeedingSystem : MonoBehaviour
         feedCount = 0;  // Reset feeding progress (the level is preserved)
         Debug.Log("Dinosaur leveled up! New level: " + levelManager.CurrentLevel);
 
-        // When reaching level 5, switch from baby to adult model.
-        if (levelManager.CurrentLevel >= 5)
+        // Only update the model if the dinosaur is not hatching.
+        if (!IsHatching())
         {
-            if (babyModel != null && adultModel != null)
+            if (levelManager.CurrentLevel >= 5)
             {
-                babyModel.SetActive(false);
-                adultModel.SetActive(true);
-                Debug.Log("Dinosaur evolved from baby to adult!");
+                if (babyModel != null && adultModel != null)
+                {
+                    babyModel.SetActive(false);
+                    adultModel.SetActive(true);
+                    Debug.Log("Dinosaur evolved from baby to adult!");
+                }
+            }
+            else
+            {
+                if (babyModel != null && adultModel != null)
+                {
+                    babyModel.SetActive(true);
+                    adultModel.SetActive(false);
+                    Debug.Log("Dinosaur remains as baby.");
+                }
             }
         }
     }
