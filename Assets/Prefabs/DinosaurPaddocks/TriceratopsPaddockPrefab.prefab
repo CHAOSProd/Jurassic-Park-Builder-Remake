@@ -9083,7 +9083,9 @@ MonoBehaviour:
   _currentMaximumMoneyForTime: 0
   _moneyObject: {fileID: 0}
   _dinosaurLevelResourcesManager: {fileID: 0}
+  _feedingSystem: {fileID: 0}
   CurrentLevel: 1
+  FeedsPerLevel: 5
 --- !u!114 &7815530151903487157
 MonoBehaviour:
   m_ObjectHideFlags: 0

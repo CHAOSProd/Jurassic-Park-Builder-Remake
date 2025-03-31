@@ -11,17 +11,21 @@ public class DinosaurLevelSaver : MonoBehaviour
         DinosaurLevelManager[] dinoManagers = GameObject.FindObjectsOfType<DinosaurLevelManager>();
         foreach (DinosaurLevelManager manager in dinoManagers)
         {
-            // Get the parent paddock from which to derive a unique key.
             Paddock paddock = manager.GetComponentInParent<Paddock>();
-            if (paddock != null)
+            DinosaurFeedingSystem feedingSystem = manager.GetComponent<DinosaurFeedingSystem>();
+            if (paddock != null && feedingSystem != null)
             {
-                string key = "CurrentLevel" + paddock.gameObject.name;
-                Attributes.SetInt(key, manager.CurrentLevel);
-                Debug.Log("Saved dinosaur level for " + paddock.gameObject.name + ": " + manager.CurrentLevel);
+                string levelKey = "CurrentLevel" + paddock.gameObject.name;
+                string feedCountKey = "FeedCount" + paddock.gameObject.name;
+
+                Attributes.SetInt(levelKey, manager.CurrentLevel);
+                Attributes.SetInt(feedCountKey, feedingSystem.feedCount);
+
+                Debug.Log($"Saved dinosaur level for {paddock.gameObject.name}: Level {manager.CurrentLevel}, FeedCount: {feedingSystem.feedCount}");
             }
             else
             {
-                Debug.LogWarning("DinosaurLevelManager on " + manager.gameObject.name + " did not find a parent Paddock.");
+                Debug.LogWarning($"DinosaurLevelManager on {manager.gameObject.name} did not find a parent Paddock or FeedingSystem.");
             }
         }
     }

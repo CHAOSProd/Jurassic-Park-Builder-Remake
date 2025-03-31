@@ -4952,6 +4952,7 @@ GameObject:
   - component: {fileID: 5742767958773182280}
   - component: {fileID: 1910003470799255841}
   - component: {fileID: 2334665161678839603}
+  - component: {fileID: 2434457115553512460}
   - component: {fileID: 9177314041581028437}
   - component: {fileID: 3708635208963666018}
   m_Layer: 0
@@ -5189,7 +5190,9 @@ MonoBehaviour:
   _currentMaximumMoneyForTime: 0
   _moneyObject: {fileID: 0}
   _dinosaurLevelResourcesManager: {fileID: 0}
+  _feedingSystem: {fileID: 0}
   CurrentLevel: 1
+  FeedsPerLevel: 5
 --- !u!114 &5742767958773182280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5326,6 +5329,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2434457115553512460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5949953740542757079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a705fb5ea9afa941b5035c8f825479b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dinosaurDiet: 1
+  feedCount: 0
+  feedsPerLevel: 5
+  baseFeedCost: 27
+  levelFeedCosts: 1b0000002c0000003e0000005000000062000000730000008500000097000000a90000004600000050000000
+  babyModel: {fileID: 8951342824657770242}
+  adultModel: {fileID: 4251931453828070838}
+  levelManager: {fileID: 6561306628574779223}
+  parentPaddock: {fileID: 0}
 --- !u!210 &9177314041581028437
 SortingGroup:
   m_ObjectHideFlags: 0

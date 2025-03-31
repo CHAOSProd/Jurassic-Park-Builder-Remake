@@ -270,7 +270,6 @@ public class SaveManager : Singleton<SaveManager>
 {
     // Update dinosaur levels for all prefab clones
     DinosaurLevelSaver.SaveAllDinosaurLevels();
-
     Attributes.SetAttribute("LastSaveTime", DateTime.Now);
     SaveData.Attributes = Attributes.Export();
     SaveData.AnimalShopData = ShopManager.Instance.GetAnimalShopData();

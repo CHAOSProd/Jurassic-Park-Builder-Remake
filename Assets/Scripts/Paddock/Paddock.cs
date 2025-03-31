@@ -138,6 +138,7 @@ public class Paddock : Selectable
     public override void Unselect()
     {
         base.Unselect();
+        DinosaurFeedingUIManager.Instance.DeselectPaddock();
         _evolutionsChanger.SetActive(IsSelected);
 
         if (_selectedPaddock == this)

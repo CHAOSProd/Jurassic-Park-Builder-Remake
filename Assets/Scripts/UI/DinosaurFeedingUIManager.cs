@@ -58,8 +58,19 @@ public class DinosaurFeedingUIManager : MonoBehaviour
     public void SetSelectedDinosaur(DinosaurFeedingSystem dinosaur)
     {
         currentDinosaur = dinosaur;
-        Debug.Log("Selected dinosaur set in UI Manager.");
         UpdateUI();
+        Debug.Log("Selected dinosaur set in UI Manager.");
+    }
+
+    // Call this when a dinosaur’s paddock is deselected.
+    public void DeselectPaddock()
+    {
+        currentDinosaur = null;
+        if (evolveButton != null)
+        {
+            evolveButton.gameObject.SetActive(false);
+        }
+        Debug.Log("Paddock deselected, evolve button hidden.");
     }
 
     // Called when the feed button is clicked.
@@ -70,23 +81,6 @@ public class DinosaurFeedingUIManager : MonoBehaviour
             // Only feed if the dinosaur's paddock is currently selected.
             if (currentDinosaur.parentPaddock == Paddock.SelectedPaddock)
             {
-                // Access the PlaceableObject script from the main GameObject
-                PlaceableObject po = currentDinosaur.parentPaddock.GetComponentInParent<PlaceableObject>();
-                if (po != null)
-                {
-                    Debug.Log("PlaceableObject found on parent GameObject.");
-                    // Check if the hatching GameObject is active
-                    if (po.Hatching != null && po.Hatching.activeSelf)
-                    {
-                        Debug.LogWarning("Cannot feed: Dinosaur is still hatching.");
-                        return;
-                    }
-                }
-                else
-                {
-                    Debug.LogError("PlaceableObject not found on parent GameObject.");
-                }
-
                 currentDinosaur.FeedDinosaur();
                 UpdateUI();
             }
@@ -106,25 +100,14 @@ public class DinosaurFeedingUIManager : MonoBehaviour
     {
         if (currentDinosaur != null)
         {
-            // Access the PlaceableObject script from the main GameObject
-            PlaceableObject po = currentDinosaur.parentPaddock.GetComponentInParent<PlaceableObject>();
-            if (po != null)
+            if (currentDinosaur.IsHatching())
             {
-                Debug.Log("PlaceableObject found on parent GameObject.");
-                // Check if the hatching GameObject is active
-                if (po.Hatching != null && po.Hatching.activeSelf)
-                {
-                    if (feedButton != null)
-                        feedButton.gameObject.SetActive(false);
-                    if (evolveButton != null)
-                        evolveButton.gameObject.SetActive(false);
-                    Debug.Log("Hatching is in progress, hiding feed and evolve buttons.");
-                    return;
-                }
-            }
-            else
-            {
-                Debug.LogError("PlaceableObject not found on parent GameObject.");
+                if (feedButton != null)
+                    feedButton.gameObject.SetActive(false);
+                if (evolveButton != null)
+                    evolveButton.gameObject.SetActive(false);
+                Debug.Log("Hatching is in progress, hiding feed and evolve buttons.");
+                return;
             }
         }
 

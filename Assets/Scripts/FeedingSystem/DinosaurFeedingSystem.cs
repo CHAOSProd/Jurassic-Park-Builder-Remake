@@ -85,16 +85,12 @@ public class DinosaurFeedingSystem : MonoBehaviour
     /// Checks if the dinosaur is currently hatching.
     /// It does so by retrieving the PlaceableObject from the paddock's parent.
     /// </summary>
-    private bool IsHatching()
+    public bool IsHatching()
     {
-        if (parentPaddock != null)
+        PlaceableObject placeableObject = GetComponentInParent<PlaceableObject>();
+        if (parentPaddock != null && parentPaddock.is_hatching || parentPaddock != null && parentPaddock.hatching_completed)
         {
-            // Instead of looking on the same GameObject as the paddock, search up the hierarchy.
-            PlaceableObject po = parentPaddock.GetComponentInParent<PlaceableObject>();
-            if (po != null && po._isPaddock && po.Hatching != null)
-            {
-                return po.Hatching.activeSelf;
-            }
+            return true;
         }
         return false;
     }
@@ -153,6 +149,8 @@ public class DinosaurFeedingSystem : MonoBehaviour
         }
 
         feedCount++;
+        string parentName = parentPaddock.gameObject.name;
+        Attributes.SetInt("FeedCount" + parentName, feedCount);
         Debug.Log("Dinosaur fed: " + feedCount + "/" + feedsPerLevel);
 
         if (feedCount >= feedsPerLevel)

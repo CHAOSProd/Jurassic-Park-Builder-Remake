@@ -3,11 +3,24 @@ using TMPro;
 
 public class TextChange : MonoBehaviour
 {
-    
     public TextMeshProUGUI mainText;
+    public bool shop = false;
+    public bool home = false;
 
+    void Start()
+    {
+        UpdateText();
+    }
 
-    void Start(){
-        mainText.text = "RESOURCES";
+    void UpdateText()
+    {
+        if (shop)
+        {
+            mainText.text = "RESOURCES";
+        }
+        else if (home)
+        {
+            mainText.text = "MAILBOX";
+        }
     }
 }
