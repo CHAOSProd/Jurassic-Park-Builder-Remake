@@ -8,6 +8,9 @@ TagManager:
   - InteractivePrefab
   - InteractiveVisualChange
   - InteractiveColliderOnly
+  - FeedButton
+  - FeedBar
+  - EvolveButton
   layers:
   - Default
   - TransparentFX

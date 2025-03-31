@@ -7,14 +7,15 @@ public class Paddock : Selectable
     [SerializeField] private AnimationEventsListener _dinosaurAnimationEventsListener;
     [SerializeField] private FoodType _foodType;
     [SerializeField] private DinoNumber _dinoNumber;
-
     [SerializeField] public HatchingTimer hatchingScript;
 
     private MoneyObject _moneyObject;
     private Animator _dinosaurAnimator;
-
     private FeedButton _feedButton;
     private static Paddock _selectedPaddock = null;
+
+    // Expose the currently selected paddock.
+    public static Paddock SelectedPaddock => _selectedPaddock;
 
     [HideInInspector] public bool is_hatching = false;
     [HideInInspector] public bool should_earn_money = false;
@@ -48,7 +49,11 @@ public class Paddock : Selectable
 
     private void OnFeedButtonClick()
     {
-        if (_dinosaurAnimationEventsListener.IsEatAnimationEnded && _dinosaurAnimator != null && _selectedPaddock == this && _moneyObject._maxMoneyReached == false)
+        // Only process the feed click if this paddock is the selected one.
+        if (_dinosaurAnimationEventsListener.IsEatAnimationEnded &&
+            _dinosaurAnimator != null &&
+            _selectedPaddock == this &&
+            _moneyObject._maxMoneyReached == false)
         {
             StopSound(Sounds[2]);
             _dinosaurAnimator.SetTrigger("Eat");

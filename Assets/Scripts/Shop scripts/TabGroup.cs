@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TabGroup : MonoBehaviour
 {
-    public Sprite tabIdle;
-    public Sprite tabActive;
+    // Default sprites for buttons that don't use custom sprites.
+    public Sprite defaultTabIdle;
+    public Sprite defaultTabActive;
 
     public List<TabButton> tabButtons = new List<TabButton>();
     public List<GameObject> objectsToSwap = new List<GameObject>();
@@ -15,7 +15,8 @@ public class TabGroup : MonoBehaviour
 
     private void Start()
     {
-        OnTabSelected(tabButtons[0]);
+        if(tabButtons.Count > 0)
+            OnTabSelected(tabButtons[0]);
     }
 
     public void Subscribe(TabButton button)
@@ -28,11 +29,13 @@ public class TabGroup : MonoBehaviour
         foreach (var button in tabButtons)
         {
             if (selectedTab != null && button == selectedTab)
-            {
                 continue;
-            }
 
-            button.background.sprite = tabIdle;
+            // Use custom idle sprite if flagged, otherwise default idle.
+            if (button.useCustomSprites && button.customIdle != null)
+                button.background.sprite = button.customIdle;
+            else
+                button.background.sprite = defaultTabIdle;
         }
     }
 
@@ -40,19 +43,17 @@ public class TabGroup : MonoBehaviour
     {
         selectedTab = button;
         ResetTabs();
-        button.background.sprite = tabActive;
+
+        // Set active sprite, checking for custom active if flagged.
+        if (button.useCustomSprites && button.customActive != null)
+            button.background.sprite = button.customActive;
+        else
+            button.background.sprite = defaultTabActive;
 
         int index = button.transform.GetSiblingIndex();
         for (int i = 0; i < objectsToSwap.Count; i++)
         {
-            if (i == index)
-            {
-                objectsToSwap[i].SetActive(true);
-            }
-            else
-            {
-                objectsToSwap[i].SetActive(false);
-            }
+            objectsToSwap[i].SetActive(i == index);
         }
     }
 }

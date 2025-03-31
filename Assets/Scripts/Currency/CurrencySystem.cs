@@ -21,8 +21,8 @@ public class CurrencySystem : Singleton<CurrencySystem>
     // Define default values in code, if we want to, we can make a serialized dictionary (would require new classes)
     private static readonly Dictionary<CurrencyType, int> _defaultValues = new() 
     {
-        { CurrencyType.Crops, 0},
-        { CurrencyType.Meat, 0},
+        { CurrencyType.Crops, 1000},
+        { CurrencyType.Meat, 1000},
         { CurrencyType.Coins, 2000},
         { CurrencyType.Bucks, 10}
     };
