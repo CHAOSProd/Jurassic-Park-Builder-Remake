@@ -5,17 +5,20 @@ using UnityEngine.UI;
 public class Paddock : Selectable
 {
     [SerializeField] private GameObject _evolutionsChanger;
-    [SerializeField] private AnimationEventsListener _dinosaurAnimationEventsListener;
+    [SerializeField] private AnimationEventsListener _BabyAnimationEventsListener;
+    [SerializeField] private AnimationEventsListener _AdultAnimationEventsListener;
     [SerializeField] private FoodType _foodType;
     [SerializeField] private DinoNumber _dinoNumber;
     [SerializeField] public HatchingTimer hatchingScript;
 
     private MoneyObject _moneyObject;
-    private Animator _dinosaurAnimator;
+    private Animator _BabyDinosaurAnimator;
+    private Animator _AdultDinosaurAnimator;
+
     private FeedButton _feedButton;
     private static Paddock _selectedPaddock = null;
+    private DinosaurFeedingSystem _dinosaurFeedingSystem;
 
-    // Expose the currently selected paddock.
     public static Paddock SelectedPaddock => _selectedPaddock;
 
     [HideInInspector] public bool is_hatching = false;
@@ -48,30 +51,61 @@ public class Paddock : Selectable
         }
     }
 
-    private void OnFeedButtonClick()
-    {
-        // Process feed click only if this paddock is selected.
-        if (_dinosaurAnimationEventsListener.IsEatAnimationEnded &&
-            _dinosaurAnimator != null &&
-            _selectedPaddock == this &&
-            _moneyObject._maxMoneyReached == false)
-        {
-            StopSound(Sounds[2]);
-            _dinosaurAnimator.SetTrigger("Eat");
-            _dinosaurAnimationEventsListener.OnEatAnimationStarted();
-            PlaySound(Sounds[3], 0.5f);
-        }
-    }
-
     private void Start()
     {
         _evolutionsChanger.SetActive(IsSelected);
-        _dinosaurAnimator = _dinosaurAnimationEventsListener.GetComponent<Animator>();
+        _BabyDinosaurAnimator = _BabyAnimationEventsListener.GetComponent<Animator>();
+        _AdultDinosaurAnimator = _AdultAnimationEventsListener.GetComponent<Animator>();
+        _dinosaurFeedingSystem = GetComponentInChildren<DinosaurFeedingSystem>();
+    }
+
+    private void OnFeedButtonClick()
+    {
+        if (_dinosaurFeedingSystem == null)
+        {
+            Debug.LogWarning("No DinosaurFeedingSystem found in this paddock.");
+            return;
+        }
+
+        bool isBabyActive = _dinosaurFeedingSystem.babyModel.activeSelf;
+        bool isAdultActive = _dinosaurFeedingSystem.adultModel.activeSelf;
+        int currentLevel = _dinosaurFeedingSystem.levelManager.CurrentLevel;
+        int feedCost = _dinosaurFeedingSystem.GetFeedCostForLevel(currentLevel);
+
+        if (_dinosaurFeedingSystem.dinosaurDiet == Diet.Herbivore)
+        {
+            if (!CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Crops, feedCost))
+            {
+                return;
+            }
+        }
+        else if (_dinosaurFeedingSystem.dinosaurDiet == Diet.Carnivore)
+        {
+            if (!CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Meat, feedCost))
+            {
+                return;
+            }
+        }
+
+        if (isBabyActive && _BabyAnimationEventsListener.IsEatAnimationEnded && _selectedPaddock == this && !_moneyObject._maxMoneyReached)
+        {
+            StopSound(Sounds[2]);
+            _BabyDinosaurAnimator.SetTrigger("Eat");
+            _BabyAnimationEventsListener.OnEatAnimationStarted();
+            PlaySound(Sounds[3], 0.5f);
+        }
+        else if (isAdultActive && _AdultAnimationEventsListener.IsEatAnimationEnded && _selectedPaddock == this && !_moneyObject._maxMoneyReached)
+        {
+            StopSound(Sounds[5]);
+            _AdultDinosaurAnimator.SetTrigger("Eat");
+            _AdultAnimationEventsListener.OnEatAnimationStarted();
+            PlaySound(Sounds[6], 0.5f);
+        }
     }
 
     private void Update()
     {
-        if (!is_hatching && _dinosaurAnimator.gameObject.activeSelf)
+        if (!is_hatching && _dinosaurFeedingSystem.babyModel.activeSelf ||_dinosaurFeedingSystem.adultModel.activeSelf )
         {
             _moneyObject.enabled = true;
         }
@@ -105,12 +139,22 @@ public class Paddock : Selectable
             _evolutionsChanger.SetActive(IsSelected);
             FeedButton.Instance.UpdateButton(_foodType);
 
-            if (_dinosaurAnimationEventsListener.IsAnimationEnded && _moneyObject.CurrentMoneyInteger != 0)
+            bool isBabyActive = _dinosaurFeedingSystem.babyModel.activeSelf;
+            bool isAdultActive = _dinosaurFeedingSystem.adultModel.activeSelf;
+
+            if (isBabyActive && _BabyAnimationEventsListener.IsAnimationEnded && _moneyObject.CurrentMoneyInteger != 0)
             {
                 StopSound(Sounds[3]);
-                _dinosaurAnimator.SetTrigger("Fun");
-                _dinosaurAnimationEventsListener.OnAnimationStarted();
+                _BabyDinosaurAnimator.SetTrigger("Fun");
+                _BabyAnimationEventsListener.OnAnimationStarted();
                 PlaySound(Sounds[2], 0.5f);
+            }
+            else if (isAdultActive && _AdultAnimationEventsListener.IsAnimationEnded && _moneyObject.CurrentMoneyInteger != 0)
+            {
+                StopSound(Sounds[6]);
+                _AdultDinosaurAnimator.SetTrigger("Fun");
+                _AdultAnimationEventsListener.OnAnimationStarted();
+                PlaySound(Sounds[5], 0.5f);
             }
             else if (_moneyObject.CurrentMoneyInteger == 0)
             {
@@ -119,20 +163,19 @@ public class Paddock : Selectable
                     PlaySound(Sounds[4]);
                 }
             }
+            // Set the current dinosaur feeding system in the UI manager.
+            DinosaurFeedingSystem dinoFeedSys = GetComponentInChildren<DinosaurFeedingSystem>();
+            if (dinoFeedSys != null && DinosaurFeedingUIManager.Instance != null)
+            {
+                DinosaurFeedingUIManager.Instance.SetSelectedDinosaur(dinoFeedSys);
+            }
+            else
+            {
+                Debug.LogWarning("No DinosaurFeedingSystem found in this paddock or UI Manager not available.");
+            }
         }
         _selectedPaddock = this;
         Debug.Log("Paddock selected: " + gameObject.name);
-
-        // Set the current dinosaur feeding system in the UI manager.
-        DinosaurFeedingSystem dinoFeedSys = GetComponentInChildren<DinosaurFeedingSystem>();
-        if (dinoFeedSys != null && DinosaurFeedingUIManager.Instance != null)
-        {
-            DinosaurFeedingUIManager.Instance.SetSelectedDinosaur(dinoFeedSys);
-        }
-        else
-        {
-            Debug.LogWarning("No DinosaurFeedingSystem found in this paddock or UI Manager not available.");
-        }
     }
 
     public override void Unselect()

@@ -2575,7 +2575,7 @@ MonoBehaviour:
   dinosaurDiet: 1
   feedCount: 0
   feedsPerLevel: 5
-  baseFeedCost: 10
+  baseFeedCost: 27
   levelFeedCosts: 1b0000002c0000003e0000005000000062000000730000008500000097000000a9000000b4000000
   babyModel: {fileID: 8951342824657770242}
   adultModel: {fileID: 4251931453828070838}
@@ -5112,10 +5112,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7edf49cc99ab28c4f926d9c20651eaba, type: 3}
   - {fileID: 8300000, guid: d9a4f6e532b34a34eb533948738e3b94, type: 3}
   - {fileID: 8300000, guid: 93ad3df578ff619468e0171f2ce58db4, type: 3}
+  - {fileID: 8300000, guid: f27dff085dfdeb146ab27d5403cabf62, type: 3}
+  - {fileID: 8300000, guid: b2ed871d1e8702841a05ab1cef5c8386, type: 3}
   IsSelected: 0
   _objectsFadeInOut: {fileID: 3708635208963666018}
   _evolutionsChanger: {fileID: 7148360279365762116}
-  _dinosaurAnimationEventsListener: {fileID: 3550251269584018434}
+  _BabyAnimationEventsListener: {fileID: 3550251269584018434}
+  _AdultAnimationEventsListener: {fileID: 7461225559981350872}
   _foodType: 1
   _dinoNumber: 0
   hatchingScript: {fileID: 4851479198322135418}
@@ -5212,7 +5215,8 @@ MonoBehaviour:
   _moneyPerSecond: 0.33
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
-  _animator: {fileID: 6592833801018515099}
+  _BabyAnimator: {fileID: 8055026547136832885}
+  _AdultAnimator: {fileID: 8055026547136832885}
   MaximumMoney: 100
   MaximumMinutes: 15
   _maxMoneyReached: 0

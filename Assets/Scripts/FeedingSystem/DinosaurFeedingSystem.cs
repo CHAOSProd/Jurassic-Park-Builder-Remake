@@ -159,7 +159,7 @@ public class DinosaurFeedingSystem : MonoBehaviour
         }
     }
 
-    private int GetFeedCostForLevel(int level)
+    public int GetFeedCostForLevel(int level)
     {
         if (levelFeedCosts != null && levelFeedCosts.Length >= level)
             return levelFeedCosts[level - 1];

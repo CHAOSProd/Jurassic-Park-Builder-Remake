@@ -8,10 +8,12 @@ public class MoneyObject : MonoBehaviour
     [SerializeField] private GameObject _tapVFX;
     [SerializeField] private GameObject _moneyCounter;
     [SerializeField] private MoneyCountDisplayer _moneyCountDisplayer;
-    [SerializeField] private float _moneyPerSecond = 0.33f;
+    [SerializeField] public float _moneyPerSecond = 0.33f;
     [SerializeField] private CollectMoneyDisplay _collectMoneyDisplay;
     [SerializeField] private Button _collectMoneyButton;
-    [SerializeField] private Animator _animator;  // Reference to the Animator
+    [SerializeField] private Animator _BabyAnimator;
+    [SerializeField] private Animator _AdultAnimator;
+    private DinosaurFeedingSystem _dinosaurFeedingSystem;
 
     public int CurrentMoneyInteger
     {
@@ -48,6 +50,7 @@ public class MoneyObject : MonoBehaviour
         {
             _selectable = GetComponentInParent<Building>();
         }
+        _dinosaurFeedingSystem = GetComponentInChildren<DinosaurFeedingSystem>();
     }
     private void Start()
     {
@@ -68,13 +71,14 @@ public class MoneyObject : MonoBehaviour
                 MaximumMoney = _levelManager._dinosaurLevelResourcesManager.GetMaximumMoneyByLevel(_levelManager.CurrentLevel);
             }
         }
-
-
         _collectMoneyButton.onClick.AddListener(GetMoneyIfAvaliableByButton);
     }
 
     private void Update()
     {
+        bool isBabyActive = _dinosaurFeedingSystem.babyModel.activeSelf;
+        bool isAdultActive = _dinosaurFeedingSystem.adultModel.activeSelf;
+
         if(_data == null)
         {
             return;
@@ -85,8 +89,10 @@ public class MoneyObject : MonoBehaviour
             if (!_notification.activeSelf)
             {
                 _notification.SetActive(true);
-                if (_animator != null)
-                    _animator.SetTrigger("MaxMoneyReached");
+                if (isBabyActive && _BabyAnimator != null)
+                    _BabyAnimator.SetTrigger("MaxMoneyReached");
+                else if (isAdultActive && _AdultAnimator != null)
+                    _AdultAnimator.SetTrigger("MaxMoneyReached");
             }
             return;
         }
@@ -96,8 +102,10 @@ public class MoneyObject : MonoBehaviour
             _currentMoneyFloated = MaximumMoney;
             _data.Money = Mathf.FloorToInt(_currentMoneyFloated);
             _notification.SetActive(true);
-            if (_animator != null)
-                _animator.SetTrigger("MaxMoneyReached");
+            if (isBabyActive && _BabyAnimator != null)
+                _BabyAnimator.SetTrigger("MaxMoneyReached");
+            else if (isAdultActive && _AdultAnimator != null)
+                _AdultAnimator.SetTrigger("MaxMoneyReached");
 
             _maxMoneyReached = true;
 
@@ -184,7 +192,6 @@ public class MoneyObject : MonoBehaviour
         }
 
         _currentMoneyFloated = _data.Money;
-
         if (_data.Money >= MaximumMoney)
         {
             if (_paddock != null && _paddock.is_hatching || _paddock != null && _paddock.hatching_completed)
@@ -194,9 +201,12 @@ public class MoneyObject : MonoBehaviour
             }
             _maxMoneyReached = true;
             _notification.SetActive(true);
-
-        if (_animator != null)
-            _animator.SetTrigger("MaxMoneyReached");
+            bool isBabyActive = _dinosaurFeedingSystem.babyModel.activeSelf;
+            bool isAdultActive = _dinosaurFeedingSystem.adultModel.activeSelf;
+            if (isBabyActive && _BabyAnimator != null)
+                _BabyAnimator.SetTrigger("MaxMoneyReached");
+            else if (isAdultActive && _AdultAnimator != null)
+                _AdultAnimator.SetTrigger("MaxMoneyReached");
         }
     }
     public void InitData(int placeableIndex)
