@@ -56,6 +56,7 @@ public class PlaceableObject : MonoBehaviour
     [HideInInspector] public bool _isPaddock;
     [HideInInspector] public GameObject Hatching;
     [HideInInspector] public GameObject Dino;
+    public GameObject adultDino;
 
     private bool _isPointerMoving;
     private Vector3 _lastPointerPosition;
@@ -339,8 +340,10 @@ public class PlaceableObject : MonoBehaviour
             }
             if (_isPaddock && !Hatching.GetComponent<HatchingTimer>().paddockScript.is_hatching)
             {
-                Transform dinoTransform = Dino?.transform;
+                Transform dinoTransform = (Dino != null) ? Dino.transform : null;
+                Transform adultDinoTransform = (adultDino != null) ? adultDino.transform : null;
                 Vector3 dinoOriginalPosition = Vector3.zero;
+                Vector3 adultDinoOriginalPosition = Vector3.zero;
 
                 if (dinoTransform != null)
                 {
@@ -348,16 +351,32 @@ public class PlaceableObject : MonoBehaviour
                     dinoTransform.SetParent(null);
                 }
 
-                Animator dinoAnimator = Dino?.GetComponentInChildren<Animator>();
+                if (adultDinoTransform != null)
+                {
+                    adultDinoOriginalPosition = adultDinoTransform.position;
+                    adultDinoTransform.SetParent(null);
+                }
+
+                Animator dinoAnimator = (Dino != null) ? Dino.GetComponentInChildren<Animator>() : null;
+                Animator adultDinoAnimator = (adultDino != null) ? adultDino.GetComponentInChildren<Animator>() : null;
+
                 if (dinoAnimator != null)
                 {
                     dinoAnimator.enabled = true;
                 }
-
+                if (adultDinoAnimator != null)
+                {
+                    adultDinoAnimator.enabled = true;
+                }
                 if (dinoTransform != null)
                 {
                     dinoTransform.SetParent(transform);
                     dinoTransform.position = dinoOriginalPosition;
+                }
+                if (adultDinoTransform != null)
+                {
+                    adultDinoTransform.SetParent(transform);
+                    adultDinoTransform.position = adultDinoOriginalPosition;
                 }
             }
 

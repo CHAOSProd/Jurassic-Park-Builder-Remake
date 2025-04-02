@@ -3626,6 +3626,7 @@ MonoBehaviour:
   _isPaddock: 1
   Hatching: {fileID: 3140754780505700586}
   Dino: {fileID: 8059953156304328569}
+  adultDino: {fileID: 2758451312830958932}
   isEditing: 0
   isPlacing: 0
   DinoCheck: 0
@@ -9444,15 +9445,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8059953156304328569}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.24710532, y: 0.36129802, z: -0.075812556, w: 0.8959103}
+  m_LocalRotation: {x: -0.23452008, y: 0.36958718, z: -0.044930674, w: 0.8979905}
   m_LocalPosition: {x: 0.016917229, y: -0.0704796, z: -0.9082017}
-  m_LocalScale: {x: 0.0035, y: 0.0035, z: 0.0035}
+  m_LocalScale: {x: 0.0039, y: 0.0039, z: 0.0039}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1738865885610073437}
   - {fileID: 2654143388564537658}
   m_Father: {fileID: 6352632041645811912}
-  m_LocalEulerAnglesHint: {x: -22.829, y: 47.992, z: -19.945}
+  m_LocalEulerAnglesHint: {x: -22.829, y: 47.992, z: -16}
 --- !u!95 &3359683993170594174
 Animator:
   serializedVersion: 7

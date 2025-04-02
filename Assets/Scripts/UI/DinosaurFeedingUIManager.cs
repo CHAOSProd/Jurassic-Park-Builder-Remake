@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class DinosaurFeedingUIManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class DinosaurFeedingUIManager : MonoBehaviour
     public Image feedFillImage;    // Image with Image Type = Filled (Horizontal)
     public FeedButton feedButton;  // Your custom FeedButton script
     public Button evolveButton;    // Standard evolve button
+    public Image pulsingBar;  // New pulsing bar Image
 
     // The currently selected dinosaur’s feeding system.
     private DinosaurFeedingSystem currentDinosaur;
@@ -20,7 +22,6 @@ public class DinosaurFeedingUIManager : MonoBehaviour
         else
             Destroy(gameObject);
 
-        // If feedButton is not assigned, use its singleton.
         if (feedButton == null)
             feedButton = FeedButton.Instance;
 
@@ -32,29 +33,8 @@ public class DinosaurFeedingUIManager : MonoBehaviour
         {
             Debug.LogWarning("FeedButton reference missing in DinosaurFeedingUIManager.");
         }
-
-        // Try to assign the feedFillImage via Inspector or find it if necessary.
-        if (feedFillImage == null)
-        {
-            Debug.LogWarning("FeedFillImage not assigned in Inspector. Attempting to locate it...");
-            Image[] allImages = Resources.FindObjectsOfTypeAll<Image>();
-            foreach (var img in allImages)
-            {
-                if (img.gameObject.CompareTag("FeedBar"))
-                {
-                    feedFillImage = img;
-                    Debug.Log("FeedFillImage found via Resources.");
-                    break;
-                }
-            }
-            if (feedFillImage == null)
-            {
-                Debug.LogError("FeedFillImage still not found!");
-            }
-        }
     }
 
-    // Call this when a dinosaur’s paddock is selected.
     public void SetSelectedDinosaur(DinosaurFeedingSystem dinosaur)
     {
         currentDinosaur = dinosaur;
@@ -62,10 +42,8 @@ public class DinosaurFeedingUIManager : MonoBehaviour
         Debug.Log("Selected dinosaur set in UI Manager.");
     }
 
-    // Call this when a dinosaur’s paddock is deselected.
-    public void DeselectPaddock()
+    public void DisableEvolutionButton()
     {
-        currentDinosaur = null;
         if (evolveButton != null)
         {
             evolveButton.gameObject.SetActive(false);
@@ -73,16 +51,15 @@ public class DinosaurFeedingUIManager : MonoBehaviour
         Debug.Log("Paddock deselected, evolve button hidden.");
     }
 
-    // Called when the feed button is clicked.
     public void OnFeedButtonClicked()
     {
         if (currentDinosaur != null)
         {
-            // Only feed if the dinosaur's paddock is currently selected.
             if (currentDinosaur.parentPaddock == Paddock.SelectedPaddock)
             {
                 currentDinosaur.FeedDinosaur();
                 UpdateUI();
+                TriggerPulsingBar();
             }
             else
             {
@@ -95,7 +72,6 @@ public class DinosaurFeedingUIManager : MonoBehaviour
         }
     }
 
-    // Updates the UI based on the current dinosaur's feed progress and state.
     public void UpdateUI()
     {
         if (currentDinosaur != null)
@@ -111,7 +87,6 @@ public class DinosaurFeedingUIManager : MonoBehaviour
             }
         }
 
-        // Update the feed progress fill amount.
         if (currentDinosaur != null && feedFillImage != null)
         {
             float fill = (float)currentDinosaur.feedCount / (float)currentDinosaur.feedsPerLevel;
@@ -119,7 +94,6 @@ public class DinosaurFeedingUIManager : MonoBehaviour
             Debug.Log("FeedFillImage updated: " + fill);
         }
 
-        // Enable/disable buttons based on the dinosaur's level.
         if (currentDinosaur != null)
         {
             if (currentDinosaur.levelManager.CurrentLevel >= 10)
@@ -137,5 +111,62 @@ public class DinosaurFeedingUIManager : MonoBehaviour
                     evolveButton.gameObject.SetActive(false);
             }
         }
+    }
+    private Coroutine pulsingBarCoroutine;
+
+    private void TriggerPulsingBar()
+    {
+        int currentLevel = currentDinosaur.levelManager.CurrentLevel;
+        int feedCost = currentDinosaur.GetFeedCostForLevel(currentLevel);
+
+        if (currentDinosaur.dinosaurDiet == Diet.Herbivore)
+        {
+            if (!CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Crops, feedCost))
+            {
+                return;
+            }
+        }
+        else if (currentDinosaur.dinosaurDiet == Diet.Carnivore)
+        {
+            if (!CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Meat, feedCost))
+            {
+                return;
+            }
+        }
+
+        if (pulsingBar != null)
+        {
+            pulsingBar.fillAmount = (float)currentDinosaur.feedCount / (float)currentDinosaur.feedsPerLevel;
+
+            if (pulsingBarCoroutine != null)
+            {
+                StopCoroutine(pulsingBarCoroutine);
+            }
+
+            pulsingBarCoroutine = StartCoroutine(DeactivatePulsingBar());
+        }
+    }
+
+    private IEnumerator DeactivatePulsingBar()
+    {
+        if (pulsingBar != null)
+        {
+            float fadeDuration = 0.4f;
+            float elapsedTime = 0f;
+            Color initialColor = pulsingBar.color;
+
+            while (elapsedTime < fadeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+                pulsingBar.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(0.7f);
+            pulsingBar.fillAmount = 0f;
+        }
+
+        pulsingBarCoroutine = null;
     }
 }

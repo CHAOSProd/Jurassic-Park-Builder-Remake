@@ -91,7 +91,7 @@ public class MoneyObject : MonoBehaviour
                 _notification.SetActive(true);
                 if (isBabyActive && _BabyAnimator != null)
                     _BabyAnimator.SetTrigger("MaxMoneyReached");
-                else if (isAdultActive && _AdultAnimator != null)
+                if (isAdultActive && _AdultAnimator != null)
                     _AdultAnimator.SetTrigger("MaxMoneyReached");
             }
             return;
@@ -104,7 +104,7 @@ public class MoneyObject : MonoBehaviour
             _notification.SetActive(true);
             if (isBabyActive && _BabyAnimator != null)
                 _BabyAnimator.SetTrigger("MaxMoneyReached");
-            else if (isAdultActive && _AdultAnimator != null)
+            if (isAdultActive && _AdultAnimator != null)
                 _AdultAnimator.SetTrigger("MaxMoneyReached");
 
             _maxMoneyReached = true;
@@ -205,7 +205,7 @@ public class MoneyObject : MonoBehaviour
             bool isAdultActive = _dinosaurFeedingSystem.adultModel.activeSelf;
             if (isBabyActive && _BabyAnimator != null)
                 _BabyAnimator.SetTrigger("MaxMoneyReached");
-            else if (isAdultActive && _AdultAnimator != null)
+            if (isAdultActive && _AdultAnimator != null)
                 _AdultAnimator.SetTrigger("MaxMoneyReached");
         }
     }

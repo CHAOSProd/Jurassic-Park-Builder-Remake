@@ -41,22 +41,9 @@ public class DinosaurFeedingSystem : MonoBehaviour
         {
             Debug.LogWarning("DinosaurFeedingSystem could not find a parent Paddock.");
         }
-    }
-
-    private void Start()
-    {
-        // If the dinosaur is hatching, ensure no model is visible.
-        if (IsHatching())
+        if (!IsHatching())
         {
-            if (babyModel != null)
-                babyModel.SetActive(false);
-            if (adultModel != null)
-                adultModel.SetActive(false);
-            Debug.Log("Dinosaur is hatching; models disabled.");
-        }
-        else
-        {
-            // Otherwise, set the model based on level.
+            // set the model based on level.
             if (levelManager != null)
             {
                 if (levelManager.CurrentLevel >= 5)
@@ -79,6 +66,44 @@ public class DinosaurFeedingSystem : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void Start()
+    {
+        // If the dinosaur is hatching, ensure no model is visible.
+        if (IsHatching())
+        {
+            if (babyModel != null)
+                babyModel.SetActive(false);
+            if (adultModel != null)
+                adultModel.SetActive(false);
+            Debug.Log("Dinosaur is hatching; models disabled.");
+        }
+        else
+        {
+            // else set the model based on level.
+            if (levelManager != null)
+            {
+                if (levelManager.CurrentLevel >= 5)
+                {
+                    if (babyModel != null && adultModel != null)
+                    {
+                        babyModel.SetActive(false);
+                        adultModel.SetActive(true);
+                        Debug.Log("Model set to Adult based on level " + levelManager.CurrentLevel);
+                    }
+                }
+                else
+                {
+                    if (babyModel != null && adultModel != null)
+                    {
+                        babyModel.SetActive(true);
+                        adultModel.SetActive(false);
+                        Debug.Log("Model set to Baby based on level " + levelManager.CurrentLevel);
+                    }
+                }
+            }  
+        } 
     }
 
     /// <summary>

@@ -41,6 +41,7 @@ public class SellManager : Singleton<SellManager>
 
         UIManager.Instance.ChangeFixedTo("PanelUI");
         UIManager.Instance.DisableCurrent();
+        DinosaurFeedingUIManager.Instance.DisableEvolutionButton();
     }
 
     public void OnClose()
@@ -50,6 +51,7 @@ public class SellManager : Singleton<SellManager>
 
         UIManager.Instance.ChangeFixedTo("DefaultUI");
         UIManager.Instance.EnableCurrent();
+        DinosaurFeedingUIManager.Instance.UpdateUI();
     }
 
     public void OnSell()
@@ -66,6 +68,28 @@ public class SellManager : Singleton<SellManager>
         BoundsInt areaTemp = _objectToSell.Area;
         areaTemp.position = positionInt;
         GridBuildingSystem.Instance.SetAreaWhite(areaTemp, GridBuildingSystem.Instance.MainTilemap);
+            
+        if (Paddock.SelectedPaddock != null)
+        {
+
+            DinosaurLevelManager dinoManager = Paddock.SelectedPaddock.GetComponentInChildren<DinosaurLevelManager>();
+            if (dinoManager != null)
+            {
+                string paddockName = Paddock.SelectedPaddock.gameObject.name;
+
+                dinoManager.CurrentLevel = 1;
+                dinoManager._feedingSystem.feedCount = 0;
+
+                Attributes.SetInt("CurrentLevel" + paddockName, 1);
+                Attributes.SetInt("FeedCount" + paddockName, 0);
+
+                Debug.Log($"Reset completed for {paddockName}: CurrentLevel -> {Attributes.GetInt("CurrentLevel" + paddockName)}, FeedCount -> {Attributes.GetInt("FeedCount" + paddockName)}");
+            }
+            else
+            {
+                Debug.LogWarning("DinosaurLevelManager NON trovato nel paddock selezionato!");
+            }
+        }
 
         // Make Animal Purchasable again and reset its stats
         if(_objectToSell.data.AnimalIndex != null)

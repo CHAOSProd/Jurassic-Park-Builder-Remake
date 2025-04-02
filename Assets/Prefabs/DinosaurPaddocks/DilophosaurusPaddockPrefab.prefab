@@ -3627,8 +3627,8 @@ Transform:
   m_GameObject: {fileID: 4251931453828070838}
   serializedVersion: 2
   m_LocalRotation: {x: 0.14056627, y: -0.85927594, z: 0.21299486, w: -0.44330487}
-  m_LocalPosition: {x: 0.059566, y: -0.0729, z: -0.70055}
-  m_LocalScale: {x: 0.014066, y: 0.014066, z: 0.014066}
+  m_LocalPosition: {x: 0.065566, y: -0.0529, z: -0.70055}
+  m_LocalScale: {x: 0.0135, y: 0.0135, z: 0.0135}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1470497917452685841}
@@ -5215,7 +5215,7 @@ MonoBehaviour:
   _moneyPerSecond: 0.33
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
-  _BabyAnimator: {fileID: 8055026547136832885}
+  _BabyAnimator: {fileID: 6592833801018515099}
   _AdultAnimator: {fileID: 8055026547136832885}
   MaximumMoney: 100
   MaximumMinutes: 15
@@ -6498,6 +6498,7 @@ MonoBehaviour:
   _isPaddock: 1
   Hatching: {fileID: 8317435165583424928}
   Dino: {fileID: 8951342824657770242}
+  adultDino: {fileID: 4251931453828070838}
   isEditing: 0
   isPlacing: 0
   DinoCheck: 0

@@ -19,7 +19,6 @@ public class EvolutionChanger : MonoBehaviour
     {
         // Get the level manager and parent name for reference (if needed elsewhere).
         _dinosaurLevelManager = GetComponentInParent<DinosaurLevelManager>();
-        _parentName = GetComponentInParent<Paddock>().gameObject.name;
 
         _skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
 
