@@ -5139,6 +5139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelResources:
   - _maximumMoneyForTime: 270
+  - _maximumMoneyForTime: 270
   - _maximumMoneyForTime: 297
   - _maximumMoneyForTime: 325
   - _maximumMoneyForTime: 353
@@ -5148,7 +5149,6 @@ MonoBehaviour:
   - _maximumMoneyForTime: 463
   - _maximumMoneyForTime: 491
   - _maximumMoneyForTime: 519
-  - _maximumMoneyForTime: 547
   - _maximumMoneyForTime: 574
   - _maximumMoneyForTime: 602
   - _maximumMoneyForTime: 630

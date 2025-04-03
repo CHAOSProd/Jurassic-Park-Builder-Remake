@@ -122,6 +122,22 @@ public class SaveManager : Singleton<SaveManager>
                 AnimalIndex = 0
             });
 
+            string parentName = placeableTriceratops.gameObject.name;
+
+            var levelManager = placeableTriceratops.GetComponentInChildren<DinosaurLevelManager>();
+            if (levelManager != null)
+            {
+                Attributes.SetInt("CurrentLevel" + parentName, 4);
+                levelManager.CurrentLevel = 4;
+            }
+
+            var feedingSystem = placeableTriceratops.GetComponentInChildren<DinosaurFeedingSystem>();
+            if (feedingSystem != null)
+            {
+                Attributes.SetInt("FeedCount" + parentName, 2);
+                feedingSystem.feedCount = 2;
+            }
+
             HatchingTimer hatchingTimer = placeableTriceratops.GetComponentInChildren<HatchingTimer>(true);
             MoneyObject moneyObject = placeableTriceratops.GetComponentInChildren<MoneyObject>(true);
 

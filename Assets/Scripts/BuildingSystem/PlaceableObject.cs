@@ -332,6 +332,7 @@ public class PlaceableObject : MonoBehaviour
         if (_selectable.IsSelected)
         {
             isEditing = true;
+            DinosaurFeedingUIManager.Instance.DisableEvolutionButton();
             Debug.Log("StartEditing triggered");
             Animator mainObjectAnimator = GetComponentInChildren<Animator>();
             if (mainObjectAnimator != null)
