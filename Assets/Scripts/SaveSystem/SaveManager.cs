@@ -53,18 +53,18 @@ public class SaveManager : Singleton<SaveManager>
             if (lastSaveTime > now)
             {
                 futureSaveCount++;
-                if (futureSaveCount >= 2) 
+                if (futureSaveCount >= 2)
                 {
                     Debug.LogWarning("Cheated after the warning, deleting data...");
                     PlayerPrefs.SetInt("DeleteSaveOnStart", 1);
                     PlayerPrefs.Save();
-                    #if UNITY_EDITOR
+#if UNITY_EDITOR
                     Debug.Log("Closing the game in the Unity Editor.");
                     UnityEditor.EditorApplication.isPlaying = false;
-                    #else
+#else
                     Debug.Log("Closing the game in build.");
                     Application.Quit();
-                    #endif
+#endif
                 }
                 else
                 {
@@ -122,13 +122,17 @@ public class SaveManager : Singleton<SaveManager>
                 AnimalIndex = 0
             });
 
-            string parentName = placeableTriceratops.gameObject.name;
+            // Use the Paddock object's name for consistency with DinosaurLevelManager
+            Paddock paddock = placeableTriceratops.GetComponentInChildren<Paddock>();
+            string parentName = paddock != null ? paddock.gameObject.name : placeableTriceratops.gameObject.name;
 
+            // Set level to 4 for tutorial purposes and reinitialize to update money values
             var levelManager = placeableTriceratops.GetComponentInChildren<DinosaurLevelManager>();
             if (levelManager != null)
             {
                 Attributes.SetInt("CurrentLevel" + parentName, 4);
                 levelManager.CurrentLevel = 4;
+                levelManager.Initialize();
             }
 
             var feedingSystem = placeableTriceratops.GetComponentInChildren<DinosaurFeedingSystem>();
@@ -282,15 +286,13 @@ public class SaveManager : Singleton<SaveManager>
         SaveGameData();
     }
 
-   private void SaveGameData()
-{
-    // Update dinosaur levels for all prefab clones
-    DinosaurLevelSaver.SaveAllDinosaurLevels();
-    Attributes.SetAttribute("LastSaveTime", DateTime.Now);
-    SaveData.Attributes = Attributes.Export();
-    SaveData.AnimalShopData = ShopManager.Instance.GetAnimalShopData();
-    SaveSystem.Save(SaveData);
+    private void SaveGameData()
+    {
+        // Update dinosaur levels for all prefab clones
+        DinosaurLevelSaver.SaveAllDinosaurLevels();
+        Attributes.SetAttribute("LastSaveTime", DateTime.Now);
+        SaveData.Attributes = Attributes.Export();
+        SaveData.AnimalShopData = ShopManager.Instance.GetAnimalShopData();
+        SaveSystem.Save(SaveData);
+    }
 }
-
-}
-
