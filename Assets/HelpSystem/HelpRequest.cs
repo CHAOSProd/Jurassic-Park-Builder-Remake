@@ -6,7 +6,7 @@ using System.Collections;
 public class HelpRequest : MonoBehaviour
 {
     // URL of your bot's endpoint that triggers the help message (update this with your actual URL)
-    public string helpEndpoint = "https://nasty-rubie-jpbr-5e57689e.koyeb.app//triggerhelp";
+    public string helpEndpoint = "https://nasty-rubie-jpbr-5e57689e.koyeb.app/triggerhelp";
     
     // Reference to the Get Help button in your UI
     public Button getHelpButton;
