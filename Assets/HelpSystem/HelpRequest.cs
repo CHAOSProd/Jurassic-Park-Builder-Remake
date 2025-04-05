@@ -5,14 +5,8 @@ using System.Collections;
 
 public class HelpRequest : MonoBehaviour
 {
-    // URL of your bot's endpoint that triggers the help message (update this with your actual URL)
     public string helpEndpoint = "https://nasty-rubie-jpbr-5e57689e.koyeb.app/triggerhelp";
-    
-    // Reference to the Get Help button in your UI
     public Button getHelpButton;
-    
-    // The player's name (or other identifier) to send along with the request
-    public string playerName = "CHAOS";
 
     void Start()
     {
@@ -24,17 +18,21 @@ public class HelpRequest : MonoBehaviour
 
     void OnGetHelpClicked()
     {
-        // Start the coroutine to send the help request to your bot server
-        StartCoroutine(SendHelpRequest());
+        string playerName = DiscordManager.discordUsername;
+        string playerAvatar = DiscordManager.discordAvatarUrl;
+        string userId = DiscordManager.discordUserId;
+        
+        Debug.Log($"Sending help request from user ID: {userId}");
+        StartCoroutine(SendHelpRequest(playerName, playerAvatar, userId));
     }
 
-    IEnumerator SendHelpRequest()
+    IEnumerator SendHelpRequest(string playerName, string playerAvatar, string userId)
     {
-        // Create a form and add the player's name field
         WWWForm form = new WWWForm();
         form.AddField("playerName", playerName);
+        form.AddField("playerAvatar", playerAvatar);
+        form.AddField("discordUserId", userId);
         
-        // Create a POST request to your endpoint
         UnityWebRequest www = UnityWebRequest.Post(helpEndpoint, form);
         yield return www.SendWebRequest();
 

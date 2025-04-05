@@ -3,36 +3,73 @@ using TMPro;
 
 public class DiscordManager : MonoBehaviour
 {
+    public static string discordUsername = "UnknownPlayer";
+    public static string discordAvatarUrl = "";
+    public static string discordUserId = ""; // New user ID field
+
     private Discord.Discord discord;
+    private long startTimestamp;
     public TMP_Text levelText;
     private string previousLevelText;
-    private long startTimestamp;
 
     void Start()
     {
-        // Initialize the Discord instance
         discord = new Discord.Discord(1342685934776221786, (ulong)Discord.CreateFlags.NoRequireDiscord);
-
-        // Store the initial text value
         previousLevelText = levelText != null ? levelText.text : string.Empty;
-
-        // Set the initial start timestamp
         startTimestamp = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
-        // Initialize the activity
+        var userManager = discord.GetUserManager();
+        userManager.OnCurrentUserUpdate += UpdateUserInfo;
         UpdateActivity();
     }
 
     void OnDestroy()
     {
-        // Dispose of the Discord instance when the script is destroyed
         discord.Dispose();
+    }
+
+    void Update()
+    {
+        discord.RunCallbacks();
+        if (levelText != null && levelText.text != previousLevelText)
+        {
+            previousLevelText = levelText.text;
+            UpdateActivity();
+        }
+    }
+
+    private void UpdateUserInfo()
+    {
+        var userManager = discord.GetUserManager();
+        var currentUser = userManager.GetCurrentUser();
+        discordUsername = currentUser.Username;
+        discordUserId = currentUser.Id.ToString(); // Store user ID
+
+        if (!string.IsNullOrEmpty(currentUser.Avatar))
+        {
+            discordAvatarUrl = $"https://cdn.discordapp.com/avatars/{currentUser.Id}/{currentUser.Avatar}.png";
+        }
+        else
+        {
+            if (ushort.TryParse(currentUser.Discriminator, out ushort discriminator))
+            {
+                int defaultAvatarIndex = discriminator % 5;
+                discordAvatarUrl = $"https://cdn.discordapp.com/embed/avatars/{defaultAvatarIndex}.png";
+            }
+            else
+            {
+                discordAvatarUrl = "https://cdn.discordapp.com/embed/avatars/0.png";
+            }
+        }
+
+        Debug.Log($"Discord username: {discordUsername}");
+        Debug.Log($"Discord avatar URL: {discordAvatarUrl}");
+        Debug.Log($"Discord user ID: {discordUserId}");
     }
 
     void UpdateActivity()
     {
         var activityManager = discord.GetActivityManager();
-
         var activity = new Discord.Activity
         {
             Details = "In Jurassic Park",
@@ -45,28 +82,4 @@ public class DiscordManager : MonoBehaviour
             Debug.Log("Activity updated: " + result);
         });
     }
-
-    void Update()
-    {
-        // Run Discord callbacks
-        discord.RunCallbacks();
-
-        // Check if the level text has changed
-        if (levelText != null && levelText.text != previousLevelText)
-        {
-            // Update the stored previous text
-            previousLevelText = levelText.text;
-
-            // Update the activity state
-            UpdateActivity();
-        }
-    }
 }
-
-
-
-
-
-
-
-
