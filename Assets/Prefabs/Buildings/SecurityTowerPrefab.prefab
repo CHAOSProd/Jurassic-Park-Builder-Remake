@@ -390,7 +390,8 @@ MonoBehaviour:
   _moneyPerSecond: 0.1
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
-  _animator: {fileID: 0}
+  _BabyAnimator: {fileID: 0}
+  _AdultAnimator: {fileID: 0}
   MaximumMoney: 105
   MaximumMinutes: 15
   _maxMoneyReached: 0
@@ -1567,6 +1568,7 @@ MonoBehaviour:
   _isPaddock: 0
   Hatching: {fileID: 0}
   Dino: {fileID: 0}
+  adultDino: {fileID: 0}
   isEditing: 0
   isPlacing: 0
   DinoCheck: 0

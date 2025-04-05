@@ -310,7 +310,7 @@ TextureImporter:
         width: 119
         height: 234
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -318,6 +318,48 @@ TextureImporter:
       bones: []
       spriteID: b189fdd88d84448448af878ca95c00db
       internalID: -1222413879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResearchFlash1
+      rect:
+        serializedVersion: 2
+        x: 517
+        y: 513
+        width: 129
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16882e582b99e5949adb4019c27ad79c
+      internalID: 87029022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ResearchFlash
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 32
+        width: 67
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67e711680210d6b41ab8e54d0cf0a1d9
+      internalID: 177043451
       vertices: []
       indices: 
       edges: []
@@ -336,6 +378,8 @@ TextureImporter:
       Beam1: -736061845
       Beam2: 1378067628
       Beam3: 860586705
+      ResearchFlash: 177043451
+      ResearchFlash1: 87029022
       Star: -1620919275
       VFX_1_0: -1307524282
       VFX_1_1: 1196105390

@@ -4342,7 +4342,8 @@ MonoBehaviour:
   IsSelected: 0
   _objectsFadeInOut: {fileID: 3708635208963666018}
   _evolutionsChanger: {fileID: 7148360279365762116}
-  _dinosaurAnimationEventsListener: {fileID: 1106637447798897991}
+  _BabyAnimationEventsListener: {fileID: 0}
+  _AdultAnimationEventsListener: {fileID: 0}
   _foodType: 1
   _dinoNumber: 0
   hatchingScript: {fileID: 4851479198322135418}
@@ -4417,7 +4418,9 @@ MonoBehaviour:
   _currentMaximumMoneyForTime: 0
   _moneyObject: {fileID: 0}
   _dinosaurLevelResourcesManager: {fileID: 0}
+  _feedingSystem: {fileID: 0}
   CurrentLevel: 1
+  FeedsPerLevel: 5
 --- !u!114 &5742767958773182280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4437,7 +4440,8 @@ MonoBehaviour:
   _moneyPerSecond: 0.33
   _collectMoneyDisplay: {fileID: 0}
   _collectMoneyButton: {fileID: 0}
-  _animator: {fileID: 6326753801746238701}
+  _BabyAnimator: {fileID: 0}
+  _AdultAnimator: {fileID: 0}
   MaximumMoney: 100
   MaximumMinutes: 45
   _maxMoneyReached: 0
@@ -5768,6 +5772,7 @@ MonoBehaviour:
   _isPaddock: 1
   Hatching: {fileID: 8317435165583424928}
   Dino: {fileID: 6719516636385283797}
+  adultDino: {fileID: 0}
   isEditing: 0
   isPlacing: 0
   DinoCheck: 0
