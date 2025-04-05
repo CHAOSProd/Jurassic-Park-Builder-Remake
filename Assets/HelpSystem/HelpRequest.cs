@@ -7,9 +7,17 @@ public class HelpRequest : MonoBehaviour
 {
     public string helpEndpoint = "https://nasty-rubie-jpbr-5e57689e.koyeb.app/triggerhelp";
     public Button getHelpButton;
+    private HelpResponseHandler responseHandler;
+
+    [System.Serializable]
+    private class HelpRequestResponse
+    {
+        public string requestId;
+    }
 
     void Start()
     {
+        responseHandler = GetComponent<HelpResponseHandler>();
         if(getHelpButton != null)
         {
             getHelpButton.onClick.AddListener(OnGetHelpClicked);
@@ -39,6 +47,17 @@ public class HelpRequest : MonoBehaviour
         if(www.result == UnityWebRequest.Result.Success)
         {
             Debug.Log("Help request sent successfully.");
+            
+            // Parse the response to get the request ID
+            var response = JsonUtility.FromJson<HelpRequestResponse>(www.downloadHandler.text);
+            if(response != null && !string.IsNullOrEmpty(response.requestId))
+            {
+                responseHandler.SetActiveRequest(response.requestId);
+            }
+            else
+            {
+                Debug.LogError("Failed to get request ID from response");
+            }
         }
         else
         {
