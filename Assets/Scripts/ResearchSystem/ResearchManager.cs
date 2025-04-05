@@ -28,6 +28,8 @@ public class ResearchManager : Singleton<ResearchManager>
     [Header("DNA & XP Segments")]
     [SerializeField] private GameObject[] dnaSegments;   // Shown when segment outcome is true.
     [SerializeField] private GameObject[] xpSegments;      // Shown when segment outcome is false.
+    [SerializeField] private GameObject[] VFX;
+    [SerializeField] private GameObject[] FlashVFX;
 
     [Header("Retry Buttons")]
     [SerializeField] private GameObject[] retryButtons;    // One per segment.
@@ -226,7 +228,25 @@ public class ResearchManager : Singleton<ResearchManager>
             }
         }
 
-        // Display outcomes sequentially.
+        // Display outcomes sequentially and the vfx.
+
+        StartCoroutine(DisplayVFX());
+    }
+
+    /// <summary>
+    /// Displays the vfx before the outcomes appear
+    /// </summary>
+
+    private IEnumerator DisplayVFX()
+    {
+        for (int i = 0; i < researchSegments.Length; i++)
+        {
+            VFX[i].SetActive(true);
+
+            yield return new WaitForSeconds(displayDelay);
+        }
+        yield return new WaitForSeconds(displayDelay);
+        //Display the outcome
         StartCoroutine(DisplayResearchOutcome());
     }
 
@@ -247,6 +267,13 @@ public class ResearchManager : Singleton<ResearchManager>
                 retryButtons[i].SetActive(false);
 
             yield return new WaitForSeconds(resetDelay);
+
+            FlashVFX[i].SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            FlashVFX[i].SetActive(false);
+            VFX[i].GetComponent<Animator>().Play("FlashDissapear");
+            yield return new WaitForSeconds(resetDelay);
+            VFX[i].SetActive(false);
 
             // Show outcome.
             if (researchSegments[i])
