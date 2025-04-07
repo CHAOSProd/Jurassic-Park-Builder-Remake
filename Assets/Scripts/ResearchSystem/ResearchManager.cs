@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
@@ -19,7 +20,6 @@ public class ResearchManager : Singleton<ResearchManager>
     private float successRate;
     private int requiredAttempts;
     private int attemptCost;
-
     private int currentAmberIndex = -1;
     private int currentAttempts = 0;
     // true if the segment outcome is DNA; false if XP.
@@ -35,9 +35,33 @@ public class ResearchManager : Singleton<ResearchManager>
     [SerializeField] private GameObject[] retryButtons;    // One per segment.
 
     [Header("Display Settings")]
-    [SerializeField] private float displayDelay = 0.5f;        // Delay between displaying each segment (initial attempt).
-    [SerializeField] private float resetDelay = 0.2f;          // Delay to force a visual refresh.
+    [SerializeField] private float displayDelay = 0.4f;        // Delay between displaying each segment (initial attempt).
+    [SerializeField] private float resetDelay = 0.05f;          // Delay to force a visual refresh.
     [SerializeField] private float xpDisplayDuration = 1.0f;   // How long the XP segment is shown before switching to a Retry button.
+
+    [Header("Bar")]
+    [SerializeField] private Image progressBar;
+    [SerializeField] private Image whiteBar;
+    [SerializeField] private Image activeBar;
+    [SerializeField] private GameObject progressIndicator;
+    [SerializeField] private RectTransform startPoint;
+    [SerializeField] private RectTransform endPoint;
+    [SerializeField] private float indicatorYPosition = 72.157f;
+
+    [Header("Other UI")]
+    [SerializeField] private Image successEffect;
+    [SerializeField] private GameObject attemptResearchButton;
+    [SerializeField] private GameObject V;
+    [SerializeField] private GameObject X;
+    [SerializeField] private TextMeshProUGUI attemptMessageText;
+    [SerializeField] private TMPro.TextMeshProUGUI allAmberFoundText;
+
+    [Header("Audio")]
+    [SerializeField] private GameObject progressBarSound;
+    [SerializeField] private GameObject researchSlotSound;
+    [SerializeField] private GameObject goodResearchSlotSound;
+    [SerializeField] private GameObject wrongResearchSlotSound;
+
 
     // Flags for the current research attempt.
     private bool attemptInProgress = false;
@@ -128,6 +152,8 @@ public class ResearchManager : Singleton<ResearchManager>
         UIManager.Instance.ChangeFixedTo("PanelUI");
         UIManager.Instance.DisableCurrent();
         UIManager.Instance.ChangeCameraPanningStatus(false);
+        SetProgressAndActiveBar();
+        ResetSegmentsDisplay();
     }
 
     public void OpenNoAmberPanel()
@@ -138,6 +164,15 @@ public class ResearchManager : Singleton<ResearchManager>
         }
 
         Debug.Log("No amber to research");
+        int amberCount = AmberManager.Instance.GetAmberList().Count;
+        if (amberCount < 4)
+        {
+            allAmberFoundText.text = "Remove jungle elements to discover amber                                                    and research new dinosaur species";
+        }
+        else
+        {
+            allAmberFoundText.text = "Research unavailable, all amber found";
+        }
         
         NoAmberPanel.SetActive(true);
         UIManager.Instance.ChangeFixedTo("PanelUI");
@@ -171,6 +206,7 @@ public class ResearchManager : Singleton<ResearchManager>
         UIManager.Instance.EnableCurrent();
         UIManager.Instance.ChangeCameraPanningStatus(true);
         DeactivateAmberNotification();
+        ResetSegmentsDisplay();
     }
 
     /// <summary>
@@ -179,7 +215,18 @@ public class ResearchManager : Singleton<ResearchManager>
     public void AttemptResearch()
     {
         // Deduct coins for this research attempt.
+        if (!CurrencySystem.Instance.HasEnoughCurrency(CurrencyType.Coins, attemptCost))
+        {
+            CurrencySystem.Instance.AddCurrency(new CurrencyChangeGameEvent(-attemptCost, CurrencyType.Coins));
+            return;
+        }
         EventManager.Instance.TriggerEvent(new CurrencyChangeGameEvent(-attemptCost, CurrencyType.Coins));
+        attemptResearchButton.SetActive(false);
+        if (attemptMessageText != null)
+        {
+            attemptMessageText.gameObject.SetActive(true);
+            attemptMessageText.text = "Processing";
+        }
 
         attemptInProgress = true;
         attemptSuccessful = false;
@@ -212,18 +259,21 @@ public class ResearchManager : Singleton<ResearchManager>
                     researchSegments[0] = true;
                     researchSegments[1] = true;
                     researchSegments[2] = false;
+                    attemptSuccessful = false;
                     break;
                 case 1:
                     Debug.Log("1V, 2X");
                     researchSegments[0] = true;
                     researchSegments[1] = false;
                     researchSegments[2] = false;
+                    attemptSuccessful = false;
                     break;
                 case 2:
                     Debug.Log("3X");
                     researchSegments[0] = false;
                     researchSegments[1] = false;
                     researchSegments[2] = false;
+                    attemptSuccessful = false;
                     break;
             }
         }
@@ -242,10 +292,11 @@ public class ResearchManager : Singleton<ResearchManager>
         for (int i = 0; i < researchSegments.Length; i++)
         {
             VFX[i].SetActive(true);
-
-            yield return new WaitForSeconds(displayDelay);
+            AudioSource audio = researchSlotSound.GetComponent<AudioSource>();
+            if (audio != null)
+                audio.Play();
+            yield return new WaitForSeconds(0.35f);
         }
-        yield return new WaitForSeconds(displayDelay);
         //Display the outcome
         StartCoroutine(DisplayResearchOutcome());
     }
@@ -258,6 +309,7 @@ public class ResearchManager : Singleton<ResearchManager>
     {
         for (int i = 0; i < researchSegments.Length; i++)
         {
+            yield return new WaitForSeconds(displayDelay);
             // Refresh display for this segment.
             if (i < dnaSegments.Length && dnaSegments[i] != null)
                 dnaSegments[i].SetActive(false);
@@ -269,7 +321,7 @@ public class ResearchManager : Singleton<ResearchManager>
             yield return new WaitForSeconds(resetDelay);
 
             FlashVFX[i].SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(resetDelay);
             FlashVFX[i].SetActive(false);
             VFX[i].GetComponent<Animator>().Play("FlashDissapear");
             yield return new WaitForSeconds(resetDelay);
@@ -280,21 +332,42 @@ public class ResearchManager : Singleton<ResearchManager>
             {
                 if (i < dnaSegments.Length && dnaSegments[i] != null)
                     dnaSegments[i].SetActive(true);
+                    AudioSource audio = goodResearchSlotSound.GetComponent<AudioSource>();
+                    if (audio != null)
+                        audio.Play();
             }
             else
             {
-                // First show the XP segment to indicate failure.
-                if (i < xpSegments.Length && xpSegments[i] != null)
-                    xpSegments[i].SetActive(true);
-                // Wait for a set duration.
-                yield return new WaitForSeconds(xpDisplayDuration);
-                // Then hide the XP segment and show the Retry button.
-                if (i < xpSegments.Length && xpSegments[i] != null)
-                    xpSegments[i].SetActive(false);
-                if (i < retryButtons.Length && retryButtons[i] != null)
-                    retryButtons[i].SetActive(true);
+                StartCoroutine(ShowFailureFeedback(i));
             }
-            yield return new WaitForSeconds(displayDelay);
+        }
+        if (!attemptSuccessful)
+        {
+            X.SetActive(true);
+            if (attemptMessageText != null)
+            {
+                attemptMessageText.gameObject.SetActive(false);
+            }
+            yield return new WaitForSeconds(1.2f);
+        }
+        if (attemptSuccessful)
+        {
+            V.SetActive(true);
+            if (attemptMessageText != null)
+            {
+                attemptMessageText.text = "   Success";
+            }
+            UpdateProgressBar();
+            FadeIn(0.2f);
+            if (currentAttempts >= requiredAttempts)
+            {
+                yield return new WaitForSeconds(1f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(1.8f);
+            }
+            FadeOut(0.4f);
         }
         // After displaying all segments, if the required attempts have been reached or exceeded, complete research.
         if (currentAttempts >= requiredAttempts)
@@ -303,6 +376,10 @@ public class ResearchManager : Singleton<ResearchManager>
             ClosePanel();
             SelectablesManager.Instance.UnselectAll();
         }
+        attemptMessageText.gameObject.SetActive(false);
+        attemptResearchButton.SetActive(true);
+        X.SetActive(false);
+        V.SetActive(false);
     }
 
     /// <summary>
@@ -333,6 +410,11 @@ public class ResearchManager : Singleton<ResearchManager>
         // Hide the Retry button immediately.
         if (index < retryButtons.Length && retryButtons[index] != null)
             retryButtons[index].SetActive(false);
+        for (int i = 0; i < retryButtons.Length; i++)
+        {
+            if (i != index && retryButtons[i] != null)
+                retryButtons[i].SetActive(false);
+        }
 
         float roll = Random.Range(0f, 100f);
         if (roll <= successRate)
@@ -356,7 +438,20 @@ public class ResearchManager : Singleton<ResearchManager>
     /// </summary>
     private IEnumerator RefreshSegmentDisplay(int index)
     {
-        // Hide both objects.
+        X.SetActive(false);
+        V.SetActive(false);
+        if (attemptMessageText != null)
+        {
+            attemptMessageText.gameObject.SetActive(true);
+            attemptMessageText.text = "Processing";
+        }
+        AudioSource audio = researchSlotSound.GetComponent<AudioSource>();
+        if (audio != null)
+            audio.Play();
+        VFX[index].SetActive(true);
+        attemptResearchButton.SetActive(false);
+        yield return new WaitForSeconds(0.8f);
+        // Hide all visuals for the segment
         if (index < dnaSegments.Length && dnaSegments[index] != null)
             dnaSegments[index].SetActive(false);
         if (index < xpSegments.Length && xpSegments[index] != null)
@@ -366,26 +461,317 @@ public class ResearchManager : Singleton<ResearchManager>
 
         yield return new WaitForSeconds(resetDelay);
 
+        // Play the appearance animation again (Flash & VFX)
+        if (index < FlashVFX.Length && FlashVFX[index] != null)
+        {
+            FlashVFX[index].SetActive(true);
+            yield return new WaitForSeconds(resetDelay);
+            FlashVFX[index].SetActive(false);
+        }
+
+        if (index < VFX.Length && VFX[index] != null)
+        {
+            VFX[index].SetActive(true);
+            var animator = VFX[index].GetComponent<Animator>();
+            if (animator != null)
+            {
+                animator.Play("FlashDissapear");
+            }
+            yield return new WaitForSeconds(resetDelay);
+            VFX[index].SetActive(false);
+        }
+
+        // Show the result after the animation
         if (researchSegments[index])
         {
-            // If the retry succeeded, show the DNA segment.
+            X.SetActive(false);
+            V.SetActive(true);
             if (index < dnaSegments.Length && dnaSegments[index] != null)
                 dnaSegments[index].SetActive(true);
+            audio = goodResearchSlotSound.GetComponent<AudioSource>();
+            if (audio != null)
+                audio.Play();
+            if (attemptMessageText != null)
+            {
+                attemptMessageText.text = "   Success";
+            }
         }
         else
         {
-            // If the retry failed, show the XP segment briefly then display the Retry button.
+            X.SetActive(true);
+            V.SetActive(false);
+            // Show XP segment, then retry button
             if (index < xpSegments.Length && xpSegments[index] != null)
                 xpSegments[index].SetActive(true);
+            audio = wrongResearchSlotSound.GetComponent<AudioSource>();
+            if (audio != null)
+                audio.Play();
+            if (attemptMessageText != null)
+            {
+                attemptMessageText.gameObject.SetActive(false);
+            }
             yield return new WaitForSeconds(xpDisplayDuration);
             if (index < xpSegments.Length && xpSegments[index] != null)
                 xpSegments[index].SetActive(false);
             if (index < retryButtons.Length && retryButtons[index] != null)
                 retryButtons[index].SetActive(true);
         }
-
-        // After each retry update, check if all segments are now DNA.
         CheckResearchCompletion();
+        if (attemptSuccessful)
+        {
+            V.SetActive(true);
+            UpdateProgressBar();
+            FadeIn(0.2f);
+            if (currentAttempts >= requiredAttempts)
+            {
+                yield return new WaitForSeconds(1f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(1.8f);
+            }
+            FadeOut(0.4f);
+            // If the required attempts are met or exceeded, complete research.
+            if (currentAttempts >= requiredAttempts)
+            {
+                CompleteResearch();
+                ClosePanel();
+                SelectablesManager.Instance.UnselectAll();
+            }
+        }
+        else if (!attemptSuccessful && V.activeSelf)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        attemptResearchButton.SetActive(true);
+        for (int i = 0; i < researchSegments.Length; i++)
+        {
+            if (i != index && researchSegments[i] == false)
+            {
+                if (i < retryButtons.Length && retryButtons[i] != null)
+                    retryButtons[i].SetActive(true);
+            }
+        }
+        if (attemptMessageText != null)
+        {
+            attemptMessageText.gameObject.SetActive(false);
+        }
+        V.SetActive(false);
+        X.SetActive(false);
+    }
+
+    private IEnumerator DisplaySegmentOutcome(int i)
+    {
+        // Reset visual state for this segment
+        if (i < dnaSegments.Length && dnaSegments[i] != null)
+            dnaSegments[i].SetActive(false);
+        if (i < xpSegments.Length && xpSegments[i] != null)
+            xpSegments[i].SetActive(false);
+        if (i < retryButtons.Length && retryButtons[i] != null)
+            retryButtons[i].SetActive(false);
+
+        yield return new WaitForSeconds(resetDelay);
+
+        FlashVFX[i].SetActive(true);
+        yield return new WaitForSeconds(resetDelay);
+        FlashVFX[i].SetActive(false);
+        VFX[i].GetComponent<Animator>().Play("FlashDissapear");
+        yield return new WaitForSeconds(resetDelay);
+        VFX[i].SetActive(false);
+
+        // Show outcome
+        if (researchSegments[i])
+        {
+            if (i < dnaSegments.Length && dnaSegments[i] != null)
+                dnaSegments[i].SetActive(true);
+        }
+        else
+        {
+            StartCoroutine(ShowFailureFeedback(i));
+        }
+
+        yield return new WaitForSeconds(displayDelay);
+    }
+
+    private IEnumerator ShowFailureFeedback(int index)
+    {
+        AudioSource audio = wrongResearchSlotSound.GetComponent<AudioSource>();
+        if (audio != null)
+            audio.Play();
+        if (index < xpSegments.Length && xpSegments[index] != null)
+            xpSegments[index].SetActive(true);
+
+        yield return new WaitForSeconds(xpDisplayDuration);
+
+        if (index < xpSegments.Length && xpSegments[index] != null)
+            xpSegments[index].SetActive(false);
+
+        if (index < retryButtons.Length && retryButtons[index] != null)
+            retryButtons[index].SetActive(true);
+    }
+
+    private void SetProgressAndActiveBar()
+    {
+        float targetFill = Mathf.Clamp01((float)currentAttempts / requiredAttempts);
+        float targetX = Mathf.Lerp(startPoint.localPosition.x, endPoint.localPosition.x, targetFill);
+        progressBar.fillAmount = targetFill;
+        activeBar.fillAmount = targetFill;
+        progressIndicator.transform.localPosition = new Vector3(targetX, indicatorYPosition, progressIndicator.transform.localPosition.z);
+    }
+    private Coroutine moveIndicatorRoutine;
+
+    private void UpdateProgressIndicator()
+    {
+        float progressPercentage = Mathf.Clamp01((float)currentAttempts / requiredAttempts);
+        float targetX = Mathf.Lerp(startPoint.localPosition.x, endPoint.localPosition.x, progressPercentage);
+
+        if (progressIndicator != null)
+        {
+            if (moveIndicatorRoutine != null)
+            {
+                StopCoroutine(moveIndicatorRoutine);
+            }
+
+            moveIndicatorRoutine = StartCoroutine(SmoothMoveIndicator(targetX));
+        }
+    }
+
+    private IEnumerator SmoothMoveIndicator(float targetX)
+    {
+        float startX = progressIndicator.transform.localPosition.x;
+        float speed = Mathf.Abs(targetX - startX) / 1f;
+        float time = 0f;
+        while (Mathf.Abs(progressIndicator.transform.localPosition.x - targetX) > 0.01f)
+        {
+            float step = speed * Time.deltaTime;
+            progressIndicator.transform.localPosition = Vector3.MoveTowards(
+                progressIndicator.transform.localPosition, 
+                new Vector3(targetX, indicatorYPosition, progressIndicator.transform.localPosition.z), 
+                step
+            );
+
+            yield return null;
+        }
+        progressIndicator.transform.localPosition = new Vector3(targetX, indicatorYPosition, progressIndicator.transform.localPosition.z);
+    }
+
+    private Coroutine progressFillRoutine;
+
+    private void UpdateProgressBar()
+    {
+        AudioSource audio = progressBarSound.GetComponent<AudioSource>();
+        if (audio != null)
+            audio.Play();
+        UpdateProgressIndicator();
+        if (progressBar == null || requiredAttempts <= 0) return;
+        float targetFill = Mathf.Clamp01((float)currentAttempts / requiredAttempts);
+        if (progressFillRoutine != null)
+            StopCoroutine(progressFillRoutine);
+        progressFillRoutine = StartCoroutine(FillProgressAndTriggerSecond(targetFill));
+    }
+
+    private IEnumerator FillProgressAndTriggerSecond(float target)
+    {
+        yield return StartCoroutine(SmoothFillBar(target));
+
+        if (whiteBar != null)
+        {
+            float previousFill = Mathf.Clamp01((float)(currentAttempts - 1) / requiredAttempts);
+            float newFill = Mathf.Clamp01((float)currentAttempts / requiredAttempts);
+
+            whiteBar.fillAmount = newFill;
+
+            if (previousFill != newFill)
+            {
+                StartCoroutine(FadeInOutBar());
+            }
+        }
+    }
+
+    private IEnumerator SmoothFillBar(float target)
+    {
+        Color color = progressBar.color;
+        progressBar.color = new Color(color.r, color.g, color.b, 1f);
+        float start = progressBar.fillAmount;
+        float duration = 1f;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float t = Mathf.Clamp01(time / duration);
+            progressBar.fillAmount = Mathf.Lerp(start, target, t);
+            yield return null;
+        }
+
+        progressBar.fillAmount = target;
+    }
+
+    private IEnumerator FadeInOutBar()
+    {
+        if (whiteBar == null) yield break;
+
+        Color originalColor = whiteBar.color;
+
+        // FADE IN
+        float fadeInTime = 0.15f;
+        float t = 0f;
+        while (t < fadeInTime)
+        {
+            t += Time.deltaTime;
+            float alpha = Mathf.Lerp(0f, 1f, t / fadeInTime);
+            whiteBar.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            yield return null;
+        }
+        Color color = progressBar.color;
+        progressBar.color = new Color(color.r, color.g, color.b, 0f);
+        // FADE OUT
+        float fadeOutTime = 0.3f;
+        t = 0f;
+        while (t < fadeOutTime)
+        {
+            t += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, t / fadeOutTime);
+            whiteBar.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            if (t >= fadeOutTime * 0.4f && activeBar.fillAmount != Mathf.Clamp01((float)currentAttempts / requiredAttempts))
+            {
+                float targetFill = Mathf.Clamp01((float)currentAttempts / requiredAttempts);
+                activeBar.fillAmount = targetFill;
+                break;
+            }
+            yield return null;
+        }
+
+        whiteBar.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
+    }
+    public void FadeIn(float duration)
+    {
+        StartCoroutine(FadeCoroutine(0f, 0.8f, duration));
+    }
+
+    public void FadeOut(float duration)
+    {
+        StartCoroutine(FadeCoroutine(0.8f, 0f, duration));
+    }
+
+    private IEnumerator FadeCoroutine(float startAlpha, float endAlpha, float duration)
+    {
+        float elapsedTime = 0f;
+
+        // Set the initial alpha value
+        Color startColor = successEffect.color;
+        successEffect.color = new Color(startColor.r, startColor.g, startColor.b, startAlpha);
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
+            successEffect.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            yield return null;
+        }
+
+        // Ensure the final alpha value is set (in case the loop finishes early)
+        successEffect.color = new Color(startColor.r, startColor.g, startColor.b, endAlpha);
     }
 
     /// <summary>
@@ -415,14 +801,6 @@ public class ResearchManager : Singleton<ResearchManager>
             {
                 if (btn != null)
                     btn.SetActive(false);
-            }
-
-            // If the required attempts are met or exceeded, complete research.
-            if (currentAttempts >= requiredAttempts)
-            {
-                CompleteResearch();
-                ClosePanel();
-                SelectablesManager.Instance.UnselectAll();
             }
         }
     }

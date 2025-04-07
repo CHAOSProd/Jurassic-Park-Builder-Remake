@@ -152,7 +152,7 @@ public class DebrisManager : Singleton<DebrisManager>
                     if (debris.TryGetComponent(out DebrisObject debrisObject))
                     {
                         bool assignAmber = false;
-                        if (amberFound && !isAmberAssigned && daf.DebrisType == _amberDebrisType && AmberManager.Instance.GetAmberList().Count < 6) 
+                        if (amberFound && !isAmberAssigned && daf.DebrisType == _amberDebrisType && AmberManager.Instance.GetAmberList().Count < 4) 
                         {
                             assignAmber = true;
                             isAmberAssigned = true;
