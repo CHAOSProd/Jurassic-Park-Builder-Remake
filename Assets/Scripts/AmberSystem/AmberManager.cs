@@ -9,6 +9,7 @@ public class AmberManager : Singleton<AmberManager>
     [SerializeField] private GameObject objectToDisable1;
     [SerializeField] private GameObject objectToDisable2;
     [SerializeField] private GameObject objectToEnable;
+    [SerializeField] public TMPro.TextMeshProUGUI mainText;
 
     [Header("Sound")]
     [SerializeField] private GameObject PanelOpeningSound;
@@ -35,6 +36,11 @@ public class AmberManager : Singleton<AmberManager>
             {
                 objectToEnable.SetActive(true);
             }
+
+            if (mainText != null)
+            {
+                mainText.text = "You just found an Amber Piece!\nYou still have a research in progress. Complete it before decoding the new piece of amber!";
+            }
         }
         else
         {
@@ -51,6 +57,11 @@ public class AmberManager : Singleton<AmberManager>
             if (objectToEnable != null)
             {
                 objectToEnable.SetActive(false);
+            }
+
+            if (mainText != null)
+            {
+                mainText.text = "You just found an Amber Piece!\nStart decoding it to unlock a new Dinosaur species!";
             }
         }
         AmberPanel.GetComponent<Animator>().Play("openAnimation");

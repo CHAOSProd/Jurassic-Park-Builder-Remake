@@ -173,7 +173,7 @@ public class LevelManager : MonoBehaviour
     }
     private IEnumerator DelayedCalculateLevel()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         CalculateLevel();
     }
     public float GetCurrentLevel()
@@ -200,9 +200,10 @@ public class LevelManager : MonoBehaviour
     }
     private IEnumerator DelayedUpdateUI()
     {
-        yield return new WaitForSeconds(0.5f);
-        UpdateUI();
+        yield return new WaitForSeconds(1f);
         beamVFX.GetComponent<Animator>().Play("AddCurrency", -1, 0f);
+        yield return new WaitForSeconds(0.25f);
+        UpdateUI();
     }
 
     // Shows the level up panel

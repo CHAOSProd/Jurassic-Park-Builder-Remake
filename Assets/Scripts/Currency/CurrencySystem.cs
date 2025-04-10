@@ -111,7 +111,7 @@ public class CurrencySystem : Singleton<CurrencySystem>
     }
     private IEnumerator UpdateCurrencyTextDelayed(CurrencyType currencyType)
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1f);
 
         //Play animation
 
@@ -131,11 +131,11 @@ public class CurrencySystem : Singleton<CurrencySystem>
                 break;
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
 
         int startValue = int.Parse(_currencyTexts[currencyType].text, NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
         int endValue = _currencyAmounts[currencyType];
-        float duration = 0.4f;
+        float duration = 0.6f;
         float elapsed = 0f;
 
         while (elapsed < duration)
