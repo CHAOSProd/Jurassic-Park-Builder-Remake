@@ -200,21 +200,6 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-  - m_Index: 34
-    m_Metrics:
-      m_Width: 14.671875
-      m_Height: 67.78125
-      m_HorizontalBearingX: 1.4375
-      m_HorizontalBearingY: 67.59375
-      m_HorizontalAdvance: 17.546875
-    m_GlyphRect:
-      m_X: 324
-      m_Y: 491
-      m_Width: 16
-      m_Height: 69
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
   - m_Index: 35
     m_Metrics:
       m_Width: 0
@@ -1145,33 +1130,18 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-  - m_Index: 59
+  - m_Index: 34
     m_Metrics:
-      m_Width: 0
-      m_Height: 0
-      m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 0
-      m_HorizontalAdvance: 1.796875
+      m_Width: 14.671875
+      m_Height: 67.78125
+      m_HorizontalBearingX: 1.4375
+      m_HorizontalBearingY: 67.59375
+      m_HorizontalAdvance: 17.546875
     m_GlyphRect:
-      m_X: 0
-      m_Y: 0
-      m_Width: 0
-      m_Height: 0
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-  - m_Index: 36
-    m_Metrics:
-      m_Width: 0
-      m_Height: 0
-      m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 0
-      m_HorizontalAdvance: 1.796875
-    m_GlyphRect:
-      m_X: 0
-      m_Y: 0
-      m_Width: 0
-      m_Height: 0
+      m_X: 324
+      m_Y: 491
+      m_Width: 16
+      m_Height: 69
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
@@ -1183,10 +1153,6 @@ MonoBehaviour:
   - m_ElementType: 1
     m_Unicode: 32
     m_GlyphIndex: 33
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 33
-    m_GlyphIndex: 34
     m_Scale: 1
   - m_ElementType: 1
     m_Unicode: 34
@@ -1437,12 +1403,8 @@ MonoBehaviour:
     m_GlyphIndex: 122
     m_Scale: 1
   - m_ElementType: 1
-    m_Unicode: 58
-    m_GlyphIndex: 59
-    m_Scale: 1
-  - m_ElementType: 1
-    m_Unicode: 35
-    m_GlyphIndex: 36
+    m_Unicode: 33
+    m_GlyphIndex: 34
     m_Scale: 1
   m_AtlasTextures:
   - {fileID: 2120300661674861752}
