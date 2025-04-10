@@ -111,7 +111,27 @@ public class CurrencySystem : Singleton<CurrencySystem>
     }
     private IEnumerator UpdateCurrencyTextDelayed(CurrencyType currencyType)
     {
-        yield return new WaitForSeconds(0.9f);
+        yield return new WaitForSeconds(0.25f);
+
+        //Play animation
+
+        switch (currencyType)
+        {
+            case CurrencyType.Crops:
+                _texts[0].transform.GetChild(1).GetComponent<Animator>().Play("AddCurrency", -1, 0f);
+                break;
+            case CurrencyType.Meat:
+                _texts[1].transform.GetChild(1).GetComponent<Animator>().Play("AddCurrency", -1, 0f);
+                break;
+            case CurrencyType.Coins:
+                _texts[2].transform.GetChild(1).GetComponent<Animator>().Play("AddCurrency", -1, 0f);
+                break;
+            case CurrencyType.Bucks:
+                _texts[3].transform.GetChild(1).GetComponent<Animator>().Play("AddCurrency", -1, 0f);
+                break;
+        }
+
+        yield return new WaitForSeconds(0.5f);
 
         int startValue = int.Parse(_currencyTexts[currencyType].text, NumberStyles.AllowThousands, CultureInfo.InvariantCulture);
         int endValue = _currencyAmounts[currencyType];

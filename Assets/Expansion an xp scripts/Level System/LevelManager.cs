@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<LevelReqItem> levelRequiredItems; // List for item's levelReq Filter
     [SerializeField] private List<GameObject> ToggledUI;
     [SerializeField] private GameObject appearVFXPrefab;
+    [SerializeField] private GameObject beamVFX;
 
     [SerializeField] private float xpBarPadding = 0.05f; // Adjustable padding so the XP bar shows a little even at 0 XP
 
@@ -172,7 +173,7 @@ public class LevelManager : MonoBehaviour
     }
     private IEnumerator DelayedCalculateLevel()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         CalculateLevel();
     }
     public float GetCurrentLevel()
@@ -199,8 +200,9 @@ public class LevelManager : MonoBehaviour
     }
     private IEnumerator DelayedUpdateUI()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         UpdateUI();
+        beamVFX.GetComponent<Animator>().Play("AddCurrency", -1, 0f);
     }
 
     // Shows the level up panel
