@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 
 public class VisitorCenter : Selectable
 {
@@ -12,7 +11,6 @@ public class VisitorCenter : Selectable
 
     [Header("Audio")]
     [SerializeField] private AudioClip _selectSound;
-    [SerializeField] private AudioClip _visitorCenterSound;
     private AudioSource _audioSource;
 
     public bool AllowSelection { get; private set; }
@@ -26,7 +24,6 @@ public class VisitorCenter : Selectable
         {
             _audioSource = gameObject.AddComponent<AudioSource>();
         }
-        _audioSource.volume = 0.2f;
     }
 
     private void OnMouseUp()
@@ -53,43 +50,12 @@ public class VisitorCenter : Selectable
             _audioSource.PlayOneShot(_selectSound);
         }
 
-        if (_visitorCenterSound != null)
-        {
-            _audioSource.clip = _visitorCenterSound;
-            _audioSource.loop = true;
-            _audioSource.Play();
-        }
-
         base.Select();
-    }
-    private Coroutine fadeOutCoroutine;
-
-    private IEnumerator FadeOutSound(float duration)
-    {
-        float startVolume = _audioSource.volume;
-
-        float time = 0f;
-        while (time < duration)
-        {
-            time += Time.deltaTime;
-            _audioSource.volume = Mathf.Lerp(startVolume, 0f, time / duration);
-            yield return null;
-        }
-
-        _audioSource.Stop();
-        _audioSource.volume = startVolume;
     }
 
     public override void Unselect()
     {
         _selected.SetActive(false);
-        if (_audioSource.isPlaying)
-        {
-            if (fadeOutCoroutine != null)
-                StopCoroutine(fadeOutCoroutine);
-
-            fadeOutCoroutine = StartCoroutine(FadeOutSound(0.2f));
-        }
         base.Unselect();
         ResearchButton.SetActive(false);
     }
