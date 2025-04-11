@@ -18,7 +18,7 @@ public class DatabaseManager : MonoBehaviour
     void InitializeDatabase()
     {
         dbPath = System.IO.Path.Combine(Application.persistentDataPath, "ParkGame.db");
-        connectionString = "URI=file:" + dbPath;
+        connectionString = "Data Source=" + dbPath;
 
         if (!File.Exists(dbPath))
         {
