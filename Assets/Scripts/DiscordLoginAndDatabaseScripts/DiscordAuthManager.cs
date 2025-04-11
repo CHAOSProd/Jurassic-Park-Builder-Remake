@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 public class DiscordAuthManager : MonoBehaviour
 {
-    // Replace with your actual Discord application client ID.
+    
     public long clientId = 1342685934776221786;
     private Discord.Discord discord;
     private bool friendDataQueried = false;
@@ -53,7 +53,7 @@ public class DiscordAuthManager : MonoBehaviour
         if (PersistentData.Instance != null)
         {
             PersistentData.Instance.discordID = currentUser.Id.ToString();
-            // Note: if you later want to include discriminator, update your PersistentData class accordingly.
+            
             PersistentData.Instance.discordUsername = $"{currentUser.Username}#{currentUser.Discriminator}";
             PersistentData.Instance.isLoggedIn = true;
         }
@@ -89,7 +89,7 @@ public class DiscordAuthManager : MonoBehaviour
             QueryUnifiedFriendsList();
 
             // Load the main game scene.
-            SceneManager.LoadScene("MainGame");
+            SceneManager.LoadScene("Game");
         }
     }
 
@@ -102,7 +102,7 @@ public class DiscordAuthManager : MonoBehaviour
             friendDataQueried = true;
             Debug.Log("Fallback: No relationship update received. Querying friend list directly.");
             QueryUnifiedFriendsList();
-            SceneManager.LoadScene("MainGame");
+            SceneManager.LoadScene("Game");
         }
     }
 
@@ -194,6 +194,19 @@ public class DiscordAuthManager : MonoBehaviour
         PlayerPrefs.DeleteKey("DiscordUsername");
 
         // Reload the current scene so the login process can restart.
+        // In the Editor, if not in Play mode, use the EditorSceneManager API.
+#if UNITY_EDITOR
+        if (!Application.isPlaying)
+        {
+            string scenePath = UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene().path;
+            UnityEditor.SceneManagement.EditorSceneManager.OpenScene(scenePath);
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+#else
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+#endif
     }
 }
