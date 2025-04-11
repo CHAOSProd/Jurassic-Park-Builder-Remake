@@ -454,17 +454,10 @@ TextureImporter:
       name: 00000000_14
       rect:
         serializedVersion: 2
-<<<<<<< HEAD
         x: 1559
         y: 1310
         width: 339
         height: 120
-=======
-        x: 870
-        y: 32
-        width: 89
-        height: 451
->>>>>>> parent of c1e0eda (Revert "discord login early WIP")
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -472,34 +465,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-<<<<<<< HEAD
       spriteID: 33101a6016fe0774ea6e803eb8d3797a
       internalID: 1428887195
-=======
-      spriteID: 2dec89f1eea02f04192395ab07ffe232
-      internalID: 1193138257
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 00000000_15
-      rect:
-        serializedVersion: 2
-        x: 741
-        y: 32
-        width: 89
-        height: 451
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 461b9ecea6a2ae448abfd928d3e4249d
-      internalID: -1697762485
->>>>>>> parent of c1e0eda (Revert "discord login early WIP")
       vertices: []
       indices: 
       edges: []
@@ -521,12 +488,7 @@ TextureImporter:
       00000000_11: -1955925491
       00000000_12: -673227911
       00000000_13: -152987168
-<<<<<<< HEAD
       00000000_14: 1428887195
-=======
-      00000000_14: 1193138257
-      00000000_15: -1697762485
->>>>>>> parent of c1e0eda (Revert "discord login early WIP")
       00000000_2: -1653774385
       00000000_3: -2044582721
       00000000_4: -1333904920
