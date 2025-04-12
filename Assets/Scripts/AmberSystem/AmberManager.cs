@@ -20,7 +20,7 @@ public class AmberManager : Singleton<AmberManager>
     {
         PanelOpeningSound.GetComponent<AudioSource>().Play();
         AmberPanel.SetActive(true);
-        if (DinoAmber.lastDecodedAmberIndex != -1)
+        if (DinoAmber.lastDecodedAmberIndex != -1 || EvolutionManager.lastEvolutionIndex != -1)
         {
             if (objectToDisable1 != null)
             {

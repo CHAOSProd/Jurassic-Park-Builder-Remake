@@ -21,7 +21,9 @@ public class ResearchManager : Singleton<ResearchManager>
     private int requiredAttempts;
     private int attemptCost;
     private int currentAmberIndex = -1;
+    private int currentEvolutionIndex = -1;
     private int currentAttempts = 0;
+
     // true if the segment outcome is DNA; false if XP.
     bool[] researchSegments = new bool[3];
 
@@ -143,6 +145,39 @@ public class ResearchManager : Singleton<ResearchManager>
             UpdateAttemptCostText();
         }
     }
+    public void SetEvolutionIndex(int dinoIndex, int stageIndex)
+    {
+        currentEvolutionIndex = dinoIndex;
+        EvolutionManager.lastEvolutionIndex = dinoIndex;
+
+        DinoEvolution selectedEvolution = FindObjectsOfType<DinoEvolution>(true)
+            .FirstOrDefault(e => e.DinoEvolutionIndex == dinoIndex);
+
+        if (selectedEvolution != null)
+        {
+            EvolutionStage stage = selectedEvolution.GetStage(stageIndex);
+            if (stage != null)
+            {
+                successRate = stage.successRate;
+                requiredAttempts = stage.requiredAttempts;
+                attemptCost = stage.attemptCost;
+
+                Debug.Log($"ResearchManager - Stats from DinoEvolution {dinoIndex}, Stage {stageIndex}:");
+                Debug.Log($"Success Rate: {successRate}%");
+                Debug.Log($"Required Attempts: {requiredAttempts}");
+                Debug.Log($"Attempt Cost: {attemptCost}");
+                UpdateAttemptCostText();
+            }
+            else
+            {
+                Debug.LogWarning($"Evolution stage {stageIndex} not found for dino {dinoIndex}.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"DinoEvolution with index {dinoIndex} not found in scene.");
+        }
+    }
 
     public int GetCurrentAmberIndex()
     {
@@ -155,8 +190,6 @@ public class ResearchManager : Singleton<ResearchManager>
         {
             PanelOpeningSound.GetComponent<AudioSource>().Play();
         }
-
-        Debug.Log($"Currently researching dino amber index: {currentAmberIndex}, ({currentSpeciesName})");
         
         ResearchPanel.SetActive(true);
         UIManager.Instance.ChangeFixedTo("PanelUI");
@@ -164,6 +197,7 @@ public class ResearchManager : Singleton<ResearchManager>
         UIManager.Instance.ChangeCameraPanningStatus(false);
         SetProgressAndActiveBar();
         ResetSegmentsDisplay();
+        SaveResearchProgress();
     }
 
     public void OpenNoAmberPanel()
@@ -382,10 +416,13 @@ public class ResearchManager : Singleton<ResearchManager>
         // After displaying all segments, if the required attempts have been reached or exceeded, complete research.
         if (currentAttempts >= requiredAttempts)
         {
-            CompleteResearch();
             ClosePanel();
-            ResearchCompleteManager.Instance.SetSpeciesName(currentSpeciesName);
-            ResearchCompleteManager.Instance.OpenPanel();
+            if (EvolutionManager.lastEvolutionIndex == -1)
+            {
+                ResearchCompleteManager.Instance.SetSpeciesName(currentSpeciesName);
+                ResearchCompleteManager.Instance.OpenPanel();
+            }
+            CompleteResearch();
             SelectablesManager.Instance.UnselectAll();
         }
         attemptMessageText.gameObject.SetActive(false);
@@ -561,10 +598,13 @@ public class ResearchManager : Singleton<ResearchManager>
             // If the required attempts are met or exceeded, complete research.
             if (currentAttempts >= requiredAttempts)
             {
-                CompleteResearch();
                 ClosePanel();
-                ResearchCompleteManager.Instance.SetSpeciesName(currentSpeciesName);
-                ResearchCompleteManager.Instance.OpenPanel();
+                if (EvolutionManager.lastEvolutionIndex == -1)
+                {
+                    ResearchCompleteManager.Instance.SetSpeciesName(currentSpeciesName);
+                    ResearchCompleteManager.Instance.OpenPanel();
+                }
+                CompleteResearch();
                 SelectablesManager.Instance.UnselectAll();
             }
         }
@@ -839,10 +879,18 @@ public class ResearchManager : Singleton<ResearchManager>
 
     private void CompleteResearch()
     {
-        int index = GetCurrentAmberIndex();
-        DinoAmber.EnableDinoAndEnableOtherDecodeButtons(index);
+        if (EvolutionManager.lastEvolutionIndex == -1)
+        {
+            int index = GetCurrentAmberIndex();
+            DinoAmber.EnableDinoAndEnableOtherDecodeButtons(index);
+            Debug.Log($"Research completed, dinosaur with amber index {index}, ({currentSpeciesName}) unlocked and research attempts reset to: {currentAttempts}");
+        }
+        else
+        {
+            DinoAmber.EnableDinoAndEnableOtherDecodeButtons(-1);
+            EvolutionManager.lastEvolutionIndex = -1;
+        }
         currentAttempts = 0;
-        Debug.Log($"Research completed, dinosaur with amber index {index}, ({currentSpeciesName}) unlocked and research attempts reset to: {currentAttempts}");
         SaveResearchProgress();
     }
 
@@ -850,6 +898,7 @@ public class ResearchManager : Singleton<ResearchManager>
     {
         SaveManager.Instance.SaveData.ResearchData.CurrentAttempts = currentAttempts;
         SaveManager.Instance.SaveData.ResearchData.LastDecodedAmberIndex = DinoAmber.lastDecodedAmberIndex;
+        SaveManager.Instance.SaveData.ResearchData.LastEvolutionIndex = EvolutionManager.lastEvolutionIndex;
         SaveManager.Instance.SaveData.ResearchData.TutorialDebrisSpawned = TutorialDebrisSpawner.tutorialDebrisSpawned;
     }
 
@@ -857,9 +906,11 @@ public class ResearchManager : Singleton<ResearchManager>
     {
         currentAttempts = SaveManager.Instance.SaveData.ResearchData.CurrentAttempts;
         DinoAmber.lastDecodedAmberIndex = SaveManager.Instance.SaveData.ResearchData.LastDecodedAmberIndex;
+        EvolutionManager.lastEvolutionIndex = SaveManager.Instance.SaveData.ResearchData.LastEvolutionIndex;
         TutorialDebrisSpawner.tutorialDebrisSpawned = SaveManager.Instance.SaveData.ResearchData.TutorialDebrisSpawned;
         Debug.Log($"Loaded research progress, saved attempts: {currentAttempts}");
         Debug.Log($"Loaded dino decoding index: {DinoAmber.lastDecodedAmberIndex} (if -1 means there's no dino being decoded)");
+        Debug.Log($"Loaded evolution index: {EvolutionManager.lastEvolutionIndex} (if -1 means there's no dino in evolution)");
 
         if (TutorialDebrisSpawner.tutorialDebrisSpawned)
         {
