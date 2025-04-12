@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class EvolutionButtonHandler : MonoBehaviour
 {
-    private int dinoIndex;
     private int stageIndex;
     public Button evolutionButton;
+    Paddock selectedPaddock = Paddock.SelectedPaddock;
 
     void Start()
     {
@@ -19,15 +19,19 @@ public class EvolutionButtonHandler : MonoBehaviour
 
     void OnEvolutionButtonClick()
     {
+        Paddock selectedPaddock = Paddock.SelectedPaddock;
+        DinoEvolution dinoEvolution = selectedPaddock.GetComponentInChildren<DinoEvolution>(true);
+        int evolutionIndex = dinoEvolution.DinoEvolutionIndex;
+        int stageIndex = dinoEvolution.DinoStageIndex;
         if (DinoAmber.lastDecodedAmberIndex == -1)
         {
             if (EvolutionManager.lastEvolutionIndex == -1)
             {
                 EvolutionManager.Instance.OpenPanel();
             }
-            else
+            else if (EvolutionManager.lastEvolutionIndex != -1 && EvolutionManager.lastEvolutionIndex == evolutionIndex)
             {
-                ResearchManager.Instance.SetEvolutionIndex(dinoIndex, stageIndex);
+                ResearchManager.Instance.SetEvolutionIndex(evolutionIndex, stageIndex);
                 DinosaurFeedingUIManager.Instance.DisableEvolutionButton();
                 ResearchManager.Instance.OpenPanel();
             }

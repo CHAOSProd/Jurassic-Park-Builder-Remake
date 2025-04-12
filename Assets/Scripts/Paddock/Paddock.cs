@@ -50,6 +50,13 @@ public class Paddock : Selectable
             _feedButton.OnClickEvent.AddListener(OnFeedButtonClick);
         }
     }
+    public void HandleEvolutionStart()
+    {
+        _moneyObject._data.Money = 0;
+        StopSound(Sounds[5]);
+        StopSound(Sounds[6]);
+        Debug.Log("Paddock entered evolution state.");
+    }
 
     private void Start()
     {
@@ -105,7 +112,7 @@ public class Paddock : Selectable
 
     private void Update()
     {
-        if (!is_hatching && _dinosaurFeedingSystem.babyModel.activeSelf ||_dinosaurFeedingSystem.adultModel.activeSelf )
+        if (!is_hatching && _dinosaurFeedingSystem.babyModel.activeSelf || _dinosaurFeedingSystem.adultModel.activeSelf)
         {
             _moneyObject.enabled = true;
         }

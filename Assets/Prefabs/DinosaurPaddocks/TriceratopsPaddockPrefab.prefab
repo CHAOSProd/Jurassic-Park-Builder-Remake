@@ -9310,12 +9310,12 @@ MonoBehaviour:
   - successRate: 55
     requiredAttempts: 10
     attemptCost: 700
-  - successRate: 0
-    requiredAttempts: 0
-    attemptCost: 0
-  - successRate: 0
-    requiredAttempts: 0
-    attemptCost: 0
+  - successRate: 50
+    requiredAttempts: 10
+    attemptCost: 2150
+  - successRate: 45
+    requiredAttempts: 10
+    attemptCost: 3500
 --- !u!114 &1029129612335912910
 MonoBehaviour:
   m_ObjectHideFlags: 0

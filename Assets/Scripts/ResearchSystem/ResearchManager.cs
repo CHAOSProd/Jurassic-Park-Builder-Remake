@@ -149,6 +149,7 @@ public class ResearchManager : Singleton<ResearchManager>
     {
         currentEvolutionIndex = dinoIndex;
         EvolutionManager.lastEvolutionIndex = dinoIndex;
+        EvolutionManager.lastStageIndex = stageIndex;
 
         DinoEvolution selectedEvolution = FindObjectsOfType<DinoEvolution>(true)
             .FirstOrDefault(e => e.DinoEvolutionIndex == dinoIndex);
@@ -887,8 +888,31 @@ public class ResearchManager : Singleton<ResearchManager>
         }
         else
         {
+            int evolutionIndex = EvolutionManager.lastEvolutionIndex;
+            int stageIndex = EvolutionManager.lastStageIndex;
+            DinoEvolution[] allEvolutions = FindObjectsOfType<DinoEvolution>(true);
+            DinoEvolution targetEvolution = allEvolutions.FirstOrDefault(e => e.DinoEvolutionIndex == evolutionIndex);
+            
+            if (targetEvolution != null)
+            {
+                if (targetEvolution.DinoToDisable != null)
+                {
+                    targetEvolution.DinoToDisable.SetActive(true);
+                }
+
+                if (targetEvolution.evolutionIconToEnable != null)
+                {
+                    targetEvolution.evolutionIconToEnable.SetActive(false);
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"No DinoEvolution found with EvolutionIndex {evolutionIndex}");
+            }
+
             DinoAmber.EnableDinoAndEnableOtherDecodeButtons(-1);
             EvolutionManager.lastEvolutionIndex = -1;
+            EvolutionManager.lastStageIndex = -1;
         }
         currentAttempts = 0;
         SaveResearchProgress();
@@ -899,6 +923,7 @@ public class ResearchManager : Singleton<ResearchManager>
         SaveManager.Instance.SaveData.ResearchData.CurrentAttempts = currentAttempts;
         SaveManager.Instance.SaveData.ResearchData.LastDecodedAmberIndex = DinoAmber.lastDecodedAmberIndex;
         SaveManager.Instance.SaveData.ResearchData.LastEvolutionIndex = EvolutionManager.lastEvolutionIndex;
+        SaveManager.Instance.SaveData.ResearchData.LastStageIndex = EvolutionManager.lastStageIndex;
         SaveManager.Instance.SaveData.ResearchData.TutorialDebrisSpawned = TutorialDebrisSpawner.tutorialDebrisSpawned;
     }
 
@@ -907,10 +932,12 @@ public class ResearchManager : Singleton<ResearchManager>
         currentAttempts = SaveManager.Instance.SaveData.ResearchData.CurrentAttempts;
         DinoAmber.lastDecodedAmberIndex = SaveManager.Instance.SaveData.ResearchData.LastDecodedAmberIndex;
         EvolutionManager.lastEvolutionIndex = SaveManager.Instance.SaveData.ResearchData.LastEvolutionIndex;
+        EvolutionManager.lastStageIndex = SaveManager.Instance.SaveData.ResearchData.LastStageIndex;
         TutorialDebrisSpawner.tutorialDebrisSpawned = SaveManager.Instance.SaveData.ResearchData.TutorialDebrisSpawned;
         Debug.Log($"Loaded research progress, saved attempts: {currentAttempts}");
         Debug.Log($"Loaded dino decoding index: {DinoAmber.lastDecodedAmberIndex} (if -1 means there's no dino being decoded)");
         Debug.Log($"Loaded evolution index: {EvolutionManager.lastEvolutionIndex} (if -1 means there's no dino in evolution)");
+        Debug.Log($"Loaded stage index: {EvolutionManager.lastStageIndex}");
 
         if (TutorialDebrisSpawner.tutorialDebrisSpawned)
         {

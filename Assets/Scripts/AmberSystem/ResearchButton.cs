@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class ResearchButtonHandler : MonoBehaviour
 {
     private static int amberIndex = -1;
-    private int dinoIndex;
     private int stageIndex;
     private Button button;
 
@@ -49,7 +48,9 @@ public class ResearchButtonHandler : MonoBehaviour
             }
             else
             {
-                ResearchManager.Instance.SetEvolutionIndex(dinoIndex, stageIndex);
+                int evolutionIndex = EvolutionManager.lastEvolutionIndex;
+                int stageIndex = EvolutionManager.lastStageIndex;
+                ResearchManager.Instance.SetEvolutionIndex(evolutionIndex, stageIndex);
             }
             ResearchManager.Instance.OpenPanel();
         }
