@@ -4,23 +4,44 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoad : MonoBehaviour
 {
-    [Tooltip("Name of the main scene to load after the splash screen.")]
     public string mainSceneName;
-
-    [Tooltip("Duration (in seconds) the splash screen is displayed.")]
     public float splashDelay = 3.0f;
 
     void Start()
     {
-        // Start the coroutine to load the main scene after a delay
+        var splashManager = FindObjectOfType<SplashScreenManager>();
+        if (splashManager != null)
+        {
+            splashManager.OnSplashSequenceCompleted += StartSceneLoad;
+        }
+        else
+        {
+            StartSceneLoad();
+        }
+    }
+
+    void StartSceneLoad()
+    {
         StartCoroutine(LoadMainSceneAfterDelay());
     }
 
     private IEnumerator LoadMainSceneAfterDelay()
     {
-        // Wait for the specified splash screen duration
-        yield return new WaitForSeconds(splashDelay);
-        // Load the main scene
+        float timer = 0;
+        while (timer < splashDelay)
+        {
+            if (!DiscordAuthManager.Instance.isProcessing)
+            {
+                timer += Time.deltaTime;
+            }
+            yield return null;
+        }
+
+        while (!DiscordAuthManager.Instance.isDataReady)
+        {
+            yield return null;
+        }
+
         Load(mainSceneName);
     }
 

@@ -1155,7 +1155,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfda6d3e647d61f4fa686830e88738a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isProcessing: 0
+  isDataReady: 0
   clientId: 1342685934776221786
+  clientSecret: wBflvhN5YkJ4friWxiFGUlSE7ahwLAHl
+  redirectUri: https://territorial-justine-jpbremake-0d155b4b.koyeb.app/
 --- !u!114 &299279093
 MonoBehaviour:
   m_ObjectHideFlags: 0
