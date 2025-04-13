@@ -9,9 +9,6 @@ public class NewSpeciesManager : Singleton<NewSpeciesManager>
     [SerializeField] private GameObject NewSpeciesPanel;
     [SerializeField] private GameObject Dinos;
 
-    [Header("Sound")]
-    [SerializeField] private GameObject PanelOpeningSound;
-
     private HatchingData data;
     private Transform child;
 
@@ -32,8 +29,6 @@ public class NewSpeciesManager : Singleton<NewSpeciesManager>
     public void OpenPanel(HatchingData hatchingData)
     {
         data = hatchingData;
-
-        PanelOpeningSound.GetComponent<AudioSource>().Play();
 
         NewSpeciesPanel.SetActive(true);
         NewSpeciesPanel.GetComponent<Animator>().Play("openAnimation");

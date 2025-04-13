@@ -25,10 +25,13 @@ public class HatchingTimer : MonoBehaviour
 
     [Header("Audio")]
     [SerializeField] private AudioSource _xpCollectSound; // Add an AudioSource for XP collection sound.
+    [SerializeField] private AudioSource hatchingFinishedSound;
 
     private TimerBar _timerBarInstance;
-    private HatchingData data;
+    public HatchingData data;
     private bool isProgressUpdated = false;
+    
+
 
     private void Start()
     {
@@ -99,7 +102,7 @@ public class HatchingTimer : MonoBehaviour
         }
     }
 
-    private void StartHatchingTimer()
+    public void StartHatchingTimer()
     {
         CreateTimer();
 
@@ -108,6 +111,7 @@ public class HatchingTimer : MonoBehaviour
         paddockScript.is_hatching = true;
         paddockScript.hatching_completed = false;
         data.HatchingCompleted = false;
+        _eggVisual.SetActive(true);
     }
 
     private void CreateTimer()
@@ -172,7 +176,16 @@ public class HatchingTimer : MonoBehaviour
             _xpCollectSound.Play();
         }
 
-        NewSpeciesManager.Instance.OpenPanel(data);
+        if (hatchingFinishedSound != null)
+        {
+            hatchingFinishedSound.Play();
+        }
+        
+        DinosaurLevelManager dinoLevelManager = paddockScript.GetComponentInChildren<DinosaurLevelManager>(true);
+        if (dinoLevelManager != null && dinoLevelManager.CurrentLevel < 2)
+        {
+            NewSpeciesManager.Instance.OpenPanel(data);
+        }
     }
 
     public void RemoveData()

@@ -917,7 +917,7 @@ public class ResearchManager : Singleton<ResearchManager>
                         Attributes.SetInt("CurrentLevel" + paddockName, targetLevel);
                         Attributes.SetInt("FeedCount" + paddockName, 0);
                         dinoLevelManager.Initialize();
-                        dinoLevelManager._feedingSystem.levelChecker();
+                        dinoLevelManager._feedingSystem.disableModels();
                         EvolutionChanger evolutionChanger = paddock.GetComponentInChildren<EvolutionChanger>(true);
                         if (evolutionChanger != null)
                         {
@@ -927,6 +927,17 @@ public class ResearchManager : Singleton<ResearchManager>
                         else
                         {
                             Debug.LogWarning("EvolutionChanger not found");
+                        }
+                        HatchingTimer hatchingTimer = FindObjectsOfType<HatchingTimer>(true)
+                            .FirstOrDefault(ht => ht.paddockScript == paddock);
+                        if (hatchingTimer != null)
+                        {
+                            hatchingTimer.StartHatchingTimer();
+                            Debug.Log($"Hatching started for dinosauro'{paddock.name}'");
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"No hatching found on '{paddock.name}'");
                         }
                         Debug.Log($"Dinosaur in paddock '{paddockName}' set to level {targetLevel} and feedCount reset to 0");
                     }

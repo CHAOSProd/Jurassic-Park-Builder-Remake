@@ -21,6 +21,14 @@ public class EvolutionChanger : MonoBehaviour
 
         UpdateSkinBasedOnLevel();
     }
+    private void OnEnable()
+    {
+        _dinosaurLevelManager = GetComponentInParent<DinosaurLevelManager>();
+        _parentName = GetComponentInParent<Paddock>().gameObject.name;
+        _skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        UpdateSkinBasedOnLevel();
+    }
 
     public void UpdateSkinBasedOnLevel()
     {
@@ -58,15 +66,24 @@ public class EvolutionChanger : MonoBehaviour
         // Save current skin index
         Attributes.SetInt("CurrentSkin" + _parentName, index);
 
+        int level = _dinosaurLevelManager.CurrentLevel;
+
+        int starsToShow = index;
+
+        if (level == 40)
+        {
+            starsToShow += 1;
+        }
+
         // Update stars for visual indication
         for (int i = 0; i < _stars.Count; i++)
         {
-            _stars[i].SetActive(i < index);
+            _stars[i].SetActive(i < starsToShow);
         }
 
         for (int i = 0; i < _editingStars.Count; i++)
         {
-            _editingStars[i].SetActive(i < index);
+            _editingStars[i].SetActive(i < starsToShow);
         }
 
         // Apply material to all SkinnedMeshRenderers

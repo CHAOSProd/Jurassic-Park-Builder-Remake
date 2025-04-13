@@ -148,6 +148,15 @@ public class DinosaurFeedingSystem : MonoBehaviour
         } 
     }
 
+    public void disableModels()
+    {
+        if (babyModel != null && adultModel != null)
+        {
+            babyModel.SetActive(false);
+            adultModel.SetActive(false);
+        }
+    }
+
     /// <summary>
     /// Checks if the dinosaur is currently hatching.
     /// It does so by retrieving the PlaceableObject from the paddock's parent.
@@ -236,7 +245,10 @@ public class DinosaurFeedingSystem : MonoBehaviour
     private void LevelUp()
     {
         levelManager.LevelUp();
-        feedCount = 0;  // Reset feeding progress (the level is preserved)
+        if (levelManager.CurrentLevel != 40)
+        {
+            feedCount = 0;  // Reset feeding progress (the level is preserved)
+        }
         Debug.Log("Dinosaur leveled up! New level: " + levelManager.CurrentLevel);
 
         // Only update the model if the dinosaur is not hatching.
@@ -258,6 +270,21 @@ public class DinosaurFeedingSystem : MonoBehaviour
                     babyModel.SetActive(true);
                     adultModel.SetActive(false);
                     Debug.Log("Dinosaur remains as baby.");
+                }
+            }
+        }
+        if (levelManager.CurrentLevel == 40)
+        {
+            if (parentPaddock != null)
+            {
+                EvolutionChanger evolutionChanger = parentPaddock.GetComponentInChildren<EvolutionChanger>(true);
+                if (evolutionChanger != null)
+                {
+                    evolutionChanger.UpdateSkinBasedOnLevel();
+                }
+                else
+                {
+                    Debug.LogWarning("EvolutionChanger non trovato nel paddock per aggiornare la skin dopo il LevelUp.");
                 }
             }
         }

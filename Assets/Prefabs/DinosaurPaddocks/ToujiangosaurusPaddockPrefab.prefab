@@ -4700,6 +4700,7 @@ MonoBehaviour:
   MaximumMoney: 100
   MaximumMinutes: 60
   _maxMoneyReached: 0
+  evolutionIndex: 0
 --- !u!114 &1910003470799255841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5284,11 +5285,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 217a360019cfa0f4cba70fd44ccd965b, type: 2}
   - {fileID: 2100000, guid: a0b2a051fcafc03488ae7286f014184d, type: 2}
   - {fileID: 2100000, guid: 11380c25a242b2d44a166fee1b8ccdc5, type: 2}
-  _buttons:
-  - {fileID: 5031989510065526918}
-  - {fileID: 6938625620367036459}
-  - {fileID: 1925373512877742241}
-  - {fileID: 4154991726383581585}
   _stars:
   - {fileID: 3442547421050793258}
   - {fileID: 4122404540009945654}

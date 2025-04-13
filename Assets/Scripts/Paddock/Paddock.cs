@@ -52,6 +52,10 @@ public class Paddock : Selectable
     }
     public void HandleEvolutionStart()
     {
+        _AdultAnimationEventsListener.OnEatAnimationEnded();
+        _AdultAnimationEventsListener.OnAnimationEnded();
+        _BabyAnimationEventsListener.OnEatAnimationEnded();
+        _BabyAnimationEventsListener.OnAnimationEnded();
         _moneyObject._data.Money = 0;
         StopSound(Sounds[5]);
         StopSound(Sounds[6]);
