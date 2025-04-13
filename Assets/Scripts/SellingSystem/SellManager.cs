@@ -73,6 +73,7 @@ public class SellManager : Singleton<SellManager>
         {
 
             DinosaurLevelManager dinoManager = Paddock.SelectedPaddock.GetComponentInChildren<DinosaurLevelManager>();
+            EvolutionChanger evolutionChanger = Paddock.SelectedPaddock.GetComponentInChildren<EvolutionChanger>();
             if (dinoManager != null)
             {
                 string paddockName = Paddock.SelectedPaddock.gameObject.name;
@@ -87,18 +88,21 @@ public class SellManager : Singleton<SellManager>
             }
             else
             {
-                Debug.LogWarning("DinosaurLevelManager NON trovato nel paddock selezionato!");
+                Debug.LogWarning("DinosaurLevelManager not found on selected paddock");
+            }
+            if (evolutionChanger != null)
+            {
+                evolutionChanger.ChangeSkin(0);
+            }
+            else
+            {
+                Debug.LogWarning("evolutionChanger not found on selected paddock");
             }
         }
 
         // Make Animal Purchasable again and reset its stats
         if(_objectToSell.data.AnimalIndex != null)
         {
-            EvolutionChanger evolutionChanger = _objectToSell.GetComponentInChildren<EvolutionChanger>();
-            if (evolutionChanger != null)
-            {
-                evolutionChanger.ChangeSkin(0);
-            }
             ShopManager.Instance.GetAnimalByIndex(_objectToSell.data.AnimalIndex ?? 0).SetPurchased(false);
             _objectToSell.GetComponentInChildren<HatchingTimer>(true).RemoveData();
         }

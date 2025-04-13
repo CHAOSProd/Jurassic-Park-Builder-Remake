@@ -2697,11 +2697,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: acdffd2260329e843b4e000e311efa24, type: 2}
   - {fileID: 2100000, guid: f035a281fd1b27d419a7cc242c0ddf54, type: 2}
   - {fileID: 2100000, guid: 1192f598f6a64df4eb8ea1d43906120c, type: 2}
-  _buttons:
-  - {fileID: 1406268465339104349}
-  - {fileID: 1230953245784210022}
-  - {fileID: 5077226132867708696}
-  - {fileID: 1440667342076845776}
   _stars:
   - {fileID: 5208602537623086834}
   - {fileID: 6035451313319533873}
@@ -9120,6 +9115,7 @@ MonoBehaviour:
   MaximumMoney: 128.46
   MaximumMinutes: 5
   _maxMoneyReached: 0
+  evolutionIndex: 0
 --- !u!114 &5498177297821217796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9306,15 +9302,16 @@ MonoBehaviour:
   DinoEvolutionIndex: 0
   DinoToDisable: {fileID: 2758451312830958932}
   evolutionIconToEnable: {fileID: 781642271584140109}
+  DinoStageIndex: 0
   evolutionStages:
   - successRate: 55
-    requiredAttempts: 10
+    requiredAttempts: 1
     attemptCost: 700
   - successRate: 50
-    requiredAttempts: 10
+    requiredAttempts: 1
     attemptCost: 2150
   - successRate: 45
-    requiredAttempts: 10
+    requiredAttempts: 1
     attemptCost: 3500
 --- !u!114 &1029129612335912910
 MonoBehaviour:
@@ -9677,11 +9674,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: acdffd2260329e843b4e000e311efa24, type: 2}
   - {fileID: 2100000, guid: f035a281fd1b27d419a7cc242c0ddf54, type: 2}
   - {fileID: 2100000, guid: 1192f598f6a64df4eb8ea1d43906120c, type: 2}
-  _buttons:
-  - {fileID: 1406268465339104349}
-  - {fileID: 1230953245784210022}
-  - {fileID: 5077226132867708696}
-  - {fileID: 1440667342076845776}
   _stars:
   - {fileID: 5208602537623086834}
   - {fileID: 6035451313319533873}

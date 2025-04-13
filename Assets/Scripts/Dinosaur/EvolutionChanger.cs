@@ -6,63 +6,59 @@ using UnityEngine.UI;
 public class EvolutionChanger : MonoBehaviour
 {
     [SerializeField] private List<Material> _skinMaterials;
-    [SerializeField] private List<Button> _buttons;
     [SerializeField] private List<GameObject> _stars;
     [SerializeField] private List<GameObject> _editingStars;
 
     private DinosaurLevelManager _dinosaurLevelManager;
     private SkinnedMeshRenderer[] _skinnedMeshRenderers;
-    private int _currentSkin;
     private string _parentName;
-    
+
     private void Start()
     {
-        // Get the level manager and parent name for reference (if needed elsewhere).
         _dinosaurLevelManager = GetComponentInParent<DinosaurLevelManager>();
-
+        _parentName = GetComponentInParent<Paddock>().gameObject.name;
         _skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
 
-        // Retrieve the current skin index (if saved) or default to 0.
-        if (Attributes.HaveKey("CurrentSkin" + _parentName))
+        UpdateSkinBasedOnLevel();
+    }
+
+    public void UpdateSkinBasedOnLevel()
+    {
+        if (_dinosaurLevelManager == null)
         {
-            _currentSkin = Attributes.GetInt("CurrentSkin" + _parentName);
-            ChangeSkin(_currentSkin);
+            Debug.LogWarning("DinosaurLevelManager not found.");
+            return;
         }
+
+        int level = _dinosaurLevelManager.CurrentLevel;
+        int skinIndex = GetSkinIndexFromLevel(level);
+        ChangeSkin(skinIndex);
+    }
+
+    private int GetSkinIndexFromLevel(int level)
+    {
+        if (level >= 11 && level <= 20)
+            return 1;
+        else if (level >= 21 && level <= 30)
+            return 2;
+        else if (level >= 31 && level <= 40)
+            return 3;
         else
-        {
-            _currentSkin = 0;
-            ChangeSkin(_currentSkin);
-        }
-
-        // Removed: the code that retrieved and set the dinosaur level.
-
-        // Set up the button listeners for skin changing.
-        foreach (Button button in _buttons)
-        {
-            int index = _buttons.IndexOf(button);
-            button.onClick.AddListener(() => ChangeSkin(index));
-        }
+            return 0;
     }
 
     public void ChangeSkin(int index)
     {
-        _currentSkin = index;
-        Attributes.SetInt("CurrentSkin" + _parentName, index);
-
-        // Removed: code that would set the dinosaur level based on skin index.
-        // The switch statement below is removed because it was only used to determine levelToSet.
-        // If you want to later tie skin changes to visual cues only, you can add other logic here.
-
-        if (!_skinMaterials.Contains(_skinMaterials[index]))
-            return;
-
-        // Make all buttons interactable.
-        foreach (Button button in _buttons)
+        if (index < 0 || index >= _skinMaterials.Count)
         {
-            button.interactable = true;
+            Debug.LogWarning($"Invalid skin index {index}");
+            return;
         }
 
-        // Update stars for visual indication.
+        // Save current skin index
+        Attributes.SetInt("CurrentSkin" + _parentName, index);
+
+        // Update stars for visual indication
         for (int i = 0; i < _stars.Count; i++)
         {
             _stars[i].SetActive(i < index);
@@ -73,13 +69,12 @@ public class EvolutionChanger : MonoBehaviour
             _editingStars[i].SetActive(i < index);
         }
 
-        // Disable the button corresponding to the current skin.
-        _buttons[index].interactable = false;
-
-        // Change all SkinnedMeshRenderers' materials to the selected skin.
+        // Apply material to all SkinnedMeshRenderers
         foreach (var renderer in _skinnedMeshRenderers)
         {
             renderer.material = _skinMaterials[index];
         }
+
+        Debug.Log($"Skin changed to index {index} based on level {_dinosaurLevelManager.CurrentLevel}");
     }
 }

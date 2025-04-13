@@ -3940,11 +3940,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e96fa59e1dbdbff4fa6c4b8aee219c9e, type: 2}
   - {fileID: 2100000, guid: e4f7e13bdfb66f443b52854ed4dec140, type: 2}
   - {fileID: 2100000, guid: cef1d7e512873fb4897caff6a780ae16, type: 2}
-  _buttons:
-  - {fileID: 5031989510065526918}
-  - {fileID: 6938625620367036459}
-  - {fileID: 1925373512877742241}
-  - {fileID: 4154991726383581585}
   _stars:
   - {fileID: 3442547421050793258}
   - {fileID: 4122404540009945654}
@@ -5375,6 +5370,7 @@ MonoBehaviour:
   MaximumMoney: 100
   MaximumMinutes: 15
   _maxMoneyReached: 0
+  evolutionIndex: 0
 --- !u!114 &1910003470799255841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5551,15 +5547,16 @@ MonoBehaviour:
   DinoEvolutionIndex: 1
   DinoToDisable: {fileID: 4251931453828070838}
   evolutionIconToEnable: {fileID: 2127064599944980578}
+  DinoStageIndex: 0
   evolutionStages:
   - successRate: 55
-    requiredAttempts: 10
+    requiredAttempts: 1
     attemptCost: 1000
   - successRate: 50
-    requiredAttempts: 10
+    requiredAttempts: 1
     attemptCost: 2650
   - successRate: 45
-    requiredAttempts: 10
+    requiredAttempts: 1
     attemptCost: 4500
 --- !u!1 &5955046430803001428
 GameObject:
@@ -8979,11 +8976,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e96fa59e1dbdbff4fa6c4b8aee219c9e, type: 2}
   - {fileID: 2100000, guid: e4f7e13bdfb66f443b52854ed4dec140, type: 2}
   - {fileID: 2100000, guid: cef1d7e512873fb4897caff6a780ae16, type: 2}
-  _buttons:
-  - {fileID: 5031989510065526918}
-  - {fileID: 6938625620367036459}
-  - {fileID: 1925373512877742241}
-  - {fileID: 4154991726383581585}
   _stars:
   - {fileID: 3442547421050793258}
   - {fileID: 4122404540009945654}

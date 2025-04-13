@@ -64,6 +64,12 @@ public class Paddock : Selectable
         _BabyDinosaurAnimator = _BabyAnimationEventsListener.GetComponent<Animator>();
         _AdultDinosaurAnimator = _AdultAnimationEventsListener.GetComponent<Animator>();
         _dinosaurFeedingSystem = GetComponentInChildren<DinosaurFeedingSystem>();
+        DinoEvolution dinoEvolution = GetComponentInChildren<DinoEvolution>(true);
+        if (dinoEvolution != null && dinoEvolution.DinoEvolutionIndex == EvolutionManager.lastEvolutionIndex)
+        {
+            _moneyObject._data.Money = 0;
+            Debug.Log($"Money reset in Awake for paddock with evolution index {dinoEvolution.DinoEvolutionIndex}");
+        }
     }
 
     private void OnFeedButtonClick()

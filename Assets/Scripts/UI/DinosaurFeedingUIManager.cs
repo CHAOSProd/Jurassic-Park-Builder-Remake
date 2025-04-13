@@ -96,12 +96,19 @@ public class DinosaurFeedingUIManager : MonoBehaviour
 
         if (currentDinosaur != null)
         {
-            if (currentDinosaur.levelManager.CurrentLevel >= 10)
+            if (currentDinosaur.levelManager.CurrentLevel == 10 || currentDinosaur.levelManager.CurrentLevel == 20 || currentDinosaur.levelManager.CurrentLevel == 30)
             {
                 if (feedButton != null)
                     feedButton.gameObject.SetActive(false);
                 if (evolveButton != null)
                     evolveButton.gameObject.SetActive(true);
+            }
+            else if (currentDinosaur.levelManager.CurrentLevel == 40)
+            {
+                if (feedButton != null)
+                    feedButton.gameObject.SetActive(false);
+                if (evolveButton != null)
+                    evolveButton.gameObject.SetActive(false);
             }
             else
             {

@@ -904,6 +904,33 @@ public class ResearchManager : Singleton<ResearchManager>
                 {
                     targetEvolution.evolutionIconToEnable.SetActive(false);
                 }
+                Paddock paddock = targetEvolution.GetComponentInParent<Paddock>();
+                if (paddock != null)
+                {
+                    DinosaurLevelManager dinoLevelManager = paddock.GetComponentInChildren<DinosaurLevelManager>(true);
+                    if (dinoLevelManager != null)
+                    {
+                        int targetLevel = 11 + (stageIndex * 10);
+                        dinoLevelManager.CurrentLevel = targetLevel;
+                        dinoLevelManager._feedingSystem.feedCount = 0;
+                        string paddockName = paddock.gameObject.name;
+                        Attributes.SetInt("CurrentLevel" + paddockName, targetLevel);
+                        Attributes.SetInt("FeedCount" + paddockName, 0);
+                        dinoLevelManager.Initialize();
+                        dinoLevelManager._feedingSystem.levelChecker();
+                        EvolutionChanger evolutionChanger = paddock.GetComponentInChildren<EvolutionChanger>(true);
+                        if (evolutionChanger != null)
+                        {
+                            Debug.Log("EvolutionChanger found, updating...");
+                            evolutionChanger.UpdateSkinBasedOnLevel();
+                        }
+                        else
+                        {
+                            Debug.LogWarning("EvolutionChanger not found");
+                        }
+                        Debug.Log($"Dinosaur in paddock '{paddockName}' set to level {targetLevel} and feedCount reset to 0");
+                    }
+                }
             }
             else
             {

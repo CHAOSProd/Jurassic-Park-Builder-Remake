@@ -29,6 +29,18 @@ public class EvolutionConfermationButtonHandler : MonoBehaviour
             return;
         }
 
+        DinosaurLevelManager levelManager = selectedPaddock.GetComponentInChildren<DinosaurLevelManager>(true);
+        if (levelManager != null)
+        {
+            int currentLevel = levelManager.CurrentLevel;
+
+            int calculatedStage = (currentLevel / 10) - 1;
+            calculatedStage = Mathf.Clamp(calculatedStage, 0, 2);
+
+            dinoEvolution.DinoStageIndex = calculatedStage;
+            Debug.Log($"DinoStageIndex set at {calculatedStage} based on level {currentLevel}");
+        }
+
         selectedPaddock.HandleEvolutionStart();
         int evolutionIndex = dinoEvolution.DinoEvolutionIndex;
         int stageIndex = dinoEvolution.DinoStageIndex;
