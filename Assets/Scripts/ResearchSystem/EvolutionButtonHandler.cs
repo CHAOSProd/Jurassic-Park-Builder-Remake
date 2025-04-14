@@ -34,18 +34,20 @@ public class EvolutionButtonHandler : MonoBehaviour
         }
         int evolutionIndex = dinoEvolution.DinoEvolutionIndex;
         int stageIndex = dinoEvolution.DinoStageIndex;
-        if (DinoAmber.lastDecodedAmberIndex == -1)
+        if (EvolutionManager.lastEvolutionIndex == -1)
         {
-            if (EvolutionManager.lastEvolutionIndex == -1)
-            {
-                EvolutionManager.Instance.OpenPanel();
-            }
-            else if (EvolutionManager.lastEvolutionIndex != -1 && EvolutionManager.lastEvolutionIndex == evolutionIndex)
-            {
-                ResearchManager.Instance.SetEvolutionIndex(evolutionIndex, stageIndex);
-                DinosaurFeedingUIManager.Instance.DisableEvolutionButton();
-                ResearchManager.Instance.OpenPanel();
-            }
+            EvolutionManager.Instance.OpenPanel();
+        }
+        else if (EvolutionManager.lastEvolutionIndex != -1 && EvolutionManager.lastEvolutionIndex == evolutionIndex)
+        {
+            ResearchManager.Instance.SetEvolutionIndex(evolutionIndex, stageIndex);
+            DinosaurFeedingUIManager.Instance.DisableEvolutionButton();
+            ResearchManager.Instance.OpenPanel();
+        }
+        else
+        {
+            DinosaurFeedingUIManager.Instance.DisableEvolutionButton();
+            EvolutionInProgressManager.Instance.OpenPanel();
         }
     }
 }

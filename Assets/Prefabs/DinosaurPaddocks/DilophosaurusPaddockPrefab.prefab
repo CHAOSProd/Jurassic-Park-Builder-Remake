@@ -5680,13 +5680,13 @@ MonoBehaviour:
   DinoStageIndex: 0
   evolutionStages:
   - successRate: 55
-    requiredAttempts: 1
+    requiredAttempts: 3
     attemptCost: 1000
   - successRate: 50
-    requiredAttempts: 1
+    requiredAttempts: 3
     attemptCost: 2650
   - successRate: 45
-    requiredAttempts: 1
+    requiredAttempts: 3
     attemptCost: 4500
 --- !u!1 &5955046430803001428
 GameObject:

@@ -9308,13 +9308,13 @@ MonoBehaviour:
   DinoStageIndex: 0
   evolutionStages:
   - successRate: 55
-    requiredAttempts: 1
+    requiredAttempts: 3
     attemptCost: 700
   - successRate: 50
-    requiredAttempts: 1
+    requiredAttempts: 3
     attemptCost: 2150
   - successRate: 45
-    requiredAttempts: 1
+    requiredAttempts: 3
     attemptCost: 3500
 --- !u!114 &1029129612335912910
 MonoBehaviour:
