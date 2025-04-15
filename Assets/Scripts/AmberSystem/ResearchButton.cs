@@ -25,7 +25,7 @@ public class ResearchButtonHandler : MonoBehaviour
 
     private void OnResearchButtonClick()
     {
-        if (AmberManager.Instance.HasUndecodedActivatedAmber() || EvolutionManager.lastEvolutionIndex != -1)
+        if (AmberManager.Instance.HasUndecodedActivatedAmber())
         {
             int indexToUse = (DinoAmber.lastDecodedAmberIndex != -1) ? DinoAmber.lastDecodedAmberIndex : amberIndex;
             AmberData selectedAmber = AmberManager.Instance.GetAmberList().Find(a => a.Index == indexToUse);
@@ -45,14 +45,8 @@ public class ResearchButtonHandler : MonoBehaviour
             {
                 ResearchManager.Instance.SetAmberIndex(indexToUse);
                 DinoAmber.DisableOtherDecodeButtons(indexToUse);
+                ResearchManager.Instance.OpenPanel();
             }
-            else if (indexToUse == -1)
-            {
-                int evolutionIndex = EvolutionManager.lastEvolutionIndex;
-                int stageIndex = EvolutionManager.lastStageIndex;
-                ResearchManager.Instance.SetEvolutionIndex(evolutionIndex, stageIndex);
-            }
-            ResearchManager.Instance.OpenPanel();
         }
         else
         {

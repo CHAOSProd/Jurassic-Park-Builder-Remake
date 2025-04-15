@@ -460,6 +460,7 @@ public class ResearchManager : Singleton<ResearchManager>
             if (currentEvolutionAttempts >= requiredAttempts)
             {
                 ClosePanel();
+                EvolutionCompleteManager.Instance.OpenPanel();
                 CompleteResearch();
                 SelectablesManager.Instance.UnselectAll();
             }
@@ -665,6 +666,7 @@ public class ResearchManager : Singleton<ResearchManager>
                 if (currentEvolutionAttempts >= requiredAttempts)
                 {
                     ClosePanel();
+                    EvolutionCompleteManager.Instance.OpenPanel();
                     CompleteResearch();
                     SelectablesManager.Instance.UnselectAll();
                 }
@@ -1058,8 +1060,6 @@ public class ResearchManager : Singleton<ResearchManager>
             {
                 Debug.LogWarning($"No DinoEvolution found with EvolutionIndex {evolutionIndex}");
             }
-
-            DinoAmber.EnableDinoAndEnableOtherDecodeButtons(-1);
             EvolutionManager.lastEvolutionIndex = -1;
             EvolutionManager.lastStageIndex = -1;
             currentEvolutionAttempts = 0;

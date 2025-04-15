@@ -2974,6 +2974,7 @@ MonoBehaviour:
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
   _xpCollectSound: {fileID: 8462702167943352314}
+  hatchingFinishedSound: {fileID: 0}
 --- !u!1 &3577163935571890990
 GameObject:
   m_ObjectHideFlags: 0

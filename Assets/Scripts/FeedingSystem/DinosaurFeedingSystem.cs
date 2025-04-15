@@ -244,6 +244,9 @@ public class DinosaurFeedingSystem : MonoBehaviour
 
     private void LevelUp()
     {
+        int xpToGive = Mathf.RoundToInt(5 * LevelManager.Instance.GetCurrentLevel());
+        EventManager.Instance.TriggerEvent(new XPAddedGameEvent(xpToGive));
+        Debug.Log($"Xp given: {xpToGive}");
         levelManager.LevelUp();
         if (levelManager.CurrentLevel != 40)
         {

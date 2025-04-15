@@ -24,6 +24,7 @@ public class Paddock : Selectable
     [HideInInspector] public bool is_hatching = false;
     [HideInInspector] public bool should_earn_money = false;
     [HideInInspector] public bool hatching_completed = false;
+    private GameObject _paddockInfoDisplay;
 
     private void Awake()
     {

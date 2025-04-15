@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private List<GameObject> ToggledUI;
     [SerializeField] private GameObject appearVFXPrefab;
     [SerializeField] private GameObject beamVFX;
+    [SerializeField] private GameObject paddockInfo;
 
     [SerializeField] private float xpBarPadding = 0.05f; // Adjustable padding so the XP bar shows a little even at 0 XP
 
@@ -90,16 +91,6 @@ public class LevelManager : MonoBehaviour
     private void OnLevelUp()
     {
         level++; // Increase the player level
-        // Ensure there is a next level to level up to
-        if (level <= xpPerLevel.Length)
-        {
-            ShowLevelUpPanel();
-            UpdateLevelImages();
-        }
-        else
-        {
-            Debug.LogWarning("Level exceeds the defined xpPerLevel array. Consider extending the xpPerLevel array.");
-        }
 
         if (TreeChopManager.Instance != null)
         {
@@ -115,6 +106,21 @@ public class LevelManager : MonoBehaviour
         ShopVisibility.UpdateShopVisibility();
         UpdateUnlockItems(); // Update the unlocked item filter
         UpdateUI(); // Update the UI to reflect new level
+        // Ensure there is a next level to level up to
+        if (level <= xpPerLevel.Length)
+        {
+            StartCoroutine(WaitForFixedUIAndShowLevelUpPanel());
+            UpdateLevelImages();
+        }
+    }
+    private IEnumerator WaitForFixedUIAndShowLevelUpPanel()
+    {
+        while (UIManager.Instance.CurrentFixedKey != "DefaultUI")
+        {
+            yield return null;
+        }
+
+        ShowLevelUpPanel();
     }
 
     private void UpdateUnlockItems()
@@ -213,7 +219,7 @@ public class LevelManager : MonoBehaviour
         {
             ui.SetActive(false);
         }
-
+        paddockInfo.SetActive(false);
         levelUpPanel.SetActive(true);
         levelUpSound.GetComponent<AudioSource>().Play();
         StartCoroutine(PlayLevelUpAnimations());
@@ -378,6 +384,7 @@ public class LevelManager : MonoBehaviour
     private void OnOkButtonClicked()
     {
         UIManager.Instance.ChangeCameraPanningStatus(true);
+        paddockInfo.SetActive(true);
         HideLevelUpPanel();
         EarnedUnlockedText.text = "You earned";
         CollectButton.gameObject.SetActive(true);
