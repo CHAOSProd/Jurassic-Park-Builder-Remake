@@ -310,32 +310,30 @@ public class ResearchManager : Singleton<ResearchManager>
         }
         else
         {
-            // Randomly choose a failure type.
-            int failureType = Random.Range(0, 3);
-            switch (failureType)
+            // Choose a failure type.
+            float failRoll = Random.Range(0f, 100f);
+            if (failRoll < 60f)
             {
-                case 0:
-                    Debug.Log("2V, 1X");
-                    researchSegments[0] = true;
-                    researchSegments[1] = true;
-                    researchSegments[2] = false;
-                    attemptSuccessful = false;
-                    break;
-                case 1:
-                    Debug.Log("1V, 2X");
-                    researchSegments[0] = true;
-                    researchSegments[1] = false;
-                    researchSegments[2] = false;
-                    attemptSuccessful = false;
-                    break;
-                case 2:
-                    Debug.Log("3X");
-                    researchSegments[0] = false;
-                    researchSegments[1] = false;
-                    researchSegments[2] = false;
-                    attemptSuccessful = false;
-                    break;
+                Debug.Log("2V, 1X");
+                researchSegments[0] = true;
+                researchSegments[1] = true;
+                researchSegments[2] = false;
             }
+            else if (failRoll < 85f)
+            {
+                Debug.Log("1V, 2X");
+                researchSegments[0] = true;
+                researchSegments[1] = false;
+                researchSegments[2] = false;
+            }
+            else
+            {
+                Debug.Log("3X");
+                researchSegments[0] = false;
+                researchSegments[1] = false;
+                researchSegments[2] = false;
+            }
+            attemptSuccessful = false;
         }
 
         // Display outcomes sequentially and the vfx.
@@ -514,7 +512,7 @@ public class ResearchManager : Singleton<ResearchManager>
         }
 
         float roll = Random.Range(0f, 100f);
-        if (roll <= successRate)
+        if (roll >= 20f)
         {
             researchSegments[index] = true;
             Debug.Log($"Segment {index} retried: Success (DNA).");
