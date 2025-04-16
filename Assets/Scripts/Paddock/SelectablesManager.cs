@@ -54,7 +54,17 @@ public class SelectablesManager : Singleton<SelectablesManager>
         {
             if (CurrentSelectable is Paddock paddock && paddock.is_hatching)
             {
-                UIManager.Instance.ChangeTo("BuildingsSelectedUI");
+                DinosaurLevelManager dinoLevelManager = paddock.GetComponentInChildren<DinosaurLevelManager>(true);
+                Debug.Log(dinoLevelManager.CurrentLevel);
+                if (dinoLevelManager.CurrentLevel < 2)
+                {
+                    UIManager.Instance.ChangeTo("BuildingsSelectedUI");
+                }
+                else
+                {
+                    UIManager.Instance.ChangeTo("HatchingUI");
+                }
+
             }
             else if (CurrentSelectable is Paddock)
             {
