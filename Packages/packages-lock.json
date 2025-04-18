@@ -13,13 +13,6 @@
       "source": "local-tarball",
       "dependencies": {}
     },
-    "com.lootlocker.lootlockersdk": {
-      "version": "https://github.com/lootlocker/unity-sdk.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "509af77fe5e074d50bde6d10c4ef2d8b66f62a6e"
-    },
     "com.unity.2d.animation": {
       "version": "10.1.1",
       "depth": 0,
