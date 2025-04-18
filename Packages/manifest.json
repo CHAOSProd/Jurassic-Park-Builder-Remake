@@ -2,6 +2,7 @@
   "dependencies": {
     "com.discord.game-sdk": "3.1.0",
     "com.discord.partnersdk": "file:C:/Users/FuckNigga/Downloads/DiscordSocialSdk-UnityPlugin-1.0.7692.tgz",
+    "com.lootlocker.lootlockersdk": "https://github.com/lootlocker/unity-sdk.git",
     "com.unity.2d.animation": "10.1.1",
     "com.unity.2d.pixel-perfect": "5.0.3",
     "com.unity.2d.psdimporter": "9.0.3",
