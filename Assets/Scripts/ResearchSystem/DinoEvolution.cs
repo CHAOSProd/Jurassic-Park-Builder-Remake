@@ -18,6 +18,7 @@ public class DinoEvolution : MonoBehaviour
     [SerializeField] public int DinoEvolutionIndex;
     [SerializeField] public GameObject DinoToDisable;
     [SerializeField] public GameObject evolutionIconToEnable;
+    public int DinoStageIndex;
     [SerializeField] private List<EvolutionStage> evolutionStages = new List<EvolutionStage>(3);
     public EvolutionStage GetStage(int index)
     {

@@ -35,8 +35,8 @@ public class MoneyObject : MonoBehaviour
     private bool _isPointerMoving;
     private Vector3 _lastPointerPosition;
     public bool _maxMoneyReached;
-
-    private MoneyObjectData _data;
+    public MoneyObjectData _data;
+    public int evolutionIndex;
 
     private void Awake()
     {
@@ -51,6 +51,8 @@ public class MoneyObject : MonoBehaviour
             _selectable = GetComponentInParent<Building>();
         }
         _dinosaurFeedingSystem = GetComponentInChildren<DinosaurFeedingSystem>();
+        DinoEvolution dinoEvolution = _paddock.GetComponentInChildren<DinoEvolution>(true);
+        evolutionIndex = dinoEvolution.DinoEvolutionIndex;
     }
     private void Start()
     {
@@ -183,7 +185,7 @@ public class MoneyObject : MonoBehaviour
 
         if (_data.Money > MaximumMoney)
         {
-            if (_paddock != null && _paddock.is_hatching || _paddock != null && _paddock.hatching_completed)
+            if (_paddock != null && _paddock.is_hatching || _paddock != null && _paddock.hatching_completed)          
             {
                 _data.Money=0;
                 return;

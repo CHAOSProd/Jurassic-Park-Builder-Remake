@@ -22,7 +22,9 @@ public class ResearchManager : Singleton<ResearchManager>
     private int attemptCost;
     private int currentAmberIndex = -1;
     private int currentEvolutionIndex = -1;
-    private int currentAttempts = 0;
+    private int currentResearchAttempts = 0;
+    private int currentEvolutionAttempts = 0;
+    private bool isCurrentAttemptEvolution = false;
 
     // true if the segment outcome is DNA; false if XP.
     bool[] researchSegments = new bool[3];
@@ -143,12 +145,15 @@ public class ResearchManager : Singleton<ResearchManager>
                 currentSpeciesName = knownSpeciesName;
             }
             UpdateAttemptCostText();
+            isCurrentAttemptEvolution = false;
+            Debug.Log($"IsCurrentAttemptEvolution set to {isCurrentAttemptEvolution}");
         }
     }
     public void SetEvolutionIndex(int dinoIndex, int stageIndex)
     {
         currentEvolutionIndex = dinoIndex;
         EvolutionManager.lastEvolutionIndex = dinoIndex;
+        EvolutionManager.lastStageIndex = stageIndex;
 
         DinoEvolution selectedEvolution = FindObjectsOfType<DinoEvolution>(true)
             .FirstOrDefault(e => e.DinoEvolutionIndex == dinoIndex);
@@ -167,6 +172,8 @@ public class ResearchManager : Singleton<ResearchManager>
                 Debug.Log($"Required Attempts: {requiredAttempts}");
                 Debug.Log($"Attempt Cost: {attemptCost}");
                 UpdateAttemptCostText();
+                isCurrentAttemptEvolution = true;
+                Debug.Log($"IsCurrentAttemptEvolution set to {isCurrentAttemptEvolution}");
             }
             else
             {
@@ -289,37 +296,44 @@ public class ResearchManager : Singleton<ResearchManager>
             researchSegments[2] = true;
             attemptSuccessful = true;
             Debug.Log("3V, Research attempt succeeded");
-            currentAttempts++;
+            if (!isCurrentAttemptEvolution)
+            {
+                currentResearchAttempts++;
+                Debug.Log("Incremented currentResearchAttempts.");
+            }
+            else
+            {
+                currentEvolutionAttempts++;
+                Debug.Log("Incremented currentEvolutionAttempts.");
+            }
             SaveResearchProgress();
         }
         else
         {
-            // Randomly choose a failure type.
-            int failureType = Random.Range(0, 3);
-            switch (failureType)
+            // Choose a failure type.
+            float failRoll = Random.Range(0f, 100f);
+            if (failRoll < 60f)
             {
-                case 0:
-                    Debug.Log("2V, 1X");
-                    researchSegments[0] = true;
-                    researchSegments[1] = true;
-                    researchSegments[2] = false;
-                    attemptSuccessful = false;
-                    break;
-                case 1:
-                    Debug.Log("1V, 2X");
-                    researchSegments[0] = true;
-                    researchSegments[1] = false;
-                    researchSegments[2] = false;
-                    attemptSuccessful = false;
-                    break;
-                case 2:
-                    Debug.Log("3X");
-                    researchSegments[0] = false;
-                    researchSegments[1] = false;
-                    researchSegments[2] = false;
-                    attemptSuccessful = false;
-                    break;
+                Debug.Log("2V, 1X");
+                researchSegments[0] = true;
+                researchSegments[1] = true;
+                researchSegments[2] = false;
             }
+            else if (failRoll < 85f)
+            {
+                Debug.Log("1V, 2X");
+                researchSegments[0] = true;
+                researchSegments[1] = false;
+                researchSegments[2] = false;
+            }
+            else
+            {
+                Debug.Log("3X");
+                researchSegments[0] = false;
+                researchSegments[1] = false;
+                researchSegments[2] = false;
+            }
+            attemptSuccessful = false;
         }
 
         // Display outcomes sequentially and the vfx.
@@ -403,27 +417,51 @@ public class ResearchManager : Singleton<ResearchManager>
             }
             UpdateProgressBar();
             FadeEffectIn(0.2f);
-            if (currentAttempts >= requiredAttempts)
+            if (!isCurrentAttemptEvolution)
             {
-                yield return new WaitForSeconds(1f);
+                if (currentResearchAttempts >= requiredAttempts)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(1.9f);
+                }
             }
             else
             {
-                yield return new WaitForSeconds(1.9f);
+                if (currentEvolutionAttempts >= requiredAttempts)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(1.9f);
+                }
             }
             FadeEffectOut(0.4f);
         }
         // After displaying all segments, if the required attempts have been reached or exceeded, complete research.
-        if (currentAttempts >= requiredAttempts)
+        if (!isCurrentAttemptEvolution)
         {
-            ClosePanel();
-            if (EvolutionManager.lastEvolutionIndex == -1)
+            if (currentResearchAttempts >= requiredAttempts)
             {
+                ClosePanel();
                 ResearchCompleteManager.Instance.SetSpeciesName(currentSpeciesName);
                 ResearchCompleteManager.Instance.OpenPanel();
+                CompleteResearch();
+                SelectablesManager.Instance.UnselectAll();
             }
-            CompleteResearch();
-            SelectablesManager.Instance.UnselectAll();
+        }
+        else
+        {  
+            if (currentEvolutionAttempts >= requiredAttempts)
+            {
+                ClosePanel();
+                EvolutionCompleteManager.Instance.OpenPanel();
+                CompleteResearch();
+                SelectablesManager.Instance.UnselectAll();
+            }
         }
         attemptMessageText.gameObject.SetActive(false);
         X.SetActive(false);
@@ -474,7 +512,7 @@ public class ResearchManager : Singleton<ResearchManager>
         }
 
         float roll = Random.Range(0f, 100f);
-        if (roll <= successRate)
+        if (roll >= 20f)
         {
             researchSegments[index] = true;
             Debug.Log($"Segment {index} retried: Success (DNA).");
@@ -586,26 +624,50 @@ public class ResearchManager : Singleton<ResearchManager>
             V.SetActive(true);
             UpdateProgressBar();
             FadeEffectIn(0.2f);
-            if (currentAttempts >= requiredAttempts)
+            if (!isCurrentAttemptEvolution)
             {
-                yield return new WaitForSeconds(1f);
+                if (currentResearchAttempts >= requiredAttempts)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(1.9f);
+                }
             }
             else
             {
-                yield return new WaitForSeconds(1.9f);
+                if (currentEvolutionAttempts >= requiredAttempts)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(1.9f);
+                }
             }
             FadeEffectOut(0.4f);
             // If the required attempts are met or exceeded, complete research.
-            if (currentAttempts >= requiredAttempts)
+            if (!isCurrentAttemptEvolution)
             {
-                ClosePanel();
-                if (EvolutionManager.lastEvolutionIndex == -1)
+                if (currentResearchAttempts >= requiredAttempts)
                 {
+                    ClosePanel();
                     ResearchCompleteManager.Instance.SetSpeciesName(currentSpeciesName);
                     ResearchCompleteManager.Instance.OpenPanel();
+                    CompleteResearch();
+                    SelectablesManager.Instance.UnselectAll();
                 }
-                CompleteResearch();
-                SelectablesManager.Instance.UnselectAll();
+            }
+            else
+            {  
+                if (currentEvolutionAttempts >= requiredAttempts)
+                {
+                    ClosePanel();
+                    EvolutionCompleteManager.Instance.OpenPanel();
+                    CompleteResearch();
+                    SelectablesManager.Instance.UnselectAll();
+                }
             }
         }
         else if (!attemptSuccessful && V.activeSelf)
@@ -660,7 +722,15 @@ public class ResearchManager : Singleton<ResearchManager>
 
     private void SetProgressAndActiveBar()
     {
-        float targetFill = Mathf.Clamp01((float)currentAttempts / requiredAttempts);
+        float targetFill = 0;
+        if (!isCurrentAttemptEvolution)
+        {
+            targetFill = Mathf.Clamp01((float)currentResearchAttempts / requiredAttempts);
+        }
+        else
+        {
+            targetFill = Mathf.Clamp01((float)currentEvolutionAttempts / requiredAttempts);
+        }
         float targetX = Mathf.Lerp(startPoint.localPosition.x, endPoint.localPosition.x, targetFill);
         progressBar.fillAmount = targetFill;
         activeBar.fillAmount = targetFill;
@@ -671,7 +741,15 @@ public class ResearchManager : Singleton<ResearchManager>
 
     private void UpdateProgressIndicator()
     {
-        float progressPercentage = Mathf.Clamp01((float)currentAttempts / requiredAttempts);
+        float progressPercentage = 0;
+        if (!isCurrentAttemptEvolution)
+        {
+            progressPercentage = Mathf.Clamp01((float)currentResearchAttempts / requiredAttempts);
+        }
+        else
+        {
+            progressPercentage = Mathf.Clamp01((float)currentEvolutionAttempts / requiredAttempts);
+        }
         float targetX = Mathf.Lerp(startPoint.localPosition.x, endPoint.localPosition.x, progressPercentage);
 
         if (progressIndicator != null)
@@ -713,7 +791,15 @@ public class ResearchManager : Singleton<ResearchManager>
             audio.Play();
         UpdateProgressIndicator();
         if (progressBar == null || requiredAttempts <= 0) return;
-        float targetFill = Mathf.Clamp01((float)currentAttempts / requiredAttempts);
+        float targetFill = 0;
+        if (!isCurrentAttemptEvolution)
+        {
+            targetFill = Mathf.Clamp01((float)currentResearchAttempts / requiredAttempts);
+        }
+        else
+        {
+            targetFill = Mathf.Clamp01((float)currentEvolutionAttempts / requiredAttempts);
+        }
         if (progressFillRoutine != null)
             StopCoroutine(progressFillRoutine);
         progressFillRoutine = StartCoroutine(FillProgressAndTriggerSecond(targetFill));
@@ -725,15 +811,19 @@ public class ResearchManager : Singleton<ResearchManager>
 
         if (whiteBar != null)
         {
-            float previousFill = Mathf.Clamp01((float)(currentAttempts - 1) / requiredAttempts);
-            float newFill = Mathf.Clamp01((float)currentAttempts / requiredAttempts);
+            float newFill = 0;
+            if (!isCurrentAttemptEvolution)
+            {
+                newFill = Mathf.Clamp01((float)currentResearchAttempts / requiredAttempts);
+            }
+            else
+            {
+                newFill = Mathf.Clamp01((float)currentEvolutionAttempts / requiredAttempts);
+            }
 
             whiteBar.fillAmount = newFill;
 
-            if (previousFill != newFill)
-            {
-                StartCoroutine(FadeInOutBar());
-            }
+            StartCoroutine(FadeInOutBar());
         }
     }
 
@@ -774,7 +864,15 @@ public class ResearchManager : Singleton<ResearchManager>
         }
         Color color = progressBar.color;
         progressBar.color = new Color(color.r, color.g, color.b, 0f);
-        float targetFill = Mathf.Clamp01((float)currentAttempts / requiredAttempts);
+        float targetFill = 0;
+        if (!isCurrentAttemptEvolution)
+        {
+            targetFill = Mathf.Clamp01((float)currentResearchAttempts / requiredAttempts);
+        }
+        else
+        {
+            targetFill = Mathf.Clamp01((float)currentEvolutionAttempts / requiredAttempts);
+        }
         backgroundActiveBar.fillAmount = targetFill;
         // FADE OUT
         float fadeOutTime = 0.2f;
@@ -865,7 +963,16 @@ public class ResearchManager : Singleton<ResearchManager>
         {
             attemptSuccessful = true;
             Debug.Log("Research attempt succeeded via retries.");
-            currentAttempts++;
+            if (!isCurrentAttemptEvolution)
+            {
+                currentResearchAttempts++;
+                Debug.Log("Incremented currentResearchAttempts.");
+            }
+            else
+            {
+                currentEvolutionAttempts++;
+                Debug.Log("Incremented currentEvolutionAttempts.");
+            }
             SaveResearchProgress();
 
             // Hide all Retry buttons.
@@ -879,38 +986,108 @@ public class ResearchManager : Singleton<ResearchManager>
 
     private void CompleteResearch()
     {
-        if (EvolutionManager.lastEvolutionIndex == -1)
+        if (!isCurrentAttemptEvolution)
         {
             int index = GetCurrentAmberIndex();
             DinoAmber.EnableDinoAndEnableOtherDecodeButtons(index);
-            Debug.Log($"Research completed, dinosaur with amber index {index}, ({currentSpeciesName}) unlocked and research attempts reset to: {currentAttempts}");
+            Debug.Log($"Research completed, dinosaur with amber index {index}, ({currentSpeciesName}) unlocked and research attempts reset to: {currentResearchAttempts}");
+            currentResearchAttempts = 0;
         }
         else
         {
-            DinoAmber.EnableDinoAndEnableOtherDecodeButtons(-1);
+            int evolutionIndex = EvolutionManager.lastEvolutionIndex;
+            int stageIndex = EvolutionManager.lastStageIndex;
+            DinoEvolution[] allEvolutions = FindObjectsOfType<DinoEvolution>(true);
+            DinoEvolution targetEvolution = allEvolutions.FirstOrDefault(e => e.DinoEvolutionIndex == evolutionIndex);
+            
+            if (targetEvolution != null)
+            {
+                if (targetEvolution.DinoToDisable != null)
+                {
+                    targetEvolution.DinoToDisable.SetActive(true);
+                }
+
+                if (targetEvolution.evolutionIconToEnable != null)
+                {
+                    targetEvolution.evolutionIconToEnable.SetActive(false);
+                }
+                Paddock paddock = targetEvolution.GetComponentInParent<Paddock>();
+                if (paddock != null)
+                {
+                    DinosaurLevelManager dinoLevelManager = paddock.GetComponentInChildren<DinosaurLevelManager>(true);
+                    if (dinoLevelManager != null)
+                    {
+                        int targetLevel = 11 + (stageIndex * 10);
+                        dinoLevelManager.CurrentLevel = targetLevel;
+                        dinoLevelManager._feedingSystem.feedCount = 0;
+                        string paddockName = paddock.gameObject.name;
+                        Attributes.SetInt("CurrentLevel" + paddockName, targetLevel);
+                        Attributes.SetInt("FeedCount" + paddockName, 0);
+                        dinoLevelManager.Initialize();
+                        dinoLevelManager._feedingSystem.disableModels();
+                        EvolutionChanger evolutionChanger = paddock.GetComponentInChildren<EvolutionChanger>(true);
+                        if (evolutionChanger != null)
+                        {
+                            Debug.Log("EvolutionChanger found, updating...");
+                            evolutionChanger.UpdateSkinBasedOnLevel();
+                        }
+                        else
+                        {
+                            Debug.LogWarning("EvolutionChanger not found");
+                        }
+                        HatchingTimer hatchingTimer = FindObjectsOfType<HatchingTimer>(true)
+                            .FirstOrDefault(ht => ht.paddockScript == paddock);
+                        if (hatchingTimer != null)
+                        {
+                            if (!hatchingTimer.gameObject.activeInHierarchy)
+                            {
+                                hatchingTimer.gameObject.SetActive(true);
+                            }
+                            hatchingTimer.StartHatchingTimer();
+                            Debug.Log($"Hatching started for dinosauro'{paddock.name}'");
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"No hatching found on '{paddock.name}'");
+                        }
+                        Debug.Log($"Dinosaur in paddock '{paddockName}' set to level {targetLevel} and feedCount reset to 0");
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"No DinoEvolution found with EvolutionIndex {evolutionIndex}");
+            }
             EvolutionManager.lastEvolutionIndex = -1;
+            EvolutionManager.lastStageIndex = -1;
+            currentEvolutionAttempts = 0;
         }
-        currentAttempts = 0;
         SaveResearchProgress();
     }
 
     public void SaveResearchProgress()
     {
-        SaveManager.Instance.SaveData.ResearchData.CurrentAttempts = currentAttempts;
+        SaveManager.Instance.SaveData.ResearchData.CurrentResearchAttempts = currentResearchAttempts;
+        SaveManager.Instance.SaveData.ResearchData.CurrentEvolutionAttempts = currentEvolutionAttempts;
         SaveManager.Instance.SaveData.ResearchData.LastDecodedAmberIndex = DinoAmber.lastDecodedAmberIndex;
         SaveManager.Instance.SaveData.ResearchData.LastEvolutionIndex = EvolutionManager.lastEvolutionIndex;
+        SaveManager.Instance.SaveData.ResearchData.LastStageIndex = EvolutionManager.lastStageIndex;
         SaveManager.Instance.SaveData.ResearchData.TutorialDebrisSpawned = TutorialDebrisSpawner.tutorialDebrisSpawned;
     }
 
     public void Load()
     {
-        currentAttempts = SaveManager.Instance.SaveData.ResearchData.CurrentAttempts;
+        currentResearchAttempts = SaveManager.Instance.SaveData.ResearchData.CurrentResearchAttempts;
+        currentEvolutionAttempts = SaveManager.Instance.SaveData.ResearchData.CurrentEvolutionAttempts;
         DinoAmber.lastDecodedAmberIndex = SaveManager.Instance.SaveData.ResearchData.LastDecodedAmberIndex;
         EvolutionManager.lastEvolutionIndex = SaveManager.Instance.SaveData.ResearchData.LastEvolutionIndex;
+        EvolutionManager.lastStageIndex = SaveManager.Instance.SaveData.ResearchData.LastStageIndex;
         TutorialDebrisSpawner.tutorialDebrisSpawned = SaveManager.Instance.SaveData.ResearchData.TutorialDebrisSpawned;
-        Debug.Log($"Loaded research progress, saved attempts: {currentAttempts}");
+        Debug.Log($"Loaded research progress, saved attempts: {currentResearchAttempts}");
+        Debug.Log($"Loaded evolution progress, saved attempts: {currentEvolutionAttempts}");
         Debug.Log($"Loaded dino decoding index: {DinoAmber.lastDecodedAmberIndex} (if -1 means there's no dino being decoded)");
         Debug.Log($"Loaded evolution index: {EvolutionManager.lastEvolutionIndex} (if -1 means there's no dino in evolution)");
+        Debug.Log($"Loaded stage index: {EvolutionManager.lastStageIndex}");
 
         if (TutorialDebrisSpawner.tutorialDebrisSpawned)
         {

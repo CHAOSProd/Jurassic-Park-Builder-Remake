@@ -95,11 +95,6 @@ public class DinoAmber : MonoBehaviour
                 {
                     DecodeButton.SetActive(true);
                     ResearchInProgressText.SetActive(false);
-                    if (EvolutionManager.lastEvolutionIndex != -1)
-                    {
-                        DecodeButton.SetActive(false);
-                        ResearchInProgressText.SetActive(true);
-                    }
                 }
                 else
                 {

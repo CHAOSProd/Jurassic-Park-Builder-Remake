@@ -395,6 +395,7 @@ MonoBehaviour:
   MaximumMoney: 105
   MaximumMinutes: 15
   _maxMoneyReached: 0
+  evolutionIndex: 0
 --- !u!114 &9181914270627094662
 MonoBehaviour:
   m_ObjectHideFlags: 0

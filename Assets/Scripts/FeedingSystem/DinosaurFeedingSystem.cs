@@ -29,6 +29,7 @@ public class DinosaurFeedingSystem : MonoBehaviour
     // Reference to the paddock that contains this dinosaur.
     [HideInInspector]
     public Paddock parentPaddock;
+    public static event System.Action<GameObject> OnDinoLevelUp;
 
     private void Awake()
     {
@@ -41,12 +42,20 @@ public class DinosaurFeedingSystem : MonoBehaviour
         {
             Debug.LogWarning("DinosaurFeedingSystem could not find a parent Paddock.");
         }
+        DinoEvolution evolution = GetComponentInParent<DinoEvolution>();
+        if (evolution != null && EvolutionManager.Instance != null &&
+            evolution.DinoEvolutionIndex == EvolutionManager.lastEvolutionIndex)
+        {
+            babyModel.SetActive(false);
+            adultModel.SetActive(false);
+            return;
+        }
         if (!IsHatching())
         {
             // set the model based on level.
             if (levelManager != null)
             {
-                if (levelManager.CurrentLevel >= 5)
+                if ((levelManager.CurrentLevel >= 5 && levelManager.CurrentLevel <= 10) || (levelManager.CurrentLevel >= 15 && levelManager.CurrentLevel <= 20) || (levelManager.CurrentLevel >= 25 && levelManager.CurrentLevel <= 30) || (levelManager.CurrentLevel >= 35 && levelManager.CurrentLevel <= 40))
                 {
                     if (babyModel != null && adultModel != null)
                     {
@@ -70,6 +79,14 @@ public class DinosaurFeedingSystem : MonoBehaviour
 
     private void Start()
     {
+        DinoEvolution evolution = GetComponentInParent<DinoEvolution>();
+        if (evolution != null && EvolutionManager.Instance != null &&
+            evolution.DinoEvolutionIndex == EvolutionManager.lastEvolutionIndex)
+        {
+            babyModel.SetActive(false);
+            adultModel.SetActive(false);
+            return;
+        }
         // If the dinosaur is hatching, ensure no model is visible.
         if (IsHatching())
         {
@@ -84,7 +101,7 @@ public class DinosaurFeedingSystem : MonoBehaviour
             // else set the model based on level.
             if (levelManager != null)
             {
-                if (levelManager.CurrentLevel >= 5)
+                if ((levelManager.CurrentLevel >= 5 && levelManager.CurrentLevel <= 10) || (levelManager.CurrentLevel >= 15 && levelManager.CurrentLevel <= 20) || (levelManager.CurrentLevel >= 25 && levelManager.CurrentLevel <= 30) || (levelManager.CurrentLevel >= 35 && levelManager.CurrentLevel <= 40))
                 {
                     if (babyModel != null && adultModel != null)
                     {
@@ -104,6 +121,40 @@ public class DinosaurFeedingSystem : MonoBehaviour
                 }
             }  
         } 
+    }
+
+    public void levelChecker()
+    {
+        if (levelManager != null)
+        {
+            if ((levelManager.CurrentLevel >= 5 && levelManager.CurrentLevel <= 10) || (levelManager.CurrentLevel >= 15 && levelManager.CurrentLevel <= 20) || (levelManager.CurrentLevel >= 25 && levelManager.CurrentLevel <= 30) || (levelManager.CurrentLevel >= 35 && levelManager.CurrentLevel <= 40))
+            {
+                if (babyModel != null && adultModel != null)
+                {
+                    babyModel.SetActive(false);
+                    adultModel.SetActive(true);
+                    Debug.Log("Model set to Adult based on level " + levelManager.CurrentLevel);
+                }
+            }
+            else
+            {
+                if (babyModel != null && adultModel != null)
+                {
+                    babyModel.SetActive(true);
+                    adultModel.SetActive(false);
+                    Debug.Log("Model set to Baby based on level " + levelManager.CurrentLevel);
+                }
+            }
+        } 
+    }
+
+    public void disableModels()
+    {
+        if (babyModel != null && adultModel != null)
+        {
+            babyModel.SetActive(false);
+            adultModel.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -130,7 +181,7 @@ public class DinosaurFeedingSystem : MonoBehaviour
             return;
         }
 
-        if (levelManager.CurrentLevel >= 10)
+        if (levelManager.CurrentLevel == 10 || levelManager.CurrentLevel == 20 || levelManager.CurrentLevel == 30 || levelManager.CurrentLevel == 40)
         {
             Debug.Log("Dinosaur is at level 10 and ready to evolve!");
             return;
@@ -193,14 +244,20 @@ public class DinosaurFeedingSystem : MonoBehaviour
 
     private void LevelUp()
     {
+        int xpToGive = Mathf.RoundToInt(5 * LevelManager.Instance.GetCurrentLevel());
+        EventManager.Instance.TriggerEvent(new XPAddedGameEvent(xpToGive));
+        Debug.Log($"Xp given: {xpToGive}");
         levelManager.LevelUp();
-        feedCount = 0;  // Reset feeding progress (the level is preserved)
+        if (levelManager.CurrentLevel != 40)
+        {
+            feedCount = 0;  // Reset feeding progress (the level is preserved)
+        }
         Debug.Log("Dinosaur leveled up! New level: " + levelManager.CurrentLevel);
 
         // Only update the model if the dinosaur is not hatching.
         if (!IsHatching())
         {
-            if (levelManager.CurrentLevel >= 5)
+            if ((levelManager.CurrentLevel >= 5 && levelManager.CurrentLevel <= 10) || (levelManager.CurrentLevel >= 15 && levelManager.CurrentLevel <= 20) || (levelManager.CurrentLevel >= 25 && levelManager.CurrentLevel <= 30) || (levelManager.CurrentLevel >= 35 && levelManager.CurrentLevel <= 40))
             {
                 if (babyModel != null && adultModel != null)
                 {
@@ -216,6 +273,21 @@ public class DinosaurFeedingSystem : MonoBehaviour
                     babyModel.SetActive(true);
                     adultModel.SetActive(false);
                     Debug.Log("Dinosaur remains as baby.");
+                }
+            }
+        }
+        if (levelManager.CurrentLevel == 40)
+        {
+            if (parentPaddock != null)
+            {
+                EvolutionChanger evolutionChanger = parentPaddock.GetComponentInChildren<EvolutionChanger>(true);
+                if (evolutionChanger != null)
+                {
+                    evolutionChanger.UpdateSkinBasedOnLevel();
+                }
+                else
+                {
+                    Debug.LogWarning("EvolutionChanger non trovato nel paddock per aggiornare la skin dopo il LevelUp.");
                 }
             }
         }

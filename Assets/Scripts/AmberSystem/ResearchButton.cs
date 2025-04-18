@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class ResearchButtonHandler : MonoBehaviour
 {
     private static int amberIndex = -1;
-    private int dinoIndex;
     private int stageIndex;
     private Button button;
 
@@ -26,32 +25,28 @@ public class ResearchButtonHandler : MonoBehaviour
 
     private void OnResearchButtonClick()
     {
-        if (AmberManager.Instance.HasUndecodedActivatedAmber() || EvolutionManager.lastEvolutionIndex != -1)
+        if (AmberManager.Instance.HasUndecodedActivatedAmber())
         {
-            if (EvolutionManager.lastEvolutionIndex == -1)
+            int indexToUse = (DinoAmber.lastDecodedAmberIndex != -1) ? DinoAmber.lastDecodedAmberIndex : amberIndex;
+            AmberData selectedAmber = AmberManager.Instance.GetAmberList().Find(a => a.Index == indexToUse);
+            if (selectedAmber != null && selectedAmber.IsDecoded || amberIndex == -1)
             {
-                int indexToUse = (DinoAmber.lastDecodedAmberIndex != -1) ? DinoAmber.lastDecodedAmberIndex : amberIndex;
-                AmberData selectedAmber = AmberManager.Instance.GetAmberList().Find(a => a.Index == indexToUse);
-                if (selectedAmber != null && selectedAmber.IsDecoded || amberIndex == -1)
+                AmberData firstUndecodedAmber = AmberManager.Instance.GetAmberList().Find(a => !a.IsDecoded && a.IsActivated);
+                if (firstUndecodedAmber != null && firstUndecodedAmber.Index != DinoAmber.lastDecodedAmberIndex && DinoAmber.lastDecodedAmberIndex != -1)
                 {
-                    AmberData firstUndecodedAmber = AmberManager.Instance.GetAmberList().Find(a => !a.IsDecoded && a.IsActivated);
-                    if (firstUndecodedAmber != null && firstUndecodedAmber.Index != DinoAmber.lastDecodedAmberIndex && DinoAmber.lastDecodedAmberIndex != -1)
-                    {
-                        indexToUse = DinoAmber.lastDecodedAmberIndex;
-                    }
-                    else if (firstUndecodedAmber != null)
-                    {
-                        indexToUse = firstUndecodedAmber.Index;
-                    }
+                    indexToUse = DinoAmber.lastDecodedAmberIndex;
                 }
+                else if (firstUndecodedAmber != null)
+                {
+                    indexToUse = firstUndecodedAmber.Index;
+                }
+            }
+            if (indexToUse != -1)
+            {
                 ResearchManager.Instance.SetAmberIndex(indexToUse);
                 DinoAmber.DisableOtherDecodeButtons(indexToUse);
+                ResearchManager.Instance.OpenPanel();
             }
-            else
-            {
-                ResearchManager.Instance.SetEvolutionIndex(dinoIndex, stageIndex);
-            }
-            ResearchManager.Instance.OpenPanel();
         }
         else
         {

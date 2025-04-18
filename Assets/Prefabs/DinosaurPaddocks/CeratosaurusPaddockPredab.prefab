@@ -4445,6 +4445,7 @@ MonoBehaviour:
   MaximumMoney: 100
   MaximumMinutes: 45
   _maxMoneyReached: 0
+  evolutionIndex: 0
 --- !u!114 &1910003470799255841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5345,11 +5346,6 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 464d9ce965ad6604cbcf8e258de22aa0, type: 2}
   - {fileID: 2100000, guid: 09b89df08db95ca40992f6e01e20f0a9, type: 2}
   - {fileID: 2100000, guid: 979719331798f1f458b66b87a860f611, type: 2}
-  _buttons:
-  - {fileID: 5031989510065526918}
-  - {fileID: 6938625620367036459}
-  - {fileID: 1925373512877742241}
-  - {fileID: 4154991726383581585}
   _stars:
   - {fileID: 3442547421050793258}
   - {fileID: 4122404540009945654}
@@ -7280,6 +7276,7 @@ MonoBehaviour:
   _timerBarPrefab: {fileID: 4734126276011340318, guid: 4516fd2d4ab14a9488a3bf2033058083,
     type: 3}
   _xpCollectSound: {fileID: 8775674547531232713}
+  hatchingFinishedSound: {fileID: 0}
 --- !u!1 &8485777876555499313
 GameObject:
   m_ObjectHideFlags: 0

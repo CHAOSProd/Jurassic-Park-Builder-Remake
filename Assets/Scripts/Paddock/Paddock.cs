@@ -24,6 +24,7 @@ public class Paddock : Selectable
     [HideInInspector] public bool is_hatching = false;
     [HideInInspector] public bool should_earn_money = false;
     [HideInInspector] public bool hatching_completed = false;
+    private GameObject _paddockInfoDisplay;
 
     private void Awake()
     {
@@ -50,6 +51,17 @@ public class Paddock : Selectable
             _feedButton.OnClickEvent.AddListener(OnFeedButtonClick);
         }
     }
+    public void HandleEvolutionStart()
+    {
+        _AdultAnimationEventsListener.OnEatAnimationEnded();
+        _AdultAnimationEventsListener.OnAnimationEnded();
+        _BabyAnimationEventsListener.OnEatAnimationEnded();
+        _BabyAnimationEventsListener.OnAnimationEnded();
+        _moneyObject._data.Money = 0;
+        StopSound(Sounds[5]);
+        StopSound(Sounds[6]);
+        Debug.Log("Paddock entered evolution state.");
+    }
 
     private void Start()
     {
@@ -57,6 +69,12 @@ public class Paddock : Selectable
         _BabyDinosaurAnimator = _BabyAnimationEventsListener.GetComponent<Animator>();
         _AdultDinosaurAnimator = _AdultAnimationEventsListener.GetComponent<Animator>();
         _dinosaurFeedingSystem = GetComponentInChildren<DinosaurFeedingSystem>();
+        DinoEvolution dinoEvolution = GetComponentInChildren<DinoEvolution>(true);
+        if (dinoEvolution != null && dinoEvolution.DinoEvolutionIndex == EvolutionManager.lastEvolutionIndex)
+        {
+            _moneyObject._data.Money = 0;
+            Debug.Log($"Money reset in Awake for paddock with evolution index {dinoEvolution.DinoEvolutionIndex}");
+        }
     }
 
     private void OnFeedButtonClick()
@@ -105,7 +123,7 @@ public class Paddock : Selectable
 
     private void Update()
     {
-        if (!is_hatching && _dinosaurFeedingSystem.babyModel.activeSelf ||_dinosaurFeedingSystem.adultModel.activeSelf )
+        if (!is_hatching && _dinosaurFeedingSystem.babyModel.activeSelf || _dinosaurFeedingSystem.adultModel.activeSelf)
         {
             _moneyObject.enabled = true;
         }

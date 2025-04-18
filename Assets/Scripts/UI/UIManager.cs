@@ -35,6 +35,7 @@ public class UIManager : Singleton<UIManager>
 
     private string _fixedKey;
     private bool _fixedEnabled = true;
+    public string CurrentFixedKey => _fixedKey;
 
     public void ChangeCameraPanningStatus(bool enabled)
     {
@@ -187,4 +188,3 @@ public class UIManager : Singleton<UIManager>
         _fixedEnabled = true;
     }
 }
-
