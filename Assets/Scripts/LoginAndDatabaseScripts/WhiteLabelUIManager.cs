@@ -26,11 +26,12 @@ public class WhiteLabelUIManager : MonoBehaviour
 
     [Header("Leaderboard Settings")]
     public string leaderboardKey = "JPBR_Social";
-    public int maxResults = 50;
+    public int    maxResults     = 50;
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+
         LootLockerSDKManager.CheckWhiteLabelSession(valid =>
         {
             if (valid)
@@ -82,7 +83,7 @@ public class WhiteLabelUIManager : MonoBehaviour
                     return;
                 }
 
-                // Cache credentials for returning players
+                // Cache credentials and player ID
                 PlayerPrefs.SetString("WL_Email", email);
                 PlayerPrefs.SetString("WL_Password", password);
                 PlayerPrefs.SetString("PlayerID", loginResponse.SessionResponse.player_id.ToString());
@@ -103,12 +104,11 @@ public class WhiteLabelUIManager : MonoBehaviour
         {
             if (!res.success)
             {
-                Debug.LogError("Login or session start failed: " +
+                Debug.LogError("Login/session start failed: " +
                     (res.LoginResponse.success ? res.SessionResponse.errorData : res.LoginResponse.errorData));
                 return;
             }
 
-            // Cache credentials for returning players
             PlayerPrefs.SetString("WL_Email", email);
             PlayerPrefs.SetString("WL_Password", password);
             PlayerPrefs.SetString("PlayerID", res.SessionResponse.player_id.ToString());
@@ -132,6 +132,11 @@ public class WhiteLabelUIManager : MonoBehaviour
         });
     }
 
+    private void CachePlayerId(string id)
+    {
+        PlayerPrefs.SetString("PlayerID", id);
+    }
+
     private void SetPlayerName(string name, Action onComplete)
     {
         LootLockerSDKManager.SetPlayerName(name, setNameResponse =>
@@ -151,7 +156,7 @@ public class WhiteLabelUIManager : MonoBehaviour
             {
                 if (!submitResp.success)
                 {
-                    Debug.LogError("Random score submission failed: " + submitResp.errorData);
+                    Debug.LogError("Score submission failed: " + submitResp.errorData);
                     return;
                 }
 

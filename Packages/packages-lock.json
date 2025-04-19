@@ -326,6 +326,13 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.yasirkula.simplefilebrowser": {
+      "version": "https://github.com/yasirkula/UnitySimpleFileBrowser.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d38e5f1e6da37922a4fd0f109ca564c43a43727d"
+    },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",
       "depth": 0,
