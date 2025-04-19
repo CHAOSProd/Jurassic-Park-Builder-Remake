@@ -7,39 +7,31 @@ public class AvatarManager : MonoBehaviour
     // Hook this up to your "Upload Avatar" button’s OnClick
     public void OnUploadAvatarClicked()
     {
-        // 1) Optionally set file filters (images only)
-        //    This uses the overload: SetFilters(bool showAllFilesFilter, params string[] filters)
-        //    to show only .png, .jpg, .jpeg files in the dialog :contentReference[oaicite:1]{index=1}
         FileBrowser.SetFilters(true, ".png", ".jpg", ".jpeg");
-
-        // 2) Show the load dialog (no filter argument here)
         FileBrowser.ShowLoadDialog(
-            OnFilePicked,       // OnSuccess callback
-            OnPickCanceled,     // OnCancel callback
+            OnFilePicked,
+            OnPickCanceled,
             FileBrowser.PickMode.Files,
-            false               // allowMultiSelection = false
-            // initialPath, initialFilename, title, loadButtonText use defaults
+            false
         );
     }
 
-    // Called when user selects one or more files
     private void OnFilePicked(string[] paths)
     {
-        if (paths == null || paths.Length == 0)
-            return;
-
-        UploadCustomAvatar(paths[0]);
+        if (paths == null || paths.Length == 0) return;
+        UploadAvatarPublic(paths[0]);
     }
 
-    // Called when the user cancels the dialog
     private void OnPickCanceled()
     {
         Debug.Log("Avatar selection canceled.");
     }
 
-    private void UploadCustomAvatar(string localFilePath)
+    /// <summary>
+    /// Ensures the file is uploaded as a public player file.
+    /// </summary>
+    private void UploadAvatarPublic(string localFilePath)
     {
-        // Ensure we have a valid LootLocker session
         LootLockerSDKManager.CheckWhiteLabelSession(valid =>
         {
             if (!valid)
@@ -48,11 +40,11 @@ public class AvatarManager : MonoBehaviour
                 return;
             }
 
-            // Upload the file as a public player file
+            // purpose: "player_profile_picture", isPublic: true
             LootLockerSDKManager.UploadPlayerFile(
                 localFilePath,
-                "player_profile_picture",  // your file purpose
-                true,                      // public
+                "player_profile_picture",
+                true,                    // ← force public
                 resp =>
                 {
                     if (!resp.success)
@@ -61,11 +53,10 @@ public class AvatarManager : MonoBehaviour
                         return;
                     }
 
-                    // Cache the URL locally for this client
+                    // cache and override Discord metadata
                     PlayerPrefs.SetString("CustomAvatarUrl", resp.url);
                     PlayerPrefs.Save();
 
-                    // Override the discord_avatar key-value so others see this custom avatar
                     LootLockerSDKManager.UpdateOrCreateKeyValue(
                         "discord_avatar",
                         resp.url,
